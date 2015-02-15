@@ -22,6 +22,7 @@ import com.networknt.light.rule.Rule;
 import com.networknt.light.util.ServiceLocator;
 import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
+import com.orientechnologies.orient.core.db.record.ORecordLazyList;
 import com.orientechnologies.orient.core.id.ORecordId;
 import com.orientechnologies.orient.core.index.OCompositeKey;
 import com.orientechnologies.orient.core.index.OIndex;
@@ -131,8 +132,10 @@ public abstract class AbstractPostRule extends AbstractRule implements Rule {
                 OIdentifiable parentOid = (OIdentifiable) hostIdIdx.get(parentKey);
                 if (parentOid != null) {
                     ODocument parent = (ODocument) parentOid.getRecord();
-                    Set children = parent.field("children");
-                    children.remove(post);
+                    ORecordLazyList children = parent.field("posts");
+                    if (children != null) {
+                        children.remove(post);
+                    }
                     parent.save();
                 }
                 // remove all children

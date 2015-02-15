@@ -1,0 +1,100 @@
+<script type='text/javascript'>
+    angular.module('lightApp').controller('com.networknt.light.ForumPostViewCtrl', ['$scope', '$http', '$location', '$filter', 'toaster', 'modelDataService', function ($scope, $http, $location, $filter, toaster, modelDataService) {
+        console.log(modelDataService.getModelData());
+        $scope.postData = modelDataService.getModelData();
+
+        $scope.addComment = {
+            category: 'post',
+            name: 'addComment',
+            readOnly: false,
+            data: {}
+        };
+
+        $scope.displayAddCommentRow = false;
+        $scope.displaySubmitCommentButton = false;
+        $scope.addCommentText = 'Reply';
+        $scope.addCommentClass = 'btn btn-info';
+        $scope.addCommentGlyph = 'glyphicon glyphicon-plus';
+
+        $scope.toggleComment = function() {
+            $scope.displayAddCommentRow = !$scope.displayAddCommentRow;
+            if ($scope.addCommentText == 'Reply') {
+                $scope.addCommentText = 'Cancel';
+                $scope.addCommentClass = 'btn btn-danger';
+                $scope.addCommentGlyph = '';
+            } else {
+                $scope.addCommentText = 'Reply';
+                $scope.addCommentClass = 'btn btn-info';
+                $scope.addCommentGlyph = 'glyphicon glyphicon-plus';
+            }
+        };
+
+    }]);
+</script>
+<div class="container" ng-controller="com.networknt.light.ForumPostViewCtrl">
+    <h2>{{postData.title}}</h2>
+    <p>By: {{postData.createUserId}}. Published on: {{postData.createDate}}</p>
+    <pre>{{postData.content}}</pre>
+
+    <br />
+    <label>Replies (Non functional proof of concept)</label>
+    <table class="table table-striped table-bordered table-hover">
+        <tbody>
+            <tr style="height:100px;">
+                <td width="1%" >
+                    <label>Nicholas:</label>
+                </td>
+                <td style="position:relative;">
+                    <comment>Great post.</comment>
+                    <span style="position:absolute;right:10px;bottom:10px;">
+                        <span class="glyphicon glyphicon-share-alt" style="color:rgb(91,192,222); float:right; width:20px;"></span>
+                        <span class="glyphicon glyphicon-thumbs-down" style="color:red; float:right; width:20px;"></span>
+                        <span class="glyphicon glyphicon-thumbs-up" style="color:green; float:right; width:20px;"></span>
+                    </span>
+                </td>
+            </tr>
+            <tr style="height:20px">
+            </tr>
+            <tr style="height:100px;">
+                <td width="1%">
+                    <label>stevehu:</label>
+                </td>
+                <td style="position:relative;">
+                    <comment>Thank you!</comment>
+                    <span style="position:absolute;right:10px;bottom:10px;">
+                        <span class="glyphicon glyphicon-share-alt" style="color:rgb(91,192,222); float:right; width:20px;"></span>
+                        <span class="glyphicon glyphicon-thumbs-down" style="color:red; float:right; width:20px;"></span>
+                        <span class="glyphicon glyphicon-thumbs-up" style="color:green; float:right; width:20px;"></span>
+                    </span>
+                </td>
+            </tr>
+            <tr style="height:20px">
+            </tr>
+            <!-- The rest of the current post content... -->
+            <!-- Then at the end -->
+            <tr style="height:100px;" ng-show="displayAddCommentRow">
+                <td width="1%">
+                    <label>currentUser:</label>
+                </td>
+                <td style="position:relative;">
+                    <comment><input type="text" width="100%" spellcheck="true" /></comment>
+                    <span style="position:absolute;right:10px;bottom:10px;">
+                        <span class="glyphicon glyphicon-share-alt" style="color:rgb(91,192,222); float:right; width:20px;"></span>
+                        <span class="glyphicon glyphicon-thumbs-down" style="color:red; float:right; width:20px;"></span>
+                        <span class="glyphicon glyphicon-thumbs-up" style="color:green; float:right; width:20px;"></span>
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="pull-right">
+        <button ng-class="addCommentClass" ng-click="toggleComment()" style="float:right;">
+            <span ng-class="addCommentGlyph" style="padding-right:5px;"></span>
+            {{addCommentText}}
+        </button>
+        <button class="btn btn-success" ng-click="" style="float:right;" ng-show="displayAddCommentRow">
+            Submit
+        </button>
+    </div>
+    </div>
+</div> <!-- /container -->

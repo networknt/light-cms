@@ -1,0 +1,99 @@
+<script type='text/javascript'>
+    angular.module('lightApp').controller('com.networknt.light.ForumPostCtrl', ['$scope', '$http', '$location', '$filter', 'toaster', 'modelDataService', function ($scope, $http, $location, $filter, toaster, modelDataService) {
+        $scope.getForumPost = {
+            category : 'forum',
+            name: 'getForumPost',
+            readOnly: true,
+            data: {}
+        }
+
+        $scope.delPost = {
+            category: 'post',
+            name: 'delPost',
+            readOnly: false,
+            data: {}
+        }
+
+        $scope.posts = [];
+        $scope.forums = [];
+
+        $scope.fetchResult = function () {
+            // Check if the id is null before setting it.
+            // Otherwise it will be overwritten with null.
+            if ($scope.getForumPost.data.id == null) {
+                $scope.getForumPost.data.id = modelDataService.getModelData();
+                modelDataService.setModelData(null); // reset the modelDataService variable.
+            }
+            $http.post('api/rs', $scope.getForumPost)
+                .success(function (result, status, headers, config) {
+                    $scope.posts = result;
+                })
+                .error(function (result, status, headers, config) {
+                    $scope.posts = [];
+                });
+        };
+        $scope.fetchResult();
+
+        $scope.post = function() {
+            $location.path("/form/com.networknt.light.forum.post.add/" + $scope.getForumPost.data.id);
+        };
+
+        $scope.view = function(post) {
+            modelDataService.setModelData(post);
+            $location.path("/page/com-networknt-light-forum-post-view");
+        };
+
+        $scope.edit = function (post) {
+            console.log("editing following post");
+            console.log(post);
+            modelDataService.setModelData(post);
+        };
+
+        $scope.del = function (post) {
+            $scope.delPost.data = post;
+            $http.post('api/rs', $scope.delPost)
+                .success(function (result, status, headers, config) {
+                    $scope.fetchResult();
+                });
+        };
+
+        $scope.quickView = function (post) {
+            console.log("Quickview the following post");
+            console.log(post);
+        };
+
+    }]);
+</script>
+<div class="container" ng-controller="com.networknt.light.ForumPostCtrl">
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="pull-right">
+                <button class="btn btn-info" ng-click="post()"><span class="glyphicon glyphicon-plus" style="padding-right:5px"></span>Post</button>
+            </div>
+            <tabset>
+                <tab heading="Posts">
+                    <table class="table table-striped">
+                        <thead>
+                            <tr><th>Title</th><th>User</th><th>Create Date</th><th>Action</th></tr>
+                        </thead>
+                        <tbody id="postsBody">
+                        <tr ng-if="posts.length == 0">
+                            <td colspan="4"><span class="glyphicon glyphicon-warning-sign" style="padding-right:5px;"></span>No posts found</td>
+                        </tr>
+                        <tr ng-repeat="post in posts | filter: filter | orderBy: sort.sortedBy">
+                            <td><a href ng-click="view(post)">{{post.title}}</a></td>
+                            <td>{{post.createUserId}}</td>
+                            <td>{{post.createDate}}</td>
+                            <td>
+                                <a href ng-click="quickView(post)" style="padding-right:5px; padding-left:5px;"><span class="glyphicon glyphicon-eye-open"></span></a>
+                                <a href ng-click="edit(post)" style="padding-right:5px; padding-left:5px;"><span class="glyphicon glyphicon-pencil"></span></a>
+                                <a href ng-click="del(post)" style="padding-right:5px; padding-left:5px;"><span class="glyphicon glyphicon-remove"></span></a>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </tab>
+            </tabset>
+        </div>
+    </div>
+</div> <!-- /container -->
