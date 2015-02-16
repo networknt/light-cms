@@ -16,6 +16,7 @@ angular.module('lightApp').controller('pageCtrl', ['$scope', '$routeParams', '$h
             id : $routeParams.id
         }
     };
+    console.log("Getting page with id:", $routeParams.id);
 
     $http.post('api/rs', getPagePost)
         .success(function(result, status, headers, config) {
