@@ -1,22 +1,22 @@
 <script type='text/javascript'>
-    angular.module('lightApp').controller('com.networknt.light.ForumPostCtrl', ['$scope', '$http', '$location', '$filter', 'toaster', 'modelDataService', function ($scope, $http, $location, $filter, toaster, modelDataService) {
+    angular.module('lightApp').controller('com.networknt.light.ForumPostCtrl', ['$scope', '$http', '$location', 'authService', '$filter', 'toaster', 'modelDataService', function ($scope, $http, $location, authService, $filter, toaster, modelDataService) {
         $scope.getForumPost = {
             category : 'forum',
             name: 'getForumPost',
             readOnly: true,
             data: {}
-        }
+        };
 
         $scope.delPost = {
             category: 'post',
             name: 'delPost',
             readOnly: false,
             data: {}
-        }
+        };
 
         $scope.posts = [];
         $scope.forums = [];
-
+        console.log("Model Data", modelDataService);
         $scope.fetchResult = function () {
             // Check if the id is null before setting it.
             // Otherwise it will be overwritten with null.
@@ -62,9 +62,42 @@
             console.log(post);
         };
 
+        $scope.canCurrentUserEdit = function (post) {
+            var currentUser = authService.authentication.currentUser;
+            var currentUserRoles = currentUser.roles;
+
+            for (var i = 0; i < currentUserRoles.length; i++) {
+                if (currentUserRoles == "owner"
+                    || currentUserRoles == "forumAdmin"
+                    || currentUser.userId == post.createUserId) {
+                    return true;
+                }
+            }
+
+            return false;
+        };
+
+        $scope.canCurrentUserDelete = function (post) {
+            var currentUser = authService.authentication.currentUser;
+            var currentUserRoles = currentUser.roles;
+
+            for (var i = 0; i < currentUserRoles.length; i++) {
+                if (currentUserRoles[i] == "owner"
+                    || currentUserRoles[i] == "forumAdmin"
+                    || currentUser.userId == post.createUserId) {
+                    return true;
+                }
+            }
+
+            return false;
+        };
+
     }]);
 </script>
 <div class="container" ng-controller="com.networknt.light.ForumPostCtrl">
+    <div class="jumbotron" ng-if="getForumPost.data.id != null">
+        <h2>{{getForumPost.data.id}}</h2>
+    </div>
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="pull-right">
@@ -74,7 +107,7 @@
                 <tab heading="Posts">
                     <table class="table table-striped">
                         <thead>
-                            <tr><th>Title</th><th>User</th><th>Create Date</th><th>Action</th></tr>
+                            <tr><th>Post</th><th>By</th><th>On</th><th>Actions</th></tr>
                         </thead>
                         <tbody id="postsBody">
                         <tr ng-if="posts.length == 0">
@@ -86,13 +119,17 @@
                             <td>{{post.createDate}}</td>
                             <td>
                                 <a href ng-click="quickView(post)" style="padding-right:5px; padding-left:5px;"><span class="glyphicon glyphicon-eye-open"></span></a>
-                                <a href ng-click="edit(post)" style="padding-right:5px; padding-left:5px;"><span class="glyphicon glyphicon-pencil"></span></a>
-                                <a href ng-click="del(post)" style="padding-right:5px; padding-left:5px;"><span class="glyphicon glyphicon-remove"></span></a>
+                                <a href ng-show="canCurrentUserEdit(post)" ng-click="edit(post)" style="padding-right:5px; padding-left:5px;"><span class="glyphicon glyphicon-pencil"></span></a>
+                                <a href ng-show="canCurrentUserDelete(post)" ng-click="del(post)" style="padding-right:5px; padding-left:5px;"><span class="glyphicon glyphicon-remove"></span></a>
+                            </td>
+                            <td ng-show="">
+                                {{post.content}}
                             </td>
                         </tr>
                         </tbody>
                     </table>
                 </tab>
+
             </tabset>
         </div>
     </div>
