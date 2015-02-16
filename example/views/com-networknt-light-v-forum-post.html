@@ -16,14 +16,19 @@
 
         $scope.posts = [];
         $scope.forums = [];
-        console.log("Model Data", modelDataService);
         $scope.fetchResult = function () {
+            var modelData = modelDataService.getModelData();
             // Check if the id is null before setting it.
             // Otherwise it will be overwritten with null.
+            console.log('modelData', modelDataService.getModelData());
             if ($scope.getForumPost.data.id == null) {
-                $scope.getForumPost.data.id = modelDataService.getModelData();
-                modelDataService.setModelData(null); // reset the modelDataService variable.
+                if (modelData != null && modelData.forumId == null) {
+                    $scope.getForumPost.data.id = modelData;
+                } else {
+                    $scope.getForumPost.data.id = modelDataService.getModelData().forumId;
+                }
             }
+            console.log('posting with:', $scope.getForumPost);
             $http.post('api/rs', $scope.getForumPost)
                 .success(function (result, status, headers, config) {
                     $scope.posts = result;
@@ -35,18 +40,25 @@
         $scope.fetchResult();
 
         $scope.post = function() {
+            var modelData = modelDataService.getModelData();
+            modelDataService.setModelData(null); // reset the modelDataService variable.
             $location.path("/form/com.networknt.light.forum.post.add/" + $scope.getForumPost.data.id);
         };
 
         $scope.view = function(post) {
-            modelDataService.setModelData(post);
+            modelDataService.setModelData({
+                forumId: $scope.getForumPost.data.id,
+                post: post
+            });
+            console.log(modelDataService.getModelData());
+            //modelDataService.setModelData(post);
             $location.path("/page/com-networknt-light-forum-post-view");
         };
 
         $scope.edit = function (post) {
             console.log("editing following post");
             console.log(post);
-            modelDataService.setModelData(post);
+
         };
 
         $scope.del = function (post) {

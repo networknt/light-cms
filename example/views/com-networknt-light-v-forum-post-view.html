@@ -1,8 +1,7 @@
 <script type='text/javascript'>
     angular.module('lightApp').controller('com.networknt.light.ForumPostViewCtrl', ['$scope', '$http', '$location', '$filter', 'toaster', 'modelDataService', function ($scope, $http, $location, $filter, toaster, modelDataService) {
-        console.log(modelDataService.getModelData());
-        $scope.postData = modelDataService.getModelData();
 
+        $scope.postData = modelDataService.getModelData().post;
         $scope.addComment = {
             category: 'post',
             name: 'addComment',

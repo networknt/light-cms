@@ -40,7 +40,9 @@
     $scope.supportedFields = ['id', 'desc'];
 
     $scope.gotoForum = function(id) {
-        modelDataService.setModelData(id);
+        modelDataService.setModelData({
+            forumId: id
+        });
         $location.path("/page/com-networknt-light-v-forum-post");
     }
 
