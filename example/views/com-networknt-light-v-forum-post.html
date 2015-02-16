@@ -16,6 +16,9 @@
 
         $scope.posts = [];
         $scope.forums = [];
+        $scope.fetchForumsDisplayClass = "info";
+        $scope.fetchForumsStateText = "Getting forums...";
+
         $scope.fetchResult = function () {
             var modelData = modelDataService.getModelData();
             // Check if the id is null before setting it.
@@ -31,10 +34,20 @@
             console.log('posting with:', $scope.getForumPost);
             $http.post('api/rs', $scope.getForumPost)
                 .success(function (result, status, headers, config) {
+                    console.log("received success", result);
                     $scope.posts = result;
                 })
                 .error(function (result, status, headers, config) {
+                    console.log("received error", result);
                     $scope.posts = [];
+                    if (status == 404) {
+                        $scope.fetchForumsStateText = "No posts can be found in this forum... Be the first!";
+                        $scope.fetchForumsDisplayClass = "success";
+                    } else {
+                        $scope.fetchForumsStateText = "There was an error retrieving forum posts, please contact a moderator";
+                        $scope.fetchForumsDisplayClass = "danger";
+                    }
+
                 });
         };
         $scope.fetchResult();
@@ -56,7 +69,6 @@
         $scope.edit = function (post) {
             console.log("editing following post");
             console.log(post);
-
         };
 
         $scope.del = function (post) {
@@ -68,8 +80,7 @@
         };
 
         $scope.quickView = function (post) {
-            console.log("Quickview the following post");
-            console.log(post);
+            console.log("Quickview the following post", post);
         };
 
         $scope.canCurrentUserEdit = function (post) {
@@ -83,7 +94,6 @@
                     return true;
                 }
             }
-
             return false;
         };
 
@@ -101,7 +111,6 @@
 
             return false;
         };
-
     }]);
 </script>
 <div class="container" ng-controller="com.networknt.light.ForumPostCtrl">
@@ -121,7 +130,7 @@
                         </thead>
                         <tbody id="postsBody">
                         <tr ng-if="posts.length == 0">
-                            <td colspan="4"><span class="glyphicon glyphicon-warning-sign" style="padding-right:5px;"></span>No posts found</td>
+                            <td colspan="4" ng-class="fetchForumsDisplayClass"><span class="glyphicon glyphicon-warning-sign" style="padding-right:5px;"></span>{{fetchForumsStateText}}</td>
                         </tr>
                         <tr ng-repeat="post in posts | filter: filter | orderBy: sort.sortedBy">
                             <td><a href ng-click="view(post)">{{post.title}}</a></td>

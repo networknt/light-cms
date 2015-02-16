@@ -49,7 +49,7 @@
                     $scope.comments = result.comments;
                 })
                 .error(function (result, status, headers, config) {
-                    // error fetching comments, set comments to blank.
+                    // error fetching comments, set comments to empty list.
                     $scope.comments = [];
                 });
         };

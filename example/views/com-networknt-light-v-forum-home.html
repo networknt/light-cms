@@ -39,12 +39,12 @@
 
     $scope.supportedFields = ['id', 'desc'];
 
-    $scope.gotoForum = function(id) {
+    $scope.goToForum = function(id) {
         modelDataService.setModelData({
             forumId: id
-        });
+            });
         $location.path("/page/com-networknt-light-v-forum-post");
-    }
+    };
 
     }]);
 </script>
@@ -65,7 +65,7 @@
                 <div ui-tree-handle class="tree-node tree-node-content">
                     <a class="btn btn-xs" ng-if="node.children && node.children.length > 0" data-nodrag ng-click="toggle(this)"><span class="glyphicon" ng-class="{'glyphicon glyphicon-plus': collapsed, 'glyphicon glyphicon-minus': !collapsed}"></span></a>
                     <!--{{node.id | highlight:pattern | trust}}-->
-                    <a href ng-click="gotoForum(node.id)" ng-bind-html="node.id | highlight:pattern | trust"></a>
+                    <a href ng-click="goToForum(node.id)" ng-bind-html="node.id | highlight:pattern | trust"></a>
                     <small ng-bind-html="node.desc | highlight:pattern | trust"></small>
                 </div>
                 <ol ui-tree-nodes="" ng-model="node.children" ng-class="{hidden: collapsed}">

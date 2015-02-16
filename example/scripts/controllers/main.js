@@ -9,7 +9,7 @@
  */
 angular.module('lightApp')
     .controller('mainCtrl', ['$scope', '$http', function ($scope, $http) {
-
+        /*
         var getFeedPost = {
             host: 'injector',
             app: 'main',
@@ -17,11 +17,11 @@ angular.module('lightApp')
             name : 'getFeed',
             readOnly: true,
             data : {}
-        };
+        };*/
 
         $scope.page = { maxSize: 5, currentPage: 1, numPerPage: 10, totalItems: 20, numPages: 0 }
         $scope.feeds = [];
-
+        /*
         $http.post('api/rs', getFeedPost)
             .success(function(result, status, headers, config) {
                 console.log(result);
@@ -39,7 +39,7 @@ angular.module('lightApp')
 
             }
         );
-
+        */
 
         $scope.pageChanged = function() {
             console.log('Page changed to: ' + $scope.page.currentPage);
