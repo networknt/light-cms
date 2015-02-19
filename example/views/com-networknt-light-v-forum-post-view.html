@@ -85,7 +85,7 @@
 
     <br />
     <label>Replies:</label>
-    <table class="table table-striped table-bordered table-hover">
+    <table class="table table-striped table-bordered">
         <tbody>
             <tr ng-repeat="comment in comments" style="height:100px;">
                 <td width="1%">
@@ -100,37 +100,6 @@
                     </span>
                 </td>
             </tr>
-            <!--
-            <tr style="height:100px;">
-                <td width="1%" >
-                    <label>Nicholas:</label>
-                </td>
-                <td style="position:relative;">
-                    <comment>Great post.</comment>
-                    <span style="position:absolute;right:10px;bottom:10px;">
-                        <span class="glyphicon glyphicon-share-alt" style="color:rgb(91,192,222); float:right; width:20px;"></span>
-                        <span class="glyphicon glyphicon-thumbs-down" style="color:red; float:right; width:20px;"></span>
-                        <span class="glyphicon glyphicon-thumbs-up" style="color:green; float:right; width:20px;"></span>
-                    </span>
-                </td>
-            </tr>
-            <tr style="height:20px">
-            </tr>
-            <tr style="height:100px;">
-                <td width="1%">
-                    <label>stevehu:</label>
-                </td>
-                <td style="position:relative;">
-                    <comment>Thank you!</comment>
-                    <span style="position:absolute;right:10px;bottom:10px;">
-                        <span class="glyphicon glyphicon-share-alt" style="color:rgb(91,192,222); float:right; width:20px;"></span>
-                        <span class="glyphicon glyphicon-thumbs-down" style="color:red; float:right; width:20px;"></span>
-                        <span class="glyphicon glyphicon-thumbs-up" style="color:green; float:right; width:20px;"></span>
-                    </span>
-                </td>
-            </tr>
-            <tr style="height:20px">
-            </tr>-->
             <!-- The rest of the current post content... -->
             <!-- Then at the end -->
             <tr style="height:100px;" ng-show="displayAddCommentRow">

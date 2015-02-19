@@ -66,16 +66,15 @@ var lightApp = angular.module('lightApp', [
         templateUrl: 'views/blog.html',
         controller: 'BlogCtrl'
       })
-       /*
       .when('/page/com-networknt-light-v-forum-home', {
           templateUrl: 'views/com-networknt-light-v-forum-home.html'
       })
       .when('/page/com-networknt-light-v-forum-post', {
           templateUrl: 'views/com-networknt-light-v-forum-post.html'
       })
-      .when('/page/com-networknt-light-forum-post-view', {
+      .when('/page/com-networknt-light-v-forum-post-view', {
           templateUrl: 'views/com-networknt-light-v-forum-post-view.html'
-      })*/
+      })
       .when('/page/:id', {
           templateUrl: 'views/page.html',
           controller: 'pageCtrl'
