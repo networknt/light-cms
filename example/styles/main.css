@@ -444,10 +444,10 @@ body {
     padding: 9px 0;
 }
 
-.dropdown:hover .dropdown-menu {
+li.dropdown:hover .dropdown-menu {
     display: block;
 }
 
-.dropdown-span:hover .dropdown-menu {
+li.dropdown-span:hover .dropdown-menu {
     display: block;
 }
