@@ -145,7 +145,7 @@
   "name": "execCommand",
   "data": {
   "createUserId": "stevehu",
-  "script": "insert into MenuItem(id, label, path, left, roles) values ('blog', 'Blog', '/page/com-networknt-light-v-blog-home', true, 'user'),('forum', 'Forum', '/page/com-networknt-light-v-news-home', true, 'user'),('news', 'News', '/page/com-networknt-light-v-forum-home', true, 'user');\n",
+  "script": "insert into MenuItem(id, label, path, left, roles) values ('blog', 'Blog', '/page/com-networknt-light-v-blog-home', true, 'user'),('forum', 'Forum', '/page/com-networknt-light-v-forum-home', true, 'user'),('news', 'News', '/page/com-networknt-light-v-news-home', true, 'user');\n",
   "createDate": "2015-02-21T02:27:57.663"
   },
   "createUserId": "stevehu",
