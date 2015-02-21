@@ -2,18 +2,89 @@ CREATE CLASS Blog;
 CREATE PROPERTY Blog.host STRING;
 CREATE PROPERTY Blog.id STRING;
 CREATE PROPERTY Blog.desc STRING;
-CREATE PROPERTY Blog.parent STRING;
-CREATE PROPERTY Blog.children STRING;
-CREATE PROPERTY Blog.attributes STRING;
-CREATE PROPERTY Blog.upUsers STRING;
-CREATE PROPERTY Blog.downUsers STRING;
-CREATE PROPERTY Blog.rank STRING;
+CREATE PROPERTY Blog.parent LINK;
+CREATE PROPERTY Blog.children LINKSET;
+CREATE PROPERTY Blog.attributes EMBEDDEDMAP;
+CREATE PROPERTY Blog.upUsers LINKSET;
+CREATE PROPERTY Blog.downUsers LINKSET;
+CREATE PROPERTY Blog.rank INTEGER;
 CREATE PROPERTY Blog.posts STRING;
-CREATE PROPERTY Blog.createDate STRING;
+CREATE PROPERTY Blog.createDate DATETIME;
 CREATE PROPERTY Blog.createUserId STRING;
-CREATE PROPERTY Blog.updateDate STRING;
+CREATE PROPERTY Blog.updateDate DATETIME;
 CREATE PROPERTY Blog.updateUserId STRING;
 CREATE INDEX blogHostIdIdx ON Blog(host, id) UNIQUE;
+
+CREATE CLASS Forum;
+CREATE PROPERTY Forum.host STRING;
+CREATE PROPERTY Forum.id STRING;
+CREATE PROPERTY Forum.desc STRING;
+CREATE PROPERTY Forum.parent LINK;
+CREATE PROPERTY Forum.children LINKSET;
+CREATE PROPERTY Forum.attributes EMBEDDEDMAP;
+CREATE PROPERTY Forum.upUsers LINKSET;
+CREATE PROPERTY Forum.downUsers LINKSET;
+CREATE PROPERTY Forum.rank INTEGER;
+CREATE PROPERTY Forum.posts STRING;
+CREATE PROPERTY Forum.createDate DATETIME;
+CREATE PROPERTY Forum.createUserId STRING;
+CREATE PROPERTY Forum.updateDate DATETIME;
+CREATE PROPERTY Forum.updateUserId STRING;
+CREATE INDEX forumHostIdIdx ON Forum(host, id) UNIQUE;
+
+CREATE CLASS News;
+CREATE PROPERTY News.host STRING;
+CREATE PROPERTY News.id STRING;
+CREATE PROPERTY News.desc STRING;
+CREATE PROPERTY News.parent LINK;
+CREATE PROPERTY News.children LINKSET;
+CREATE PROPERTY News.attributes EMBEDDEDMAP;
+CREATE PROPERTY News.upUsers LINKSET;
+CREATE PROPERTY News.downUsers LINKSET;
+CREATE PROPERTY News.rank INTEGER;
+CREATE PROPERTY News.posts STRING;
+CREATE PROPERTY News.createDate DATETIME;
+CREATE PROPERTY News.createUserId STRING;
+CREATE PROPERTY News.updateDate DATETIME;
+CREATE PROPERTY News.updateUserId STRING;
+CREATE INDEX newsHostIdIdx ON News(host, id) UNIQUE;
+CREATE INDEX News.updateDate ON News(updateDate) NOTUNIQUE;
+
+CREATE CLASS Post;
+CREATE PROPERTY Post.host STRING;
+CREATE PROPERTY Post.id STRING;
+CREATE PROPERTY Post.parent LINK;
+CREATE PROPERTY Post.title STRING;
+CREATE PROPERTY Post.source STRING;
+CREATE PROPERTY Post.content STRING;
+CREATE PROPERTY Post.tags LINKMAP;
+CREATE PROPERTY Post.upUsers LINKSET;
+CREATE PROPERTY Post.downUsers LINKSET;
+CREATE PROPERTY Post.rank INTEGER;
+CREATE PROPERTY Post.children LINKLIST;
+CREATE PROPERTY Post.createDate DATETIME;
+CREATE PROPERTY Post.createUserId STRING;
+CREATE PROPERTY Post.updateDate DATETIME;
+CREATE INDEX Post.id ON Post(id) UNIQUE;
+CREATE INDEX Post.updateDate ON Post(updateDate) NOTUNIQUE;
+
+CREATE CLASS Comment;
+CREATE PROPERTY Comment.host STRING;
+CREATE PROPERTY Comment.id STRING;
+CREATE PROPERTY Comment.parent LINK;
+CREATE PROPERTY Comment.title STRING;
+CREATE PROPERTY Comment.source STRING;
+CREATE PROPERTY Comment.content STRING;
+CREATE PROPERTY Comment.tags LINKMAP;
+CREATE PROPERTY Comment.upUsers LINKSET;
+CREATE PROPERTY Comment.downUsers LINKSET;
+CREATE PROPERTY Comment.rank INTEGER;
+CREATE PROPERTY Comment.children LINKLIST;
+CREATE PROPERTY Comment.createDate DATETIME;
+CREATE PROPERTY Comment.createUserId STRING;
+CREATE PROPERTY Comment.updateDate DATETIME;
+CREATE INDEX Comment.id ON Comment(id) UNIQUE;
+CREATE INDEX Comment.updateDate ON Comment(updateDate) NOTUNIQUE;
 
 
 CREATE CLASS Tag;
@@ -25,4 +96,11 @@ CREATE PROPERTY Tag.createDate DATETIME;
 CREATE PROPERTY Tag.createUserId STRING;
 CREATE PROPERTY Tag.updateDate DATETIME;
 CREATE INDEX hostNameClassIdx ON Tag(host, name, class) UNIQUE;
+
+insert into Role(id,desc) VALUES ('blogAdmin','Blog Admin'),('forumAdmin','Forum Admin'),('newsAdmin','News Admin');
+
+insert into MenuItem(id, label, path) values ('blogAdmin', 'Blog Admin', '/page/com-networknt-light-v-blog-admin-home'),('forumAdmin', 'Forum Admin', '/page/com-networknt-light-v-forum-admin-home'),('newsAdmin', 'News Admin', '/page/com-networknt-light-v-news-admin-home');
+
+insert into MenuItem(id, label, path, left, roles) values ('blog', 'Blog', '/page/com-networknt-light-v-blog-home', true, 'user'),('forum', 'Forum', '/page/com-networknt-light-v-news-home', true, 'user'),('news', 'News', '/page/com-networknt-light-v-forum-home', true, 'user');
+
 
