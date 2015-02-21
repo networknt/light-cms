@@ -57,17 +57,13 @@
             $location.path("/form/com.networknt.light.forum.post.add/" + $scope.getForumPost.data.id);
         };
 
-        $scope.view = function(post) {
+        $scope.view = function(post, editing) {
             modelDataService.setModelData({
                 forumId: $scope.getForumPost.data.id,
-                post: post
+                post: post,
+                editing: editing
             });
             $location.path("/page/com-networknt-light-v-forum-post-view");
-        };
-
-        $scope.edit = function (post) {
-            console.log("editing following post");
-            console.log(post);
         };
 
         $scope.del = function (post) {
@@ -96,8 +92,8 @@
             var currentUserRoles = currentUser.roles;
 
             for (var i = 0; i < currentUserRoles.length; i++) {
-                if (currentUserRoles == "owner"
-                    || currentUserRoles == "forumAdmin"
+                if (currentUserRoles[i] == "owner"
+                    || currentUserRoles[i] == "forumAdmin"
                     || currentUser.userId == post.createUserId) {
                     return true;
                 }
@@ -148,12 +144,12 @@
                         </tbody>
                         <tbody ng-repeat="post in posts | filter: filter | orderBy: sort.sortedBy">
                             <tr>
-                                <td><a href ng-click="view(post)">{{post.title | limitTo:40}}</a></td>
+                                <td><a href ng-click="view(post, false)">{{post.title | limitTo:40}}</a></td>
                                 <td>{{post.createUserId}}</td>
                                 <td>{{post.createDate}}</td>
                                 <td>
                                     <a href ng-click="quickView(post);" style="padding-right:5px; padding-left:5px;"><span ng-class="{'glyphicon glyphicon-eye-open': !postIsVisible(post), 'glyphicon glyphicon-eye-close': postIsVisible(post)}" /></a>
-                                    <a href ng-show="canCurrentUserEdit(post)" ng-click="edit(post)" style="padding-right:5px; padding-left:5px;"><span class="glyphicon glyphicon-pencil"></span></a>
+                                    <a href ng-show="canCurrentUserEdit(post)" ng-click="view(post, true)" style="padding-right:5px; padding-left:5px;"><span class="glyphicon glyphicon-pencil"></span></a>
                                     <a href ng-show="canCurrentUserDelete(post)" ng-click="del(post)" style="padding-right:5px; padding-left:5px;"><span class="glyphicon glyphicon-remove"></span></a>
                                 </td>
                             </tr>

@@ -1,7 +1,11 @@
 <script type='text/javascript'>
     angular.module('lightApp').controller('com.networknt.light.ForumPostViewCtrl', ['$scope', '$http', '$location', 'authService', '$filter', 'toaster', 'modelDataService', function ($scope, $http, $location, authService, $filter, toaster, modelDataService) {
 
-        $scope.postData = modelDataService.getModelData().post;
+        $scope.post = modelDataService.getModelData().post;
+        $scope.forumId = modelDataService.getModelData().forumId;
+        $scope.editing = modelDataService.getModelData().editing;
+        $scope.postTitle = $scope.post.title;
+        $scope.postContent = $scope.post.content;
         $scope.comments = [];
 
         $scope.getComments = {
@@ -18,23 +22,17 @@
             data: {}
         };
 
+        $scope.editPost = {
+            category: 'post',
+            name: 'updPost',
+            readOnly: false,
+            data: {}
+        };
+
         $scope.displayAddCommentRow = false;
-        $scope.displaySubmitCommentButton = false;
-        $scope.addCommentText = 'Reply';
-        $scope.addCommentClass = 'btn btn-info';
-        $scope.addCommentGlyph = 'glyphicon glyphicon-plus';
 
         $scope.toggleComment = function() {
             $scope.displayAddCommentRow = !$scope.displayAddCommentRow;
-            if ($scope.addCommentText == 'Reply') {
-                $scope.addCommentText = 'Cancel';
-                $scope.addCommentClass = 'btn btn-danger';
-                $scope.addCommentGlyph = '';
-            } else {
-                $scope.addCommentText = 'Reply';
-                $scope.addCommentClass = 'btn btn-info';
-                $scope.addCommentGlyph = 'glyphicon glyphicon-plus';
-            }
         };
 
         $scope.getCurrentUserId = function () {
@@ -42,11 +40,13 @@
         };
 
         $scope.fetchComments = function () {
-            $scope.getComments.data["host"] = $scope.postData.host;
-            $scope.getComments.data["@rid"] = $scope.postData["@rid"];
+
+            $scope.getComments.data["host"] = $scope.post.host;
+            $scope.getComments.data["@rid"] = $scope.post["@rid"];
             $http.post('api/rs', $scope.getComments)
                 .success(function (result, status, headers, config) {
                     $scope.comments = result.comments;
+
                 })
                 .error(function (result, status, headers, config) {
                     // error fetching comments, set comments to empty list.
@@ -60,8 +60,8 @@
             var commentContent = document.getElementById("newUserComment").value;
             console.log("adding comment", commentContent);
             if (commentContent != null && commentContent.length > 0) {
-                $scope.addComment.data["host"] = $scope.postData.host;
-                $scope.addComment.data["@rid"] = $scope.postData["@rid"];
+                $scope.addComment.data["host"] = $scope.post.host;
+                $scope.addComment.data["@rid"] = $scope.post["@rid"];
                 $scope.addComment.data.comment = commentContent;
                 $http.post('api/rs', $scope.addComment)
                     .success(function (result, status, headers, config) {
@@ -76,12 +76,49 @@
             }
         };
 
+        $scope.submitEditPost = function () {
+            console.log("location:", $location);
+            if ($scope.postContent != null && $scope.postContent.length > 0 && $scope.postTitle != null && $scope.postTitle.length > 0) {
+                $scope.editPost.data["@rid"] = $scope.post["@rid"];
+                $scope.editPost.data["id"] = $scope.post.id;
+                $scope.editPost.data["content"] = $scope.postContent;
+                $scope.editPost.data["title"] = $scope.postTitle;
+                console.log("posting...:", $scope.editPost);
+                $http.post('api/rs', $scope.editPost)
+                    .success(function (result, status, headers, config) {
+                        console.log("success post:", $scope.post);
+                        modelDataService.setModelData({
+                            forumId: $scope.forumId,
+                            post: $scope.post,
+                            editing: $scope.editing
+                        });
+                        $location.path("/page/com-networknt-light-v-forum-post");
+                    });
+            }
+        };
+
+        $scope.toggleEditPost = function () {
+            $scope.editing = !$scope.editing;
+        };
     }]);
 </script>
 <div class="container" ng-controller="com.networknt.light.ForumPostViewCtrl">
-    <h2>{{postData.title}}</h2>
-    <p>By: {{postData.createUserId}}. Published on: {{postData.createDate}}</p>
-    <pre>{{postData.content}}</pre>
+    <h2>
+        <div ng-if="editing">
+            <textarea type="text" spellcheck="true" style="width:100%;" ng-model="$parent.postTitle"></textarea>
+        </div>
+        <div ng-if="!editing">{{postTitle}}</div>
+    </h2>
+    <p>By: {{post.createUserId}}. Published on: {{post.createDate}}</p>
+    <div ng-if="editing">
+        <!-- Content within textarea tags must be kept without formatting as tabs and newlines will show. -->
+        <textarea type="text" spellcheck="true" style="width:100%;" ng-model="$parent.postContent"></textarea>
+        <div>
+            <button class="btn btn-success" ng-click="submitEditPost()">Submit</button>
+            <button class="btn btn-danger" ng-click="toggleEditPost()">Cancel</button>
+        </div>
+    </div>
+    <pre ng-if="!editing">{{postContent}}</pre>
 
     <br />
     <label>Replies:</label>
@@ -118,13 +155,12 @@
         </tbody>
     </table>
     <div class="pull-right">
-        <button ng-class="addCommentClass" ng-click="toggleComment()" style="float:right;">
-            <span ng-class="addCommentGlyph" style="padding-right:5px;"></span>
-            {{addCommentText}}
+        <button class="btn btn-info" ng-click="toggleComment()" style="float:right;" ng-show="!displayAddCommentRow">
+            <span class="glyphicon glyphicon-plus" style="padding-right:5px;"></span>
+            Reply
         </button>
-        <button class="btn btn-success" ng-click="submitComment()" style="float:right;" ng-show="displayAddCommentRow">
-            Submit
-        </button>
+        <button class="btn btn-danger" ng-click="toggleComment()" style="float:right;" ng-show="displayAddCommentRow">Cancel</button>
+        <button class="btn btn-success" ng-click="submitComment()" style="float:right;" ng-show="displayAddCommentRow">Submit</button>
     </div>
     </div>
 </div> <!-- /container -->

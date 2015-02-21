@@ -27,11 +27,13 @@ angular.module('lightApp').controller('menuCtrl', ['$scope', '$http', 'authServi
     $scope.hasAccess = function(item) {
         //console.log('item = ', item);
         //console.log('currentUser.roles', authService.authentication.currentUser.roles);
-        //console.log('itme.roles', item.roles);
+        //console.log('item.roles', item.roles);
         for (var i = 0; i < authService.authentication.currentUser.roles.length; i++) {
-            for (var j = 0; j < item.roles.length; j++) {
-                if (authService.authentication.currentUser.roles[i] == item.roles[j]) {
-                    return true;
+            if (item.roles != null) {
+                for (var j = 0; j < item.roles.length; j++) {
+                    if (authService.authentication.currentUser.roles[i] == item.roles[j]) {
+                        return true;
+                    }
                 }
             }
         }
