@@ -103,4 +103,23 @@ insert into MenuItem(id, label, path) values ('blogAdmin', 'Blog Admin', '/page/
 
 insert into MenuItem(id, label, path, left, roles) values ('blog', 'Blog', '/page/com-networknt-light-v-blog-home', true, 'user'),('forum', 'Forum', '/page/com-networknt-light-v-news-home', true, 'user'),('news', 'News', '/page/com-networknt-light-v-forum-home', true, 'user');
 
+update MenuItem add menuItems=(select from MenuItem where id = 'blogAdmin') where id = 'admin';
+update MenuItem add menuItems=(select from MenuItem where id = 'forumAdmin') where id = 'admin';
+update MenuItem add menuItems=(select from MenuItem where id = 'newsAdmin') where id = 'admin';
+
+update Menu add menuItems=(select from MenuItem where id = 'blog') where host = 'www.networknt.com';
+update Menu add menuItems=(select from MenuItem where id = 'forum') where host = 'www.networknt.com';
+update Menu add menuItems=(select from MenuItem where id = 'news') where host = 'www.networknt.com';
+
+update Menu add menuItems=(select from MenuItem where id = 'blog') where host = 'www.edibleforestgarden.ca';
+update Menu add menuItems=(select from MenuItem where id = 'forum') where host = 'www.edibleforestgarden.ca';
+update Menu add menuItems=(select from MenuItem where id = 'news') where host = 'www.edibleforestgarden.ca';
+
+update Menu add menuItems=(select from MenuItem where id = 'blog') where host = 'example';
+update Menu add menuItems=(select from MenuItem where id = 'forum') where host = 'example';
+update Menu add menuItems=(select from MenuItem where id = 'news') where host = 'example';
+
+
+
+
 

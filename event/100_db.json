@@ -102,54 +102,315 @@
   "@fieldTypes": "createDate=t"
   },
   {
-  "@type": "d",
-  "@rid": "#15:236",
-  "@version": 1,
-  "@class": "Event",
-  "ipAddress": "127.0.0.1",
-  "category": "db",
-  "name": "execCommand",
-  "data": {
-  "createUserId": "stevehu",
-  "script": "insert into Role(id,desc) VALUES ('blogAdmin','Blog Admin'),('forumAdmin','Forum Admin'),('newsAdmin','News Admin');\n",
-  "createDate": "2015-02-21T02:24:20.421"
-  },
-  "createUserId": "stevehu",
-  "createDate": "2015-02-21T02:24:20.421",
-  "@fieldTypes": "createDate=t"
-  },
-  {
-  "@type": "d",
-  "@rid": "#15:237",
-  "@version": 1,
-  "@class": "Event",
-  "ipAddress": "127.0.0.1",
-  "category": "db",
-  "name": "execCommand",
-  "data": {
-  "createUserId": "stevehu",
-  "script": "insert into MenuItem(id, label, path) values ('blogAdmin', 'Blog Admin', '/page/com-networknt-light-v-blog-admin-home'),('forumAdmin', 'Forum Admin', '/page/com-networknt-light-v-forum-admin-home'),('newsAdmin', 'News Admin', '/page/com-networknt-light-v-news-admin-home');",
-  "createDate": "2015-02-21T02:27:32.112"
-  },
-  "createUserId": "stevehu",
-  "createDate": "2015-02-21T02:27:32.112",
-  "@fieldTypes": "createDate=t"
+    "@type": "d",
+    "@rid": "#15:36",
+    "@version": 1,
+    "@class": "Event",
+    "ipAddress": "127.0.0.1",
+    "category": "role",
+    "name": "addRole",
+    "data": {
+      "createUserId": "stevehu",
+      "id": "blogAdmin",
+      "desc": "Blog Admin",
+      "createDate": "2015-02-23T03:46:43.349"
+    },
+    "createUserId": "stevehu",
+    "createDate": "2015-02-23T03:46:43.349",
+    "@fieldTypes": "createDate=t"
   },
   {
-  "@type": "d",
-  "@rid": "#15:238",
-  "@version": 1,
-  "@class": "Event",
-  "ipAddress": "127.0.0.1",
-  "category": "db",
-  "name": "execCommand",
-  "data": {
-  "createUserId": "stevehu",
-  "script": "insert into MenuItem(id, label, path, left, roles) values ('blog', 'Blog', '/page/com-networknt-light-v-blog-home', true, 'user'),('forum', 'Forum', '/page/com-networknt-light-v-forum-home', true, 'user'),('news', 'News', '/page/com-networknt-light-v-news-home', true, 'user');\n",
-  "createDate": "2015-02-21T02:27:57.663"
+    "@type": "d",
+    "@rid": "#15:37",
+    "@version": 1,
+    "@class": "Event",
+    "ipAddress": "127.0.0.1",
+    "category": "role",
+    "name": "addRole",
+    "data": {
+      "createUserId": "stevehu",
+      "id": "forumAdmin",
+      "desc": "Forum Admin",
+      "createDate": "2015-02-23T03:46:57.657"
+    },
+    "createUserId": "stevehu",
+    "createDate": "2015-02-23T03:46:57.657",
+    "@fieldTypes": "createDate=t"
   },
-  "createUserId": "stevehu",
-  "createDate": "2015-02-21T02:27:57.663",
-  "@fieldTypes": "createDate=t"
+  {
+    "@type": "d",
+    "@rid": "#15:38",
+    "@version": 1,
+    "@class": "Event",
+    "ipAddress": "127.0.0.1",
+    "category": "role",
+    "name": "addRole",
+    "data": {
+      "createUserId": "stevehu",
+      "id": "newsAdmin",
+      "desc": "News Admin",
+      "createDate": "2015-02-23T03:47:08.286"
+    },
+    "createUserId": "stevehu",
+    "createDate": "2015-02-23T03:47:08.286",
+    "@fieldTypes": "createDate=t"
+  },
+  {
+    "@type": "d",
+    "@rid": "#15:43",
+    "@version": 1,
+    "@class": "Event",
+    "ipAddress": "127.0.0.1",
+    "category": "menu",
+    "name": "addMenuItem",
+    "data": {
+      "path": "/page/com-networknt-light-v-blog-admin-home",
+      "createUserId": "stevehu",
+      "left": false,
+      "id": "blogAdmin",
+      "label": "Blog Admin",
+      "createDate": "2015-02-23T03:51:39.776"
+    },
+    "createUserId": "stevehu",
+    "createDate": "2015-02-23T03:51:39.776",
+    "@fieldTypes": "createDate=t"
+  },
+  {
+    "@type": "d",
+    "@rid": "#15:44",
+    "@version": 1,
+    "@class": "Event",
+    "ipAddress": "127.0.0.1",
+    "category": "menu",
+    "name": "addMenuItem",
+    "data": {
+      "path": "/page/com-networknt-light-v-forum-admin-home",
+      "createUserId": "stevehu",
+      "left": false,
+      "id": "forumAdmin",
+      "label": "Forum Admin",
+      "createDate": "2015-02-23T03:52:09.267"
+    },
+    "createUserId": "stevehu",
+    "createDate": "2015-02-23T03:52:09.267",
+    "@fieldTypes": "createDate=t"
+  },
+  {
+    "@type": "d",
+    "@rid": "#15:45",
+    "@version": 1,
+    "@class": "Event",
+    "ipAddress": "127.0.0.1",
+    "category": "menu",
+    "name": "addMenuItem",
+    "data": {
+      "path": "/page/com-networknt-light-v-news-admin-home",
+      "createUserId": "stevehu",
+      "left": false,
+      "id": "newsAdmin",
+      "label": "News Admin",
+      "createDate": "2015-02-23T03:52:34.923"
+    },
+    "createUserId": "stevehu",
+    "createDate": "2015-02-23T03:52:34.923",
+    "@fieldTypes": "createDate=t"
+  },
+  {
+    "@type": "d",
+    "@rid": "#15:46",
+    "@version": 1,
+    "@class": "Event",
+    "ipAddress": "127.0.0.1",
+    "category": "menu",
+    "name": "updMenuItem",
+    "data": {
+      "path": "/admin",
+      "tpl": null,
+      "updateDate": "2015-02-23T03:52:54.039",
+      "menuItemIds": [
+        "accessAdmin",
+        "proxyAdmin",
+        "blogAdmin",
+        "forumAdmin",
+        "newsAdmin",
+        "hostAdmin",
+        "pageAdmin",
+        "formAdmin",
+        "ruleAdmin",
+        "menuAdmin",
+        "dbAdmin",
+        "userAdmin",
+        "roleAdmin"
+      ],
+      "ctrl": "AdminCtrl",
+      "left": true,
+      "updateUserId": "stevehu",
+      "roles": [
+        "owner",
+        "admin",
+        "pageAdmin",
+        "formAdmin",
+        "ruleAdmin",
+        "menuAdmin",
+        "dbAdmin",
+        "productAdmin",
+        "forumAdmin",
+        "blogAdmin",
+        "newsAdmin",
+        "userAdmin",
+        "roleAdmin"
+      ],
+      "id": "admin"
+    },
+    "createUserId": "stevehu",
+    "createDate": "2015-02-23T03:52:54.039",
+    "@fieldTypes": "createDate=t"
+  },
+  {
+    "@type": "d",
+    "@rid": "#15:47",
+    "@version": 1,
+    "@class": "Event",
+    "ipAddress": "127.0.0.1",
+    "category": "menu",
+    "name": "addMenuItem",
+    "data": {
+      "path": "/page/com-networknt-light-v-blog-home",
+      "createUserId": "stevehu",
+      "left": true,
+      "roles": [
+        "anonymous"
+      ],
+      "id": "blog",
+      "label": "Blog",
+      "createDate": "2015-02-23T03:56:09.745"
+    },
+    "createUserId": "stevehu",
+    "createDate": "2015-02-23T03:56:09.745",
+    "@fieldTypes": "createDate=t"
+  },
+  {
+    "@type": "d",
+    "@rid": "#15:48",
+    "@version": 1,
+    "@class": "Event",
+    "ipAddress": "127.0.0.1",
+    "category": "menu",
+    "name": "addMenuItem",
+    "data": {
+      "path": "/page/com-networknt-light-v-forum-home",
+      "createUserId": "stevehu",
+      "left": true,
+      "roles": [
+        "anonymous"
+      ],
+      "id": "forum",
+      "label": "Forum",
+      "createDate": "2015-02-23T03:57:12.657"
+    },
+    "createUserId": "stevehu",
+    "createDate": "2015-02-23T03:57:12.657",
+    "@fieldTypes": "createDate=t"
+  },
+  {
+    "@type": "d",
+    "@rid": "#15:49",
+    "@version": 1,
+    "@class": "Event",
+    "ipAddress": "127.0.0.1",
+    "category": "menu",
+    "name": "addMenuItem",
+    "data": {
+      "path": "/page/com-networknt-light-v-news-home",
+      "createUserId": "stevehu",
+      "left": true,
+      "roles": [
+        "anonymous"
+      ],
+      "id": "news",
+      "label": "News",
+      "createDate": "2015-02-23T03:57:41.938"
+    },
+    "createUserId": "stevehu",
+    "createDate": "2015-02-23T03:57:41.938",
+    "@fieldTypes": "createDate=t"
+  },
+  {
+    "@type": "d",
+    "@rid": "#15:50",
+    "@version": 1,
+    "@class": "Event",
+    "ipAddress": "127.0.0.1",
+    "category": "menu",
+    "name": "updMenu",
+    "data": {
+      "updateDate": "2015-02-23T03:58:08.955",
+      "menuItemIds": [
+        "admin",
+        "logOut",
+        "logIn",
+        "signUp",
+        "blog",
+        "forum",
+        "news"
+      ],
+      "updateUserId": "stevehu",
+      "host": "www.edibleforestgarden.ca"
+    },
+    "createUserId": "stevehu",
+    "createDate": "2015-02-23T03:58:08.955",
+    "@fieldTypes": "createDate=t"
+  },
+  {
+    "@type": "d",
+    "@rid": "#15:51",
+    "@version": 1,
+    "@class": "Event",
+    "ipAddress": "127.0.0.1",
+    "category": "menu",
+    "name": "updMenu",
+    "data": {
+      "updateDate": "2015-02-23T03:58:20.133",
+      "menuItemIds": [
+        "admin",
+        "logOut",
+        "logIn",
+        "signUp",
+        "blog",
+        "forum",
+        "news"
+      ],
+      "updateUserId": "stevehu",
+      "host": "www.networknt.com"
+    },
+    "createUserId": "stevehu",
+    "createDate": "2015-02-23T03:58:20.133",
+    "@fieldTypes": "createDate=t"
+  },
+  {
+    "@type": "d",
+    "@rid": "#15:52",
+    "@version": 1,
+    "@class": "Event",
+    "ipAddress": "127.0.0.1",
+    "category": "menu",
+    "name": "updMenu",
+    "data": {
+      "updateDate": "2015-02-23T03:58:31.240",
+      "menuItemIds": [
+        "admin",
+        "logOut",
+        "logIn",
+        "signUp",
+        "blog",
+        "forum",
+        "news"
+      ],
+      "updateUserId": "stevehu",
+      "host": "example"
+    },
+    "createUserId": "stevehu",
+    "createDate": "2015-02-23T03:58:31.240",
+    "@fieldTypes": "createDate=t"
   }
 ]
