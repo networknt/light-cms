@@ -82,7 +82,6 @@
             }
         }
 
-
         $scope.canCurrentUserEdit = function (post) {
             var currentUser = authService.authentication.currentUser;
             var currentUserRoles = currentUser.roles;
@@ -135,7 +134,7 @@
                                 <td style="position:relative; width:15%;">
                                     <div style="height:100%; float:left; display:block;">
                                         <a href ng-click="view(post, false)">{{post.title}}</a><br />
-                                        By: {{post.createUserId}}<br />
+                                        By: @{{post.createUserId}}<br />
                                         On: {{post.createDate | date: 'MMMM dd, yyyy'}}<br/>
                                         Replies: {{post.children.length || 0}}
                                     </div>
@@ -153,7 +152,6 @@
                         </tbody>
                     </table>
                 </tab>
-
             </tabset>
         </div>
     </div>

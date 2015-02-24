@@ -1,7 +1,7 @@
 (function(angular) {
     'use strict';
     angular.module('lightApp', ['ngSanitize', 'ngAnimate'])
-        .controller('Controller', ['$scope', function($scope) {
+        .controller('commentsController', ['$scope', function($scope) {
             $scope.comments = [
                 {
                     name: '@caitp',
