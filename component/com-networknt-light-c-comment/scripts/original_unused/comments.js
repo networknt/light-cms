@@ -175,16 +175,6 @@ angular.module('lightApp')
             }
         };
     })
-    .filter('timeago', function() {
-        return function(date) {
-            return moment(date).fromNow();
-        };
-    })
-    .filter('calendar', function() {
-        return function(date) {
-            return moment(date).calendar();
-        };
-    })
     .controller('CommentCtrl', function($scope, $element, $timeout) {
         var children;
         $scope.collapsed = true;
