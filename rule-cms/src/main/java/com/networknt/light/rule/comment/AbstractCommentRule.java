@@ -147,7 +147,9 @@ public abstract class AbstractCommentRule extends AbstractRule implements Rule {
             OSQLSynchQuery<ODocument> query = new OSQLSynchQuery<ODocument>(sql);
             List<ODocument> forums = db.command(query).execute(data.get("@rid"));
             if(forums.size() > 0) {
-                json = OJSONWriter.listToJSON(forums, "fetchPlan:children:-1");
+                // According to documentation '-1' should traverse to infinite depth: Not true, actual is 2.
+                // Using 10 as max allowable children to be nested.
+                json = OJSONWriter.listToJSON(forums, "rid,fetchPlan:children:10");
             }
         } catch (Exception e) {
             e.printStackTrace();

@@ -65,6 +65,9 @@ var lightApp = angular.module('lightApp', [
       .when('/page/com-networknt-light-v-forum-admin-home', {
           templateUrl: 'views/com-networknt-light-v-forum-admin-home.html'
       })
+      .when('/page/com-networknt-light-v-user-logout', {
+          templateUrl: 'views/com-networknt-light-v-user-logout.html'
+      })
       .otherwise({
           templateUrl: '404.html',
           controller: 'mainCtrl'
