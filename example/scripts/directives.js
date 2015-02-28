@@ -83,7 +83,6 @@ angular.module('lightApp')
             pre: function(scope, elem, attr, comment) {
                 var self = elem.controller('comments'),
                     parentCollection = comment ? comment.comments : null;
-
                 // Setup $commentsController
                 if (parentCollection) {
                     self.commentsDepth = parentCollection.commentsDepth + 1;
