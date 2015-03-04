@@ -51,7 +51,6 @@ angular.module('lightApp')
         console.log("parent:", parent);
         console.log("child:", child);
         if (child != null && child.content.length > 0) {
-            // TODO: Adding a comment to a comment more then 1 level deep doesn't work since it getCommentTree doesn't return with the @rid value.
             $scope.postAddComment.data["host"] = parent.host;
             $scope.postAddComment.data["@rid"] = parent["@rid"];
             $scope.postAddComment.data.comment = child.content;
