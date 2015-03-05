@@ -1,416 +1,218 @@
 [
   {
     "@type": "d",
-    "@rid": "#15:230",
+    "@rid": "#17:5",
     "@version": 1,
     "@class": "Event",
-    "ipAddress": "127.0.0.1",
+    "eventId": 10006,
+    "createUserId": "stevehu",
+    "data": {
+      "createUserId": "stevehu",
+      "script": "CREATE CLASS Blog extends V;\nCREATE PROPERTY Blog.blogId STRING;\nCREATE PROPERTY Blog.host STRING;\nCREATE PROPERTY Blog.desc STRING;\nCREATE PROPERTY Blog.attributes EMBEDDEDMAP;\nCREATE PROPERTY Blog.rank INTEGER;\nCREATE PROPERTY Blog.createDate DATETIME;\nCREATE PROPERTY Blog.updateDate DATETIME;\nCREATE INDEX Blog.blogId ON Blog(blogId) UNIQUE;\nCREATE INDEX Blog.host ON Blog(host) NOTUNIQUE;\nCREATE INDEX Blog.updateDate ON Blog(updateDate) UNIQUE;\n",
+      "createDate": "2015-03-05T11:44:52.148"
+    },
+    "name": "execSchemaCmd",
     "category": "db",
-    "name": "execCommand",
+    "createDate": "2015-03-05T11:44:52.148",
+    "ipAddress": "127.0.0.1",
+    "@fieldTypes": "eventId=l,createDate=t"
+  },
+  {
+    "@type": "d",
+    "@rid": "#17:6",
+    "@version": 1,
+    "@class": "Event",
+    "eventId": 10007,
+    "createUserId": "stevehu",
     "data": {
       "createUserId": "stevehu",
-      "script": "CREATE CLASS Blog;\nCREATE PROPERTY Blog.host STRING;\nCREATE PROPERTY Blog.id STRING;\nCREATE PROPERTY Blog.desc STRING;\nCREATE PROPERTY Blog.parent LINK;\nCREATE PROPERTY Blog.children LINKSET;\nCREATE PROPERTY Blog.attributes EMBEDDEDMAP;\nCREATE PROPERTY Blog.upUsers LINKSET;\nCREATE PROPERTY Blog.downUsers LINKSET;\nCREATE PROPERTY Blog.rank INTEGER;\nCREATE PROPERTY Blog.posts STRING;\nCREATE PROPERTY Blog.createDate DATETIME;\nCREATE PROPERTY Blog.createUserId STRING;\nCREATE PROPERTY Blog.updateDate DATETIME;\nCREATE PROPERTY Blog.updateUserId STRING;\nCREATE INDEX blogHostIdIdx ON Blog(host, id) UNIQUE;\n",
-      "createDate": "2015-02-21T02:22:32.317"
+      "script": "CREATE CLASS Forum extends V;\nCREATE PROPERTY Forum.forumId STRING;\nCREATE PROPERTY Forum.host STRING;\nCREATE PROPERTY Forum.desc STRING;\nCREATE PROPERTY Forum.attributes EMBEDDEDMAP;\nCREATE PROPERTY Forum.rank INTEGER;\nCREATE PROPERTY Forum.createDate DATETIME;\nCREATE PROPERTY Forum.updateDate DATETIME;\nCREATE INDEX Forum.blogId ON Forum(forumId) UNIQUE;\nCREATE INDEX Forum.host ON Forum(host) NOTUNIQUE;\nCREATE INDEX Forum.updateDate ON Forum(updateDate) UNIQUE;\n",
+      "createDate": "2015-03-05T11:45:09.349"
     },
-    "createUserId": "stevehu",
-    "createDate": "2015-02-21T02:22:32.317",
-    "@fieldTypes": "createDate=t"
-  },
-  {
-  "@type": "d",
-  "@rid": "#15:231",
-  "@version": 1,
-  "@class": "Event",
-  "ipAddress": "127.0.0.1",
-  "category": "db",
-  "name": "execCommand",
-  "data": {
-  "createUserId": "stevehu",
-  "script": "CREATE CLASS Forum;\nCREATE PROPERTY Forum.host STRING;\nCREATE PROPERTY Forum.id STRING;\nCREATE PROPERTY Forum.desc STRING;\nCREATE PROPERTY Forum.parent LINK;\nCREATE PROPERTY Forum.children LINKSET;\nCREATE PROPERTY Forum.attributes EMBEDDEDMAP;\nCREATE PROPERTY Forum.upUsers LINKSET;\nCREATE PROPERTY Forum.downUsers LINKSET;\nCREATE PROPERTY Forum.rank INTEGER;\nCREATE PROPERTY Forum.posts STRING;\nCREATE PROPERTY Forum.createDate DATETIME;\nCREATE PROPERTY Forum.createUserId STRING;\nCREATE PROPERTY Forum.updateDate DATETIME;\nCREATE PROPERTY Forum.updateUserId STRING;\nCREATE INDEX forumHostIdIdx ON Forum(host, id) UNIQUE;\n",
-  "createDate": "2015-02-21T02:22:55.143"
-  },
-  "createUserId": "stevehu",
-  "createDate": "2015-02-21T02:22:55.143",
-  "@fieldTypes": "createDate=t"
-  },
-  {
-  "@type": "d",
-  "@rid": "#15:232",
-  "@version": 1,
-  "@class": "Event",
-  "ipAddress": "127.0.0.1",
-  "category": "db",
-  "name": "execCommand",
-  "data": {
-  "createUserId": "stevehu",
-  "script": "CREATE CLASS News;\nCREATE PROPERTY News.host STRING;\nCREATE PROPERTY News.id STRING;\nCREATE PROPERTY News.desc STRING;\nCREATE PROPERTY News.parent LINK;\nCREATE PROPERTY News.children LINKSET;\nCREATE PROPERTY News.attributes EMBEDDEDMAP;\nCREATE PROPERTY News.upUsers LINKSET;\nCREATE PROPERTY News.downUsers LINKSET;\nCREATE PROPERTY News.rank INTEGER;\nCREATE PROPERTY News.posts STRING;\nCREATE PROPERTY News.createDate DATETIME;\nCREATE PROPERTY News.createUserId STRING;\nCREATE PROPERTY News.updateDate DATETIME;\nCREATE PROPERTY News.updateUserId STRING;\nCREATE INDEX newsHostIdIdx ON News(host, id) UNIQUE;\nCREATE INDEX News.updateDate ON News(updateDate) NOTUNIQUE;\n",
-  "createDate": "2015-02-21T02:23:14.052"
-  },
-  "createUserId": "stevehu",
-  "createDate": "2015-02-21T02:23:14.052",
-  "@fieldTypes": "createDate=t"
-  },
-  {
-  "@type": "d",
-  "@rid": "#15:233",
-  "@version": 1,
-  "@class": "Event",
-  "ipAddress": "127.0.0.1",
-  "category": "db",
-  "name": "execCommand",
-  "data": {
-  "createUserId": "stevehu",
-  "script": "CREATE CLASS Post;\nCREATE PROPERTY Post.host STRING;\nCREATE PROPERTY Post.id STRING;\nCREATE PROPERTY Post.parent LINK;\nCREATE PROPERTY Post.title STRING;\nCREATE PROPERTY Post.source STRING;\nCREATE PROPERTY Post.content STRING;\nCREATE PROPERTY Post.tags LINKMAP;\nCREATE PROPERTY Post.upUsers LINKSET;\nCREATE PROPERTY Post.downUsers LINKSET;\nCREATE PROPERTY Post.rank INTEGER;\nCREATE PROPERTY Post.children LINKLIST;\nCREATE PROPERTY Post.createDate DATETIME;\nCREATE PROPERTY Post.createUserId STRING;\nCREATE PROPERTY Post.updateDate DATETIME;\nCREATE INDEX Post.id ON Post(id) UNIQUE;\nCREATE INDEX Post.updateDate ON Post(updateDate) NOTUNIQUE;\n",
-  "createDate": "2015-02-21T02:23:30.498"
-  },
-  "createUserId": "stevehu",
-  "createDate": "2015-02-21T02:23:30.498",
-  "@fieldTypes": "createDate=t"
-  },
-  {
-  "@type": "d",
-  "@rid": "#15:234",
-  "@version": 1,
-  "@class": "Event",
-  "ipAddress": "127.0.0.1",
-  "category": "db",
-  "name": "execCommand",
-  "data": {
-  "createUserId": "stevehu",
-  "script": "CREATE CLASS Comment;\nCREATE PROPERTY Comment.host STRING;\nCREATE PROPERTY Comment.id STRING;\nCREATE PROPERTY Comment.parent LINK;\nCREATE PROPERTY Comment.title STRING;\nCREATE PROPERTY Comment.source STRING;\nCREATE PROPERTY Comment.content STRING;\nCREATE PROPERTY Comment.tags LINKMAP;\nCREATE PROPERTY Comment.upUsers LINKSET;\nCREATE PROPERTY Comment.downUsers LINKSET;\nCREATE PROPERTY Comment.rank INTEGER;\nCREATE PROPERTY Comment.children LINKLIST;\nCREATE PROPERTY Comment.createDate DATETIME;\nCREATE PROPERTY Comment.createUserId STRING;\nCREATE PROPERTY Comment.updateDate DATETIME;\nCREATE INDEX Comment.id ON Comment(id) UNIQUE;\nCREATE INDEX Comment.updateDate ON Comment(updateDate) NOTUNIQUE;\n",
-  "createDate": "2015-02-21T02:23:50.275"
-  },
-  "createUserId": "stevehu",
-  "createDate": "2015-02-21T02:23:50.275",
-  "@fieldTypes": "createDate=t"
-  },
-  {
-  "@type": "d",
-  "@rid": "#15:235",
-  "@version": 1,
-  "@class": "Event",
-  "ipAddress": "127.0.0.1",
-  "category": "db",
-  "name": "execCommand",
-  "data": {
-  "createUserId": "stevehu",
-  "script": "CREATE CLASS Tag;\nCREATE PROPERTY Tag.host STRING;\nCREATE PROPERTY Tag.name STRING;\nCREATE PROPERTY Tag.class STRING;\nCREATE PROPERTY Tag.links LINKSET;\nCREATE PROPERTY Tag.createDate DATETIME;\nCREATE PROPERTY Tag.createUserId STRING;\nCREATE PROPERTY Tag.updateDate DATETIME;\nCREATE INDEX hostNameClassIdx ON Tag(host, name, class) UNIQUE;\n",
-  "createDate": "2015-02-21T02:24:06.242"
-  },
-  "createUserId": "stevehu",
-  "createDate": "2015-02-21T02:24:06.242",
-  "@fieldTypes": "createDate=t"
+    "name": "execSchemaCmd",
+    "category": "db",
+    "createDate": "2015-03-05T11:45:09.349",
+    "ipAddress": "127.0.0.1",
+    "@fieldTypes": "eventId=l,createDate=t"
   },
   {
     "@type": "d",
-    "@rid": "#15:36",
+    "@rid": "#17:7",
     "@version": 1,
     "@class": "Event",
-    "ipAddress": "127.0.0.1",
-    "category": "role",
-    "name": "addRole",
+    "eventId": 10008,
+    "createUserId": "stevehu",
     "data": {
       "createUserId": "stevehu",
-      "id": "blogAdmin",
-      "desc": "Blog Admin",
-      "createDate": "2015-02-23T03:46:43.349"
+      "script": "CREATE CLASS News extends V;\nCREATE PROPERTY News.newsId STRING;\nCREATE PROPERTY News.host STRING;\nCREATE PROPERTY News.desc STRING;\nCREATE PROPERTY News.attributes EMBEDDEDMAP;\nCREATE PROPERTY News.rank INTEGER;\nCREATE PROPERTY News.createDate DATETIME;\nCREATE PROPERTY News.updateDate DATETIME;\nCREATE INDEX News.newsId ON News(newsId) UNIQUE;\nCREATE INDEX News.host ON News(host) NOTUNIQUE;\nCREATE INDEX News.updateDate ON News(updateDate) UNIQUE;\n",
+      "createDate": "2015-03-05T11:45:24.083"
     },
-    "createUserId": "stevehu",
-    "createDate": "2015-02-23T03:46:43.349",
-    "@fieldTypes": "createDate=t"
+    "name": "execSchemaCmd",
+    "category": "db",
+    "createDate": "2015-03-05T11:45:24.083",
+    "ipAddress": "127.0.0.1",
+    "@fieldTypes": "eventId=l,createDate=t"
   },
   {
     "@type": "d",
-    "@rid": "#15:37",
+    "@rid": "#17:8",
     "@version": 1,
     "@class": "Event",
-    "ipAddress": "127.0.0.1",
-    "category": "role",
-    "name": "addRole",
+    "eventId": 10009,
+    "createUserId": "stevehu",
     "data": {
       "createUserId": "stevehu",
-      "id": "forumAdmin",
-      "desc": "Forum Admin",
-      "createDate": "2015-02-23T03:46:57.657"
+      "script": "CREATE CLASS Post extends V;\nCREATE PROPERTY Post.postId STRING;\nCREATE PROPERTY Post.host STRING;\nCREATE PROPERTY Post.title STRING;\nCREATE PROPERTY Post.source STRING;\nCREATE PROPERTY Post.content STRING;\nCREATE PROPERTY Post.rank INTEGER;\nCREATE PROPERTY Post.createDate DATETIME;\nCREATE PROPERTY Post.updateDate DATETIME;\nCREATE INDEX Post.postId ON Post(postId) UNIQUE;\nCREATE INDEX Post.host ON Post(host) NOTUNIQUE;\nCREATE INDEX Post.updateDate ON Post(updateDate) UNIQUE;\n",
+      "createDate": "2015-03-05T11:45:38.203"
     },
-    "createUserId": "stevehu",
-    "createDate": "2015-02-23T03:46:57.657",
-    "@fieldTypes": "createDate=t"
+    "name": "execSchemaCmd",
+    "category": "db",
+    "createDate": "2015-03-05T11:45:38.203",
+    "ipAddress": "127.0.0.1",
+    "@fieldTypes": "eventId=l,createDate=t"
   },
   {
     "@type": "d",
-    "@rid": "#15:38",
+    "@rid": "#17:9",
     "@version": 1,
     "@class": "Event",
-    "ipAddress": "127.0.0.1",
-    "category": "role",
-    "name": "addRole",
+    "eventId": 10010,
+    "createUserId": "stevehu",
     "data": {
       "createUserId": "stevehu",
-      "id": "newsAdmin",
-      "desc": "News Admin",
-      "createDate": "2015-02-23T03:47:08.286"
+      "script": "CREATE CLASS Comment extends V;\nCREATE PROPERTY Comment.commentId STRING;\nCREATE PROPERTY Comment.host STRING;\nCREATE PROPERTY Comment.title STRING;\nCREATE PROPERTY Comment.source STRING;\nCREATE PROPERTY Comment.content STRING;\nCREATE PROPERTY Comment.rank INTEGER;\nCREATE PROPERTY Comment.createDate DATETIME;\nCREATE PROPERTY Comment.updateDate DATETIME;\nCREATE INDEX Comment.id ON Comment(id) UNIQUE;\nCREATE INDEX Comment.host ON Comment(host) NOTUNIQUE;\nCREATE INDEX Comment.updateDate ON Comment(updateDate) UNIQUE;\n",
+      "createDate": "2015-03-05T11:45:53.940"
     },
-    "createUserId": "stevehu",
-    "createDate": "2015-02-23T03:47:08.286",
-    "@fieldTypes": "createDate=t"
+    "name": "execSchemaCmd",
+    "category": "db",
+    "createDate": "2015-03-05T11:45:53.940",
+    "ipAddress": "127.0.0.1",
+    "@fieldTypes": "eventId=l,createDate=t"
   },
   {
     "@type": "d",
-    "@rid": "#15:43",
+    "@rid": "#17:10",
     "@version": 1,
     "@class": "Event",
-    "ipAddress": "127.0.0.1",
-    "category": "menu",
-    "name": "addMenuItem",
+    "eventId": 10011,
+    "createUserId": "stevehu",
     "data": {
-      "path": "/page/com-networknt-light-v-blog-admin-home",
       "createUserId": "stevehu",
-      "left": false,
-      "id": "blogAdmin",
-      "label": "Blog Admin",
-      "createDate": "2015-02-23T03:51:39.776"
+      "script": "CREATE CLASS Tag extends V;\nCREATE PROPERTY Tag.tagId STRING;\nCREATE PROPERTY Tag.host STRING;\nCREATE PROPERTY Tag.createDate DATETIME;\nCREATE INDEX Tag.tagId ON Tag(tagId) UNIQUE;\nCREATE INDEX Tag.host ON Tag(host) NOTUNIQUE;\n",
+      "createDate": "2015-03-05T11:46:08.442"
     },
-    "createUserId": "stevehu",
-    "createDate": "2015-02-23T03:51:39.776",
-    "@fieldTypes": "createDate=t"
+    "name": "execSchemaCmd",
+    "category": "db",
+    "createDate": "2015-03-05T11:46:08.442",
+    "ipAddress": "127.0.0.1",
+    "@fieldTypes": "eventId=l,createDate=t"
   },
   {
     "@type": "d",
-    "@rid": "#15:44",
+    "@rid": "#17:11",
     "@version": 1,
     "@class": "Event",
-    "ipAddress": "127.0.0.1",
-    "category": "menu",
-    "name": "addMenuItem",
+    "eventId": 10012,
+    "createUserId": "stevehu",
     "data": {
-      "path": "/page/com-networknt-light-v-forum-admin-home",
       "createUserId": "stevehu",
-      "left": false,
-      "id": "forumAdmin",
-      "label": "Forum Admin",
-      "createDate": "2015-02-23T03:52:09.267"
+      "script": "CREATE CLASS HasPost extends E;\n",
+      "createDate": "2015-03-05T11:46:21.547"
     },
-    "createUserId": "stevehu",
-    "createDate": "2015-02-23T03:52:09.267",
-    "@fieldTypes": "createDate=t"
+    "name": "execSchemaCmd",
+    "category": "db",
+    "createDate": "2015-03-05T11:46:21.547",
+    "ipAddress": "127.0.0.1",
+    "@fieldTypes": "eventId=l,createDate=t"
   },
   {
     "@type": "d",
-    "@rid": "#15:45",
+    "@rid": "#17:12",
     "@version": 1,
     "@class": "Event",
-    "ipAddress": "127.0.0.1",
-    "category": "menu",
-    "name": "addMenuItem",
+    "eventId": 10013,
+    "createUserId": "stevehu",
     "data": {
-      "path": "/page/com-networknt-light-v-news-admin-home",
       "createUserId": "stevehu",
-      "left": false,
-      "id": "newsAdmin",
-      "label": "News Admin",
-      "createDate": "2015-02-23T03:52:34.923"
+      "script": "CREATE CLASS HasTag extends E;\n",
+      "createDate": "2015-03-05T11:46:32.744"
     },
-    "createUserId": "stevehu",
-    "createDate": "2015-02-23T03:52:34.923",
-    "@fieldTypes": "createDate=t"
+    "name": "execSchemaCmd",
+    "category": "db",
+    "createDate": "2015-03-05T11:46:32.744",
+    "ipAddress": "127.0.0.1",
+    "@fieldTypes": "eventId=l,createDate=t"
   },
   {
     "@type": "d",
-    "@rid": "#15:46",
+    "@rid": "#17:13",
     "@version": 1,
     "@class": "Event",
-    "ipAddress": "127.0.0.1",
-    "category": "menu",
-    "name": "updMenuItem",
-    "data": {
-      "path": "/admin",
-      "tpl": null,
-      "updateDate": "2015-02-23T03:52:54.039",
-      "menuItemIds": [
-        "accessAdmin",
-        "proxyAdmin",
-        "blogAdmin",
-        "forumAdmin",
-        "newsAdmin",
-        "hostAdmin",
-        "pageAdmin",
-        "formAdmin",
-        "ruleAdmin",
-        "menuAdmin",
-        "dbAdmin",
-        "userAdmin",
-        "roleAdmin"
-      ],
-      "ctrl": "AdminCtrl",
-      "left": true,
-      "updateUserId": "stevehu",
-      "roles": [
-        "owner",
-        "admin",
-        "pageAdmin",
-        "formAdmin",
-        "ruleAdmin",
-        "menuAdmin",
-        "dbAdmin",
-        "productAdmin",
-        "forumAdmin",
-        "blogAdmin",
-        "newsAdmin",
-        "userAdmin",
-        "roleAdmin"
-      ],
-      "id": "admin"
-    },
+    "eventId": 10014,
     "createUserId": "stevehu",
-    "createDate": "2015-02-23T03:52:54.039",
-    "@fieldTypes": "createDate=t"
-  },
-  {
-    "@type": "d",
-    "@rid": "#15:47",
-    "@version": 1,
-    "@class": "Event",
-    "ipAddress": "127.0.0.1",
-    "category": "menu",
-    "name": "addMenuItem",
     "data": {
-      "path": "/page/com-networknt-light-v-blog-home",
       "createUserId": "stevehu",
-      "left": true,
-      "roles": [
-        "anonymous"
-      ],
-      "id": "blog",
-      "label": "Blog",
-      "createDate": "2015-02-23T03:56:09.745"
+      "script": "insert into Role(id,desc) VALUES ('blogAdmin','Blog Admin'),('forumAdmin','Forum Admin'),('newsAdmin','News Admin');\ninsert into MenuItem(id, label, path) values ('blogAdmin', 'Blog Admin', '/page/com-networknt-light-v-blog-admin-home'),('forumAdmin', 'Forum Admin', '/page/com-networknt-light-v-forum-admin-home'),('newsAdmin', 'News Admin', '/page/com-networknt-light-v-news-admin-home');\ninsert into MenuItem(id, label, path, left, roles) values ('blog', 'Blog', '/page/com-networknt-light-v-blog-home', true, 'user'),('forum', 'Forum', '/page/com-networknt-light-v-news-home', true, 'user'),('news', 'News', '/page/com-networknt-light-v-forum-home', true, 'user');\nupdate MenuItem add menuItems=(select from MenuItem where id = 'blogAdmin') where id = 'admin';\nupdate MenuItem add menuItems=(select from MenuItem where id = 'forumAdmin') where id = 'admin';\nupdate MenuItem add menuItems=(select from MenuItem where id = 'newsAdmin') where id = 'admin';\n",
+      "createDate": "2015-03-05T11:48:44.379"
     },
-    "createUserId": "stevehu",
-    "createDate": "2015-02-23T03:56:09.745",
-    "@fieldTypes": "createDate=t"
+    "name": "execUpdateCmd",
+    "category": "db",
+    "createDate": "2015-03-05T11:48:44.379",
+    "ipAddress": "127.0.0.1",
+    "@fieldTypes": "eventId=l,createDate=t"
   },
   {
     "@type": "d",
-    "@rid": "#15:48",
+    "@rid": "#17:14",
     "@version": 1,
     "@class": "Event",
-    "ipAddress": "127.0.0.1",
-    "category": "menu",
-    "name": "addMenuItem",
+    "eventId": 10015,
+    "createUserId": "stevehu",
     "data": {
-      "path": "/page/com-networknt-light-v-forum-home",
       "createUserId": "stevehu",
-      "left": true,
-      "roles": [
-        "anonymous"
-      ],
-      "id": "forum",
-      "label": "Forum",
-      "createDate": "2015-02-23T03:57:12.657"
+      "script": "update Menu add menuItems=(select from MenuItem where id = 'blog') where host = 'www.networknt.com';\nupdate Menu add menuItems=(select from MenuItem where id = 'forum') where host = 'www.networknt.com';\nupdate Menu add menuItems=(select from MenuItem where id = 'news') where host = 'www.networknt.com';\n",
+      "createDate": "2015-03-05T11:49:01.326"
     },
-    "createUserId": "stevehu",
-    "createDate": "2015-02-23T03:57:12.657",
-    "@fieldTypes": "createDate=t"
+    "name": "execUpdateCmd",
+    "category": "db",
+    "createDate": "2015-03-05T11:49:01.326",
+    "ipAddress": "127.0.0.1",
+    "@fieldTypes": "eventId=l,createDate=t"
   },
   {
     "@type": "d",
-    "@rid": "#15:49",
+    "@rid": "#17:15",
     "@version": 1,
     "@class": "Event",
-    "ipAddress": "127.0.0.1",
-    "category": "menu",
-    "name": "addMenuItem",
+    "eventId": 10016,
+    "createUserId": "stevehu",
     "data": {
-      "path": "/page/com-networknt-light-v-news-home",
       "createUserId": "stevehu",
-      "left": true,
-      "roles": [
-        "anonymous"
-      ],
-      "id": "news",
-      "label": "News",
-      "createDate": "2015-02-23T03:57:41.938"
+      "script": "update Menu add menuItems=(select from MenuItem where id = 'blog') where host = 'www.edibleforestgarden.ca';\nupdate Menu add menuItems=(select from MenuItem where id = 'forum') where host = 'www.edibleforestgarden.ca';\nupdate Menu add menuItems=(select from MenuItem where id = 'news') where host = 'www.edibleforestgarden.ca';\n",
+      "createDate": "2015-03-05T11:49:14.281"
     },
-    "createUserId": "stevehu",
-    "createDate": "2015-02-23T03:57:41.938",
-    "@fieldTypes": "createDate=t"
+    "name": "execUpdateCmd",
+    "category": "db",
+    "createDate": "2015-03-05T11:49:14.281",
+    "ipAddress": "127.0.0.1",
+    "@fieldTypes": "eventId=l,createDate=t"
   },
   {
     "@type": "d",
-    "@rid": "#15:50",
+    "@rid": "#17:16",
     "@version": 1,
     "@class": "Event",
-    "ipAddress": "127.0.0.1",
-    "category": "menu",
-    "name": "updMenu",
-    "data": {
-      "updateDate": "2015-02-23T03:58:08.955",
-      "menuItemIds": [
-        "admin",
-        "logOut",
-        "logIn",
-        "signUp",
-        "blog",
-        "forum",
-        "news"
-      ],
-      "updateUserId": "stevehu",
-      "host": "www.edibleforestgarden.ca"
-    },
+    "eventId": 10017,
     "createUserId": "stevehu",
-    "createDate": "2015-02-23T03:58:08.955",
-    "@fieldTypes": "createDate=t"
-  },
-  {
-    "@type": "d",
-    "@rid": "#15:51",
-    "@version": 1,
-    "@class": "Event",
-    "ipAddress": "127.0.0.1",
-    "category": "menu",
-    "name": "updMenu",
     "data": {
-      "updateDate": "2015-02-23T03:58:20.133",
-      "menuItemIds": [
-        "admin",
-        "logOut",
-        "logIn",
-        "signUp",
-        "blog",
-        "forum",
-        "news"
-      ],
-      "updateUserId": "stevehu",
-      "host": "www.networknt.com"
+      "createUserId": "stevehu",
+      "script": "update Menu add menuItems=(select from MenuItem where id = 'blog') where host = 'example';\nupdate Menu add menuItems=(select from MenuItem where id = 'forum') where host = 'example';\nupdate Menu add menuItems=(select from MenuItem where id = 'news') where host = 'example';\n",
+      "createDate": "2015-03-05T11:49:27.131"
     },
-    "createUserId": "stevehu",
-    "createDate": "2015-02-23T03:58:20.133",
-    "@fieldTypes": "createDate=t"
-  },
-  {
-    "@type": "d",
-    "@rid": "#15:52",
-    "@version": 1,
-    "@class": "Event",
+    "name": "execUpdateCmd",
+    "category": "db",
+    "createDate": "2015-03-05T11:49:27.131",
     "ipAddress": "127.0.0.1",
-    "category": "menu",
-    "name": "updMenu",
-    "data": {
-      "updateDate": "2015-02-23T03:58:31.240",
-      "menuItemIds": [
-        "admin",
-        "logOut",
-        "logIn",
-        "signUp",
-        "blog",
-        "forum",
-        "news"
-      ],
-      "updateUserId": "stevehu",
-      "host": "example"
-    },
-    "createUserId": "stevehu",
-    "createDate": "2015-02-23T03:58:31.240",
-    "@fieldTypes": "createDate=t"
+    "@fieldTypes": "eventId=l,createDate=t"
   }
 ]

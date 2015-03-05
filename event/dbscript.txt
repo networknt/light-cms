@@ -10,7 +10,6 @@ CREATE INDEX Blog.blogId ON Blog(blogId) UNIQUE;
 CREATE INDEX Blog.host ON Blog(host) NOTUNIQUE;
 CREATE INDEX Blog.updateDate ON Blog(updateDate) UNIQUE;
 
-edge Own, UpVote, DownVote, Create, Update, Post(new)
 
 CREATE CLASS Forum extends V;
 CREATE PROPERTY Forum.forumId STRING;
@@ -37,52 +36,43 @@ CREATE INDEX News.host ON News(host) NOTUNIQUE;
 CREATE INDEX News.updateDate ON News(updateDate) UNIQUE;
 
 
-CREATE CLASS Post;
+CREATE CLASS Post extends V;
+CREATE PROPERTY Post.postId STRING;
 CREATE PROPERTY Post.host STRING;
-CREATE PROPERTY Post.id STRING;
-CREATE PROPERTY Post.parent LINK;
 CREATE PROPERTY Post.title STRING;
 CREATE PROPERTY Post.source STRING;
 CREATE PROPERTY Post.content STRING;
-CREATE PROPERTY Post.tags LINKMAP;
-CREATE PROPERTY Post.upUsers LINKSET;
-CREATE PROPERTY Post.downUsers LINKSET;
 CREATE PROPERTY Post.rank INTEGER;
-CREATE PROPERTY Post.children LINKLIST;
 CREATE PROPERTY Post.createDate DATETIME;
-CREATE PROPERTY Post.createUserId STRING;
 CREATE PROPERTY Post.updateDate DATETIME;
-CREATE INDEX Post.id ON Post(id) UNIQUE;
-CREATE INDEX Post.updateDate ON Post(updateDate) NOTUNIQUE;
+CREATE INDEX Post.postId ON Post(postId) UNIQUE;
+CREATE INDEX Post.host ON Post(host) NOTUNIQUE;
+CREATE INDEX Post.updateDate ON Post(updateDate) UNIQUE;
 
-CREATE CLASS Comment;
+CREATE CLASS Comment extends V;
+CREATE PROPERTY Comment.commentId STRING;
 CREATE PROPERTY Comment.host STRING;
-CREATE PROPERTY Comment.id STRING;
-CREATE PROPERTY Comment.parent LINK;
 CREATE PROPERTY Comment.title STRING;
 CREATE PROPERTY Comment.source STRING;
 CREATE PROPERTY Comment.content STRING;
-CREATE PROPERTY Comment.tags LINKMAP;
-CREATE PROPERTY Comment.upUsers LINKSET;
-CREATE PROPERTY Comment.downUsers LINKSET;
 CREATE PROPERTY Comment.rank INTEGER;
-CREATE PROPERTY Comment.children LINKLIST;
 CREATE PROPERTY Comment.createDate DATETIME;
-CREATE PROPERTY Comment.createUserId STRING;
 CREATE PROPERTY Comment.updateDate DATETIME;
 CREATE INDEX Comment.id ON Comment(id) UNIQUE;
-CREATE INDEX Comment.updateDate ON Comment(updateDate) NOTUNIQUE;
+CREATE INDEX Comment.host ON Comment(host) NOTUNIQUE;
+CREATE INDEX Comment.updateDate ON Comment(updateDate) UNIQUE;
 
 
-CREATE CLASS Tag;
+CREATE CLASS Tag extends V;
+CREATE PROPERTY Tag.tagId STRING;
 CREATE PROPERTY Tag.host STRING;
-CREATE PROPERTY Tag.name STRING;
-CREATE PROPERTY Tag.class STRING;
-CREATE PROPERTY Tag.links LINKSET;
 CREATE PROPERTY Tag.createDate DATETIME;
-CREATE PROPERTY Tag.createUserId STRING;
-CREATE PROPERTY Tag.updateDate DATETIME;
-CREATE INDEX hostNameClassIdx ON Tag(host, name, class) UNIQUE;
+CREATE INDEX Tag.tagId ON Tag(tagId) UNIQUE;
+CREATE INDEX Tag.host ON Tag(host) NOTUNIQUE;
+
+CREATE CLASS HasPost extends E;
+CREATE CLASS HasTag extends E;
+
 
 insert into Role(id,desc) VALUES ('blogAdmin','Blog Admin'),('forumAdmin','Forum Admin'),('newsAdmin','News Admin');
 
