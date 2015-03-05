@@ -465,7 +465,7 @@ angular.module('lightApp')
             commentTemplate: 'views/comment.html',
             orderBy: 'best',
             commentController: 'commentCtrl',
-            depthLimit: 5
+            depthLimit: 3
         };
 
         var emptyController = function() {};
