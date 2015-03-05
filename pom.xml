@@ -55,11 +55,7 @@
         <xnio.version>3.3.0.Beta1</xnio.version>
         <undertow.version>1.1.0.Beta6</undertow.version>
         <hazelcast.version>3.3</hazelcast.version>
-        <orientdb.version>2.0-M1</orientdb.version>
-        <orient.version>2.0-M1</orient.version>
-        <concurrentlinkedhashmap.version>1.4</concurrentlinkedhashmap.version>
-        <jna.version>4.0.0</jna.version>
-        <snappy.version>1.1.0.1</snappy.version>
+        <orientdb.version>2.0.3</orientdb.version>
         <jsontoken.version>1.2.1</jsontoken.version>
         <rule-engine.version>1.0.0.0.1</rule-engine.version>
         <light.version>1.0.0.0.0-SNAPSHOT</light.version>
@@ -157,10 +153,6 @@
                 <version>${rule-engine.version}</version>
                 <configuration>
                     <encoding>UTF-8</encoding>
-                    <dbType>orientdb</dbType>
-                    <dbName>lightdb</dbName>
-                    <dbUser>admin</dbUser>
-                    <dbPass>admin</dbPass>
                     <serverUrl>http://example:8080</serverUrl>
                     <serverUser>stevehu</serverUser>
                     <serverPass>123456</serverPass>

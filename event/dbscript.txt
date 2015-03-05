@@ -1,6 +1,7 @@
 CREATE CLASS Blog extends V;
-CREATE PROPERTY Blog.blogId STRING;
 CREATE PROPERTY Blog.host STRING;
+CREATE PROPERTY Blog.blogId STRING;
+CREATE PROPERTY Blog.name STRING;
 CREATE PROPERTY Blog.desc STRING;
 CREATE PROPERTY Blog.attributes EMBEDDEDMAP;
 CREATE PROPERTY Blog.rank INTEGER;
@@ -8,32 +9,33 @@ CREATE PROPERTY Blog.createDate DATETIME;
 CREATE PROPERTY Blog.updateDate DATETIME;
 CREATE INDEX Blog.blogId ON Blog(blogId) UNIQUE;
 CREATE INDEX Blog.host ON Blog(host) NOTUNIQUE;
-CREATE INDEX Blog.updateDate ON Blog(updateDate) UNIQUE;
-
+CREATE INDEX Blog.updateDate ON Blog(updateDate) NOTUNIQUE;
 
 CREATE CLASS Forum extends V;
-CREATE PROPERTY Forum.forumId STRING;
 CREATE PROPERTY Forum.host STRING;
+CREATE PROPERTY Forum.forumId STRING;
+CREATE PROPERTY Forum.name STRING;
 CREATE PROPERTY Forum.desc STRING;
 CREATE PROPERTY Forum.attributes EMBEDDEDMAP;
 CREATE PROPERTY Forum.rank INTEGER;
 CREATE PROPERTY Forum.createDate DATETIME;
 CREATE PROPERTY Forum.updateDate DATETIME;
-CREATE INDEX Forum.blogId ON Forum(forumId) UNIQUE;
+CREATE INDEX Forum.forumId ON Forum(forumId) UNIQUE;
 CREATE INDEX Forum.host ON Forum(host) NOTUNIQUE;
-CREATE INDEX Forum.updateDate ON Forum(updateDate) UNIQUE;
+CREATE INDEX Forum.updateDate ON Forum(updateDate) NOTUNIQUE;
 
 CREATE CLASS News extends V;
-CREATE PROPERTY News.newsId STRING;
 CREATE PROPERTY News.host STRING;
+CREATE PROPERTY News.newsId STRING;
+CREATE PROPERTY News.name STRING;
 CREATE PROPERTY News.desc STRING;
 CREATE PROPERTY News.attributes EMBEDDEDMAP;
 CREATE PROPERTY News.rank INTEGER;
 CREATE PROPERTY News.createDate DATETIME;
 CREATE PROPERTY News.updateDate DATETIME;
-CREATE INDEX News.newsId ON News(newsId) UNIQUE;
+CREATE INDEX News.forumId ON News(newsId) UNIQUE;
 CREATE INDEX News.host ON News(host) NOTUNIQUE;
-CREATE INDEX News.updateDate ON News(updateDate) UNIQUE;
+CREATE INDEX News.updateDate ON News(updateDate) NOTUNIQUE;
 
 
 CREATE CLASS Post extends V;
@@ -47,7 +49,7 @@ CREATE PROPERTY Post.createDate DATETIME;
 CREATE PROPERTY Post.updateDate DATETIME;
 CREATE INDEX Post.postId ON Post(postId) UNIQUE;
 CREATE INDEX Post.host ON Post(host) NOTUNIQUE;
-CREATE INDEX Post.updateDate ON Post(updateDate) UNIQUE;
+CREATE INDEX Post.updateDate ON Post(updateDate) NOTUNIQUE;
 
 CREATE CLASS Comment extends V;
 CREATE PROPERTY Comment.commentId STRING;
@@ -58,14 +60,16 @@ CREATE PROPERTY Comment.content STRING;
 CREATE PROPERTY Comment.rank INTEGER;
 CREATE PROPERTY Comment.createDate DATETIME;
 CREATE PROPERTY Comment.updateDate DATETIME;
-CREATE INDEX Comment.id ON Comment(id) UNIQUE;
+CREATE INDEX Comment.commentId ON Comment(commentId) UNIQUE;
 CREATE INDEX Comment.host ON Comment(host) NOTUNIQUE;
-CREATE INDEX Comment.updateDate ON Comment(updateDate) UNIQUE;
+CREATE INDEX Comment.updateDate ON Comment(updateDate) NOTUNIQUE;
 
 
 CREATE CLASS Tag extends V;
-CREATE PROPERTY Tag.tagId STRING;
 CREATE PROPERTY Tag.host STRING;
+CREATE PROPERTY Tag.tagId STRING;
+CREATE PROPERTY Tag.name STRING;
+CREATE PROPERTY Tag.desc STRING;
 CREATE PROPERTY Tag.createDate DATETIME;
 CREATE INDEX Tag.tagId ON Tag(tagId) UNIQUE;
 CREATE INDEX Tag.host ON Tag(host) NOTUNIQUE;
@@ -73,6 +77,15 @@ CREATE INDEX Tag.host ON Tag(host) NOTUNIQUE;
 CREATE CLASS HasPost extends E;
 CREATE CLASS HasTag extends E;
 
+
+
+
+CREATE VERTEX Counter SET name = 'blogId', value = 10000;
+CREATE VERTEX Counter SET name = 'forumId', value = 10000;
+CREATE VERTEX Counter SET name = 'newsId', value = 10000;
+CREATE VERTEX Counter SET name = 'postId', value = 10000;
+CREATE VERTEX Counter SET name = 'commentId' value = 10000;
+CREATE VERTEX Counter SET name = 'tagId', value = 10000;
 
 insert into Role(id,desc) VALUES ('blogAdmin','Blog Admin'),('forumAdmin','Forum Admin'),('newsAdmin','News Admin');
 
