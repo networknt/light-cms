@@ -574,9 +574,9 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
                 json = OJSONWriter.listToJSON(forums, null);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Exception:", e);
         } finally {
-            db.close();
+            graph.shutdown();
         }
         return json;
     }
@@ -585,34 +585,21 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
         Map<String, Object> inputMap = (Map<String, Object>) objects[0];
         Map<String, Object> data = (Map<String, Object>)inputMap.get("data");
         Map<String, Object> payload = (Map<String, Object>) inputMap.get("payload");
+        Map<String, Object> user = (Map<String, Object>) payload.get("user");
         String host = (String)data.get("host");
-        if(payload == null) {
-            inputMap.put("error", "Login is required");
-            inputMap.put("responseCode", 401);
+        Object userHost = user.get("host");
+        if(userHost != null && !userHost.equals(host)) {
+            inputMap.put("error", "You can only get " + bfnType + " from host: " + host);
+            inputMap.put("responseCode", 403);
             return false;
         } else {
-            Map<String, Object> user = (Map<String, Object>) payload.get("user");
-            List roles = (List)user.get("roles");
-            if(roles.contains("owner") || roles.contains("admin") || roles.contains(bfnType + "Admin")) {
-                Object userHost = user.get("host");
-                if(userHost != null && !userHost.equals(host)) {
-                    inputMap.put("error", "User can only get " + bfnType + " from host: " + host);
-                    inputMap.put("responseCode", 403);
-                    return false;
-                } else {
-                    String docs = getBfnDb(bfnType, host);
-                    if(docs != null) {
-                        inputMap.put("result", docs);
-                        return true;
-                    } else {
-                        inputMap.put("error", "No document can be found");
-                        inputMap.put("responseCode", 404);
-                        return false;
-                    }
-                }
+            String docs = getBfnDb(bfnType, host);
+            if(docs != null) {
+                inputMap.put("result", docs);
+                return true;
             } else {
-                inputMap.put("error", "Role owner or admin or forumAdmin is required to get all forums");
-                inputMap.put("responseCode", 401);
+                inputMap.put("error", "No document can be found");
+                inputMap.put("responseCode", 404);
                 return false;
             }
         }
@@ -621,17 +608,17 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
     protected String getBfnDb(String bfhType, String host) {
         String json = null;
         String sql = "SELECT FROM " + bfhType + " WHERE host = ? ORDER BY createDate";
-        ODatabaseDocumentTx db = ServiceLocator.getInstance().getDb();
+        OrientGraph graph = ServiceLocator.getInstance().getGraph();
         try {
             OSQLSynchQuery<ODocument> query = new OSQLSynchQuery<ODocument>(sql);
-            List<ODocument> docs = db.command(query).execute(host);
+            List<ODocument> docs = graph.getRawGraph().command(query).execute(host);
             if(docs.size() > 0) {
                 json = OJSONWriter.listToJSON(docs, null);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Exception:", e);
         } finally {
-            db.close();
+            graph.shutdown();
         }
         return json;
     }
@@ -661,10 +648,10 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
     protected String getBfnDropdownDb(String bfnType, String host) {
         String json = null;
         String sql = "SELECT FROM " + bfnType + " WHERE host = ? ORDER BY id";
-        ODatabaseDocumentTx db = ServiceLocator.getInstance().getDb();
+        OrientGraph graph = ServiceLocator.getInstance().getGraph();
         try {
             OSQLSynchQuery<ODocument> query = new OSQLSynchQuery<ODocument>(sql);
-            List<ODocument> docs = db.command(query).execute(host);
+            List<ODocument> docs = graph.getRawGraph().command(query).execute(host);
             if(docs.size() > 0) {
                 List<Map<String, String>> list = new ArrayList<Map<String, String>>();
                 for(ODocument doc: docs) {
@@ -676,9 +663,9 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
                 json = mapper.writeValueAsString(list);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Exception:", e);
         } finally {
-            db.close();
+            graph.shutdown();
         }
         return json;
     }
