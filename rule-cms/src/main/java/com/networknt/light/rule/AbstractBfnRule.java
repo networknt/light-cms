@@ -18,6 +18,7 @@ package com.networknt.light.rule;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.networknt.light.server.DbService;
+import com.networknt.light.util.HashUtil;
 import com.networknt.light.util.ServiceLocator;
 import com.networknt.light.util.Util;
 import com.orientechnologies.orient.core.command.script.OCommandScript;
@@ -29,6 +30,8 @@ import com.orientechnologies.orient.core.metadata.schema.OSchema;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.serialization.serializer.OJSONWriter;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
+import com.tinkerpop.blueprints.Direction;
+import com.tinkerpop.blueprints.Edge;
 import com.tinkerpop.blueprints.Vertex;
 import com.tinkerpop.blueprints.impls.orient.OrientGraph;
 import com.tinkerpop.blueprints.impls.orient.OrientVertex;
@@ -67,48 +70,53 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
             eventData.put("createUserId", user.get("userId"));
             OrientGraph graph = ServiceLocator.getInstance().getGraph();
             try {
-                // make sure parent exists if it is not empty.
-                String parentRid = (String)data.get("parent");
-                if(parentRid != null) {
-                    Vertex parent = DbService.getVertexByRid(graph, parentRid);
-                    if(parent == null) {
-                        error = "Parent with @rid " + parentRid + " cannot be found.";
-                        inputMap.put("responseCode", 404);
-                    } else {
-                        // convert parent from @rid to id
-                        eventData.put("parent", parent.getProperty(bfnType + "Id"));
+                ODocument bfn = getODocumentByHostId(graph, bfnType + "HostIdIdx", host, bfnId);
+                if(bfn != null) {
+                    error = "Id " + bfnId + " exists on host " + host;
+                    inputMap.put("responseCode", 400);
+                } else {
+                    // make sure parent exists if it is not empty.
+                    String parentRid = (String)data.get("parent");
+                    if(parentRid != null) {
+                        Vertex parent = DbService.getVertexByRid(graph, parentRid);
+                        if(parent == null) {
+                            error = "Parent with @rid " + parentRid + " cannot be found.";
+                            inputMap.put("responseCode", 404);
+                        } else {
+                            // convert parent from @rid to id
+                            eventData.put("parent", parent.getProperty(bfnType + "Id"));
+                        }
                     }
-                }
-                if(error == null) {
-                    // make sure all children exist if there are any.
-                    // and make sure all children have empty parent.
-                    List<String> childrenRids = (List<String>)data.get("children");
-                    if(childrenRids != null && childrenRids.size() > 0) {
-                        List<String> childrenIds = new ArrayList<String>();
-                        for(String childRid: childrenRids) {
-                            if(childRid != null) {
-                                if(childRid.equals(parentRid)) {
-                                    error = "Parent shows up in the Children list";
-                                    inputMap.put("responseCode", 400);
-                                    break;
-                                }
-                                Vertex child = DbService.getVertexByRid(graph, childRid);
-                                if(child == null) {
-                                    error = "Child with @rid " + childRid + " cannot be found.";
-                                    inputMap.put("responseCode", 404);
-                                    break;
-                                } else {
-                                    childrenIds.add((String)child.getProperty(bfnType + "Id"));
+                    if(error == null) {
+                        // make sure all children exist if there are any.
+                        // and make sure all children have empty parent.
+                        List<String> childrenRids = (List<String>)data.get("children");
+                        if(childrenRids != null && childrenRids.size() > 0) {
+                            List<String> childrenIds = new ArrayList<String>();
+                            for(String childRid: childrenRids) {
+                                if(childRid != null) {
+                                    if(childRid.equals(parentRid)) {
+                                        error = "Parent shows up in the Children list";
+                                        inputMap.put("responseCode", 400);
+                                        break;
+                                    }
+                                    Vertex child = DbService.getVertexByRid(graph, childRid);
+                                    if(child == null) {
+                                        error = "Child with @rid " + childRid + " cannot be found.";
+                                        inputMap.put("responseCode", 404);
+                                        break;
+                                    } else {
+                                        childrenIds.add((String)child.getProperty(bfnType + "Id"));
+                                    }
                                 }
                             }
+                            eventData.put("children", childrenIds);
                         }
-                        eventData.put("children", childrenIds);
                     }
-                }
-                if(error == null) {
-                    // TODO generate id from Counter.
-                    String id = bfnType + "Id";
-                    eventMap.put(id, DbService.incrementCounter(id));
+                    if(error == null) {
+                        String id = bfnType + "Id";
+                        eventMap.put(id, HashUtil.generateUUID());
+                    }
                 }
             } catch (Exception e) {
                 logger.error("Exception:", e);
@@ -133,16 +141,32 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
     }
 
     protected void addBfnDb(String bfnType, Map<String, Object> data) throws Exception {
-        ODocument doc = null;
         String className = bfnType.substring(0, 1).toUpperCase() + bfnType.substring(1);
+        String id = bfnType + "Id";
+        String index = className + "." + id;
         OrientGraph graph = ServiceLocator.getInstance().getGraph();
         try{
             graph.begin();
             Vertex createUser = graph.getVertexByKey("User.userId", data.remove("createUserId"));
             OrientVertex bfn = graph.addVertex("class:" + className, data);
             createUser.addEdge("Create", bfn);
-
-
+            // parent
+            if(data.get("parent") != null) {
+                Vertex parent = graph.getVertexByKey(index, data.get("parent"));
+                if(parent != null) {
+                    parent.addEdge("Own", bfn);
+                }
+            }
+            // children
+            List<String> childrenIds = (List<String>)data.get("children");
+            if(childrenIds != null) {
+                for(String childId: childrenIds) {
+                    Vertex child = graph.getVertexByKey(index, childId);
+                    if(child != null) {
+                        bfn.addEdge("Own", child);
+                    }
+                }
+            }
             graph.commit();
         } catch (Exception e) {
             logger.error("Exception:", e);
@@ -150,65 +174,6 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
         } finally {
             graph.shutdown();
         }
-
-
-        ODatabaseDocumentTx db = ServiceLocator.getInstance().getDb();
-        try {
-            db.begin();
-            OIndex<?> docHostIdIdx = db.getMetadata().getIndexManager().getIndex(bfnType + "HostIdIdx");
-            String className = bfnType.substring(0, 1).toUpperCase() + bfnType.substring(1);
-            doc = new ODocument(schema.getClass(className));
-            doc.field("host", data.get("host"));
-            doc.field("id", data.get("id"));
-            if(data.get("desc") != null) doc.field("desc", data.get("desc"));
-            if(data.get("attributes") != null) doc.field("attributes", data.get("attributes"));
-            doc.field("createDate", data.get("createDate"));
-            doc.field("createUserId", data.get("createUserId"));
-            // parent
-            if(data.get("parent") != null) {
-                OCompositeKey parentKey = new OCompositeKey(data.get("host"), data.get("parent"));
-                OIdentifiable parentOid = (OIdentifiable) docHostIdIdx.get(parentKey);
-                if(parentOid != null) {
-                    ODocument parent = (ODocument)parentOid.getRecord();
-                    doc.field("parent", parent);
-                    // update parent with the children
-                    Set children = parent.field("children");
-                    if(children != null) {
-                        children.add(doc);
-                    } else {
-                        children = new HashSet<ODocument>();
-                        children.add(doc);
-                        parent.field("children", children);
-                    }
-                    parent.save();
-                }
-            }
-            // children
-            List<String> childrenIds = (List<String>)data.get("children");
-            if(childrenIds != null) {
-                Set children = new HashSet<ODocument>();
-                for(String childId: childrenIds) {
-                    OCompositeKey childKey = new OCompositeKey(data.get("host"), childId);
-                    OIdentifiable childOid = (OIdentifiable) docHostIdIdx.get(childKey);
-                    if(childOid != null) {
-                        ODocument child = (ODocument)childOid.getRecord();
-                        children.add(child);
-                        child.field("parent", doc);
-                        child.save();
-                    }
-                }
-                doc.field("children", children);
-            }
-            doc.save();
-            db.commit();
-        } catch (Exception e) {
-            db.rollback();
-            e.printStackTrace();
-            throw e;
-        } finally {
-            db.close();
-        }
-        return doc;
     }
 
     public boolean delBfn (String bfnType, Object ...objects) throws Exception {
@@ -218,34 +183,31 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
         String host = (String) data.get("host");
         String error = null;
         Map<String, Object> payload = (Map<String, Object>) inputMap.get("payload");
-        if(payload == null) {
-            error = "Login is required";
-            inputMap.put("responseCode", 401);
-        } else {
-            Map<String, Object> user = (Map<String, Object>)payload.get("user");
-            List roles = (List)user.get("roles");
-            if(!roles.contains("owner") && !roles.contains("admin") && !roles.contains(bfnType + "Admin")) {
-                error = "Role owner or admin or " + bfnType + "Admin is required to delete " + bfnType;
+        Map<String, Object> user = (Map<String, Object>)payload.get("user");
+        OrientGraph graph = ServiceLocator.getInstance().getGraph();
+        try {
+            String userHost = (String)user.get("host");
+            if(userHost != null && !userHost.equals(host)) {
+                error = "You can only delete " + bfnType + " from host: " + host;
                 inputMap.put("responseCode", 403);
             } else {
-                String userHost = (String)user.get("host");
-                if(userHost != null && !userHost.equals(host)) {
-                    error = "User can only delete " + bfnType + " from host: " + host;
-                    inputMap.put("responseCode", 403);
+                Vertex bfn = DbService.getVertexByRid(graph, rid);
+                if(bfn != null) {
+                    Map eventMap = getEventMap(inputMap);
+                    Map<String, Object> eventData = (Map<String, Object>)eventMap.get("data");
+                    inputMap.put("eventMap", eventMap);
+                    String id = bfnType + "Id";
+                    eventData.put(id, bfn.getProperty(id));
                 } else {
-                    ODocument doc = DbService.getODocumentByRid(rid);
-                    if(doc != null) {
-                        Map eventMap = getEventMap(inputMap);
-                        Map<String, Object> eventData = (Map<String, Object>)eventMap.get("data");
-                        inputMap.put("eventMap", eventMap);
-                        eventData.put("host", doc.field("host"));
-                        eventData.put("id", doc.field("id"));
-                    } else {
-                        error = "@rid " + rid + " doesn't exist on host " + host;
-                        inputMap.put("responseCode", 400);
-                    }
+                    error = "@rid " + rid + " doesn't exist on host " + host;
+                    inputMap.put("responseCode", 404);
                 }
             }
+        } catch (Exception e) {
+            logger.error("Exception:", e);
+            throw e;
+        } finally {
+            graph.shutdown();
         }
         if(error != null) {
             inputMap.put("error", error);
@@ -258,50 +220,27 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
     public boolean delBfnEv (String bfnType, Object ...objects) throws Exception {
         Map<String, Object> eventMap = (Map<String, Object>) objects[0];
         Map<String, Object> data = (Map<String, Object>) eventMap.get("data");
-        return delBfnDb(bfnType, data);
+        delBfnDb(bfnType, data);
+        return true;
     }
 
-    protected boolean delBfnDb(String bfnType, Map<String, Object> data) throws Exception {
-        boolean result = false;
-        ODatabaseDocumentTx db = ServiceLocator.getInstance().getDb();
-        try {
-            db.begin();
-            OIndex<?> docHostIdIdx = db.getMetadata().getIndexManager().getIndex(bfnType + "HostIdIdx");
-            OCompositeKey key = new OCompositeKey(data.get("host"), data.get("id"));
-            OIdentifiable oid = (OIdentifiable) docHostIdIdx.get(key);
-            if (oid != null) {
-                ODocument doc = (ODocument) oid.getRecord();
-                // update references from parent and children
-                ODocument parent = doc.field("parent");
-                if(parent != null) {
-                    Set children = parent.field("children");
-                    if(children != null && children.size() > 0) {
-                        children.remove(doc);
-                    }
-                    parent.save();
-                }
-                Set<ODocument> children = doc.field("children");
-                if(children != null && children.size() > 0) {
-                    for(ODocument child: children) {
-                        if(child != null) {
-                            child.removeField("parent");
-                            child.save();
-                        }
-
-                    }
-                }
-                doc.delete();
-                db.commit();
-                result = true;
+    protected void delBfnDb(String bfnType, Map<String, Object> data) throws Exception {
+        String className = bfnType.substring(0, 1).toUpperCase() + bfnType.substring(1);
+        String id = bfnType + "Id";
+        OrientGraph graph = ServiceLocator.getInstance().getGraph();
+        try{
+            graph.begin();
+            Vertex bfn = graph.getVertexByKey(className + "." + id, data.get(id));
+            if(bfn != null) {
+                graph.removeVertex(bfn);
             }
+            graph.commit();
         } catch (Exception e) {
-            db.rollback();
-            e.printStackTrace();
-            throw e;
+            logger.error("Exception:", e);
+            graph.rollback();
         } finally {
-            db.close();
+            graph.shutdown();
         }
-        return result;
     }
 
     public boolean updBfn (String bfnType, Object ...objects) throws Exception {
@@ -309,97 +248,95 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
         Map<String, Object> data = (Map<String, Object>) inputMap.get("data");
         String rid = (String) data.get("@rid");
         String host = (String) data.get("host");
+        String id = bfnType + "Id";
         Map<String, Object> payload = (Map<String, Object>) inputMap.get("payload");
-        if(payload == null) {
-            inputMap.put("error", "Login is required");
-            inputMap.put("responseCode", 401);
-            return false;
-        } else {
-            Map<String, Object> user = (Map<String, Object>)payload.get("user");
-            List roles = (List)user.get("roles");
-            if(!roles.contains("owner") && !roles.contains("admin") && !roles.contains(bfnType + "Admin")) {
-                inputMap.put("error", "Role owner or admin or " + bfnType + "Admin is required to update " + bfnType);
+        Map<String, Object> user = (Map<String, Object>)payload.get("user");
+        OrientGraph graph = ServiceLocator.getInstance().getGraph();
+        try {
+            String userHost = (String)user.get("host");
+            if(userHost != null && !userHost.equals(host)) {
+                inputMap.put("error", "You can only update " + bfnType + " from host: " + host);
                 inputMap.put("responseCode", 403);
                 return false;
             } else {
-                String userHost = (String)user.get("host");
-                if(userHost != null && !userHost.equals(host)) {
-                    inputMap.put("error", "User can only update " + bfnType + " from host: " + host);
-                    inputMap.put("responseCode", 403);
-                    return false;
-                } else {
-                    ODocument doc = null;
-                    if(rid != null) {
-                        doc = DbService.getODocumentByRid(rid);
-                        if(doc != null) {
-                            Map eventMap = getEventMap(inputMap);
-                            Map<String, Object> eventData = (Map<String, Object>)eventMap.get("data");
-                            inputMap.put("eventMap", eventMap);
-                            eventData.putAll((Map<String, Object>)inputMap.get("data"));
-                            eventData.put("host", doc.field("host"));
-                            eventData.put("id", doc.field("id"));
-                            eventData.put("updateDate", new java.util.Date());
-                            eventData.put("updateUserId", user.get("userId"));
+                Vertex bfn = DbService.getVertexByRid(graph, rid);
+                if(bfn != null) {
+                    Map eventMap = getEventMap(inputMap);
+                    Map<String, Object> eventData = (Map<String, Object>)eventMap.get("data");
+                    inputMap.put("eventMap", eventMap);
+                    eventData.putAll((Map<String, Object>)inputMap.get("data"));
+                    eventData.put("updateDate", new java.util.Date());
+                    eventData.put("updateUserId", user.get("userId"));
 
-                            // make sure parent exists if it is not empty.
-                            String parentRid = (String)data.get("parent");
-                            if(parentRid != null) {
-                                if(rid.equals(parentRid)) {
-                                    inputMap.put("error", "parent @rid is the same as current @rid");
-                                    inputMap.put("responseCode", 400);
-                                    return false;
-                                }
-                                ODocument parent = DbService.getODocumentByRid(parentRid);
-                                if(parent == null) {
-                                    inputMap.put("error", "Parent with @rid " + parentRid + " cannot be found");
-                                    inputMap.put("responseCode", 404);
-                                    return false;
-                                } else {
-                                    // convert parent from @rid to id
-                                    eventData.put("parent", parent.field("id"));
-                                }
-                            }
-                            // make sure all children exist if there are any.
-                            // and make sure all children have empty parent.
-                            List<String> childrenRids = (List<String>)data.get("children");
-                            if(childrenRids != null && childrenRids.size() > 0) {
-                                List<String> childrenIds = new ArrayList<String>();
-                                for(String childRid: childrenRids) {
-                                    if(childRid != null) {
-                                        if(childRid.equals(parentRid)) {
-                                            inputMap.put("error", "Parent shows up in the Children list");
-                                            inputMap.put("responseCode", 400);
-                                            return false;
-                                        }
-                                        if(childRid.equals(rid)) {
-                                            inputMap.put("error", "Current object shows up in the Children list");
-                                            inputMap.put("responseCode", 400);
-                                            return false;
-                                        }
-                                        ODocument child = DbService.getODocumentByRid(childRid);
-                                        if(child == null) {
-                                            inputMap.put("error", "Child with @rid " + childRid + " cannot be found");
-                                            inputMap.put("responseCode", 404);
-                                            return false;
-                                        } else {
-                                            childrenIds.add((String)child.field("id"));
-                                        }
-                                    }
-                                }
-                                eventData.put("children", childrenIds);
-                            }
+                    // make sure parent exists if it is not empty.
+                    String parentRid = (String)data.get("parent");
+                    if(parentRid != null) {
+                        if(rid.equals(parentRid)) {
+                            inputMap.put("error", "parent @rid is the same as current @rid");
+                            inputMap.put("responseCode", 400);
+                            return false;
+                        }
+                        Vertex parent = DbService.getVertexByRid(graph, parentRid);
+                        if(parent != null) {
+                            eventData.put("parent", parent.getProperty(id));
                         } else {
-                            inputMap.put("error", "@rid " + rid + " cannot be found");
+                            inputMap.put("error", "Parent with @rid " + parentRid + " cannot be found");
                             inputMap.put("responseCode", 404);
                             return false;
                         }
-                    } else {
-                        inputMap.put("error", "@rid is required");
-                        inputMap.put("responseCode", 400);
-                        return false;
                     }
+                    // make sure all children exist if there are any.
+                    // and make sure all children have empty parent.
+                    List<String> childrenRids = (List<String>)data.get("children");
+                    if(childrenRids != null && childrenRids.size() > 0) {
+                        List<String> childrenIds = new ArrayList<String>();
+                        Set<String> inputChildren = new HashSet<String>();
+                        for(String childRid: childrenRids) {
+                            if(childRid.equals(parentRid)) {
+                                inputMap.put("error", "Parent shows up in the Children list");
+                                inputMap.put("responseCode", 400);
+                                return false;
+                            }
+                            if(childRid.equals(rid)) {
+                                inputMap.put("error", "Current object shows up in the Children list");
+                                inputMap.put("responseCode", 400);
+                                return false;
+                            }
+                            Vertex child = DbService.getVertexByRid(graph, childRid);
+                            if(child == null) {
+                                inputMap.put("error", "Child with @rid " + childRid + " cannot be found");
+                                inputMap.put("responseCode", 404);
+                                return false;
+                            } else {
+                                inputChildren.add((String)child.getProperty(id));
+
+
+                            }
+                        }
+                        Set<String> storedChildren = new HashSet<String>();
+                        for (Vertex vertex : (Iterable<Vertex>) bfn.getVertices(Direction.OUT, "Own")) {
+                            storedChildren.add((String)vertex.getProperty(id));
+                        }
+
+                        Set<String> addChildren = new HashSet<String>(inputChildren);
+                        Set<String> delChildren = new HashSet<String>(storedChildren);
+                        addChildren.removeAll(storedChildren);
+                        delChildren.removeAll(inputChildren);
+
+                        if(addChildren.size() > 0) eventData.put("addChildren", addChildren);
+                        if(delChildren.size() > 0) eventData.put("delChildren", delChildren);
+                    }
+                } else {
+                    inputMap.put("error",  "@rid " + rid + " cannot be found");
+                    inputMap.put("responseCode", 404);
+                    return false;
                 }
             }
+        } catch (Exception e) {
+            logger.error("Exception:", e);
+            throw e;
+        } finally {
+            graph.shutdown();
         }
         return true;
     }
@@ -411,126 +348,77 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
         return true;
     }
 
-    protected ODocument updBfnDb(String bfnType, Map<String, Object> data) throws Exception {
-        ODocument doc = null;
-        // update parent according to children and update children according to parent.
-        ODatabaseDocumentTx db = ServiceLocator.getInstance().getDb();
-        try {
-            db.begin();
-            OIndex<?> docHostIdIdx = db.getMetadata().getIndexManager().getIndex(bfnType + "HostIdIdx");
-            OCompositeKey key = new OCompositeKey(data.get("host"), data.get("id"));
-            OIdentifiable oid = (OIdentifiable) docHostIdIdx.get(key);
-            if (oid != null) {
-                doc = (ODocument) oid.getRecord();
-                if(data.get("desc") != null) {
-                    doc.field("desc", data.get("desc"));
+    protected void updBfnDb(String bfnType, Map<String, Object> data) throws Exception {
+        String className = bfnType.substring(0, 1).toUpperCase() + bfnType.substring(1);
+        String id = bfnType + "Id";
+        String index = className + "." + id;
+        OrientGraph graph = ServiceLocator.getInstance().getGraph();
+        try{
+            graph.begin();
+            Vertex updateUser = graph.getVertexByKey("User.userId", data.remove("updateUserId"));
+            Vertex bfn = graph.getVertexByKey(className + "." + id, data.get(id));
+            if(bfn != null) {
+                if(data.get("name") != null) {
+                    bfn.setProperty("name", data.get("name"));
                 } else {
-                    doc.removeField("desc");
+                    bfn.removeProperty("name");
+                }
+                if(data.get("desc") != null) {
+                    bfn.setProperty("desc", data.get("desc"));
+                } else {
+                    bfn.removeProperty("desc");
                 }
                 if(data.get("attributes") != null) {
-                    doc.field("attributes", data.get("attributes"));
+                    bfn.setProperty("attributes", data.get("attributes"));
                 } else {
-                    doc.removeField("attributes");
+                    bfn.removeProperty("attributes");
                 }
+                bfn.setProperty("updateDate", data.get("updateDate"));
+
+                // parent
                 if(data.get("parent") != null) {
-                    OCompositeKey parentKey = new OCompositeKey(data.get("host"), data.get("parent"));
-                    OIdentifiable parentOid = (OIdentifiable) docHostIdIdx.get(parentKey);
-                    if(parentOid != null) {
-                        ODocument parent = (ODocument)parentOid.getRecord();
-                        doc.field("parent", parent);
-                        // update parent with the children
-                        Set children = parent.field("children");
-                        if(children != null) {
-                            children.add(doc);
-                        } else {
-                            children = new HashSet<ODocument>();
-                            children.add(doc);
-                            parent.field("children", children);
+                    Vertex parent = graph.getVertexByKey(className + "." + id, data.get("parent"));
+                    if (parent != null) {
+                        // check if the edge exists or not.
+                        boolean createEdge = true;
+                        for (Edge edge : (Iterable<Edge>) parent.getEdges(Direction.OUT, "Own")) {
+                            if (edge.getVertex(Direction.IN).equals(bfn)) createEdge = false;
                         }
-                        parent.save();
+                        if (createEdge) parent.addEdge("Own", bfn);
                     }
                 } else {
-                    ODocument parent = doc.field("parent");
-                    if(parent != null) {
-                        Set children = parent.field("children");
-                        children.remove(doc);
-                        doc.removeField("parent");
+                    // no parent in the map.
+                    for (Edge edge : (Iterable<Edge>) bfn.getEdges(Direction.IN, "Own")) {
+                        graph.removeEdge(edge);
                     }
                 }
-                List<String> list = (List)data.get("children");
-                if(list != null && list.size() > 0) {
-                    Set<ODocument> storedChildren = doc.field("children");
-                    if(storedChildren != null && storedChildren.size() > 0) {
-                        // both lists are not empty. comparison is needed.
-                        // first populate inputChildren as ODocument
-                        Set<ODocument> inputChildren = new HashSet<ODocument>();
-                        for(String id: list) {
-                            OCompositeKey childKey = new OCompositeKey(data.get("host"), id);
-                            OIdentifiable childOid = (OIdentifiable) docHostIdIdx.get(childKey);
-                            if(childOid != null) inputChildren.add((ODocument)childOid.getRecord());
-                        }
-
-                        Set<ODocument> addSet = new HashSet<ODocument>(inputChildren);
-                        Set<ODocument> delSet = new HashSet<ODocument>(storedChildren);
-
-                        addSet.removeAll(storedChildren);
-                        if(addSet.size() > 0) {
-                            for(ODocument addDoc: addSet) {
-                                addDoc.field("parent", doc);
-                                storedChildren.add(addDoc);
-                                addDoc.save();
-                                doc.save();
-                            }
-                        }
-                        delSet.removeAll(inputChildren);
-                        if(delSet.size() > 0) {
-                            for(ODocument delDoc: delSet) {
-                                delDoc.removeField("parent");
-                                storedChildren.remove(delDoc);
-                                delDoc.save();
-                                doc.save();
-                            }
-                        }
-                    } else {
-                        // doesn't have children
-                        storedChildren = new HashSet<ODocument>();
-                        for(String id: (List<String>)data.get("children")) {
-                            OCompositeKey childKey = new OCompositeKey(data.get("host"), id);
-                            OIdentifiable childOid = (OIdentifiable) docHostIdIdx.get(childKey);
-                            if(childOid != null) {
-                                ODocument child = childOid.getRecord();
-                                if(child != null) {
-                                    storedChildren.add((ODocument)childOid.getRecord());
-                                    child.field("parent", doc);
-                                    child.save();
-                                }
-                            }
-                        }
-                        doc.field("children", storedChildren);
+                // handle addChildren and delChildren
+                Set<String> addChildren = (Set)data.get("addChildren");
+                if(addChildren != null) {
+                    for(String childId: addChildren) {
+                        Vertex vertex = graph.getVertexByKey(className + "." + id, childId);
+                        bfn.addEdge("Own", vertex);
                     }
-                } else {
-                    Set<ODocument> children = doc.field("children");
-                    if(children != null && children.size() > 0) {
-                        for(ODocument child: children) {
-                            child.removeField("parent");
-                        }
-                    }
-                    doc.removeField("children");
                 }
-                doc.field("updateDate", data.get("updateDate"));
-                doc.field("updateUserId", data.get("updateUserId"));
-                doc.save();
-                db.commit();
+                Set<String> delChildren = (Set)data.get("delChildren");
+                if(delChildren != null) {
+                    for(String childId: delChildren) {
+                        Vertex vertex = graph.getVertexByKey(className + "." + id, childId);
+                        for (Edge edge : (Iterable<Edge>) bfn.getEdges(Direction.OUT, "Own")) {
+                            if(edge.getVertex(Direction.IN).equals(vertex)) graph.removeEdge(edge);
+                        }
+                    }
+                }
+                // updateUser
+                updateUser.addEdge("Update", bfn);
             }
-            db.commit();
+            graph.commit();
         } catch (Exception e) {
-            db.rollback();
-            e.printStackTrace();
-            throw e;
+            logger.error("Exception:", e);
+            graph.rollback();
         } finally {
-            db.close();
+            graph.shutdown();
         }
-        return doc;
     }
 
 
@@ -539,33 +427,32 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
         Map<String, Object> data = (Map<String, Object>) inputMap.get("data");
         String parentId = (String) data.get("parentId");
         String host = (String) data.get("host");
-        String title = (String) data.get("title");
         String error = null;
         Map<String, Object> payload = (Map<String, Object>) inputMap.get("payload");
-        if(payload == null) {
-            error = "Login is required";
-            inputMap.put("responseCode", 401);
-        } else {
-            if(parentId == null || host == null || title == null) {
-                error = "ParentId, Host and Title are required";
+        String className = bfnType.substring(0, 1).toUpperCase() + bfnType.substring(1);
+        String id = bfnType + "Id";
+        String index = className + "." + id;
+        OrientGraph graph = ServiceLocator.getInstance().getGraph();
+        try {
+            Vertex parent = graph.getVertexByKey(index, parentId);
+            if(parent == null) {
+                error = "Id " + parentId + " doesn't exist on host " + host;
                 inputMap.put("responseCode", 400);
             } else {
-                //  make sure parent exists.
-                ODocument doc = getODocumentByHostId(bfnType + "HostIdIdx", host, parentId);
-                if(doc == null) {
-                    error = "Id " + parentId + " doesn't exist on host " + host;
-                    inputMap.put("responseCode", 400);
-                } else {
-                    Map<String, Object> user = (Map<String, Object>)payload.get("user");
-                    Map eventMap = getEventMap(inputMap);
-                    Map<String, Object> eventData = (Map<String, Object>)eventMap.get("data");
-                    inputMap.put("eventMap", eventMap);
-                    eventData.putAll((Map<String, Object>) inputMap.get("data"));
-                    eventData.put("id", DbService.incrementCounter("postId"));
-                    eventData.put("createDate", new java.util.Date());
-                    eventData.put("createUserId", user.get("userId"));
-                }
+                Map<String, Object> user = (Map<String, Object>)payload.get("user");
+                Map eventMap = getEventMap(inputMap);
+                Map<String, Object> eventData = (Map<String, Object>)eventMap.get("data");
+                inputMap.put("eventMap", eventMap);
+                eventData.putAll((Map<String, Object>) inputMap.get("data"));
+                eventData.put("postId", HashUtil.generateUUID());
+                eventData.put("createDate", new java.util.Date());
+                eventData.put("createUserId", user.get("userId"));
             }
+        } catch (Exception e) {
+            logger.error("Exception:", e);
+            throw e;
+        } finally {
+            graph.shutdown();
         }
         if(error != null) {
             inputMap.put("error", error);
@@ -582,90 +469,46 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
         return true;
     }
 
-    protected ODocument addPostDb(String bfnType, Map<String, Object> data) throws Exception {
-        ODocument post = null;
-        ODatabaseDocumentTx db = ServiceLocator.getInstance().getDb();
-        OSchema schema = db.getMetadata().getSchema();
-        try {
-            db.begin();
-            post = new ODocument(schema.getClass("Post"));
-            post.field("host", data.get("host"));
-            post.field("id", data.get("id"));
-            post.field("title", data.get("title"));
-            if(data.get("summary") != null) post.field("summary", data.get("summary"));
-            if(data.get("content") != null) post.field("content", data.get("content"));
-            post.field("createDate", data.get("createDate"));
-            post.field("createUserId", data.get("createUserId"));
+    protected void addPostDb(String bfnType, Map<String, Object> data) throws Exception {
+        String className = bfnType.substring(0, 1).toUpperCase() + bfnType.substring(1);
+        String id = bfnType + "Id";
+        String index = className + "." + id;
+        OrientGraph graph = ServiceLocator.getInstance().getGraph();
+        try{
+            graph.begin();
+            Vertex createUser = graph.getVertexByKey("User.userId", data.remove("createUserId"));
+            OrientVertex post = graph.addVertex("class:Post", data);
+            createUser.addEdge("Create", post);
             // parent
-            OIndex<?> docHostIdIdx = db.getMetadata().getIndexManager().getIndex(bfnType + "HostIdIdx");
-            OCompositeKey parentKey = new OCompositeKey(data.get("host"), data.get("parentId"));
-            OIdentifiable parentOid = (OIdentifiable) docHostIdIdx.get(parentKey);
-            if(parentOid != null) {
-                ODocument parent = (ODocument)parentOid.getRecord();
-                post.field("parent", parent);
-                // update parent with the posts
-                List posts = parent.field("posts");
-                if(posts != null) {
-                    posts.add(post);
-                } else {
-                    posts = new ArrayList<ODocument>();
-                    posts.add(post);
-                    parent.field("posts", posts);
-                }
-                parent.save();
+            Vertex parent = graph.getVertexByKey(index, data.get("parent"));
+            if(parent != null) {
+                parent.addEdge("HasPost", post);
             }
-            // tags
-            Map<String, Object> tagMap = new HashMap<String, Object>();
+            // tag
             Set<String> inputTags = data.get("tags") != null? new HashSet<String>(Arrays.asList(((String)data.get("tags")).split("\\s*,\\s*"))) : new HashSet<String>();
             String host = (String)data.get("host");
-            String className = post.getClassName();
-            for(String tagName: inputTags) {
-                ODocument tag = null;
+            for(String tagId: inputTags) {
+                Vertex tag = null;
                 // get the tag is it exists
-                OIndex<?> hostNameClassIdx = db.getMetadata().getIndexManager().getIndex("hostNameClassIdx");
-                OCompositeKey tagKey = new OCompositeKey(host, tagName, className);
-                OIdentifiable tagOid = (OIdentifiable) hostNameClassIdx.get(tagKey);
+                OIndex<?> tagHostNameIdx = graph.getRawGraph().getMetadata().getIndexManager().getIndex("tagHostNameIdx");
+                OCompositeKey tagKey = new OCompositeKey(host, tagId);
+                OIdentifiable tagOid = (OIdentifiable) tagHostNameIdx.get(tagKey);
                 if (tagOid != null) {
-                    tag = (ODocument) tagOid.getRecord();
-                    Set links = tag.field("links");
-                    links.add(post);
-                    tag.save();
+                    tag = (Vertex) tagOid.getRecord();
+                    post.addEdge("HasTag", tag);
                 } else {
-                    tag = new ODocument(schema.getClass("Tag"));
-                    tag.field("host", host);
-                    tag.field("name", tagName);
-                    tag.field("class", className);
-                    tag.field("createDate", data.get("createDate"));
-                    tag.field("createUserId", data.get("createUserId"));
-                    Set links = new HashSet<String>();
-                    links.add(post);
-                    tag.field("links", links);
-                    tag.save();
-                }
-                tagMap.put(tagName, tag);
-            }
-            post.field("tags", tagMap);
-
-            post.save();
-            // synch post id
-            OIndex<?> counterNameIdx = db.getMetadata().getIndexManager().getIndex("Counter.name");
-            OIdentifiable counterOid = (OIdentifiable) counterNameIdx.get("postId");
-            if (counterOid != null) {
-                ODocument counter = (ODocument) counterOid.getRecord();
-                if(!data.get("id").equals(counter.field("value"))) {
-                    counter.field("value", data.get("id"));
-                    counter.save();
+                    tag = graph.addVertex("class:Tag", "host", host, "tagId", tagId, "createDate", data.get("createDate"));
+                    createUser.addEdge("Create", tag);
+                    post.addEdge("HasTag", tag);
                 }
             }
-            db.commit();
+            graph.commit();
         } catch (Exception e) {
-            db.rollback();
-            e.printStackTrace();
-            throw e;
+            logger.error("Exception:", e);
+            graph.rollback();
         } finally {
-            db.close();
+            graph.shutdown();
         }
-        return post;
     }
 
     public boolean getBfnTree(String bfnType, Object ...objects) throws Exception {
@@ -686,17 +529,17 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
     protected String getBfnTree(String bfnType, String host) {
         String json = null;
         String sql = "SELECT FROM " + bfnType + " WHERE host = ? and parent IS NULL ORDER BY id";
-        ODatabaseDocumentTx db = ServiceLocator.getInstance().getDb();
+        OrientGraph graph = ServiceLocator.getInstance().getGraph();
         try {
             OSQLSynchQuery<ODocument> query = new OSQLSynchQuery<ODocument>(sql);
-            List<ODocument> docs = db.command(query).execute(host);
+            List<ODocument> docs = graph.getRawGraph().command(query).execute(host);
             if(docs.size() > 0) {
                 json = OJSONWriter.listToJSON(docs, "fetchPlan:*:-1");
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Exception:", e);
         } finally {
-            db.close();
+            graph.shutdown();
         }
         return json;
     }
@@ -723,10 +566,10 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
     protected String getBfnPostDb(String bfnType, Map<String, Object> data) {
         String json = null;
         String sql = "select from (traverse posts, children from (select from " + bfnType + " where host = ? and id = ?)) where @class = 'Post'";
-        ODatabaseDocumentTx db = ServiceLocator.getInstance().getDb();
+        OrientGraph graph = ServiceLocator.getInstance().getGraph();
         try {
             OSQLSynchQuery<ODocument> query = new OSQLSynchQuery<ODocument>(sql);
-            List<ODocument> forums = db.command(query).execute(data.get("host"), data.get("id"));
+            List<ODocument> forums = graph.getRawGraph().command(query).execute(data.get("host"), data.get("id"));
             if(forums.size() > 0) {
                 json = OJSONWriter.listToJSON(forums, null);
             }
