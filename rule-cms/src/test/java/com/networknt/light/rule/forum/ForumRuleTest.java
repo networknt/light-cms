@@ -42,38 +42,15 @@ public class ForumRuleTest extends TestCase {
     String getForumTree = "{\"readOnly\":true,\"category\":\"forum\",\"name\":\"getForum\",\"data\":{\"host\":\"www.example.com\"}}";
     String delForum = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"delForum\",\"data\":{\"host\":\"www.example.com\"}}";
 
-    String addForum1 = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"addForum\",\"data\":{\"host\":\"www.example.com\",\"id\":\"Living\",\"desc\":\"Living\"}}";
-    String addForum2 = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"addForum\",\"data\":{\"host\":\"www.example.com\",\"id\":\"Plant\",\"desc\":\"Plant\"}}";
-    String addForum3 = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"addForum\",\"data\":{\"host\":\"www.example.com\",\"id\":\"Animal\",\"desc\":\"Animal\"}}";
-    String addForum4 = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"addForum\",\"data\":{\"host\":\"www.example.com\",\"id\":\"Tree\",\"desc\":\"Tree\"}}";
-    String addForum5 = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"addForum\",\"data\":{\"host\":\"www.example.com\",\"id\":\"Herb\",\"desc\":\"Herb\"}}";
-    String addForum6 = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"addForum\",\"data\":{\"host\":\"www.example.com\",\"id\":\"Pine\",\"desc\":\"Pine\"}}";
+    String addForum1 = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"addForum\",\"data\":{\"host\":\"www.example.com\",\"forumId\":\"Living\",\"desc\":\"Living\"}}";
+    String addForum2 = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"addForum\",\"data\":{\"host\":\"www.example.com\",\"forumId\":\"Plant\",\"desc\":\"Plant\"}}";
+    String addForum3 = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"addForum\",\"data\":{\"host\":\"www.example.com\",\"forumId\":\"Animal\",\"desc\":\"Animal\"}}";
+    String addForum4 = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"addForum\",\"data\":{\"host\":\"www.example.com\",\"forumId\":\"Tree\",\"desc\":\"Tree\"}}";
+    String addForum5 = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"addForum\",\"data\":{\"host\":\"www.example.com\",\"forumId\":\"Herb\",\"desc\":\"Herb\"}}";
+    String addForum6 = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"addForum\",\"data\":{\"host\":\"www.example.com\",\"forumId\":\"Pine\",\"desc\":\"Pine\"}}";
 
     String updForum = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"updForum\",\"data\":{\"host\":\"www.example.com\"}}";
 
-
-
-    String getUserByUserId = "{\"readOnly\":true,\"category\":\"user\",\"name\":\"getUser\",\"data\":{\"host\":\"www.example.com\",\"userId\":\"steve\"}}";
-    String getUserByRid = "{\"readOnly\":true,\"category\":\"user\",\"name\":\"getUser\",\"data\":{\"host\":\"www.exmaple.com\"}}";
-
-    String signInUserByEmail = "{\"readOnly\":false,\"category\":\"user\",\"name\":\"signInUser\",\"data\":{\"host\":\"www.example.com\",\"userIdEmail\":\"steve@gmail.com\",\"password\":\"abcdefg\",\"rememberMe\":false}}";
-    String signInUserByUserId = "{\"readOnly\":false,\"category\":\"user\",\"name\":\"signInUser\",\"data\":{\"host\":\"www.example.com\",\"userIdEmail\":\"steve\",\"password\":\"abcdefg\",\"rememberMe\":true}}";
-    String logOutUser = "{\"readOnly\":false,\"category\":\"user\",\"name\":\"logOutUser\",\"data\":{\"host\":\"www.example.com\"}}";
-
-    String updUserPassword = "{\"readOnly\":false,\"category\":\"user\",\"name\":\"updPassword\",\"data\":{\"host\":\"www.example.com\",\"userId\":\"steve\",\"password\":\"abcdefg\",\"newPassword\":\"123456\",\"passwordConfirm\":\"123456\"}}";
-    String signInUserNewPass = "{\"readOnly\":true,\"category\":\"user\",\"name\":\"signInUser\",\"data\":{\"host\":\"www.example.com\",\"userIdEmail\":\"steve@gmail.com\",\"password\":\"123456\"}}";
-
-    String updUserProfile = "{\"readOnly\":false,\"category\":\"user\",\"name\":\"updProfile\",\"data\":{\"host\":\"www.example.com\",\"userId\":\"steve\",\"firstName\":\"Steve\",\"lastName\":\"Hu\"}}";
-
-    String delUser = "{\"readOnly\":false,\"category\":\"user\",\"name\":\"delUser\",\"data\":{\"host\":\"www.example.com\",\"userId\":\"steve\"}}";
-
-    String lockUser = "{\"readOnly\":false,\"category\":\"user\",\"name\":\"lockUser\",\"data\":{\"host\":\"www.example.com\",\"userId\":\"steve\"}}";
-    String unlockUser = "{\"readOnly\":false,\"category\":\"user\",\"name\":\"unlockUser\",\"data\":{\"host\":\"www.example.com\",\"userId\":\"steve\"}}";
-    String addRole = "{\"readOnly\":false,\"category\":\"user\",\"name\":\"addRole\",\"data\":{\"host\":\"www.example.com\",\"role\":\"tester\"}}";
-    String delRole = "{\"readOnly\":false,\"category\":\"user\",\"name\":\"delRole\",\"data\":{\"host\":\"www.example.com\",\"role\":\"tester\"}}";
-
-    String upUser = "{\"readOnly\":false,\"category\":\"user\",\"name\":\"upUser\",\"data\":{\"host\":\"www.example.com\"}}";
-    String downUser = "{\"readOnly\":false,\"category\":\"user\",\"name\":\"downUser\",\"data\":{\"host\":\"www.example.com\"}}";
 
     public ForumRuleTest(String name) {
         super(name);
@@ -185,42 +162,7 @@ public class ForumRuleTest extends TestCase {
             addForum(addForum3, ownerToken);
             addForum(addForum4, ownerToken);
             addForum(addForum5, ownerToken);
-        }
-
-        // add forum6 by user failed due to permission
-        {
-            jsonMap = mapper.readValue(addForum6,
-                    new TypeReference<HashMap<String, Object>>() {
-                    });
-            jsonMap.put("payload", userToken.getPayload());
-
-            AddForumRule rule = new AddForumRule();
-            ruleResult = rule.execute(jsonMap);
-            assertFalse(ruleResult);
-            assertEquals(403, jsonMap.get("responseCode"));
-        }
-
-        // add forum6 by forumAdmin
-        {
-            jsonMap = mapper.readValue(addForum6,
-                    new TypeReference<HashMap<String, Object>>() {
-                    });
-
-            Map<String, Object> forumAdminPayload = new HashMap<String, Object>();
-            Map<String, Object> forumAdminUser = new LinkedHashMap<String, Object>((Map)userToken.getPayload().get("user"));
-            List roles = new ArrayList();;
-            roles.add("forumAdmin");
-            forumAdminUser.put("roles", roles);
-            forumAdminPayload.put("user", forumAdminUser);
-            jsonMap.put("payload", forumAdminPayload);
-
-            AddForumRule rule = new AddForumRule();
-            ruleResult = rule.execute(jsonMap);
-            assertTrue(ruleResult);
-            Map<String, Object> eventMap = (Map<String, Object>)jsonMap.get("eventMap");
-            AddForumEvRule evRule = new AddForumEvRule();
-            ruleResult = evRule.execute(eventMap);
-            assertTrue(ruleResult);
+            addForum(addForum6, ownerToken);
         }
 
         // add forum6 again by owner failed as it exists

@@ -20,13 +20,9 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import com.networknt.light.server.DbService;
 import com.networknt.light.util.HashUtil;
 import com.networknt.light.util.ServiceLocator;
-import com.networknt.light.util.Util;
-import com.orientechnologies.orient.core.command.script.OCommandScript;
-import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
 import com.orientechnologies.orient.core.db.record.OIdentifiable;
 import com.orientechnologies.orient.core.index.OCompositeKey;
 import com.orientechnologies.orient.core.index.OIndex;
-import com.orientechnologies.orient.core.metadata.schema.OSchema;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.serialization.serializer.OJSONWriter;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
@@ -35,6 +31,8 @@ import com.tinkerpop.blueprints.Edge;
 import com.tinkerpop.blueprints.Vertex;
 import com.tinkerpop.blueprints.impls.orient.OrientGraph;
 import com.tinkerpop.blueprints.impls.orient.OrientVertex;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.*;
 
@@ -46,7 +44,8 @@ import java.util.*;
  *
  */
 public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
-    ObjectMapper mapper = ServiceLocator.getInstance().getMapper();
+    static final Logger logger = LoggerFactory.getLogger(AbstractBfnRule.class);
+
     public abstract boolean execute (Object ...objects) throws Exception;
 
     public boolean addBfn (String bfnType, Object ...objects) throws Exception {
@@ -193,11 +192,22 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
             } else {
                 Vertex bfn = DbService.getVertexByRid(graph, rid);
                 if(bfn != null) {
-                    Map eventMap = getEventMap(inputMap);
-                    Map<String, Object> eventData = (Map<String, Object>)eventMap.get("data");
-                    inputMap.put("eventMap", eventMap);
-                    String id = bfnType + "Id";
-                    eventData.put(id, bfn.getProperty(id));
+                    // TODO check if bfn owns children, if yes, reject?
+                    boolean hasChildren = false;
+                    for (Edge edge : (Iterable<Edge>) bfn.getEdges(Direction.OUT, "Own")) {
+                        hasChildren = true;
+                    }
+                    if(hasChildren) {
+                        error = "The current " + bfnType + " owns other entities";
+                        inputMap.put("responseCode", 400);
+                    } else {
+                        Map eventMap = getEventMap(inputMap);
+                        Map<String, Object> eventData = (Map<String, Object>)eventMap.get("data");
+                        inputMap.put("eventMap", eventMap);
+                        eventData.put("host", host);
+                        String id = bfnType + "Id";
+                        eventData.put(id, bfn.getProperty(id));
+                    }
                 } else {
                     error = "@rid " + rid + " doesn't exist on host " + host;
                     inputMap.put("responseCode", 404);
@@ -230,9 +240,12 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
         OrientGraph graph = ServiceLocator.getInstance().getGraph();
         try{
             graph.begin();
-            Vertex bfn = graph.getVertexByKey(className + "." + id, data.get(id));
-            if(bfn != null) {
-                graph.removeVertex(bfn);
+            OIndex<?> hostIdIdx = graph.getRawGraph().getMetadata().getIndexManager().getIndex(bfnType + "HostIdIdx");
+            OCompositeKey key = new OCompositeKey(data.get("host"), data.get(id));
+            OIdentifiable oid = (OIdentifiable) hostIdIdx.get(key);
+            if (oid != null) {
+                ODocument bfn = (ODocument) oid.getRecord();
+                bfn.delete();
             }
             graph.commit();
         } catch (Exception e) {
@@ -356,8 +369,12 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
         try{
             graph.begin();
             Vertex updateUser = graph.getVertexByKey("User.userId", data.remove("updateUserId"));
-            Vertex bfn = graph.getVertexByKey(className + "." + id, data.get(id));
-            if(bfn != null) {
+            Vertex bfn = null;
+            OIndex<?> hostIdIdx = graph.getRawGraph().getMetadata().getIndexManager().getIndex(bfnType + "HostIdIdx");
+            OCompositeKey key = new OCompositeKey(data.get("host"), data.get(id));
+            OIdentifiable oid = (OIdentifiable) hostIdIdx.get(key);
+            if (oid != null) {
+                bfn = graph.getVertex(oid.getRecord());
                 if(data.get("name") != null) {
                     bfn.setProperty("name", data.get("name"));
                 } else {
@@ -421,6 +438,165 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
         }
     }
 
+    public boolean downBfn (String bfnType, Object ...objects) throws Exception {
+        Map<String, Object> inputMap = (Map<String, Object>) objects[0];
+        Map<String, Object> data = (Map<String, Object>) inputMap.get("data");
+        String rid = (String) data.get("@rid");
+        String host = (String) data.get("host");
+        String id = bfnType + "Id";
+        String error = null;
+        Map<String, Object> payload = (Map<String, Object>) inputMap.get("payload");
+        Map<String, Object> user = (Map<String, Object>)payload.get("user");
+        OrientGraph graph = ServiceLocator.getInstance().getGraph();
+        try {
+            OrientVertex bfn = (OrientVertex)DbService.getVertexByRid(graph, rid);
+            OrientVertex voteUser = (OrientVertex)graph.getVertexByKey("User.userId", user.get("userId"));
+            if(bfn == null) {
+                error = "@rid " + rid + " cannot be found";
+                inputMap.put("responseCode", 404);
+            } else {
+                // TODO check if the current user has down voted the bfn before.
+                boolean voted = false;
+                for (Edge edge : voteUser.getEdges(bfn, Direction.OUT, "DownVote")) {
+                    if(edge.getVertex(Direction.IN).equals(bfn)) voted = true;
+                }
+                if(voted) {
+                    error = "You have down voted the " + bfnType + " already";
+                    inputMap.put("responseCode", 400);
+                } else {
+                    Map eventMap = getEventMap(inputMap);
+                    Map<String, Object> eventData = (Map<String, Object>)eventMap.get("data");
+                    inputMap.put("eventMap", eventMap);
+                    eventData.put("host", host);
+                    eventData.put(id, bfn.getProperty(id));
+                    eventData.put("updateUserId", user.get("userId"));
+                }
+            }
+        } catch (Exception e) {
+            logger.error("Exception:", e);
+            throw e;
+        } finally {
+            graph.shutdown();
+        }
+        if(error != null) {
+            inputMap.put("error", error);
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public boolean downBfnEv (String bfnType, Object ...objects) throws Exception {
+        Map<String, Object> eventMap = (Map<String, Object>) objects[0];
+        Map<String, Object> data = (Map<String, Object>) eventMap.get("data");
+        downBfnDb(bfnType, data);
+        return true;
+    }
+
+    protected void downBfnDb(String bfnType, Map<String, Object> data) throws Exception {
+        String className = bfnType.substring(0, 1).toUpperCase() + bfnType.substring(1);
+        String id = bfnType + "Id";
+        String index = className + "." + id;
+        OrientGraph graph = ServiceLocator.getInstance().getGraph();
+        try{
+            graph.begin();
+            OrientVertex updateUser = (OrientVertex)graph.getVertexByKey("User.userId", data.remove("updateUserId"));
+            OrientVertex bfn = (OrientVertex)graph.getVertexByKey(index, data.get(id));
+            if(bfn != null && updateUser != null) {
+                // remove UpVote edge if there is.
+                for (Edge edge : updateUser.getEdges(bfn, Direction.OUT, "UpVote")) {
+                    if(edge.getVertex(Direction.IN).equals(bfn)) graph.removeEdge(edge);
+                }
+                updateUser.addEdge("DownVote", bfn);
+            }
+            graph.commit();
+        } catch (Exception e) {
+            logger.error("Exception:", e);
+            graph.rollback();
+        } finally {
+            graph.shutdown();
+        }
+    }
+
+    public boolean upBfn (String bfnType, Object ...objects) throws Exception {
+        Map<String, Object> inputMap = (Map<String, Object>) objects[0];
+        Map<String, Object> data = (Map<String, Object>) inputMap.get("data");
+        String rid = (String) data.get("@rid");
+        String host = (String) data.get("host");
+        String id = bfnType + "Id";
+        String error = null;
+        Map<String, Object> payload = (Map<String, Object>) inputMap.get("payload");
+        Map<String, Object> user = (Map<String, Object>)payload.get("user");
+        OrientGraph graph = ServiceLocator.getInstance().getGraph();
+        try {
+            OrientVertex bfn = (OrientVertex)DbService.getVertexByRid(graph, rid);
+            OrientVertex voteUser = (OrientVertex)graph.getVertexByKey("User.userId", user.get("userId"));
+            if(bfn == null) {
+                error = "@rid " + rid + " cannot be found";
+                inputMap.put("responseCode", 404);
+            } else {
+                // TODO check if the current user has up voted the bfn before.
+                boolean voted = false;
+                for (Edge edge : voteUser.getEdges(bfn, Direction.OUT, "UpVote")) {
+                    if(edge.getVertex(Direction.IN).equals(bfn)) voted = true;
+                }
+                if(voted) {
+                    error = "You have up voted the " + bfnType + " already";
+                    inputMap.put("responseCode", 400);
+                } else {
+                    Map eventMap = getEventMap(inputMap);
+                    Map<String, Object> eventData = (Map<String, Object>)eventMap.get("data");
+                    inputMap.put("eventMap", eventMap);
+                    eventData.put("host", host);
+                    eventData.put(id, bfn.getProperty(id));
+                    eventData.put("updateUserId", user.get("userId"));
+                }
+            }
+        } catch (Exception e) {
+            logger.error("Exception:", e);
+            throw e;
+        } finally {
+            graph.shutdown();
+        }
+        if(error != null) {
+            inputMap.put("error", error);
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public boolean upBfnEv (String bfnType, Object ...objects) throws Exception {
+        Map<String, Object> eventMap = (Map<String, Object>) objects[0];
+        Map<String, Object> data = (Map<String, Object>) eventMap.get("data");
+        upBfnDb(bfnType, data);
+        return true;
+    }
+
+    protected void upBfnDb(String bfnType, Map<String, Object> data) throws Exception {
+        String className = bfnType.substring(0, 1).toUpperCase() + bfnType.substring(1);
+        String id = bfnType + "Id";
+        String index = className + "." + id;
+        OrientGraph graph = ServiceLocator.getInstance().getGraph();
+        try{
+            graph.begin();
+            OrientVertex updateUser = (OrientVertex)graph.getVertexByKey("User.userId", data.remove("updateUserId"));
+            OrientVertex bfn = (OrientVertex)graph.getVertexByKey(index, data.get(id));
+            if(bfn != null && updateUser != null) {
+                // remove DownVote edge if there is.
+                for (Edge edge : updateUser.getEdges(bfn, Direction.OUT, "DownVote")) {
+                    if(edge.getVertex(Direction.IN).equals(bfn)) graph.removeEdge(edge);
+                }
+                updateUser.addEdge("UpVote", bfn);
+            }
+            graph.commit();
+        } catch (Exception e) {
+            logger.error("Exception:", e);
+            graph.rollback();
+        } finally {
+            graph.shutdown();
+        }
+    }
 
     public boolean addPost(String bfnType, Object ...objects) throws Exception {
         Map<String, Object> inputMap = (Map<String, Object>) objects[0];
@@ -500,6 +676,206 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
                     tag = graph.addVertex("class:Tag", "host", host, "tagId", tagId, "createDate", data.get("createDate"));
                     createUser.addEdge("Create", tag);
                     post.addEdge("HasTag", tag);
+                }
+            }
+            graph.commit();
+        } catch (Exception e) {
+            logger.error("Exception:", e);
+            graph.rollback();
+        } finally {
+            graph.shutdown();
+        }
+    }
+
+    public boolean delPost(String bfnType, Object ...objects) throws Exception {
+        Map<String, Object> inputMap = (Map<String, Object>) objects[0];
+        Map<String, Object> data = (Map<String, Object>) inputMap.get("data");
+        String rid = (String)data.get("@rid");
+        String error = null;
+        OrientGraph graph = ServiceLocator.getInstance().getGraph();
+        try {
+            Vertex post = DbService.getVertexByRid(graph, rid);
+            if(post != null) {
+                Map eventMap = getEventMap(inputMap);
+                Map<String, Object> eventData = (Map<String, Object>)eventMap.get("data");
+                inputMap.put("eventMap", eventMap);
+                eventData.put("postId", post.getProperty("postId"));
+            } else {
+                error = "@rid " + rid + " cannot be found";
+                inputMap.put("responseCode", 404);
+            }
+        } catch (Exception e) {
+            logger.error("Exception:", e);
+            throw e;
+        } finally {
+            graph.shutdown();
+        }
+        if(error != null) {
+            inputMap.put("error", error);
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public boolean delPostEv (String bfnType, Object ...objects) throws Exception {
+        Map<String, Object> eventMap = (Map<String, Object>) objects[0];
+        Map<String, Object> data = (Map<String, Object>) eventMap.get("data");
+        delPostDb(bfnType, data);
+        return true;
+    }
+
+    protected void delPostDb(String bfnType, Map<String, Object> data) throws Exception {
+        String className = bfnType.substring(0, 1).toUpperCase() + bfnType.substring(1);
+        String id = bfnType + "Id";
+        String index = className + "." + id;
+        OrientGraph graph = ServiceLocator.getInstance().getGraph();
+        try{
+            graph.begin();
+            OrientVertex post = (OrientVertex)graph.getVertexByKey("Post.postId", data.get("postId"));
+            if(post != null) {
+                // TODO cascade deleting all comments belong to the post.
+                // Need to come up a query on that to get the entire tree.
+                /*
+                for (Vertex menuItem : graph.getVerticesOfClass("MenuItem")) {
+                    if(host.equals(menuItem.getProperty("host"))) {
+                        graph.removeVertex(menuItem);
+                    }
+                }
+                */
+                graph.removeVertex(post);
+            }
+            graph.commit();
+        } catch (Exception e) {
+            logger.error("Exception:", e);
+            graph.rollback();
+        } finally {
+            graph.shutdown();
+        }
+    }
+
+    public boolean updPost(String bfnType, Object ...objects) throws Exception {
+        Map<String, Object> inputMap = (Map<String, Object>) objects[0];
+        Map<String, Object> data = (Map<String, Object>) inputMap.get("data");
+        String rid = (String) data.get("@rid");
+        String host = (String) data.get("host");
+        String error = null;
+        Map<String, Object> payload = (Map<String, Object>) inputMap.get("payload");
+        OrientGraph graph = ServiceLocator.getInstance().getGraph();
+        try {
+            // update post itself and we might have a new api to move post from one parent to another.
+            Vertex post = DbService.getVertexByRid(graph, rid);
+            if(post != null) {
+                Map<String, Object> user = (Map<String, Object>)payload.get("user");
+                Map eventMap = getEventMap(inputMap);
+                Map<String, Object> eventData = (Map<String, Object>)eventMap.get("data");
+                inputMap.put("eventMap", eventMap);
+                eventData.put("postId", post.getProperty("postId"));
+                eventData.put("title", data.get("title"));
+                eventData.put("source", data.get("source"));
+                eventData.put("summary", data.get("summary"));
+                eventData.put("content", data.get("content"));
+                eventData.put("updateDate", new java.util.Date());
+                eventData.put("updateUserId", user.get("userId"));
+                // tags
+                Set<String> inputTags = data.get("tags") != null? new HashSet<String>(Arrays.asList(((String)data.get("tags")).split("\\s*,\\s*"))) : new HashSet<String>();
+                Set<String> storedTags = new HashSet<String>();
+                for (Vertex vertex : (Iterable<Vertex>) post.getVertices(Direction.OUT, "HasTag")) {
+                    storedTags.add((String)vertex.getProperty("tagId"));
+                }
+
+                Set<String> addTags = new HashSet<String>(inputTags);
+                Set<String> delTags = new HashSet<String>(storedTags);
+                addTags.removeAll(storedTags);
+                delTags.removeAll(inputTags);
+
+                if(addTags.size() > 0) eventData.put("addTags", addTags);
+                if(delTags.size() > 0) eventData.put("delTags", delTags);
+            } else {
+                error = "@rid " + rid + " cannot be found";
+                inputMap.put("responseCode", 404);
+            }
+        } catch (Exception e) {
+            logger.error("Exception:", e);
+            throw e;
+        } finally {
+            graph.shutdown();
+        }
+        if(error != null) {
+            inputMap.put("error", error);
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    public boolean updPostEv (String bfnType, Object ...objects) throws Exception {
+        Map<String, Object> eventMap = (Map<String, Object>) objects[0];
+        Map<String, Object> data = (Map<String, Object>) eventMap.get("data");
+        updPostDb(bfnType, data);
+        return true;
+    }
+
+    protected void updPostDb(String bfnType, Map<String, Object> data) throws Exception {
+        OrientGraph graph = ServiceLocator.getInstance().getGraph();
+        try{
+            graph.begin();
+            Vertex updateUser = graph.getVertexByKey("User.userId", data.remove("updateUserId"));
+            OrientVertex post = (OrientVertex)graph.getVertexByKey("Post.postId", data.get("postId"));
+            if(post != null) {
+                updateUser.addEdge("Update", post);
+                // fields
+                if(data.get("title") != null) {
+                    post.setProperty("title", data.get("title"));
+                } else {
+                    post.removeProperty("name");
+                }
+                if(data.get("source") != null) {
+                    post.setProperty("source", data.get("source"));
+                } else {
+                    post.removeProperty("source");
+                }
+                if(data.get("summary") != null) {
+                    post.setProperty("summary", data.get("summary"));
+                } else {
+                    post.removeProperty("summary");
+                }
+                if(data.get("content") != null) {
+                    post.setProperty("content", data.get("content"));
+                } else {
+                    post.removeProperty("content");
+                }
+                post.setProperty("updateDate", data.get("updateDate"));
+
+                // handle addTags and delTags
+                OIndex<?> hostIdIdx = graph.getRawGraph().getMetadata().getIndexManager().getIndex("tagHostIdIdx");
+                Set<String> addTags = (Set)data.get("addTags");
+                if(addTags != null) {
+                    for(String tagId: addTags) {
+                        OCompositeKey key = new OCompositeKey(data.get("host"), tagId);
+                        OIdentifiable oid = (OIdentifiable) hostIdIdx.get(key);
+                        if (oid != null) {
+                            OrientVertex tag = (OrientVertex)oid.getRecord();
+                            post.addEdge("HasTag", tag);
+                        } else {
+                            Vertex tag = graph.addVertex("class:Tag", "host", data.get("host"), "tagId", tagId, "createDate", data.get("createDate"));
+                            updateUser.addEdge("Create", tag);
+                            post.addEdge("HasTag", tag);
+                        }
+                    }
+                }
+                Set<String> delTags = (Set)data.get("delTags");
+                if(delTags != null) {
+                    for(String tagId: delTags) {
+                        OCompositeKey key = new OCompositeKey(data.get("host"), tagId);
+                        OIdentifiable oid = (OIdentifiable) hostIdIdx.get(key);
+                        if (oid != null) {
+                            OrientVertex tag = (OrientVertex) oid.getRecord();
+                            for (Edge edge : (Iterable<Edge>) post.getEdges(Direction.OUT, "HasTag")) {
+                                if(edge.getVertex(Direction.IN).equals(tag)) graph.removeEdge(edge);
+                            }
+                        }
+                    }
                 }
             }
             graph.commit();

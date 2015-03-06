@@ -28,6 +28,11 @@ import com.orientechnologies.orient.core.metadata.schema.OSchema;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.serialization.serializer.OJSONWriter;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
+import com.tinkerpop.blueprints.Vertex;
+import com.tinkerpop.blueprints.impls.orient.OrientGraph;
+import com.tinkerpop.blueprints.impls.orient.OrientVertex;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,48 +43,33 @@ import java.util.Map;
  */
 public abstract class AbstractCommentRule extends AbstractRule implements Rule {
 
-    ObjectMapper mapper = ServiceLocator.getInstance().getMapper();
+    static final Logger logger = LoggerFactory.getLogger(AbstractCommentRule.class);
 
     public abstract boolean execute (Object ...objects) throws Exception;
 
-    protected ODocument addComment(Map<String, Object> data) throws Exception {
-        ODocument comment = null;
-        ODatabaseDocumentTx db = ServiceLocator.getInstance().getDb();
-        OSchema schema = db.getMetadata().getSchema();
-        try {
-            db.begin();
-            comment = new ODocument(schema.getClass("Comment"));
-            comment.field("host", data.get("host"));
-            comment.field("id", data.get("id"));
-            comment.field("content", data.get("comment"));
-            comment.field("createDate", data.get("createDate"));
-            comment.field("createUserId", data.get("createUserId"));
-            // parent
-            OIndex<?> idIdx = db.getMetadata().getIndexManager().getIndex(data.get("parentClassName") + ".id");
-            OIdentifiable oid = (OIdentifiable) idIdx.get(data.get("parentId"));
-            if (oid != null) {
-                ODocument parent = (ODocument) oid.getRecord();
-                comment.field("parent", parent);
-                List children = parent.field("children");
-                if(children == null) {
-                    children = new ArrayList<ODocument>();
-                    children.add(comment);
-                    parent.field("children", children);
-                } else {
-                    children.add(comment);
-                }
-                parent.save();
+    protected void addComment(Map<String, Object> data) throws Exception {
+        OrientGraph graph = ServiceLocator.getInstance().getGraph();
+        try{
+            graph.begin();
+            Vertex createUser = graph.getVertexByKey("User.userId", data.remove("createUserId"));
+            String parentId = (String)data.remove("parentId");
+            String parentClassName = (String)data.remove("parentClassName");
+            Vertex parent = null;
+            if("Post".equals(parentClassName)) {
+                parent = graph.getVertexByKey("Post.postId", parentId);
+            } else {
+                parent = graph.getVertexByKey("Comment.commentId", parentId);
             }
-            comment.save();
-            db.commit();
+            OrientVertex comment = graph.addVertex("class:Comment", data);
+            createUser.addEdge("Create", comment);
+            parent.addEdge("Own", comment);
+            graph.commit();
         } catch (Exception e) {
-            db.rollback();
-            e.printStackTrace();
-            throw e;
+            logger.error("Exception:", e);
+            graph.rollback();
         } finally {
-            db.close();
+            graph.shutdown();
         }
-        return comment;
     }
 
     protected long getTotal(Map<String, Object> data, Map<String, Object> criteria) {
@@ -89,15 +79,14 @@ public abstract class AbstractCommentRule extends AbstractRule implements Rule {
         if(whereClause != null && whereClause.length() > 0) {
             sb.append(whereClause);
         }
-
         System.out.println("sql=" + sb);
-        ODatabaseDocumentTx db = ServiceLocator.getInstance().getDb();
+        OrientGraph graph = ServiceLocator.getInstance().getGraph();
         try {
-            total = ((ODocument)db.query(new OSQLSynchQuery<ODocument>(sb.toString())).get(0)).field("count");
+            total = ((ODocument)graph.getRawGraph().query(new OSQLSynchQuery<ODocument>(sb.toString())).get(0)).field("count");
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Exception:", e);
         } finally {
-            db.close();
+            graph.shutdown();
         }
         return total;
     }
@@ -124,17 +113,17 @@ public abstract class AbstractCommentRule extends AbstractRule implements Rule {
             sb.append(" LIMIT ").append(pageSize);
         }
         System.out.println("sql=" + sb);
-        ODatabaseDocumentTx db = ServiceLocator.getInstance().getDb();
+        OrientGraph graph = ServiceLocator.getInstance().getGraph();
         try {
             OSQLSynchQuery<ODocument> query = new OSQLSynchQuery<ODocument>(sb.toString());
-            List<ODocument> list = db.command(query).execute();
+            List<ODocument> list = graph.getRawGraph().command(query).execute();
             if(list.size() > 0) {
                 json = OJSONWriter.listToJSON(list, null);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Exception:", e);
         } finally {
-            db.close();
+            graph.shutdown();
         }
         return json;
     }
@@ -142,19 +131,19 @@ public abstract class AbstractCommentRule extends AbstractRule implements Rule {
     protected String getCommentTree(Map<String, Object> data) {
         String json = null;
         String sql = "SELECT FROM Comment WHERE parent = ? ORDER BY id DESC";
-        ODatabaseDocumentTx db = ServiceLocator.getInstance().getDb();
+        OrientGraph graph = ServiceLocator.getInstance().getGraph();
         try {
             OSQLSynchQuery<ODocument> query = new OSQLSynchQuery<ODocument>(sql);
-            List<ODocument> forums = db.command(query).execute(data.get("@rid"));
+            List<ODocument> forums = graph.getRawGraph().command(query).execute(data.get("@rid"));
             if(forums.size() > 0) {
                 // According to documentation '-1' should traverse to infinite depth: Not true, actual is 2.
                 // Using 10 as max allowable children to be nested.
                 json = OJSONWriter.listToJSON(forums, "rid,fetchPlan:children:10");
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            logger.error("Exception:", e);
         } finally {
-            db.close();
+            graph.shutdown();
         }
         return json;
     }

@@ -44,7 +44,7 @@ public abstract class AbstractBlogRule extends AbstractRule implements Rule {
     ObjectMapper mapper = ServiceLocator.getInstance().getMapper();
 
     public abstract boolean execute (Object ...objects) throws Exception;
-
+    /*
     protected String getJsonByRid(String blogRid) {
         // try to get it from cache first.
         String json = null;
@@ -150,7 +150,7 @@ public abstract class AbstractBlogRule extends AbstractRule implements Rule {
         }
         return blog;
     }
-
+    */
     /*
     protected void addBlog(Map<String, Object> data) throws Exception {
         ODocument blog = addBlogDb(data);
@@ -247,7 +247,7 @@ public abstract class AbstractBlogRule extends AbstractRule implements Rule {
         return blog;
     }
     */
-
+    /*
     protected boolean delBlog(Map<String, Object> data) throws Exception {
         boolean result = false;
         ODatabaseDocumentTx db = ServiceLocator.getInstance().getDb();
@@ -290,6 +290,7 @@ public abstract class AbstractBlogRule extends AbstractRule implements Rule {
         }
         return result;
     }
+    */
     /*
     protected void delBlogUpdCache(String blogRid, String host) throws Exception {
         delBlogDb(blogRid);
@@ -370,6 +371,7 @@ public abstract class AbstractBlogRule extends AbstractRule implements Rule {
         return recordsUpdated;
     }
     */
+    /*
     protected void updBlog(Map<String, Object> data, String userRid, String userId) throws Exception {
         ODocument blog = updBlogDb(data, userRid, userId);
         String blogRid = blog.field("@rid").toString();
@@ -561,8 +563,6 @@ public abstract class AbstractBlogRule extends AbstractRule implements Rule {
         }
         return blog;
     }
-
-    /*
     protected long getTotalNumberBlogFromDb(Map<String, Object> criteria) {
         long total = 0;
         StringBuilder sql = new StringBuilder("SELECT COUNT(*) as count FROM Blog");
@@ -583,7 +583,6 @@ public abstract class AbstractBlogRule extends AbstractRule implements Rule {
         }
         return total;
     }
-    */
 
     protected List<Map<String, Object>> searchBlogFromDb(Map<String, Object> criteria) {
         List<Map<String,Object>> list = null;
@@ -758,5 +757,5 @@ public abstract class AbstractBlogRule extends AbstractRule implements Rule {
         }
         return blog;
     }
-
+    */
 }
