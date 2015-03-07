@@ -304,12 +304,12 @@ public class ForumRuleTest extends TestCase {
                 assertEquals(6, forums.size());
                 Map<String, Object> forum2 = forums.get(1);
                 assertEquals("Plant1", forum2.get("desc"));
-                List<String> children = (List<String>)forum2.get("children");
+                List<String> children = (List<String>)forum2.get("out_Own");
                 assertEquals(2, children.size());
 
 
                 Map<String, Object> forum4 = forums.get(3);
-                children = (List<String>)forum4.get("children");
+                children = (List<String>)forum4.get("out_Own");
                 assertEquals(1, children.size());
 
             }

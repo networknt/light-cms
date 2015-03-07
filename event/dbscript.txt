@@ -71,15 +71,6 @@ CREATE CLASS HasPost extends E;
 CREATE CLASS HasTag extends E;
 
 
-
-
-CREATE VERTEX Counter SET name = 'blogId', value = 10000;
-CREATE VERTEX Counter SET name = 'forumId', value = 10000;
-CREATE VERTEX Counter SET name = 'newsId', value = 10000;
-CREATE VERTEX Counter SET name = 'postId', value = 10000;
-CREATE VERTEX Counter SET name = 'commentId' value = 10000;
-CREATE VERTEX Counter SET name = 'tagId', value = 10000;
-
 insert into Role(id,desc) VALUES ('blogAdmin','Blog Admin'),('forumAdmin','Forum Admin'),('newsAdmin','News Admin');
 
 insert into MenuItem(id, label, path) values ('blogAdmin', 'Blog Admin', '/page/com-networknt-light-v-blog-admin-home'),('forumAdmin', 'Forum Admin', '/page/com-networknt-light-v-forum-admin-home'),('newsAdmin', 'News Admin', '/page/com-networknt-light-v-news-admin-home');
