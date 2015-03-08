@@ -26,6 +26,11 @@ import java.util.Map;
 
 /**
  * Created by steve on 02/12/14.
+ *
+ * There is a one in comment category and I am not sure if this one is used or not.
+ *
+ * AccessLevel A
+ *
  */
 public class getCommentRule extends AbstractPostRule implements Rule {
     public boolean execute (Object ...objects) throws Exception {

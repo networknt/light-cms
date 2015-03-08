@@ -21,6 +21,9 @@ import com.networknt.light.rule.Rule;
 
 /**
  * Created by steve on 11/10/14.
+ *
+ * AccessLevel R [user]
+ *
  */
 public class DownBlogRule extends AbstractBfnRule implements Rule {
     public boolean execute (Object ...objects) throws Exception {

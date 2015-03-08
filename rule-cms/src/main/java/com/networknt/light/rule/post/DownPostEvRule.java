@@ -22,6 +22,11 @@ import java.util.Map;
 
 /**
  * Created by steve on 28/11/14.
+ *
+ * Down vote a post in blog, forum or news
+ *
+ * AccessLevel R [user]
+ *
  */
 public class DownPostEvRule extends AbstractPostRule implements Rule {
     public boolean execute (Object ...objects) throws Exception {

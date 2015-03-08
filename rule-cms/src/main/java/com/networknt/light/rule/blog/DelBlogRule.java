@@ -21,6 +21,9 @@ import com.networknt.light.rule.Rule;
 
 /**
  * Created by husteve on 10/8/2014.
+ *
+ * AccessLevel R [owner, admin, blogAdmin]
+ *
  */
 public class DelBlogRule extends AbstractBfnRule implements Rule {
     public boolean execute (Object ...objects) throws Exception {

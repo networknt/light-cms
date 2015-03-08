@@ -29,6 +29,9 @@ import java.util.Map;
 
 /**
  * Created by steve on 03/12/14.
+ *
+ * AccessLevel R [user]
+ *
  */
 public class AddCommentRule extends AbstractCommentRule implements Rule {
     static final Logger logger = LoggerFactory.getLogger(AddCommentRule.class);

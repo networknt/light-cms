@@ -26,6 +26,9 @@ import java.util.Map;
 
 /**
  * Created by steve on 01/12/14.
+ *
+ * Not sure if it is used.
+ *
  */
 public class GetPostTreeRule extends AbstractPostRule implements Rule {
     public boolean execute (Object ...objects) throws Exception {

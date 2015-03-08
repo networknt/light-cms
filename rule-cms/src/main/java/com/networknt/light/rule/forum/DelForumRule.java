@@ -21,6 +21,11 @@ import com.networknt.light.rule.Rule;
 
 /**
  * Created by steve on 26/11/14.
+ *
+ * Delete a forum node in a forum tree on a host
+ *
+ * AccessLevel R [owner, admin, forumAdmin]
+ *
  */
 public class DelForumRule extends AbstractBfnRule implements Rule {
     public boolean execute (Object ...objects) throws Exception {

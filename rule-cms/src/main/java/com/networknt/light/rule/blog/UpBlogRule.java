@@ -21,6 +21,10 @@ import com.networknt.light.rule.Rule;
 
 /**
  * Created by steve on 11/10/14.
+ * This is to up vote blog by user
+ *
+ * AccessLevel R [user]
+ *
  */
 public class UpBlogRule extends AbstractBfnRule implements Rule {
     public boolean execute (Object ...objects) throws Exception {

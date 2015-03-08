@@ -30,6 +30,11 @@ import java.util.Map;
 
 /**
  * Created by steve on 28/11/14.
+ *
+ * Up vote post
+ *
+ * AccessLevel R [user]
+ *
  */
 public class UpPostRule extends AbstractPostRule implements Rule {
     static final Logger logger = LoggerFactory.getLogger(UpPostRule.class);

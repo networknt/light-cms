@@ -21,6 +21,11 @@ import com.networknt.light.rule.Rule;
 
 /**
  * Created by steve on 28/11/14.
+ *
+ * Get tree structure of forums to display on forum home page.
+ *
+ * AccessLevel A
+ *
  */
 public class GetForumTreeRule extends AbstractBfnRule implements Rule {
     public boolean execute (Object ...objects) throws Exception {

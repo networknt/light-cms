@@ -26,6 +26,9 @@ import java.util.Map;
 
 /**
  * Created by steve on 06/12/14.
+ *
+ * Should not be here. will be part of bfn
+ *
  */
 public class GetRecentPostRule extends AbstractPostRule implements Rule {
     public boolean execute (Object ...objects) throws Exception {

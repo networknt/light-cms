@@ -21,6 +21,11 @@ import com.networknt.light.rule.Rule;
 
 /**
  * Created by steve on 28/12/14.
+ *
+ * get drown down list of blogs for blog admin
+ *
+ * AccessLevel R [owner, admin, blogAdmin]
+ *
  */
 public class GetBlogDropdownRule extends AbstractBfnRule implements Rule {
     public boolean execute (Object ...objects) throws Exception {

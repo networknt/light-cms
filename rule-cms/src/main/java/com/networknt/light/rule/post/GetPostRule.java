@@ -26,6 +26,10 @@ import java.util.Map;
 
 /**
  * Created by steve on 27/11/14.
+ *
+ * Get post for post admin page? user?
+ *
+ * AccessLevel R [owner, admin, ?]
  */
 public class GetPostRule extends AbstractPostRule implements Rule {
     public boolean execute (Object ...objects) throws Exception {

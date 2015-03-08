@@ -21,6 +21,11 @@ import com.networknt.light.rule.Rule;
 
 /**
  * Created by steve on 26/11/14.
+ *
+ * Update forum
+ *
+ * AccessLevel R [owner, admin, forumAdmin]
+ *
  */
 public class UpdForumRule extends AbstractBfnRule implements Rule {
     public boolean execute (Object ...objects) throws Exception {

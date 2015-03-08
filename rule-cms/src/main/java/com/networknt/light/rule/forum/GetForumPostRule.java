@@ -21,6 +21,11 @@ import com.networknt.light.rule.Rule;
 
 /**
  * Created by steve on 01/12/14.
+ *
+ * Get all the posts belong to the forum and all sub forums
+ *
+ * AccessLevel A
+ *
  */
 public class GetForumPostRule extends AbstractBfnRule implements Rule {
     public boolean execute (Object ...objects) throws Exception {

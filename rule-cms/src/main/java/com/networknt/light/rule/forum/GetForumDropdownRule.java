@@ -21,6 +21,11 @@ import com.networknt.light.rule.Rule;
 
 /**
  * Created by steve on 28/11/14.
+ *
+ * Get forum dropdown list in order to setup parent and children relationship
+ *
+ * AccessLevel R [owner, admin, forumAdmin]
+ *
  */
 public class GetForumDropdownRule extends AbstractBfnRule implements Rule {
     public boolean execute (Object ...objects) throws Exception {

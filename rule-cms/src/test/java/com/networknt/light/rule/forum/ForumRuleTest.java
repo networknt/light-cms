@@ -219,7 +219,7 @@ public class ForumRuleTest extends TestCase {
             List children = new ArrayList<String>();
             children.add(forumTree.get("@rid"));
             children.add(forumHerb.get("@rid"));
-            data.put("children", children);
+            data.put("out_Own", children);
 
             UpdForumRule rule = new UpdForumRule();
             ruleResult = rule.execute(jsonMap);
@@ -278,7 +278,7 @@ public class ForumRuleTest extends TestCase {
             data.putAll(forumTree);
             List children = new ArrayList<String>();
             children.add(forumPine.get("@rid"));
-            data.put("children", children);
+            data.put("out_Own", children);
 
             UpdForumRule rule = new UpdForumRule();
             ruleResult = rule.execute(jsonMap);
