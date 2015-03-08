@@ -20,9 +20,6 @@ import com.networknt.light.rule.Rule;
 import com.networknt.light.server.DbService;
 import com.networknt.light.util.HashUtil;
 import com.networknt.light.util.ServiceLocator;
-import com.orientechnologies.orient.core.record.impl.ODocument;
-import com.tinkerpop.blueprints.Direction;
-import com.tinkerpop.blueprints.Edge;
 import com.tinkerpop.blueprints.impls.orient.OrientGraph;
 import com.tinkerpop.blueprints.impls.orient.OrientVertex;
 import org.slf4j.Logger;
@@ -54,11 +51,9 @@ public class AddCommentRule extends AbstractCommentRule implements Rule {
                 Map eventMap = getEventMap(inputMap);
                 Map<String, Object> eventData = (Map<String, Object>)eventMap.get("data");
                 inputMap.put("eventMap", eventMap);
-                eventData.put("title", data.get("title"));
-                eventData.put("source", data.get("source"));
-                eventData.put("content", data.get("content"));
                 eventData.put("host", host);
-                String parentClassName = parent.getBaseClassName();
+                eventData.put("comment", data.get("comment"));
+                String parentClassName = parent.getProperty("@class");
                 eventData.put("parentClassName", parentClassName); // parent can be a post or a comment
                 if("Post".equals(parentClassName)) {
                     eventData.put("parentId", parent.getProperty("postId"));

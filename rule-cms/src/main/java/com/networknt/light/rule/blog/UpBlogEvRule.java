@@ -18,9 +18,6 @@ package com.networknt.light.rule.blog;
 
 import com.networknt.light.rule.AbstractBfnRule;
 import com.networknt.light.rule.Rule;
-import com.orientechnologies.orient.core.record.impl.ODocument;
-
-import java.util.Map;
 
 /**
  * Created by steve on 11/10/14.

@@ -17,16 +17,12 @@ package com.networknt.light.rule.comment;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.networknt.light.rule.post.GetPostRule;
-import com.networknt.light.rule.user.SignInUserEvRule;
-import com.networknt.light.rule.user.SignInUserRule;
-import com.networknt.light.util.JwtUtil;
 import junit.framework.Test;
 import junit.framework.TestCase;
 import junit.framework.TestSuite;
-import net.oauth.jsontoken.JsonToken;
 
-import java.util.*;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by steve on 24/02/15.

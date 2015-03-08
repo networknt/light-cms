@@ -27,7 +27,10 @@ import junit.framework.TestCase;
 import junit.framework.TestSuite;
 import net.oauth.jsontoken.JsonToken;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 /**
  * Created by steve on 26/11/14.

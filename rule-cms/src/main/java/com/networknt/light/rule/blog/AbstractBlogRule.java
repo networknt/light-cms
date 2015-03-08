@@ -16,25 +16,10 @@
 
 package com.networknt.light.rule.blog;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.googlecode.concurrentlinkedhashmap.ConcurrentLinkedHashMap;
 import com.networknt.light.rule.AbstractRule;
 import com.networknt.light.rule.Rule;
-import com.networknt.light.server.DbService;
 import com.networknt.light.util.ServiceLocator;
-import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-import com.orientechnologies.orient.core.id.ORecordId;
-import com.orientechnologies.orient.core.index.OCompositeKey;
-import com.orientechnologies.orient.core.index.OIndex;
-import com.orientechnologies.orient.core.metadata.schema.OSchema;
-import com.orientechnologies.orient.core.record.impl.ODocument;
-import com.orientechnologies.orient.core.serialization.serializer.OJSONWriter;
-import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-
-import java.util.*;
-import java.util.concurrent.ConcurrentMap;
 
 /**
  * Created by steve on 08/10/14.

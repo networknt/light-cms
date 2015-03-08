@@ -16,15 +16,10 @@
 
 package com.networknt.light.rule.comment;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.networknt.light.rule.AbstractRule;
 import com.networknt.light.rule.Rule;
 import com.networknt.light.server.DbService;
 import com.networknt.light.util.ServiceLocator;
-import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-import com.orientechnologies.orient.core.index.OIndex;
-import com.orientechnologies.orient.core.metadata.schema.OSchema;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.serialization.serializer.OJSONWriter;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
@@ -34,7 +29,6 @@ import com.tinkerpop.blueprints.impls.orient.OrientVertex;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -130,16 +124,9 @@ public abstract class AbstractCommentRule extends AbstractRule implements Rule {
 
     protected String getCommentTree(Map<String, Object> data) {
         String json = null;
-        String sql = "SELECT FROM Comment WHERE parent = ? ORDER BY id DESC";
         OrientGraph graph = ServiceLocator.getInstance().getGraph();
         try {
-            OSQLSynchQuery<ODocument> query = new OSQLSynchQuery<ODocument>(sql);
-            List<ODocument> forums = graph.getRawGraph().command(query).execute(data.get("@rid"));
-            if(forums.size() > 0) {
-                // According to documentation '-1' should traverse to infinite depth: Not true, actual is 2.
-                // Using 10 as max allowable children to be nested.
-                json = OJSONWriter.listToJSON(forums, "rid,fetchPlan:children:10");
-            }
+            json = graph.getVertex(data.get("@rid")).getRecord().toJSON("rid,fetchPlan:out_Own:-1");
         } catch (Exception e) {
             logger.error("Exception:", e);
         } finally {

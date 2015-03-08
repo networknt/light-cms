@@ -1,5 +1,5 @@
 {
-  "id": "com.networknt.light.news.add",
+  "formId": "com.networknt.light.news.add",
   "version": 1,
   "action" : [{
     "category" : "news",
@@ -11,10 +11,10 @@
   "schema": {
     "type": "object",
     "title": "News",
-    "required": ["id", "desc"],
+    "required": ["newsId", "desc"],
     "properties": {
-      "id": {
-        "title": "Id",
+      "newsId": {
+        "title": "News Id",
         "type": "string"
       },
       "desc": {
@@ -34,7 +34,7 @@
     }
   },
   "form": [
-    "id",
+    "newsId",
     "desc",
     {
       "key": "parent",

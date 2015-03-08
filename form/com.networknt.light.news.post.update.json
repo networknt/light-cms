@@ -1,13 +1,13 @@
 {
-  "formId": "com.networknt.light.forum.post.update",
+  "formId": "com.networknt.light.news.post.update",
   "version": 1,
   "action": [
     {
-      "category": "forum",
+      "category": "news",
       "name": "updPost",
       "readOnly": false,
       "title": "Submit",
-      "success": "/page/com-networknt-light-v-forum-home"
+      "success": "/page/com-networknt-light-v-news-home"
     }
   ],
   "schema": {
@@ -18,7 +18,7 @@
       "content"
     ],
     "properties": {
-      "id": {
+      "newId": {
         "title": "ID",
         "type": "string",
         "readonly": "true"
@@ -65,7 +65,7 @@
                     "updateOnDefault": true
                   },
                   "key": [
-                    "id"
+                    "newsId"
                   ],
                   "type": "text"
                 },
@@ -168,4 +168,3 @@
     }
   ]
 }
-

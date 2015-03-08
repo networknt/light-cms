@@ -71,29 +71,51 @@ CREATE CLASS HasPost extends E;
 CREATE CLASS HasTag extends E;
 
 
-insert into Role(id,desc) VALUES ('blogAdmin','Blog Admin'),('forumAdmin','Forum Admin'),('newsAdmin','News Admin');
+create vertex Role set roleId = 'blogAdmin', desc = 'Blog Admin'
+create vertex Role set roleId = 'forumAdmin', desc = 'Forum Admin'
+create vertex Role set roleId = 'newsAdmin', desc = 'News Admin'
+let blogAdmin = create vertex MenuItem set menuItemId = 'blogAdmin', label = 'Blog Admin', path = '/page/com-networknt-light-v-blog-admin-home'
+let forumAdmin = create vertex MenuItem set menuItemId = 'forumAdmin', label = 'Forum Admin', path = '/page/com-networknt-light-v-forum-admin-home'
+let newsAdmin = create vertex MenuItem set menuItemId = 'newsAdmin', label = 'News Admin', path = '/page/com-networknt-light-v-news-admin-home'
+let blog = create vertex MenuItem set menuItemId = 'blog', label = 'Blog', path = '/page/com-networknt-light-v-blog-home', left = true, roles = 'user'
+let forum = create vertex MenuItem set menuItemId = 'forum', label = 'Forum', path = '/page/com-networknt-light-v-forum-home', left = true, roles = 'user'
+let news = create vertex MenuItem set menuItemId = 'news', label = 'News', path = '/page/com-networknt-light-v-news-home', left = true, roles = 'user'
+let admin = select from MenuItem where menuItemId = 'admin'
+create edge Own from $admin to $blogAdmin
+create edge Own from $admin to $forumAdmin
+create edge Own from $admin to $newsAdmin
+let networknt = select from Menu where host = 'www.networknt.com'
+create edge Own from $networknt to $blog
+create edge Own from $networknt to $forum
+create edge Own from $networknt to $news
+let edibleforestgarden = select from Menu where host = 'www.edibleforestgarden.ca'
+create edge Own from $edibleforestgarden to $blog
+create edge Own from $edibleforestgarden to $forum
+create edge Own from $edibleforestgarden to $news
+let example = select from Menu where host = 'example'
+create edge Own from $example to $blog
+create edge Own from $example to $forum
+create edge Own from $example to $news
 
-insert into MenuItem(id, label, path) values ('blogAdmin', 'Blog Admin', '/page/com-networknt-light-v-blog-admin-home'),('forumAdmin', 'Forum Admin', '/page/com-networknt-light-v-forum-admin-home'),('newsAdmin', 'News Admin', '/page/com-networknt-light-v-news-admin-home');
-
-insert into MenuItem(id, label, path, left, roles) values ('blog', 'Blog', '/page/com-networknt-light-v-blog-home', true, 'user'),('forum', 'Forum', '/page/com-networknt-light-v-news-home', true, 'user'),('news', 'News', '/page/com-networknt-light-v-forum-home', true, 'user');
-
-update MenuItem add menuItems=(select from MenuItem where id = 'blogAdmin') where id = 'admin';
-update MenuItem add menuItems=(select from MenuItem where id = 'forumAdmin') where id = 'admin';
-update MenuItem add menuItems=(select from MenuItem where id = 'newsAdmin') where id = 'admin';
-
-update Menu add menuItems=(select from MenuItem where id = 'blog') where host = 'www.networknt.com';
-update Menu add menuItems=(select from MenuItem where id = 'forum') where host = 'www.networknt.com';
-update Menu add menuItems=(select from MenuItem where id = 'news') where host = 'www.networknt.com';
-
-update Menu add menuItems=(select from MenuItem where id = 'blog') where host = 'www.edibleforestgarden.ca';
-update Menu add menuItems=(select from MenuItem where id = 'forum') where host = 'www.edibleforestgarden.ca';
-update Menu add menuItems=(select from MenuItem where id = 'news') where host = 'www.edibleforestgarden.ca';
-
-update Menu add menuItems=(select from MenuItem where id = 'blog') where host = 'example';
-update Menu add menuItems=(select from MenuItem where id = 'forum') where host = 'example';
-update Menu add menuItems=(select from MenuItem where id = 'news') where host = 'example';
 
 
+DELETE VERTEX Role WHERE roleId = 'blogAdmin'
+DELETE VERTEX Role WHERE roleId = 'forumAdmin'
+DELETE VERTEX Role WHERE roleId = 'newsAdmin'
+DELETE VERTEX MenuItem WHERE menuItemId = 'blogAdmin'
+DELETE VERTEX MenuItem WHERE menuItemId = 'blog'
+DELETE VERTEX MenuItem WHERE menuItemId = 'forumAdmin'
+DELETE VERTEX MenuItem WHERE menuItemId = 'forum'
+DELETE VERTEX MenuItem WHERE menuItemId = 'newsAdmin'
+DELETE VERTEX MenuItem WHERE menuItemId = 'news'
 
+DROP CLASS HasTag
+DROP CLASS HasPost
+DROP CLASS Blog
+DROP CLASS Forum
+DROP CLASS News
+DROP CLASS Post
+DROP CLASS Comment
+DROP CLASS Tag
 
 

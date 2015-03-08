@@ -19,7 +19,6 @@ package com.networknt.light.rule.post;
 import com.networknt.light.rule.Rule;
 import com.networknt.light.server.DbService;
 import com.networknt.light.util.ServiceLocator;
-import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.tinkerpop.blueprints.Direction;
 import com.tinkerpop.blueprints.Edge;
 import com.tinkerpop.blueprints.impls.orient.OrientGraph;

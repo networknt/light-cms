@@ -16,7 +16,6 @@
 
 package com.networknt.light.rule;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.networknt.light.server.DbService;
 import com.networknt.light.util.HashUtil;
 import com.networknt.light.util.ServiceLocator;
@@ -55,6 +54,7 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
         Map<String, Object> user = (Map<String, Object>)payload.get("user");
         String bfnId = (String) data.get(bfnType + "Id");
         String host = (String) data.get("host");
+        String id = bfnType + "Id";
         String error = null;
         String userHost = (String)user.get("host");
         if(userHost != null && !userHost.equals(host)) {
@@ -75,26 +75,28 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
                     inputMap.put("responseCode", 400);
                 } else {
                     // make sure parent exists if it is not empty.
-                    String parentRid = (String)data.get("parent");
-                    if(parentRid != null) {
-                        Vertex parent = DbService.getVertexByRid(graph, parentRid);
+                    List<String> parentRids = (List<String>)data.get("in_Own");
+                    if(parentRids != null && parentRids.size() == 1) {
+                        Vertex parent = DbService.getVertexByRid(graph, parentRids.get(0));
                         if(parent == null) {
-                            error = "Parent with @rid " + parentRid + " cannot be found.";
+                            error = "Parent with @rid " + parentRids.get(0) + " cannot be found.";
                             inputMap.put("responseCode", 404);
                         } else {
                             // convert parent from @rid to id
-                            eventData.put("parent", parent.getProperty(bfnType + "Id"));
+                            List in_Own = new ArrayList();
+                            in_Own.add(parent.getProperty(id));
+                            eventData.put("in_Own", in_Own);
                         }
                     }
                     if(error == null) {
                         // make sure all children exist if there are any.
                         // and make sure all children have empty parent.
-                        List<String> childrenRids = (List<String>)data.get("children");
+                        List<String> childrenRids = (List<String>)data.get("out_Own");
                         if(childrenRids != null && childrenRids.size() > 0) {
-                            List<String> childrenIds = new ArrayList<String>();
+                            List<String> out_Own = new ArrayList<String>();
                             for(String childRid: childrenRids) {
                                 if(childRid != null) {
-                                    if(childRid.equals(parentRid)) {
+                                    if(parentRids!= null && childRid.equals(parentRids.get(0))) {
                                         error = "Parent shows up in the Children list";
                                         inputMap.put("responseCode", 400);
                                         break;
@@ -105,15 +107,14 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
                                         inputMap.put("responseCode", 404);
                                         break;
                                     } else {
-                                        childrenIds.add((String)child.getProperty(bfnType + "Id"));
+                                        out_Own.add((String)child.getProperty(bfnType + "Id"));
                                     }
                                 }
                             }
-                            eventData.put("children", childrenIds);
+                            eventData.put("out_Own", out_Own);
                         }
                     }
                     if(error == null) {
-                        String id = bfnType + "Id";
                         eventMap.put(id, HashUtil.generateUUID());
                     }
                 }
@@ -141,26 +142,28 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
 
     protected void addBfnDb(String bfnType, Map<String, Object> data) throws Exception {
         String className = bfnType.substring(0, 1).toUpperCase() + bfnType.substring(1);
+        String host = (String)data.get("host");
         String id = bfnType + "Id";
         String index = className + "." + id;
         OrientGraph graph = ServiceLocator.getInstance().getGraph();
         try{
             graph.begin();
             Vertex createUser = graph.getVertexByKey("User.userId", data.remove("createUserId"));
+            List<String> parentIds = (List<String>)data.remove("in_Own");
+            List<String> childrenIds = (List<String>)data.remove("out_Own");
             OrientVertex bfn = graph.addVertex("class:" + className, data);
             createUser.addEdge("Create", bfn);
             // parent
-            if(data.get("parent") != null) {
-                Vertex parent = graph.getVertexByKey(index, data.get("parent"));
+            if(parentIds != null && parentIds.size() == 1) {
+                OrientVertex parent = getBfnByHostId(graph, bfnType, host, parentIds.get(0));
                 if(parent != null) {
                     parent.addEdge("Own", bfn);
                 }
             }
             // children
-            List<String> childrenIds = (List<String>)data.get("children");
             if(childrenIds != null) {
                 for(String childId: childrenIds) {
-                    Vertex child = graph.getVertexByKey(index, childId);
+                    OrientVertex child = getBfnByHostId(graph, bfnType, host, childId);
                     if(child != null) {
                         bfn.addEdge("Own", child);
                     }
@@ -232,12 +235,9 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
         OrientGraph graph = ServiceLocator.getInstance().getGraph();
         try{
             graph.begin();
-            OIndex<?> hostIdIdx = graph.getRawGraph().getMetadata().getIndexManager().getIndex(bfnType + "HostIdIdx");
-            OCompositeKey key = new OCompositeKey(data.get("host"), data.get(id));
-            OIdentifiable oid = (OIdentifiable) hostIdIdx.get(key);
-            if (oid != null) {
-                ODocument bfn = (ODocument) oid.getRecord();
-                bfn.delete();
+            OrientVertex bfn = getBfnByHostId(graph, bfnType, (String)data.get("host"), (String)data.get(id));
+            if(bfn != null) {
+                graph.removeVertex(bfn);
             }
             graph.commit();
         } catch (Exception e) {
@@ -275,7 +275,7 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
 
                     // make sure parent exists if it is not empty.
                     List parentRids = (List)data.get("in_Own");
-                    if(parentRids != null && parentRids.size() == 1) {
+                    if(parentRids != null) {
                         if(rid.equals(parentRids.get(0))) {
                             inputMap.put("error", "parent @rid is the same as current @rid");
                             inputMap.put("responseCode", 400);
@@ -283,9 +283,19 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
                         }
                         Vertex parent = DbService.getVertexByRid(graph, (String)parentRids.get(0));
                         if(parent != null) {
-                            List in_Own = new ArrayList();
-                            in_Own.add(parent.getProperty(id));
-                            eventData.put("in_Own", in_Own);
+                            String storedParentRid = null;
+                            String storedParentId = null;
+                            for (Vertex vertex : (Iterable<Vertex>) bfn.getVertices(Direction.IN, "Own")) {
+                                // we only expect one parent here.
+                                storedParentRid = vertex.getId().toString();
+                                storedParentId = vertex.getProperty(id);
+                            }
+                            if(parentRids.get(0).equals(storedParentRid)) {
+                                // same parent, do nothing
+                            } else {
+                                eventData.put("delParentId", storedParentId);
+                                eventData.put("addParentId", parent.getProperty(id));
+                            }
                         } else {
                             inputMap.put("error", "Parent with @rid " + parentRids.get(0) + " cannot be found");
                             inputMap.put("responseCode", 404);
@@ -294,7 +304,7 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
                     }
                     // make sure all children exist if there are any.
                     // and make sure all children have empty parent.
-                    List<String> childrenRids = (List<String>)data.get("children");
+                    List<String> childrenRids = (List<String>)data.get("out_Own");
                     if(childrenRids != null && childrenRids.size() > 0) {
                         List<String> childrenIds = new ArrayList<String>();
                         Set<String> inputChildren = new HashSet<String>();
@@ -316,8 +326,6 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
                                 return false;
                             } else {
                                 inputChildren.add((String)child.getProperty(id));
-
-
                             }
                         }
                         Set<String> storedChildren = new HashSet<String>();
@@ -355,8 +363,8 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
         return true;
     }
 
-    private Vertex getBfnByHostId(OrientGraph graph, String bfnType, String host, String id) {
-        Vertex bfn = null;
+    private OrientVertex getBfnByHostId(OrientGraph graph, String bfnType, String host, String id) {
+        OrientVertex bfn = null;
         OIndex<?> hostIdIdx = graph.getRawGraph().getMetadata().getIndexManager().getIndex(bfnType + "HostIdIdx");
         OCompositeKey key = new OCompositeKey(host, id);
         OIdentifiable oid = (OIdentifiable) hostIdIdx.get(key);
@@ -374,13 +382,8 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
         try{
             graph.begin();
             Vertex updateUser = graph.getVertexByKey("User.userId", data.remove("updateUserId"));
-            Vertex bfn = getBfnByHostId(graph, bfnType, host, (String)data.get(id));
+            OrientVertex bfn = getBfnByHostId(graph, bfnType, host, (String)data.get(id));
             if (bfn != null) {
-                if(data.get("name") != null) {
-                    bfn.setProperty("name", data.get("name"));
-                } else {
-                    bfn.removeProperty("name");
-                }
                 if(data.get("desc") != null) {
                     bfn.setProperty("desc", data.get("desc"));
                 } else {
@@ -394,35 +397,32 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
                 bfn.setProperty("updateDate", data.get("updateDate"));
 
                 // parent
-                List in_Own = (List)data.get("in_Own");
-                if(in_Own != null && in_Own.size() == 1) {
-                    Vertex parent = getBfnByHostId(graph, bfnType, host, (String) in_Own.get(0));
-                    if (parent != null) {
-                        // check if the edge exists or not.
-                        boolean createEdge = true;
-                        for (Edge edge : (Iterable<Edge>) parent.getEdges(Direction.OUT, "Own")) {
-                            if (edge.getVertex(Direction.IN).equals(bfn)) createEdge = false;
-                        }
-                        if (createEdge) parent.addEdge("Own", bfn);
-                    }
-                } else {
-                    // no parent in the map.
+                String delParentId = (String)data.get("delParentId");
+                if(delParentId != null) {
                     for (Edge edge : (Iterable<Edge>) bfn.getEdges(Direction.IN, "Own")) {
                         graph.removeEdge(edge);
                     }
                 }
+                String addParentId = (String)data.get("addParentId");
+                if(addParentId != null) {
+                    OrientVertex parent = getBfnByHostId(graph, bfnType, host, addParentId);
+                    if (parent != null) {
+                        parent.addEdge("Own", bfn);
+                    }
+                }
+
                 // handle addChildren and delChildren
                 Set<String> addChildren = (Set)data.get("addChildren");
                 if(addChildren != null) {
                     for(String childId: addChildren) {
-                        Vertex vertex = getBfnByHostId(graph, bfnType, host, childId);
+                        OrientVertex vertex = getBfnByHostId(graph, bfnType, host, childId);
                         bfn.addEdge("Own", vertex);
                     }
                 }
                 Set<String> delChildren = (Set)data.get("delChildren");
                 if(delChildren != null) {
                     for(String childId: delChildren) {
-                        Vertex vertex = getBfnByHostId(graph, bfnType, host, childId);
+                        OrientVertex vertex = getBfnByHostId(graph, bfnType, host, childId);
                         for (Edge edge : (Iterable<Edge>) bfn.getEdges(Direction.OUT, "Own")) {
                             if(edge.getVertex(Direction.IN).equals(vertex)) graph.removeEdge(edge);
                         }
@@ -607,12 +607,9 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
         String host = (String) data.get("host");
         String error = null;
         Map<String, Object> payload = (Map<String, Object>) inputMap.get("payload");
-        String className = bfnType.substring(0, 1).toUpperCase() + bfnType.substring(1);
-        String id = bfnType + "Id";
-        String index = className + "." + id;
         OrientGraph graph = ServiceLocator.getInstance().getGraph();
         try {
-            Vertex parent = graph.getVertexByKey(index, parentId);
+            OrientVertex parent = getBfnByHostId(graph, bfnType, host, parentId);
             if(parent == null) {
                 error = "Id " + parentId + " doesn't exist on host " + host;
                 inputMap.put("responseCode", 400);
@@ -651,6 +648,7 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
         String className = bfnType.substring(0, 1).toUpperCase() + bfnType.substring(1);
         String id = bfnType + "Id";
         String index = className + "." + id;
+        String host = (String)data.get("host");
         OrientGraph graph = ServiceLocator.getInstance().getGraph();
         try{
             graph.begin();
@@ -658,21 +656,22 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
             OrientVertex post = graph.addVertex("class:Post", data);
             createUser.addEdge("Create", post);
             // parent
-            Vertex parent = graph.getVertexByKey(index, data.get("parent"));
+            OrientVertex parent = getBfnByHostId(graph, bfnType, host, (String) data.get("parentId"));
             if(parent != null) {
                 parent.addEdge("HasPost", post);
             }
             // tag
             Set<String> inputTags = data.get("tags") != null? new HashSet<String>(Arrays.asList(((String)data.get("tags")).split("\\s*,\\s*"))) : new HashSet<String>();
-            String host = (String)data.get("host");
             for(String tagId: inputTags) {
                 Vertex tag = null;
                 // get the tag is it exists
-                OIndex<?> tagHostNameIdx = graph.getRawGraph().getMetadata().getIndexManager().getIndex("tagHostNameIdx");
+                OIndex<?> tagHostIdIdx = graph.getRawGraph().getMetadata().getIndexManager().getIndex("tagHostIdIdx");
+                logger.debug("tagHostIdIdx = " + tagHostIdIdx);
                 OCompositeKey tagKey = new OCompositeKey(host, tagId);
-                OIdentifiable tagOid = (OIdentifiable) tagHostNameIdx.get(tagKey);
+                logger.debug("tagKey =" + tagKey);
+                OIdentifiable tagOid = (OIdentifiable) tagHostIdIdx.get(tagKey);
                 if (tagOid != null) {
-                    tag = (Vertex) tagOid.getRecord();
+                    tag = graph.getVertex(tagOid.getRecord());
                     post.addEdge("HasTag", tag);
                 } else {
                     tag = graph.addVertex("class:Tag", "host", host, "tagId", tagId, "createDate", data.get("createDate"));
@@ -906,13 +905,13 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
 
     protected String getBfnTree(String bfnType, String host) {
         String json = null;
-        String sql = "SELECT FROM " + bfnType + " WHERE host = ? and parent IS NULL ORDER BY id";
+        String sql = "SELECT FROM " + bfnType + " WHERE host = ? and in_Own IS NULL ORDER BY id";
         OrientGraph graph = ServiceLocator.getInstance().getGraph();
         try {
             OSQLSynchQuery<ODocument> query = new OSQLSynchQuery<ODocument>(sql);
             List<ODocument> docs = graph.getRawGraph().command(query).execute(host);
             if(docs.size() > 0) {
-                json = OJSONWriter.listToJSON(docs, "rid,fetchPlan:out_Own:-1");
+                json = OJSONWriter.listToJSON(docs, "rid,fetchPlan:out_Own.in_Create:-2 out_Own.out_Create:-2 out_Own:-1");
             }
         } catch (Exception e) {
             logger.error("Exception:", e);
@@ -925,7 +924,7 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
     public boolean getBfnPost(String bfnType, Object ...objects) throws Exception {
         Map<String, Object> inputMap = (Map<String, Object>) objects[0];
         Map<String, Object> data = (Map<String, Object>)inputMap.get("data");
-        if(data.get("id") == null || data.get("host") == null) {
+        if(data.get(bfnType + "Id") == null || data.get("host") == null) {
             inputMap.put("error", "Host and Id are required");
             inputMap.put("responseCode", 400);
             return false;
@@ -943,11 +942,11 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
 
     protected String getBfnPostDb(String bfnType, Map<String, Object> data) {
         String json = null;
-        String sql = "select from (traverse posts, children from (select from " + bfnType + " where host = ? and id = ?)) where @class = 'Post'";
+        String sql = "select from (traverse posts, out_HasPost from (select from " + bfnType + " where host = ? and " + bfnType + "Id = ?)) where @class = 'Post'";
         OrientGraph graph = ServiceLocator.getInstance().getGraph();
         try {
             OSQLSynchQuery<ODocument> query = new OSQLSynchQuery<ODocument>(sql);
-            List<ODocument> forums = graph.getRawGraph().command(query).execute(data.get("host"), data.get("id"));
+            List<ODocument> forums = graph.getRawGraph().command(query).execute(data.get("host"), data.get(bfnType + "Id"));
             if(forums.size() > 0) {
                 json = OJSONWriter.listToJSON(forums, null);
             }
@@ -1034,7 +1033,7 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
                 List<Map<String, String>> list = new ArrayList<Map<String, String>>();
                 for(ODocument doc: docs) {
                     Map<String, String> map = new HashMap<String, String>();
-                    map.put("label", (String)doc.field("id"));
+                    map.put("label", (String)doc.field(bfnType + "Id"));
                     map.put("value", doc.field("@rid").toString());
                     list.add(map);
                 }

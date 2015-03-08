@@ -145,127 +145,19 @@
   },
   {
     "@type": "d",
-    "@rid": "#17:11",
+    "@rid": "#17:309",
     "@version": 1,
     "@class": "Event",
-    "eventId": 10012,
+    "eventId": 10310,
     "createUserId": "stevehu",
     "data": {
       "createUserId": "stevehu",
-      "script": "insert into Role(id,desc) VALUES ('blogAdmin','Blog Admin'),('forumAdmin','Forum Admin'),('newsAdmin','News Admin');\n",
-      "createDate": "2015-03-07T00:55:29.837"
+      "script": "create vertex Role set roleId = 'blogAdmin', desc = 'Blog Admin'\ncreate vertex Role set roleId = 'forumAdmin', desc = 'Forum Admin'\ncreate vertex Role set roleId = 'newsAdmin', desc = 'News Admin'\nlet blogAdmin = create vertex MenuItem set menuItemId = 'blogAdmin', label = 'Blog Admin', path = '/page/com-networknt-light-v-blog-admin-home'\nlet forumAdmin = create vertex MenuItem set menuItemId = 'forumAdmin', label = 'Forum Admin', path = '/page/com-networknt-light-v-forum-admin-home'\nlet newsAdmin = create vertex MenuItem set menuItemId = 'newsAdmin', label = 'News Admin', path = '/page/com-networknt-light-v-news-admin-home'\nlet blog = create vertex MenuItem set menuItemId = 'blog', label = 'Blog', path = '/page/com-networknt-light-v-blog-home', left = true, roles = 'user'\nlet forum = create vertex MenuItem set menuItemId = 'forum', label = 'Forum', path = '/page/com-networknt-light-v-forum-home', left = true, roles = 'user'\nlet news = create vertex MenuItem set menuItemId = 'news', label = 'News', path = '/page/com-networknt-light-v-news-home', left = true, roles = 'user'\nlet admin = select from MenuItem where menuItemId = 'admin'\ncreate edge Own from $admin to $blogAdmin\ncreate edge Own from $admin to $forumAdmin\ncreate edge Own from $admin to $newsAdmin\nlet networknt = select from Menu where host = 'www.networknt.com'\ncreate edge Own from $networknt to $blog\ncreate edge Own from $networknt to $forum\ncreate edge Own from $networknt to $news\nlet edibleforestgarden = select from Menu where host = 'www.edibleforestgarden.ca'\ncreate edge Own from $edibleforestgarden to $blog\ncreate edge Own from $edibleforestgarden to $forum\ncreate edge Own from $edibleforestgarden to $news\nlet example = select from Menu where host = 'example'\ncreate edge Own from $example to $blog\ncreate edge Own from $example to $forum\ncreate edge Own from $example to $news\n",
+      "createDate": "2015-03-08T04:38:36.476"
     },
     "name": "execUpdateCmd",
     "category": "db",
-    "createDate": "2015-03-07T00:55:29.837",
-    "ipAddress": "127.0.0.1",
-    "@fieldTypes": "eventId=l,createDate=t"
-  },
-  {
-    "@type": "d",
-    "@rid": "#17:12",
-    "@version": 1,
-    "@class": "Event",
-    "eventId": 10013,
-    "createUserId": "stevehu",
-    "data": {
-      "createUserId": "stevehu",
-      "script": "insert into MenuItem(id, label, path) values ('blogAdmin', 'Blog Admin', '/page/com-networknt-light-v-blog-admin-home'),('forumAdmin', 'Forum Admin', '/page/com-networknt-light-v-forum-admin-home'),('newsAdmin', 'News Admin', '/page/com-networknt-light-v-news-admin-home');\n",
-      "createDate": "2015-03-07T00:55:44.409"
-    },
-    "name": "execUpdateCmd",
-    "category": "db",
-    "createDate": "2015-03-07T00:55:44.409",
-    "ipAddress": "127.0.0.1",
-    "@fieldTypes": "eventId=l,createDate=t"
-  },
-  {
-    "@type": "d",
-    "@rid": "#17:13",
-    "@version": 1,
-    "@class": "Event",
-    "eventId": 10014,
-    "createUserId": "stevehu",
-    "data": {
-      "createUserId": "stevehu",
-      "script": "insert into MenuItem(id, label, path, left, roles) values ('blog', 'Blog', '/page/com-networknt-light-v-blog-home', true, 'user'),('forum', 'Forum', '/page/com-networknt-light-v-news-home', true, 'user'),('news', 'News', '/page/com-networknt-light-v-forum-home', true, 'user');\n",
-      "createDate": "2015-03-07T00:55:57.754"
-    },
-    "name": "execUpdateCmd",
-    "category": "db",
-    "createDate": "2015-03-07T00:55:57.754",
-    "ipAddress": "127.0.0.1",
-    "@fieldTypes": "eventId=l,createDate=t"
-  },
-  {
-    "@type": "d",
-    "@rid": "#17:14",
-    "@version": 1,
-    "@class": "Event",
-    "eventId": 10015,
-    "createUserId": "stevehu",
-    "data": {
-      "createUserId": "stevehu",
-      "script": "update MenuItem add menuItems=(select from MenuItem where id = 'blogAdmin') where id = 'admin';\nupdate MenuItem add menuItems=(select from MenuItem where id = 'forumAdmin') where id = 'admin';\nupdate MenuItem add menuItems=(select from MenuItem where id = 'newsAdmin') where id = 'admin';\n",
-      "createDate": "2015-03-07T00:56:09.460"
-    },
-    "name": "execUpdateCmd",
-    "category": "db",
-    "createDate": "2015-03-07T00:56:09.460",
-    "ipAddress": "127.0.0.1",
-    "@fieldTypes": "eventId=l,createDate=t"
-  },
-  {
-    "@type": "d",
-    "@rid": "#17:15",
-    "@version": 1,
-    "@class": "Event",
-    "eventId": 10016,
-    "createUserId": "stevehu",
-    "data": {
-      "createUserId": "stevehu",
-      "script": "update Menu add menuItems=(select from MenuItem where id = 'blog') where host = 'www.networknt.com';\nupdate Menu add menuItems=(select from MenuItem where id = 'forum') where host = 'www.networknt.com';\nupdate Menu add menuItems=(select from MenuItem where id = 'news') where host = 'www.networknt.com';\n",
-      "createDate": "2015-03-07T00:56:22.038"
-    },
-    "name": "execUpdateCmd",
-    "category": "db",
-    "createDate": "2015-03-07T00:56:22.038",
-    "ipAddress": "127.0.0.1",
-    "@fieldTypes": "eventId=l,createDate=t"
-  },
-  {
-    "@type": "d",
-    "@rid": "#17:16",
-    "@version": 1,
-    "@class": "Event",
-    "eventId": 10017,
-    "createUserId": "stevehu",
-    "data": {
-      "createUserId": "stevehu",
-      "script": "update Menu add menuItems=(select from MenuItem where id = 'blog') where host = 'www.edibleforestgarden.ca';\nupdate Menu add menuItems=(select from MenuItem where id = 'forum') where host = 'www.edibleforestgarden.ca';\nupdate Menu add menuItems=(select from MenuItem where id = 'news') where host = 'www.edibleforestgarden.ca';\n",
-      "createDate": "2015-03-07T00:56:32.992"
-    },
-    "name": "execUpdateCmd",
-    "category": "db",
-    "createDate": "2015-03-07T00:56:32.992",
-    "ipAddress": "127.0.0.1",
-    "@fieldTypes": "eventId=l,createDate=t"
-  },
-  {
-    "@type": "d",
-    "@rid": "#17:17",
-    "@version": 1,
-    "@class": "Event",
-    "eventId": 10018,
-    "createUserId": "stevehu",
-    "data": {
-      "createUserId": "stevehu",
-      "script": "update Menu add menuItems=(select from MenuItem where id = 'blog') where host = 'example';\nupdate Menu add menuItems=(select from MenuItem where id = 'forum') where host = 'example';\nupdate Menu add menuItems=(select from MenuItem where id = 'news') where host = 'example';\n",
-      "createDate": "2015-03-07T00:56:45.177"
-    },
-    "name": "execUpdateCmd",
-    "category": "db",
-    "createDate": "2015-03-07T00:56:45.177",
+    "createDate": "2015-03-08T04:38:36.476",
     "ipAddress": "127.0.0.1",
     "@fieldTypes": "eventId=l,createDate=t"
   }

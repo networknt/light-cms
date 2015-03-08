@@ -1,5 +1,5 @@
 {
-  "id": "com.networknt.light.blog.add",
+  "formId": "com.networknt.light.blog.add",
   "version": 1,
   "action" : [{
     "category" : "blog",
@@ -11,10 +11,10 @@
   "schema": {
     "type": "object",
     "title": "Blog",
-    "required": ["id", "desc"],
+    "required": ["blogId", "desc"],
     "properties": {
-      "id": {
-        "title": "Id",
+      "blogId": {
+        "title": "Blog Id",
         "type": "string"
       },
       "desc": {
@@ -34,7 +34,7 @@
     }
   },
   "form": [
-    "id",
+    "blogId",
     "desc",
     {
       "key": "parent",
