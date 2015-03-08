@@ -60,15 +60,15 @@
             <!-- Nested node template -->
             <script type="text/ng-template" id="nodes_renderer.html">
                 <div ui-tree-handle class="tree-node tree-node-content">
-                    <a class="btn btn-success btn-xs" ng-if="node.children && node.children.length > 0" data-nodrag
+                    <a class="btn btn-success btn-xs" ng-if="node.out_Own && node.out_Own.length > 0" data-nodrag
                        ng-click="toggle(this)"><span class="glyphicon"
                                                      ng-class="{'glyphicon glyphicon-plus': collapsed, 'glyphicon glyphicon-minus': !collapsed}"></span></a>
                     <!--{{node.id | highlight:pattern | trust}}-->
                     <a href ng-click="gotoForum(node.forumId)" ng-bind-html="node.forumId | highlight:pattern | trust"></a>
                     <small ng-bind-html="node.desc | highlight:pattern | trust"></small>
                 </div>
-                <ol ui-tree-nodes="" ng-model="node.children" ng-class="{hidden: collapsed}">
-                    <li ng-repeat="node in node.children" ui-tree-node ng-include="'nodes_renderer.html'"
+                <ol ui-tree-nodes="" ng-model="node.out_Own" ng-class="{hidden: collapsed}">
+                    <li ng-repeat="node in node.out_Own" ui-tree-node ng-include="'nodes_renderer.html'"
                         ng-hide="!treeFilter(node, pattern, supportedFields)"></li>
                 </ol>
             </script>
