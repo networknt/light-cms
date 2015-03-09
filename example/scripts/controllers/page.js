@@ -14,10 +14,10 @@ angular.module('lightApp')
         name : 'getPage',
         readOnly: true,
         data : {
-            id : $routeParams.id
+            pageId : $routeParams.id
         }
     };
-    console.log("Getting page with id:", $routeParams.id);
+    console.log("Getting page with id:", $routeParams.pageId);
 
     $http.post('api/rs', getPagePost)
         .success(function(result, status, headers, config) {
