@@ -1,5 +1,5 @@
 <script type='text/javascript'>
-    angular.module('lightApp').controller('com.networknt.light.ForumPostViewCtrl', ['$scope', '$http', '$location', 'authService', '$filter', 'toaster', 'modelDataService', function ($scope, $http, $location, authService, $filter, toaster, modelDataService) {
+    angular.module('lightApp').controller('forumPostViewCtrl', ['$scope', '$http', '$location', 'authService', '$filter', 'toaster', 'modelDataService', function ($scope, $http, $location, authService, $filter, toaster, modelDataService) {
 
         $scope.post = modelDataService.getModelData().post;
         $scope.forumId = modelDataService.getModelData().forumId;
@@ -7,6 +7,8 @@
         $scope.postTitle = $scope.post.title;
         $scope.postContent = $scope.post.content;
         $scope.comments = [];
+
+        console.log("Entering forumPostView with post:", $scope.post);
 
         $scope.getComments = {
             category: 'comment',
@@ -44,12 +46,8 @@
             $scope.getComments.data["@rid"] = $scope.post["@rid"];
             $http.post('api/rs', $scope.getComments)
                 .success(function (result, status, headers, config) {
-                    $scope.comments = result;
+                    $scope.comments = result.out_HasComment;
                     console.log("Fetching Comments Success:", result);
-                })
-                .error(function (result, status, headers, config) {
-                    // error fetching comments, set comments to empty list.
-                    $scope.comments = [];
                 });
         };
 
@@ -100,16 +98,89 @@
         $scope.toggleEditPost = function () {
             $scope.editing = !$scope.editing;
         };
+
+        var children;
+        $scope.collapsed = true;
+        $scope.$on('$filledNestedComments', function(nodes) {
+            console.log("received $filledNestedComments");
+            $scope.collapsed = true;
+            console.log("nodes", nodes);
+            $timeout(function() {
+                children = nodes;
+                children.addClass('collapse').removeClass('in');
+                children.collapse({
+                    toggle: false
+                });
+                // Stupid hack to wait for DOM insertion prior to setting up plugin
+            }, 1);
+        });
+
+        $scope.$on('$emptiedNestedComments', function(nodes) {
+            console.log("received $emptiedNestedComments");
+            children = undefined;
+        });
+
+        $scope.collapse = function() {
+            console.log("$scope.collapsed", $scope.collapsed);
+            $scope.collapsed = children.hasClass('in');
+            children.collapse('toggle');
+        };
+
+        $scope.addChildComment = function(comment) {
+            var currentUser = authService.authentication.currentUser;
+            console.log("currentUser: ", currentUser);
+            console.log("addChildComment: ", comment);
+            var childComment = angular.extend(comment, {
+                createUserId: currentUser.userId,
+                createDate: new Date(),
+                content: comment.text,
+                children: []
+            });
+            var parent;
+            if(!$scope.comments.children) {
+                $scope.comments.children = [];
+                parent = $scope.post;
+            }
+
+            $scope.submitComment (parent, childComment);
+            //$scope.comments.push(childComment);
+        };
+
+        $scope.postAddComment = {
+            category: 'comment',
+            name: 'addComment',
+            readOnly: false,
+            data: {}
+        };
+
+        $scope.submitComment = function (parent, child) {
+            console.log("parent:", parent);
+            console.log("child:", child);
+            if (child != null && child.content.length > 0) {
+                // TODO: Adding a comment to a comment more then 1 level deep doesn't work since it getCommentTree doesn't return with the @rid value.
+                $scope.postAddComment.data["host"] = parent.host;
+                $scope.postAddComment.data["@rid"] = parent["@rid"];
+                $scope.postAddComment.data.comment = child.content;
+                console.log("submitComment: Posting with:", $scope.postAddComment);
+                $http.post('api/rs', $scope.postAddComment)
+                    .success(function (result, status, headers, config) {
+                        console.log("success! result:", result);
+                    })
+                    .error(function (result, status, headers, config) {
+                        console.log("submitComment error, result:", result);
+                    });
+            }
+        };
     }]);
 </script>
-<div class="container" ng-controller="com.networknt.light.ForumPostViewCtrl">
+<div class="container" ng-controller="forumPostViewCtrl">
     <h2>
         <div ng-if="editing">
             <textarea type="text" spellcheck="true" style="width:100%;" ng-model="$parent.postTitle"></textarea>
         </div>
         <div ng-if="!editing">{{postTitle}}</div>
     </h2>
-    <p>By: {{post.createUserId}}. Published on: {{post.createDate | date:'MMMM dd, yyyy'}}</p>
+    <p>By: {{post.in_Create[0].userId}}. Published on: {{post.createDate | date:'MMMM dd, yyyy'}}</p>
     <div ng-if="editing">
         <!-- Content within textarea tags must be kept without formatting as tabs and newlines will show. -->
         <textarea type="text" spellcheck="true" style="width:100%;" ng-model="$parent.postContent"></textarea>
@@ -122,6 +193,7 @@
 
     <br />
     <label>Replies:</label>
+    <!--<div ng-controller="commentCtrl"> -->
     <div>
         <comments comment-data="comments" depth-limit="3"></comments>
         <p class="add_comment">

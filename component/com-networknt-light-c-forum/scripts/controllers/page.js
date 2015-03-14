@@ -14,7 +14,7 @@ angular.module('lightApp')
         name : 'getPage',
         readOnly: true,
         data : {
-            id : $routeParams.id
+            pageId : $routeParams.id
         }
     };
     console.log("Getting page with id:", $routeParams.id);

@@ -56,7 +56,7 @@ public abstract class AbstractCommentRule extends AbstractRule implements Rule {
             }
             OrientVertex comment = graph.addVertex("class:Comment", data);
             createUser.addEdge("Create", comment);
-            parent.addEdge("Own", comment);
+            parent.addEdge("HasComment", comment);
             graph.commit();
         } catch (Exception e) {
             logger.error("Exception:", e);
@@ -126,7 +126,8 @@ public abstract class AbstractCommentRule extends AbstractRule implements Rule {
         String json = null;
         OrientGraph graph = ServiceLocator.getInstance().getGraph();
         try {
-            json = graph.getVertex(data.get("@rid")).getRecord().toJSON("rid,fetchPlan:out_Own:-1");
+            ODocument record = graph.getVertex(data.get("@rid")).getRecord();
+            json = record.toJSON("rid,fetchPlan:out_HasComment:-1");
         } catch (Exception e) {
             logger.error("Exception:", e);
         } finally {
@@ -134,5 +135,4 @@ public abstract class AbstractCommentRule extends AbstractRule implements Rule {
         }
         return json;
     }
-
 }

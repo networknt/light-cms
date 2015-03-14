@@ -169,7 +169,6 @@ angular.module('lightApp')
     return {
         restrict:'E',
         templateUrl: 'views/commenter.html',
-        transclude: true,
         link: function(scope, elm, attr) {
             var action;
             scope.toggled = scope.$eval(attr.toggle) || false;
@@ -191,6 +190,10 @@ angular.module('lightApp')
                 scope.addChildComment(val);
                 scope.toggle();
             };
+
+            //scope.$watch('child.name', function(newUserName) {
+            //    scope.items = [];
+            //});
         }
     };
 });

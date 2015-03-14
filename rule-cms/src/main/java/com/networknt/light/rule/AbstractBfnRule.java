@@ -948,7 +948,7 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
             OSQLSynchQuery<ODocument> query = new OSQLSynchQuery<ODocument>(sql);
             List<ODocument> forums = graph.getRawGraph().command(query).execute(data.get("host"), data.get(bfnType + "Id"));
             if(forums.size() > 0) {
-                json = OJSONWriter.listToJSON(forums, null);
+                json = OJSONWriter.listToJSON(forums, "rid,fetchPlan:in_Create:1");
             }
         } catch (Exception e) {
             logger.error("Exception:", e);
