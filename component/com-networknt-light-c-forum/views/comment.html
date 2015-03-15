@@ -7,8 +7,8 @@
                 {{comment.createDate | timeago}}
             </small>
         </h4>
-        <button ng-if="comment.out_HasComment" class="fa-2x clear-square fa"
-                ng-class="{'glyphicon glyphicon-minus': !collapsed, 'glyphicon glyphicon-plus': collapsed}"
+        <button ng-if="comment.out_HasComment" class="fa-1x clear-square fa"
+                ng-class="{'fa fa-minus': !collapsed, 'fa fa-plus': collapsed}"
                 title="toggle children" ng-click="collapse()" style="float:right;"></button>
     </div>
     <div class="comment-body panel-body" ng-bind-html="comment.comment"></div>
