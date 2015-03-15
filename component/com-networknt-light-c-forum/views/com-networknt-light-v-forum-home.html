@@ -1,7 +1,21 @@
 <script type='text/javascript'>
-    'use strict';
+'use strict';
+angular.module('lightApp').controller('com.networknt.light.c.ForumCtrl', ['$scope', '$http', '$location', '$filter', 'toaster', 'modelDataService', function ($scope, $http, $location, $filter, toaster, modelDataService) {
+    $scope.forums = [];
+    // Pagination variables;
+    $scope.currentPage = 1;
+    $scope.itemsPerPage = 2;
+    $scope.noOfPages = $scope.forums.length / $scope.itemsPerPage;
 
-    angular.module('lightApp').controller('com.networknt.light.c.ForumCtrl', ['$scope', '$http', '$location', '$filter', 'toaster', 'modelDataService', function ($scope, $http, $location, $filter, toaster, modelDataService) {
+    $scope.$watch('currentPage', function() {
+        var begin = ($scope.currentPage - 1) * $scope.itemsPerPage;
+        var end = begin + $scope.itemsPerPage;
+
+        $scope.paged = {
+            forums: $scope.forums.slice(begin, end)
+        }
+    });
+
     $scope.getForum = {
         category : 'forum',
         name : 'getForumTree',
@@ -13,6 +27,9 @@
             .success(function (result, status, headers, config) {
                 $scope.forums = result;
                 console.log("forums returned:", $scope.forums);
+                $scope.paged = {
+                    forums: $scope.forums.slice(0,  $scope.itemsPerPage)
+                };
             })
     };
     $scope.fetchResult();
@@ -48,8 +65,7 @@
         });
         $location.path("/page/com-networknt-light-v-forum-post");
     };
-
-    }]);
+}]);
 </script>
 <div class="container" data-ng-controller="com.networknt.light.c.ForumCtrl">
     <div class="row">
@@ -57,7 +73,9 @@
             <h2 style="display:inline">Forum Component</h2>
         </div>
         <div class="col-md-3 col-lg-3" style="float:right;">
-            <span class="glyphicon glyphicon-search" style="padding-right:10px"></span><input ng-model="pattern" placeholder="Search"/>
+            <span style="float:right;">
+                <span class="glyphicon glyphicon-search" style="padding-right:10px"></span><input ng-model="pattern" placeholder="Search"/>
+            </span>
         </div>
     </div>
     <br />
@@ -72,16 +90,29 @@
                 <a href="" class="btn btn-default pull-right" ng-click="expandAll()"><span class="glyphicon glyphicon-resize-full"></span></a>
             </div>
             -->
-            <table class="table-bordered" width="100%">
-                <tbody ng-repeat="forum in forums">
-                    <tr>
-                        <td>
-                            <a href ng-click="goToForum(forum.forumId)"  ng-bind-html="forum.forumId | highlight:pattern | trust"></a>
-                            <small ng-bind-html="forum.desc | highlight:pattern | trust"></small>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
+
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <ul style="list-style-type:none; padding-top:0px; padding-left:10px; padding-right:10px; padding-bottom:10px; margin:0;">
+                        <li ng-repeat="forum in paged.forums" >
+                            <div style="border-bottom: 1px solid rgb(101, 115, 128); padding-top:15px; padding-bottom:5px;">
+                                <a href ng-click="goToForum(forum.forumId)"  ng-bind-html="forum.forumId | highlight:pattern | trust"></a><br />
+                                <small ng-bind-html="forum.desc | highlight:pattern | trust"></small>
+                                <span style="float:right;width:5%;height:100%" ng-if="!forum.out_HasPost">
+                                    Empty
+                                </span>
+                                <span style="float:right;width:5%;height:100%" ng-if="forum.out_HasPost.length == 1">
+                                    {{forum.out_HasPost.length}} Post
+                                </span>
+                                <span style="float:right;width:5%;height:100%" ng-if="forum.out_HasPost.length > 1">
+                                    {{forum.out_HasPost.length}} Posts
+                                </span>
+                            </div>
+                        </li>
+                    </ul>
+                    <pagination ng-model="currentPage" total-items="forums.length" items-per-page="itemsPerPage"></pagination>
+                </div>
+            </div>
         </div>
     </div>
 </div>
