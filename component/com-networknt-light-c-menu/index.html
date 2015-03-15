@@ -40,11 +40,15 @@
                 <!-- This is the nav menu for desktop -->
                 <nav class="hidden-xs">
                     <ul class="nav navbar-nav">
-                        <li class="dropdown">
-                            <a href="/page/com-networknt-light-v-forum-admin-home">Forum Admin</a>
-                        </li>
-                        <li class="dropdown">
-                            <a href="/page/com-networknt-light-v-forum-home">Forum</a>
+                        <li ng-repeat="node in tree | filter:hasAccess | filter: {left: true}" class="dropdown">
+                            <a ng-if="node.hasOwnProperty('out_Own')" href="{{node.path}}"  aria-haspopup="true" class="dropdown-toggle" style="display:block; color:rgb(119,119,119); padding:15px;">
+                                {{node.label}} <b class="caret"></b>
+                            </a>
+                            <ul ng-if="node.hasOwnProperty('out_Own')" class="dropdown-menu">
+                                <li ng-repeat="item in node.out_Own"><a href="{{item.path}}" >{{item.label}}</a></li>
+                            </ul>
+
+                            <a ng-if="!node.hasOwnProperty('out_Own')" href="{{node.path}}">{{node.label}}</a>
                         </li>
                     </ul>
                     <ul class="nav navbar-nav navbar-right">

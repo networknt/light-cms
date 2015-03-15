@@ -113,16 +113,28 @@
     }]);
 </script>
 <div class="container" ng-controller="com.networknt.light.ForumPostCtrl">
-    <div class="jumbotron" ng-if="getForumPost.data.id != null">
-        <h2>{{getForumPost.data.id}}</h2>
-    </div>
     <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="pull-right">
-                <button class="btn btn-info" ng-click="post()"><span class="glyphicon glyphicon-plus" style="padding-right:5px"></span>Post</button>
-            </div>
-            <tabset>
-                <tab heading="Posts">
+        <div class="col-md-4 col-lg-4" style="float:left;">
+            <h2 style="display:inline">Forum Component</h2>
+        </div>
+        <div class="col-md-3 col-lg-3" style="float:right;">
+            <span class="glyphicon glyphicon-search" style="padding-right:10px"></span><input ng-model="pattern" placeholder="Search"/>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+            <ol class="breadcrumb">
+                <li><a href="/page/com-networknt-light-v-forum-home">Forum</a></li>
+                <li class="active">Posts</li>
+            </ol>
+
+            <div class="panel panel-default">
+                <div class="panel-heading clearfix" style="line-height:32px;">
+                    {{getForumPost.data.forumId}}
+                    <button class="btn btn-info pull-right" ng-click="post()"><span class="glyphicon glyphicon-plus" style="padding-right:5px"></span>Post</button>
+                </div>
+                <div class="panel-body">
                     <table class="table table-bordered">
                         <tbody>
                             <tr ng-if="posts.length == 0">
@@ -151,8 +163,8 @@
                             </tr>
                         </tbody>
                     </table>
-                </tab>
-            </tabset>
+                </div>
+            </div>
         </div>
     </div>
 </div> <!-- /container -->

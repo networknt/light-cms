@@ -52,36 +52,36 @@
     }]);
 </script>
 <div class="container" data-ng-controller="com.networknt.light.c.ForumCtrl">
-    <div class="jumbotron">
-        <h2>Forums</h2>
+    <div class="row">
+        <div class="col-md-4 col-lg-4" style="float:left;">
+            <h2 style="display:inline">Forum Component</h2>
+        </div>
+        <div class="col-md-3 col-lg-3" style="float:right;">
+            <span class="glyphicon glyphicon-search" style="padding-right:10px"></span><input ng-model="pattern" placeholder="Search"/>
+        </div>
     </div>
+    <br />
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
+            <ol class="breadcrumb">
+                <li class="active">Forum</li>
+            </ol>
+            <!--
             <div style="padding:15px">
-                <span class="glyphicon glyphicon-search" style="padding-right:10px"></span><input ng-model="pattern" placeholder="Search"/>
-                <!--<a href="" class="btn btn-default pull-right" ng-click="collapseAll()">Collapse all</a>-->
                 <a href="" class="btn btn-default pull-right" ng-click="collapseAll()"><span class="glyphicon glyphicon-resize-small"></span></a>
                 <a href="" class="btn btn-default pull-right" ng-click="expandAll()"><span class="glyphicon glyphicon-resize-full"></span></a>
             </div>
-            <!-- Nested node template -->
-            <script type="text/ng-template" id="nodes_renderer.html">
-                <div ui-tree-handle class="tree-node tree-node-content">
-                    <a class="btn btn-xs" ng-if="node.out_Create && node.out_Create.length > 0" data-nodrag ng-click="toggle(this)">
-                        <span class="glyphicon" ng-class="{'glyphicon glyphicon-plus': collapsed, 'glyphicon glyphicon-minus': !collapsed}" />
-                    </a>
-                    <!--{{node.id | highlight:pattern | trust}}-->
-                    <a href ng-click="goToForum(node.forumId)" ng-bind-html="node.forumId | highlight:pattern | trust"></a>
-                    <small ng-bind-html="node.desc | highlight:pattern | trust"></small>
-                </div>
-                <ol ui-tree-nodes="" ng-model="node.out_Create" ng-class="{hidden: collapsed}">
-                    <li ng-repeat="node in node.out_Create" ui-tree-node ng-include="'nodes_renderer.html'" ng-hide="!treeFilter(node, pattern, supportedFields)"></li>
-                </ol>
-            </script>
-            <div ui-tree data-drag-enabled="false" id="tree-root">
-                <ol ui-tree-nodes ng-model="forums">
-                    <li ng-repeat="node in forums" ui-tree-node ng-include="'nodes_renderer.html'" ng-hide="!treeFilter(node, pattern, supportedFields)"></li>
-                </ol>
-            </div>
+            -->
+            <table class="table-bordered" width="100%">
+                <tbody ng-repeat="forum in forums">
+                    <tr>
+                        <td>
+                            <a href ng-click="goToForum(forum.forumId)"  ng-bind-html="forum.forumId | highlight:pattern | trust"></a>
+                            <small ng-bind-html="forum.desc | highlight:pattern | trust"></small>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </div>
 </div>

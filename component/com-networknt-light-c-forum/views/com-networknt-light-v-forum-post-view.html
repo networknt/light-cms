@@ -52,7 +52,6 @@
                 .error(function (result, status, headers, config) {
                     // error fetching comments, set comments to empty list.
                     $scope.comments = [];
-                    console.log("Fetching Comments Error:", result);
                 });
         };
 
@@ -162,6 +161,7 @@
             console.log("parent:", parent);
             console.log("child:", child);
             if (child != null && child.content.length > 0) {
+                // TODO: Adding a comment to a comment more then 1 level deep doesn't work since it getCommentTree doesn't return with the @rid value.
                 $scope.postAddComment.data["host"] = parent.host;
                 $scope.postAddComment.data["@rid"] = parent["@rid"];
                 $scope.postAddComment.data.comment = child.content;
@@ -169,7 +169,6 @@
                 $http.post('api/rs', $scope.postAddComment)
                     .success(function (result, status, headers, config) {
                         console.log("success! result:", result);
-                        $scope.fetchComments();
                     })
                     .error(function (result, status, headers, config) {
                         console.log("submitComment error, result:", result);
@@ -198,6 +197,7 @@
 
     <br />
     <label>Replies:</label>
+    <!--<div ng-controller="commentCtrl"> -->
     <div>
         <comments comment-data="comments" depth-limit="3"></comments>
         <p class="add_comment">
