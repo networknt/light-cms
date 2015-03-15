@@ -4,7 +4,7 @@ angular.module('lightApp').controller('com.networknt.light.c.ForumCtrl', ['$scop
     $scope.forums = [];
     // Pagination variables;
     $scope.currentPage = 1;
-    $scope.itemsPerPage = 2;
+    $scope.itemsPerPage = 5;
     $scope.noOfPages = $scope.forums.length / $scope.itemsPerPage;
 
     $scope.$watch('currentPage', function() {
