@@ -44,8 +44,8 @@
             $scope.getComments.data["@rid"] = $scope.post["@rid"];
             $http.post('api/rs', $scope.getComments)
                 .success(function (result, status, headers, config) {
-                    $scope.comments = result;
-                    console.log("Fetching Comments Success:", result);
+                    $scope.comments = result.out_HasComment;
+                    console.log("Fetching Comments Success:", $scope.comments);
                 })
                 .error(function (result, status, headers, config) {
                     // error fetching comments, set comments to empty list.
@@ -109,7 +109,7 @@
         </div>
         <div ng-if="!editing">{{postTitle}}</div>
     </h2>
-    <p>By: {{post.createUserId}}. Published on: {{post.createDate | date:'MMMM dd, yyyy'}}</p>
+    <p>By: {{post.in_Create[0].userId}}. Published on: {{post.createDate | date:'MMMM dd, yyyy'}}</p>
     <div ng-if="editing">
         <!-- Content within textarea tags must be kept without formatting as tabs and newlines will show. -->
         <textarea type="text" spellcheck="true" style="width:100%;" ng-model="$parent.postContent"></textarea>

@@ -47,7 +47,11 @@
             $http.post('api/rs', $scope.getComments)
                 .success(function (result, status, headers, config) {
                     $scope.comments = result.out_HasComment;
-                    console.log("Fetching Comments Success:", result);
+                    console.log("Fetching Comments Success:", $scope.comments);
+                })
+                .error(function (result, status, headers, config) {
+                    // error fetching comments, set comments to empty list.
+                    $scope.comments = [];
                 });
         };
 
@@ -137,13 +141,13 @@
                 children: []
             });
             var parent;
-            if(!$scope.comments.children) {
-                $scope.comments.children = [];
+            if(!$scope.comments.out_HasChildren) {
+                $scope.comments.out_HasChildren = [];
                 parent = $scope.post;
             }
 
             $scope.submitComment (parent, childComment);
-            //$scope.comments.push(childComment);
+            $scope.comments.push(childComment);
         };
 
         $scope.postAddComment = {
@@ -193,7 +197,6 @@
 
     <br />
     <label>Replies:</label>
-    <!--<div ng-controller="commentCtrl"> -->
     <div>
         <comments comment-data="comments" depth-limit="3"></comments>
         <p class="add_comment">

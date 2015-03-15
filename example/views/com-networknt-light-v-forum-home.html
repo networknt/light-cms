@@ -12,7 +12,7 @@
         $http.post('api/rs', $scope.getForum)
             .success(function (result, status, headers, config) {
                 $scope.forums = result;
-                console.log($scope.forums);
+                console.log("forums",$scope.forums);
             })
     };
     $scope.fetchResult();
@@ -70,7 +70,7 @@
                         <span class="glyphicon" ng-class="{'glyphicon glyphicon-plus': collapsed, 'glyphicon glyphicon-minus': !collapsed}" />
                     </a>
                     <!--{{node.id | highlight:pattern | trust}}-->
-                    <a href ng-click="goToForum(node.id)" ng-bind-html="node.id | highlight:pattern | trust"></a>
+                    <a href ng-click="goToForum(node.forumId)" ng-bind-html="node.forumId | highlight:pattern | trust"></a>
                     <small ng-bind-html="node.desc | highlight:pattern | trust"></small>
                 </div>
                 <ol ui-tree-nodes="" ng-model="node.children" ng-class="{hidden: collapsed}">
