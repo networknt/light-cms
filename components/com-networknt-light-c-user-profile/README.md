@@ -1,4 +1,8 @@
-com-networknt-light-c-forum
-===============================
+com-networknt-light-c-user-profile
 
-This is a component that renders the forum
+Steps for integrating into light framework:
+
+1. ...
+2. ...
+
+TODO (Init: Mar 16, 2015)
