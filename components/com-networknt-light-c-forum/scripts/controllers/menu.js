@@ -10,13 +10,13 @@ angular.module('lightApp').controller('menuCtrl', ['$scope', '$http', 'authServi
         name : 'getMenu',
         readOnly: true,
         data : {
-            host : 'example'
+            host : $scope.host
         }
     };
 
     $http.post('api/rs', getMenuPost)
         .success(function(result, status, headers, config) {
-            $scope.tree = result.menuItems;
+            $scope.tree = result.out_Own;
             console.log("get menus", $scope.tree);
         });
 
