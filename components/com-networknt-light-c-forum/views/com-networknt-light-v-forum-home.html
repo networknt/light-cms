@@ -94,8 +94,8 @@ angular.module('lightApp').controller('com.networknt.light.c.ForumCtrl', ['$scop
             <div class="panel panel-default">
                 <div class="panel-body">
                     <ul style="list-style-type:none; padding-top:0px; padding-left:10px; padding-right:10px; padding-bottom:10px; margin:0;">
-                        <li ng-repeat="forum in paged.forums" >
-                            <div style="border-bottom: 1px solid rgb(101, 115, 128); padding-top:15px; padding-bottom:5px;">
+                        <li ng-repeat="forum in paged.forums | filter:pattern" >
+                            <div style="border-bottom: 1px solid rgb(225, 225, 225); padding-top:15px; padding-bottom:5px;">
                                 <a href ng-click="goToForum(forum.forumId)"  ng-bind-html="forum.forumId | highlight:pattern | trust"></a><br />
                                 <small ng-bind-html="forum.desc | highlight:pattern | trust"></small>
                                 <span style="float:right;width:5%;height:100%" ng-if="!forum.out_HasPost">

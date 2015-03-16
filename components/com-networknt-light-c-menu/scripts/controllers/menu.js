@@ -19,7 +19,6 @@ angular.module('lightApp').controller('menuCtrl', ['$scope', '$http', 'authServi
             $scope.tree = result.menuItems;
             console.log("get menus", $scope.tree);
         });
-
     $scope.toggleCollapsed = function () {
         $scope.menuSettings.isCollapsed =  !$scope.menuSettings.isCollapsed;
     };
