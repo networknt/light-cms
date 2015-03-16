@@ -1,4 +1,6 @@
-com-networknt-light-c-forum
-===============================
+com-networknt-light-c-menu
 
-This is a component that renders the forum
+Steps for integrating into light framework:
+
+1. ...
+2. ...

@@ -9,7 +9,7 @@ angular.module('lightApp').controller('menuCtrl', ['$scope', '$http', 'authServi
         name : 'getMenu',
         readOnly: true,
         data : {
-            host : 'example'
+            host : $scope.host
         }
     };
 
@@ -44,5 +44,4 @@ angular.module('lightApp').controller('menuCtrl', ['$scope', '$http', 'authServi
         authService.logOut();
 
     };
-
 }]);

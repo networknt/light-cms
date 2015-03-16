@@ -45,14 +45,6 @@ var lightApp = angular.module('lightApp', [
       .when('/', {
         templateUrl: 'views/main.html'
       })
-      .when('/signin', {
-        templateUrl: 'views/form.html',
-        controller: 'signinCtrl'
-      })
-      .when('/form/:id/:parentId?', {
-        templateUrl: 'views/form.html',
-        controller: 'formCtrl'
-      })
       .otherwise({
           templateUrl: '404.html',
           controller: 'mainCtrl'
