@@ -6,3 +6,29 @@
     margin-left: 0px;
     padding-left: 0px;
 }
+
+.bounce:hover > .user-icon {
+    -webkit-animation-name: bounce; /* Chrome, Safari, Opera */
+    -webkit-animation-duration: 0.5s; /* Chrome, Safari, Opera */
+    animation-name: bounce;
+    animation-duration: 0.5s;
+    position: relative;
+}
+
+/* Chrome, Safari, Opera */
+@-webkit-keyframes bounce {
+    0%   {bottom: 0px;}
+    25%  {bottom: 10px;}
+    50%  {bottom: 0px;}
+    75%  {bottom: 5px;}
+    100% {bottom: 0px;}
+}
+
+/* Standard syntax */
+@keyframes bounce {
+    0%   {bottom: 0px;}
+    25%  {bottom: 10px;}
+    50%  {bottom: 0px;}
+    75%  {bottom: 5px;}
+    100% {bottom: 0px;}
+}

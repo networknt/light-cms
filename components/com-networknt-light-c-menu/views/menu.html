@@ -23,8 +23,8 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown" ng-if="(tree | filter:hasAccess | filter: {left:false}).length > 0">
-                <a href="#" class="dropdown-toggle">
-                    <i class="ti ti-user fa-lg" ng-class="isUserLoggedIn ? 'text-success' : 'text-danger' "/>
+                <a href="#" class="dropdown-toggle bounce">
+                    <i class="ti ti-user fa-lg user-icon" ng-class="isUserLoggedIn ? 'text-success' : 'text-danger' "/>
                 </a>
 
                 <ul class="dropdown-menu">
