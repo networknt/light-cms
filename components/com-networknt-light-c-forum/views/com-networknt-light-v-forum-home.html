@@ -69,12 +69,12 @@ angular.module('lightApp').controller('com.networknt.light.c.ForumCtrl', ['$scop
 </script>
 <div class="container" data-ng-controller="com.networknt.light.c.ForumCtrl">
     <div class="row">
-        <div class="col-md-4 col-lg-4" style="float:left;">
-            <h2 style="display:inline">Forum Component</h2>
+        <div class="col-md-4 col-lg-4 forum-header-left">
+            <h2>Forum Component</h2>
         </div>
-        <div class="col-md-3 col-lg-3" style="float:right;">
-            <span style="float:right;">
-                <span class="glyphicon glyphicon-search" style="padding-right:10px"></span><input ng-model="pattern" placeholder="Search"/>
+        <div class="col-md-3 col-lg-3 forum-header-right">
+            <span>
+                <span class="glyphicon glyphicon-search forum-header-search-icon"></span><input ng-model="pattern" placeholder="Search"/>
             </span>
         </div>
     </div>
@@ -84,20 +84,15 @@ angular.module('lightApp').controller('com.networknt.light.c.ForumCtrl', ['$scop
             <ol class="breadcrumb">
                 <li class="active">Forum</li>
             </ol>
-            <!--
-            <div style="padding:15px">
-                <a href="" class="btn btn-default pull-right" ng-click="collapseAll()"><span class="glyphicon glyphicon-resize-small"></span></a>
-                <a href="" class="btn btn-default pull-right" ng-click="expandAll()"><span class="glyphicon glyphicon-resize-full"></span></a>
-            </div>
-            -->
 
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <ul style="list-style-type:none; padding-top:0px; padding-left:10px; padding-right:10px; padding-bottom:10px; margin:0;">
+                    <ul class="forum-ul">
                         <li ng-repeat="forum in paged.forums | filter:pattern" >
-                            <div style="border-bottom: 1px solid rgb(225, 225, 225); padding-top:15px; padding-bottom:5px;">
+                            <div class="forum-row">
                                 <a href ng-click="goToForum(forum.forumId)"  ng-bind-html="forum.forumId | highlight:pattern | trust"></a><br />
                                 <small ng-bind-html="forum.desc | highlight:pattern | trust"></small>
+                                <!-- TODO: Redo this to only one span with angular. -->
                                 <span style="float:right;width:5%;height:100%" ng-if="!forum.out_HasPost">
                                     Empty
                                 </span>

@@ -1,4 +1,4 @@
-<div class="container" ng-controller="menuCtrl">
+<div class="container main-menu" ng-controller="menuCtrl">
     <div class="navbar-header">
         <button type="button" class="navbar-toggle" data-toggle="collapse" ng-click="toggleCollapsed()">
             <span class="sr-only">Toggle navigation</span>
@@ -6,7 +6,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" href="/">{{header}}</a>
+        <a class="navbar-brand main-menu-title" href="/">{{header}}</a>
     </div>
     <!-- This is the nav menu for desktop -->
     <nav class="hidden-xs">
@@ -23,7 +23,10 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown" ng-if="(tree | filter:hasAccess | filter: {left:false}).length > 0">
-                <a href="#" class="ti ti-user fa-lg dropdown-toggle"></a>
+                <a href="#" class="dropdown-toggle">
+                    <i class="ti ti-user fa-lg" ng-class="isUserLoggedIn ? 'text-success' : 'text-danger' "/>
+                </a>
+
                 <ul class="dropdown-menu">
                     <li ng-repeat="node in tree | filter:hasAccess | filter: { left: false}">
                         <a href="{{node.path}}" ng-click="toggleCollapsed()">{{node.label}}</a>

@@ -1,9 +1,9 @@
 'use strict';
 
 angular.module('lightApp').controller('menuCtrl', ['$scope', '$http', 'authService', function($scope, $http, authService) {
-    console.log("Now we are in menuCtrl");
     $scope.menuSettings = {isCollapsed : true};
     $scope.tree = [];
+    $scope.isUserLoggedIn = authService.authentication.isAuth;
 
     var getMenuPost = {
         category : 'menu',
@@ -14,10 +14,14 @@ angular.module('lightApp').controller('menuCtrl', ['$scope', '$http', 'authServi
         }
     };
 
+
+
     $http.post('api/rs', getMenuPost)
         .success(function(result, status, headers, config) {
+            console.log("getMenuPost result", result);
             $scope.tree = result.out_Own;
-            console.log("get menus result", result);
+            console.log("get menus", $scope.tree);
+
         });
 
     $scope.toggleCollapsed = function () {
@@ -25,8 +29,9 @@ angular.module('lightApp').controller('menuCtrl', ['$scope', '$http', 'authServi
     };
 
     $scope.hasAccess = function(item) {
+        $scope.isUserLoggedIn = authService.authentication.isAuth;
         //console.log('item = ', item);
-        //console.log('currentUser.roles', authService.authentication.currentUser.roles);
+        //console.log('currentUser', authService.authentication.currentUser);
         //console.log('item.roles', item.roles);
         for (var i = 0; i < authService.authentication.currentUser.roles.length; i++) {
             if (item.roles != null) {
@@ -43,5 +48,4 @@ angular.module('lightApp').controller('menuCtrl', ['$scope', '$http', 'authServi
     $scope.logOut = function () {
         authService.logOut();
     };
-
 }]);

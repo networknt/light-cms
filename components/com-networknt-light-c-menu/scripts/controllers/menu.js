@@ -3,6 +3,7 @@
 angular.module('lightApp').controller('menuCtrl', ['$scope', '$http', 'authService', function($scope, $http, authService) {
     $scope.menuSettings = {isCollapsed : true};
     $scope.tree = [];
+    $scope.isUserLoggedIn = authService.authentication.currentUser.userId != "";
 
     var getMenuPost = {
         category : 'menu',
@@ -26,7 +27,7 @@ angular.module('lightApp').controller('menuCtrl', ['$scope', '$http', 'authServi
 
     $scope.hasAccess = function(item) {
         //console.log('item = ', item);
-        //console.log('currentUser.roles', authService.authentication.currentUser.roles);
+        console.log('currentUser', authService.authentication.currentUser);
         //console.log('item.roles', item.roles);
         for (var i = 0; i < authService.authentication.currentUser.roles.length; i++) {
             if (item.roles != null) {

@@ -23,7 +23,10 @@
         </ul>
         <ul class="nav navbar-nav navbar-right">
             <li class="dropdown" ng-if="(tree | filter:hasAccess | filter: {left:false}).length > 0">
-                <a href="#" class="ti ti-user fa-lg dropdown-toggle"></a>
+                <a href="#" class="dropdown-toggle">
+                    <i class="ti ti-user fa-lg" ng-class="isUserLoggedIn ? 'text-success' : 'text-danger' "/>
+                </a>
+
                 <ul class="dropdown-menu">
                     <li ng-repeat="node in tree | filter:hasAccess | filter: { left: false}">
                         <a href="{{node.path}}" ng-click="toggleCollapsed()">{{node.label}}</a>
