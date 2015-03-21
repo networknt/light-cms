@@ -127,7 +127,7 @@ public abstract class AbstractCommentRule extends AbstractRule implements Rule {
         OrientGraph graph = ServiceLocator.getInstance().getGraph();
         try {
             ODocument record = graph.getVertex(data.get("@rid")).getRecord();
-            json = record.toJSON("rid,fetchPlan:out_HasComment:-1 out_HasComment.out_HasComment:-1 out_HasComment.in_Create:0");
+            json = record.toJSON("rid,fetchPlan:[*]in_Create:-2 out_HasComment:5");
         } catch (Exception e) {
             logger.error("Exception:", e);
         } finally {
