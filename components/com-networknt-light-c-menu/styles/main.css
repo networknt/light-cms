@@ -283,44 +283,6 @@ section {
     }
 }
 
-
-/* Not enough room on mobile for markup tab, js tab, and plunk btn.
-  And no one cares about plunk button on a phone anyway */
-@media only screen and (max-device-width: 480px) {
-    #plunk-btn {
-        display: none;
-    }
-}
-
-.navbar-nav .dropdown .navbar-brand {
-    max-width: 100%;
-    margin-right: inherit;
-    margin-left: inherit;
-}
-
-.header-placeholder {
-    height: 50px;
-}
-
-@media screen and (min-width: 768px) {
-
-    .dropdown.open > .navbar-brand + .dropdown-menu {
-        left: 10px;
-    }
-
-    .header-placeholder {
-        height: 50px;
-    }
-
-    .navbar-nav .dropdown .navbar-brand {
-        max-width: 200px;
-        margin-right: 5px;
-        margin-left: 10px;
-    }
-
-}
-
-
 .colorgraph {
     height: 5px;
     border-top: 0;
@@ -442,12 +404,4 @@ body {
 
 .sidebar-nav {
     padding: 9px 0;
-}
-
-li.dropdown:hover .dropdown-menu {
-    display: block;
-}
-
-li.dropdown-span:hover .dropdown-menu {
-    display: block;
 }
