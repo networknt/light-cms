@@ -695,12 +695,20 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
         String error = null;
         OrientGraph graph = ServiceLocator.getInstance().getGraph();
         try {
-            Vertex post = DbService.getVertexByRid(graph, rid);
+            OrientVertex post = (OrientVertex)DbService.getVertexByRid(graph, rid);
             if(post != null) {
-                Map eventMap = getEventMap(inputMap);
-                Map<String, Object> eventData = (Map<String, Object>)eventMap.get("data");
-                inputMap.put("eventMap", eventMap);
-                eventData.put("postId", post.getProperty("postId"));
+                // check if the post has comment, if yes, you cannot delete it for now
+                // TODO fix it after orientdb 2.2 release.
+                // https://github.com/orientechnologies/orientdb/issues/1108
+                if(post.countEdges(Direction.OUT, "HasComment") > 0) {
+                    error = "Post has comment(s), cannot be deleted";
+                    inputMap.put("responseCode", 400);
+                } else {
+                    Map eventMap = getEventMap(inputMap);
+                    Map<String, Object> eventData = (Map<String, Object>)eventMap.get("data");
+                    inputMap.put("eventMap", eventMap);
+                    eventData.put("postId", post.getProperty("postId"));
+                }
             } else {
                 error = "@rid " + rid + " cannot be found";
                 inputMap.put("responseCode", 404);
@@ -738,11 +746,8 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
                 // TODO cascade deleting all comments belong to the post.
                 // Need to come up a query on that to get the entire tree.
                 /*
-                for (Vertex menuItem : graph.getVerticesOfClass("MenuItem")) {
-                    if(host.equals(menuItem.getProperty("host"))) {
-                        graph.removeVertex(menuItem);
-                    }
-                }
+                // https://github.com/orientechnologies/orientdb/issues/1108
+                delete graph...
                 */
                 graph.removeVertex(post);
             }
