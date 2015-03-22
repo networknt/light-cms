@@ -126,7 +126,7 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
             }
         }
         if(error != null) {
-            inputMap.put("error", error);
+            inputMap.put("result", error);
             return false;
         } else {
             return true;
@@ -215,7 +215,7 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
             graph.shutdown();
         }
         if(error != null) {
-            inputMap.put("error", error);
+            inputMap.put("result", error);
             return false;
         } else {
             return true;
@@ -260,7 +260,7 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
         try {
             String userHost = (String)user.get("host");
             if(userHost != null && !userHost.equals(host)) {
-                inputMap.put("error", "You can only update " + bfnType + " from host: " + host);
+                inputMap.put("result", "You can only update " + bfnType + " from host: " + host);
                 inputMap.put("responseCode", 403);
                 return false;
             } else {
@@ -277,7 +277,7 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
                     List parentRids = (List)data.get("in_Own");
                     if(parentRids != null) {
                         if(rid.equals(parentRids.get(0))) {
-                            inputMap.put("error", "parent @rid is the same as current @rid");
+                            inputMap.put("result", "parent @rid is the same as current @rid");
                             inputMap.put("responseCode", 400);
                             return false;
                         }
@@ -297,7 +297,7 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
                                 eventData.put("addParentId", parent.getProperty(id));
                             }
                         } else {
-                            inputMap.put("error", "Parent with @rid " + parentRids.get(0) + " cannot be found");
+                            inputMap.put("result", "Parent with @rid " + parentRids.get(0) + " cannot be found");
                             inputMap.put("responseCode", 404);
                             return false;
                         }
@@ -310,18 +310,18 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
                         Set<String> inputChildren = new HashSet<String>();
                         for(String childRid: childrenRids) {
                             if(parentRids != null && childRid.equals(parentRids.get(0))) {
-                                inputMap.put("error", "Parent shows up in the Children list");
+                                inputMap.put("result", "Parent shows up in the Children list");
                                 inputMap.put("responseCode", 400);
                                 return false;
                             }
                             if(childRid.equals(rid)) {
-                                inputMap.put("error", "Current object shows up in the Children list");
+                                inputMap.put("result", "Current object shows up in the Children list");
                                 inputMap.put("responseCode", 400);
                                 return false;
                             }
                             Vertex child = DbService.getVertexByRid(graph, childRid);
                             if(child == null) {
-                                inputMap.put("error", "Child with @rid " + childRid + " cannot be found");
+                                inputMap.put("result", "Child with @rid " + childRid + " cannot be found");
                                 inputMap.put("responseCode", 404);
                                 return false;
                             } else {
@@ -342,7 +342,7 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
                         if(delChildren.size() > 0) eventData.put("delChildren", delChildren);
                     }
                 } else {
-                    inputMap.put("error",  "@rid " + rid + " cannot be found");
+                    inputMap.put("result",  "@rid " + rid + " cannot be found");
                     inputMap.put("responseCode", 404);
                     return false;
                 }
@@ -481,7 +481,7 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
             graph.shutdown();
         }
         if(error != null) {
-            inputMap.put("error", error);
+            inputMap.put("result", error);
             return false;
         } else {
             return true;
@@ -561,7 +561,7 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
             graph.shutdown();
         }
         if(error != null) {
-            inputMap.put("error", error);
+            inputMap.put("result", error);
             return false;
         } else {
             return true;
@@ -630,7 +630,7 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
             graph.shutdown();
         }
         if(error != null) {
-            inputMap.put("error", error);
+            inputMap.put("result", error);
             return false;
         } else {
             return true;
@@ -720,7 +720,7 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
             graph.shutdown();
         }
         if(error != null) {
-            inputMap.put("error", error);
+            inputMap.put("result", error);
             return false;
         } else {
             return true;
@@ -808,7 +808,7 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
             graph.shutdown();
         }
         if(error != null) {
-            inputMap.put("error", error);
+            inputMap.put("result", error);
             return false;
         } else {
             return true;
@@ -902,7 +902,7 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
             inputMap.put("result", json);
             return true;
         } else {
-            inputMap.put("error", "No document can be found");
+            inputMap.put("result", "No document can be found");
             inputMap.put("responseCode", 404);
             return false;
         }
@@ -930,7 +930,7 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
         Map<String, Object> inputMap = (Map<String, Object>) objects[0];
         Map<String, Object> data = (Map<String, Object>)inputMap.get("data");
         if(data.get(bfnType + "Id") == null || data.get("host") == null) {
-            inputMap.put("error", "Host and Id are required");
+            inputMap.put("result", "Host and Id are required");
             inputMap.put("responseCode", 400);
             return false;
         }
@@ -939,7 +939,7 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
             inputMap.put("result", posts);
             return true;
         } else {
-            inputMap.put("error", "No post can be found");
+            inputMap.put("result", "No post can be found");
             inputMap.put("responseCode", 404);
             return false;
         }
@@ -971,7 +971,7 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
         String host = (String)data.get("host");
         Object userHost = user.get("host");
         if(userHost != null && !userHost.equals(host)) {
-            inputMap.put("error", "You can only get " + bfnType + " from host: " + host);
+            inputMap.put("result", "You can only get " + bfnType + " from host: " + host);
             inputMap.put("responseCode", 403);
             return false;
         } else {
@@ -980,7 +980,7 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
                 inputMap.put("result", docs);
                 return true;
             } else {
-                inputMap.put("error", "No document can be found");
+                inputMap.put("result", "No document can be found");
                 inputMap.put("responseCode", 404);
                 return false;
             }
@@ -1011,7 +1011,7 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
         Map<String, Object> payload = (Map<String, Object>) inputMap.get("payload");
         String host = (String)data.get("host");
         if(payload == null) {
-            inputMap.put("error", "Login is required");
+            inputMap.put("result", "Login is required");
             inputMap.put("responseCode", 401);
             return false;
         } else {
@@ -1020,7 +1020,7 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
                 inputMap.put("result", docs);
                 return true;
             } else {
-                inputMap.put("error", "No document can be found");
+                inputMap.put("result", "No document can be found");
                 inputMap.put("responseCode", 404);
                 return false;
             }

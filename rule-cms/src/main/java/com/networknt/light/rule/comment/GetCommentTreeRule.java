@@ -37,7 +37,7 @@ public class GetCommentTreeRule extends AbstractCommentRule implements Rule {
             inputMap.put("result", comments);
             return true;
         } else {
-            inputMap.put("error", "No comment can be found");
+            inputMap.put("result", "No comment can be found");
             inputMap.put("responseCode", 404);
             return false;
         }

@@ -46,7 +46,7 @@ public class GetCommentRule extends AbstractCommentRule implements Rule {
             inputMap.put("result", mapper.writeValueAsString(result));
             return true;
         } else {
-            inputMap.put("error", "No user can be found.");
+            inputMap.put("result", "No user can be found.");
             inputMap.put("responseCode", 404);
             return false;
         }

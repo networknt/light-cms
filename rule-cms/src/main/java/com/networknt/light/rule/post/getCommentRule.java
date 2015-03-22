@@ -48,7 +48,7 @@ public class getCommentRule extends AbstractPostRule implements Rule {
             inputMap.put("result", mapper.writeValueAsString(result));
             return true;
         } else {
-            inputMap.put("error", "No post can be found.");
+            inputMap.put("result", "No post can be found.");
             inputMap.put("responseCode", 404);
             return false;
         }
