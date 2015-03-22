@@ -66,6 +66,40 @@ public abstract class AbstractCommentRule extends AbstractRule implements Rule {
         }
     }
 
+    protected void delComment(Map<String, Object> data) throws Exception {
+        OrientGraph graph = ServiceLocator.getInstance().getGraph();
+        try{
+            graph.begin();
+            String commentId = (String)data.get("commentId");
+            OrientVertex comment = (OrientVertex)graph.getVertexByKey("Comment.commentId", commentId);
+            graph.removeVertex(comment);
+            graph.commit();
+        } catch (Exception e) {
+            logger.error("Exception:", e);
+            graph.rollback();
+        } finally {
+            graph.shutdown();
+        }
+    }
+
+    protected void updComment(Map<String, Object> data) throws Exception {
+        OrientGraph graph = ServiceLocator.getInstance().getGraph();
+        try{
+            graph.begin();
+            String commentId = (String)data.get("commentId");
+            OrientVertex comment = (OrientVertex)graph.getVertexByKey("Comment.commentId", commentId);
+            if(comment != null) {
+                comment.setProperty("content", data.get("content"));
+            }
+            graph.commit();
+        } catch (Exception e) {
+            logger.error("Exception:", e);
+            graph.rollback();
+        } finally {
+            graph.shutdown();
+        }
+    }
+
     protected long getTotal(Map<String, Object> data, Map<String, Object> criteria) {
         long total = 0;
         StringBuilder sb = new StringBuilder("SELECT COUNT(*) as count FROM (TRAVERSE children FROM ").append(data.get("@rid")).append(") ");
