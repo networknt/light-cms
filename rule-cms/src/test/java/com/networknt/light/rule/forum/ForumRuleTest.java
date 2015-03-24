@@ -45,12 +45,12 @@ public class ForumRuleTest extends TestCase {
     String getForumTree = "{\"readOnly\":true,\"category\":\"forum\",\"name\":\"getForum\",\"data\":{\"host\":\"www.example.com\"}}";
     String delForum = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"delForum\",\"data\":{\"host\":\"www.example.com\"}}";
 
-    String addForum1 = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"addForum\",\"data\":{\"host\":\"www.example.com\",\"forumId\":\"Living\",\"desc\":\"Living\"}}";
-    String addForum2 = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"addForum\",\"data\":{\"host\":\"www.example.com\",\"forumId\":\"Plant\",\"desc\":\"Plant\"}}";
-    String addForum3 = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"addForum\",\"data\":{\"host\":\"www.example.com\",\"forumId\":\"Animal\",\"desc\":\"Animal\"}}";
-    String addForum4 = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"addForum\",\"data\":{\"host\":\"www.example.com\",\"forumId\":\"Tree\",\"desc\":\"Tree\"}}";
-    String addForum5 = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"addForum\",\"data\":{\"host\":\"www.example.com\",\"forumId\":\"Herb\",\"desc\":\"Herb\"}}";
-    String addForum6 = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"addForum\",\"data\":{\"host\":\"www.example.com\",\"forumId\":\"Pine\",\"desc\":\"Pine\"}}";
+    String addForum1 = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"addForum\",\"data\":{\"host\":\"www.example.com\",\"forumId\":\"Living\",\"description\":\"Living\"}}";
+    String addForum2 = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"addForum\",\"data\":{\"host\":\"www.example.com\",\"forumId\":\"Plant\",\"description\":\"Plant\"}}";
+    String addForum3 = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"addForum\",\"data\":{\"host\":\"www.example.com\",\"forumId\":\"Animal\",\"description\":\"Animal\"}}";
+    String addForum4 = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"addForum\",\"data\":{\"host\":\"www.example.com\",\"forumId\":\"Tree\",\"description\":\"Tree\"}}";
+    String addForum5 = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"addForum\",\"data\":{\"host\":\"www.example.com\",\"forumId\":\"Herb\",\"description\":\"Herb\"}}";
+    String addForum6 = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"addForum\",\"data\":{\"host\":\"www.example.com\",\"forumId\":\"Pine\",\"description\":\"Pine\"}}";
 
     String updForum = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"updForum\",\"data\":{\"host\":\"www.example.com\"}}";
 
@@ -215,7 +215,7 @@ public class ForumRuleTest extends TestCase {
             jsonMap.put("payload", ownerToken.getPayload());
             Map<String, Object> data = (Map<String,Object>)jsonMap.get("data");
             data.putAll(forumPlant);
-            data.put("desc", "Plant1");
+            data.put("description", "Plant1");
             List children = new ArrayList<String>();
             children.add(forumTree.get("@rid"));
             children.add(forumHerb.get("@rid"));
@@ -306,7 +306,7 @@ public class ForumRuleTest extends TestCase {
                         });
                 assertEquals(6, forums.size());
                 Map<String, Object> forum2 = forums.get(1);
-                assertEquals("Plant1", forum2.get("desc"));
+                assertEquals("Plant1", forum2.get("description"));
                 List<String> children = (List<String>)forum2.get("out_Own");
                 assertEquals(2, children.size());
 

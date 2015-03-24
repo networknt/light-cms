@@ -11,13 +11,13 @@
   "schema": {
     "type": "object",
     "title": "Blog",
-    "required": ["blogId", "desc"],
+    "required": ["blogId", "description"],
     "properties": {
       "blogId": {
         "title": "Blog Id",
         "type": "string"
       },
-      "desc": {
+      "description": {
         "title": "Description",
         "type": "string"
       },
@@ -35,7 +35,7 @@
   },
   "form": [
     "blogId",
-    "desc",
+    "description",
     {
       "key": "parent",
       "options": {

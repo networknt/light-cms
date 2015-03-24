@@ -85,7 +85,7 @@ public abstract class AbstractBlogRule extends AbstractRule implements Rule {
             blog = new ODocument(schema.getClass("Blog"));
             blog.field("host", data.get("host"));
             blog.field("id", data.get("id"));
-            if(data.get("desc") != null) blog.field("desc", data.get("desc"));
+            if(data.get("description") != null) blog.field("description", data.get("description"));
             if(data.get("attributes") != null) blog.field("attributes", data.get("attributes"));
             blog.field("createDate", data.get("createDate"));
             blog.field("createUserId", data.get("createUserId"));

@@ -22,7 +22,7 @@ DROP CLASS Tag
 CREATE CLASS Blog extends V;
 CREATE PROPERTY Blog.host STRING;
 CREATE PROPERTY Blog.blogId STRING;
-CREATE PROPERTY Blog.desc STRING;
+CREATE PROPERTY Blog.description STRING;
 CREATE PROPERTY Blog.attributes EMBEDDEDMAP;
 CREATE PROPERTY Blog.rank INTEGER;
 CREATE PROPERTY Blog.createDate DATETIME;
@@ -33,7 +33,7 @@ CREATE INDEX Blog.updateDate ON Blog(updateDate) NOTUNIQUE;
 CREATE CLASS Forum extends V;
 CREATE PROPERTY Forum.host STRING;
 CREATE PROPERTY Forum.forumId STRING;
-CREATE PROPERTY Forum.desc STRING;
+CREATE PROPERTY Forum.description STRING;
 CREATE PROPERTY Forum.attributes EMBEDDEDMAP;
 CREATE PROPERTY Forum.rank INTEGER;
 CREATE PROPERTY Forum.createDate DATETIME;
@@ -44,7 +44,7 @@ CREATE INDEX Forum.updateDate ON Forum(updateDate) NOTUNIQUE;
 CREATE CLASS News extends V;
 CREATE PROPERTY News.host STRING;
 CREATE PROPERTY News.newsId STRING;
-CREATE PROPERTY News.desc STRING;
+CREATE PROPERTY News.description STRING;
 CREATE PROPERTY News.attributes EMBEDDEDMAP;
 CREATE PROPERTY News.rank INTEGER;
 CREATE PROPERTY News.createDate DATETIME;
@@ -83,7 +83,7 @@ CREATE INDEX Comment.updateDate ON Comment(updateDate) NOTUNIQUE;
 CREATE CLASS Tag extends V;
 CREATE PROPERTY Tag.host STRING;
 CREATE PROPERTY Tag.tagId STRING;
-CREATE PROPERTY Tag.desc STRING;
+CREATE PROPERTY Tag.description STRING;
 CREATE PROPERTY Tag.createDate DATETIME;
 CREATE INDEX tagHostIdIdx ON Tag(host, tagId) UNIQUE;
 
@@ -91,9 +91,9 @@ CREATE CLASS HasPost extends E;
 CREATE CLASS HasTag extends E;
 CREATE CLASS HasComment extends E;
 
-create vertex Role set roleId = 'blogAdmin', desc = 'Blog Admin'
-create vertex Role set roleId = 'forumAdmin', desc = 'Forum Admin'
-create vertex Role set roleId = 'newsAdmin', desc = 'News Admin'
+create vertex Role set roleId = 'blogAdmin', description = 'Blog Admin'
+create vertex Role set roleId = 'forumAdmin', description = 'Forum Admin'
+create vertex Role set roleId = 'newsAdmin', description = 'News Admin'
 
 let blogAdmin = create vertex MenuItem set menuItemId = 'blogAdmin', label = 'Blog Admin', path = '/page/com-networknt-light-v-blog-admin-home'
 let forumAdmin = create vertex MenuItem set menuItemId = 'forumAdmin', label = 'Forum Admin', path = '/page/com-networknt-light-v-forum-admin-home'

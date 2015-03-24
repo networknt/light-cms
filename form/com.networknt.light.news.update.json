@@ -11,13 +11,13 @@
   "schema": {
     "type": "object",
     "title": "News",
-    "required": ["newsId", "desc"],
+    "required": ["newsId", "description"],
     "properties": {
       "newsId": {
         "title": "News Id",
         "type": "string"
       },
-      "desc": {
+      "description": {
         "title": "Description",
         "type": "string"
       },
@@ -35,7 +35,7 @@
   },
   "form": [
     "newsId",
-    "desc",
+    "description",
     {
       "key": "parent",
       "options": {

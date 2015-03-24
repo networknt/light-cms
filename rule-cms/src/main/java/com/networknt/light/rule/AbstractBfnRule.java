@@ -384,10 +384,10 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
             Vertex updateUser = graph.getVertexByKey("User.userId", data.remove("updateUserId"));
             OrientVertex bfn = getBfnByHostId(graph, bfnType, host, (String)data.get(id));
             if (bfn != null) {
-                if(data.get("desc") != null) {
-                    bfn.setProperty("desc", data.get("desc"));
+                if(data.get("description") != null) {
+                    bfn.setProperty("description", data.get("description"));
                 } else {
-                    bfn.removeProperty("desc");
+                    bfn.removeProperty("description");
                 }
                 if(data.get("attributes") != null) {
                     bfn.setProperty("attributes", data.get("attributes"));
