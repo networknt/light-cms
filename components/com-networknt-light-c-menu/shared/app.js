@@ -6,7 +6,7 @@ var lightApp = angular.module('lightApp', [
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    //'ui.bootstrap',
+    'ui.bootstrap',
     'angular-underscore/filters',
     'schemaForm',
     'ui.ace',
