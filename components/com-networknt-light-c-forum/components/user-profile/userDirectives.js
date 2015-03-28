@@ -5,7 +5,7 @@ angular.module('lightApp')
             userId: '@id'
         },
         restrict:'E',
-        templateUrl: 'views/user.html',
+        templateUrl: 'components/user-profile/user.html',
         link: function(scope, elm, attr) {
         }
     };

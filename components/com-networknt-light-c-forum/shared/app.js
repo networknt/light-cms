@@ -46,11 +46,11 @@ var lightApp = angular.module('lightApp', [
         templateUrl: 'components/forum/com-networknt-light-v-forum-home.html'
       })
       .when('/signin', {
-        templateUrl: 'views/form.html',
+        templateUrl: 'shared/form/form.html',
         controller: 'signinCtrl'
       })
       .when('/form/:id/:parentId?', {
-        templateUrl: 'views/form.html',
+        templateUrl: 'shared/form/form.html',
         controller: 'formCtrl'
       })
       .when('/page/com-networknt-light-v-forum-home', {
@@ -63,17 +63,17 @@ var lightApp = angular.module('lightApp', [
           templateUrl: 'components/forum/com-networknt-light-v-forum-post-view.html'
       })
       .when('/page/com-networknt-light-v-forum-admin-home', {
-          templateUrl: 'views/com-networknt-light-v-forum-admin-home.html'
+          templateUrl: 'components/user-profile/com-networknt-light-v-forum-admin-home.html'
       })
       .when('/page/com-networknt-light-v-user-logout', {
-          templateUrl: 'views/com-networknt-light-v-user-logout.html'
+          templateUrl: 'components/user-profile/com-networknt-light-v-user-logout.html'
       })
       .when('/users/:id', {
-          templateUrl: 'views/com-networknt-light-v-user-public-profile.html',
+          templateUrl: 'components/user-profile/com-networknt-light-v-user-public-profile.html',
           controller: 'UserPublicProfileCtrl'
       })
       .when('/user/:id', {
-            templateUrl: 'views/com-networknt-light-v-user-public-profile.html',
+            templateUrl: 'components/user-profile/com-networknt-light-v-user-public-profile.html',
             controller: 'UserPublicProfileCtrl'
       })
       .otherwise({

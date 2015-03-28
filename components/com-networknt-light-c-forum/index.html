@@ -9,12 +9,11 @@
     <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.css" />
     <link rel="stylesheet" href="bower_components/angular-motion/dist/angular-motion.css" />
     <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
-    <link rel="stylesheet" href="styles/main.css">
-    <link rel="stylesheet" href="styles/toaster.css">
-    <link rel="stylesheet" href="styles/select.css">
-    <link rel="stylesheet" href="styles/app.css">
+    <link rel="stylesheet" href="shared/main/main.css">
+    <link rel="stylesheet" href="shared/toaster/toaster.css">
+    <link rel="stylesheet" href="components/comment/comment.css">
     <link rel="stylesheet" href="bower_components/angular-ui-tree/dist/angular-ui-tree.min.css" />
-    <link rel="stylesheet" href="styles/forum.css">
+    <link rel="stylesheet" href="components/forum/forum.css">
     <link href="bower_components/angular-ui-select/dist/select.css" rel="stylesheet" />
     <link href="bower_components/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <link href="bower_components/themify-icons/themify-icons.css" rel="stylesheet"/>
@@ -84,21 +83,21 @@
     <script src="bower_components/angular-schema-form-file-reader/bootstrap-file-reader.min.js"></script>
     <script src="bower_components/momentjs/moment.js"></script>
 
-    <script src="scripts/ui-bootstrap-custom-tpls-0.12.0.js"></script>
-    <script src="scripts/toaster.js"></script>
-    <script src="scripts/app.js"></script>
-    <script src="scripts/locale_en-us.js"></script>
-    <script src="scripts/services/services.js"></script>
-    <script src="scripts/services/authServices.js"></script>
-    <script src="scripts/services/logServices.js"></script>
+    <script src="shared/main/ui-bootstrap-custom-tpls-0.12.0.js"></script>
+    <script src="shared/toaster/toaster.js"></script>
+    <script src="shared/app.js"></script>
+    <script src="shared/locale/locale_en-us.js"></script>
+    <script src="shared/main/services.js"></script>
+    <script src="shared/authentication/authServices.js"></script>
+    <script src="shared/logging/logServices.js"></script>
 
-    <script src="scripts/filters.js"></script>
-    <script src="scripts/directives/directives.js"></script>
+    <script src="shared/main/filters.js"></script>
+    <script src="shared/main/directives.js"></script>
 
-    <script src="scripts/controllers/main.js"></script>
-    <script src="scripts/controllers/signin.js"></script>
-    <script src="scripts/controllers/form.js"></script>
-    <script src="scripts/controllers/page.js"></script>
+    <script src="shared/main/main.js"></script>
+    <script src="shared/authentication/signin.js"></script>
+    <script src="shared/form/form.js"></script>
+    <script src="shared/page/page.js"></script>
 
     <!-- Comments -->
     <script src="components/comment/commentServices.js"></script>
@@ -106,12 +105,12 @@
     <script src="components/comment/commentDirectives.js"></script>
 
     <!-- User -->
-    <script src="scripts/controllers/user.js"></script>
-    <script src="scripts/controllers/userPublicProfile.js"></script>
-    <script src="scripts/directives/userDirectives.js"></script>
+    <script src="components/user-profile/user.js"></script>
+    <script src="components/user-profile/userPublicProfile.js"></script>
+    <script src="components/user-profile/userDirectives.js"></script>
 
     <!-- Menu -->
-    <script src="scripts/controllers/menu.js"></script>
+    <script src="components/menu/menu.js"></script>
     <script src="components/menu/menuDirectives.js"></script>
 </body>
 </html>
