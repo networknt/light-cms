@@ -7,30 +7,6 @@ body {
     padding-bottom: 10em;
 }
 
-.comment {
-    margin: .25em;
-}
-
-.comment > .comments {
-    margin-top: 1em;
-    margin-left: 2em;
-    margin-bottom: 1em;
-}
-
-.comment-header {
-    vertical-align: middle;
-    line-height: 2em;
-}
-
-.comment-header > h4 {
-    display: inline;
-}
-
-.comment > .page-header {
-    margin-top: 0;
-    padding-top: 0;
-}
-
 .bs-docs-social {
     margin-top: 1em;
     padding: 15px 0;
@@ -54,15 +30,6 @@ a>.text {
         font-weight: light;
         font-size: 16px;
     }
-}
-
-.clear-square {
-    vertical-align: sub;
-    border: none;
-    background: none;
-    outline: none;
-    min-width: 36px;
-    min-height: 34px;
 }
 
 .view-container {
@@ -145,10 +112,6 @@ iframe {
     cursor: default;
 }
 
-.commenter-container {
-    border-top: 1px solid #ddd;
-}
-
 .form-inline .form-group {
     position: relative;
     display: block!important;
@@ -185,11 +148,3 @@ iframe {
     text-decoration: none;
     background-color: rgba(173, 173, 173, 0.4)!important;
 }
-
-.add_comment .commenter-container {
-    margin-top: 20px;
-    border: 1px solid #C2C2C2;
-    border-radius: 4px;
-    background: #F0F0F0;
-}
-

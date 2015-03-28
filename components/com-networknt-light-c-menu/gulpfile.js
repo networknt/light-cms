@@ -12,7 +12,7 @@ var jscs = require('gulp-jscs');
 gulp.task('minify', function() {
   var stream = streamqueue({objectMode: true});
   stream.queue(
-              gulp.src('./views/*.html')
+              gulp.src('./shared/*.html')
                   .pipe(minifyHtml({
                     empty: true,
                     spare: true,
@@ -20,10 +20,11 @@ gulp.task('minify', function() {
                   }))
                   .pipe(templateCache({
                     module: 'lightApp',
-                    root: 'views/'
+                    root: 'shared/'
                   }))
   );
-  stream.queue(gulp.src('./scripts/*.js'));
+  stream.queue(gulp.src('./shared/*.js'));
+  stream.queue(gulp.src('./components/*.js'));
   stream.done();
 });
 
@@ -51,7 +52,8 @@ gulp.task('default', [
 ]);
 
 gulp.task('watch', function() {
-  gulp.watch('./scripts/**/*', ['default']);
+  gulp.watch('./shared/**/*', ['default']);
+  gulp.watch('./components/**/*', ['default']);
 });
 
 gulp.task('webserver', function() {

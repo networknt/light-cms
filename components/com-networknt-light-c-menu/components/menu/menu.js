@@ -3,8 +3,27 @@
 angular.module('lightApp').controller('menuCtrl', ['$scope', '$http', 'authService', function($scope, $http, authService) {
     $scope.menuSettings = {isCollapsed : true};
     $scope.tree = [];
-    $scope.isUserLoggedIn = authService.authentication.currentUser.userId != "";
-
+    $scope.isUserLoggedIn = authService.authentication.currentUser.userId != '';
+    $scope.source = '';
+    /*
+    var getMenuComponent = {
+        category: 'menu',
+        name: 'getMenuComponent',
+        readOnly: true,
+        data: {
+            host: $scope.host
+        }
+    };
+    console.log('getMenuComponent posting:', getMenuComponent);
+    $http.post('api/rs', getMenuComponent)
+        .success(function(result, status, headers, config){
+            console.log('getMenuComponent success result', result);
+            $scope.source = result[0].source;
+        })
+        .error(function(result, status, headers, config){
+            console.log('getMenuComponent error result', result);
+        });
+    */
     var getMenuPost = {
         category : 'menu',
         name : 'getMenu',
@@ -16,9 +35,9 @@ angular.module('lightApp').controller('menuCtrl', ['$scope', '$http', 'authServi
 
     $http.post('api/rs', getMenuPost)
         .success(function(result, status, headers, config) {
-            console.log("getMenuPost result", result);
+            console.log('getMenuPost result', result);
             $scope.tree = result.out_Own;
-            console.log("get menus", $scope.tree);
+            console.log('get menus', $scope.tree);
         });
 
     $scope.toggleCollapsed = function () {
@@ -27,7 +46,7 @@ angular.module('lightApp').controller('menuCtrl', ['$scope', '$http', 'authServi
 
     $scope.hasAccess = function(item) {
         //console.log('item = ', item);
-        console.log('currentUser', authService.authentication.currentUser);
+        //console.log('currentUser', authService.authentication.currentUser);
         //console.log('item.roles', item.roles);
         for (var i = 0; i < authService.authentication.currentUser.roles.length; i++) {
             if (item.roles != null) {

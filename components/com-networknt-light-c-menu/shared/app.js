@@ -6,7 +6,7 @@ var lightApp = angular.module('lightApp', [
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'ui.bootstrap',
+    //'ui.bootstrap',
     'angular-underscore/filters',
     'schemaForm',
     'ui.ace',
@@ -42,13 +42,30 @@ var lightApp = angular.module('lightApp', [
     lightApp.service    = $provide.service;
 
     $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html'
-      })
-      .otherwise({
-          templateUrl: '404.html',
-          controller: 'mainCtrl'
-      });
+        .when('/', {
+            templateUrl: 'shared/main/main.html',
+            controller: 'mainCtrl'
+        })
+        .when('/signin', {
+            templateUrl: 'shared/form/form.html',
+            controller: 'signinCtrl'
+        })
+        .when('/form/:id/:parentId?', {
+            templateUrl: 'shared/form/form.html',
+            controller: 'formCtrl'
+        })
+        .when('/page/:id', {
+            templateUrl: 'shared/page/page.html',
+            controller: 'pageCtrl'
+        })
+        .when('/form/:id/:parentId?', {
+            templateUrl: 'shared/form/form.html',
+            controller: 'formCtrl'
+        })
+        .otherwise({
+            templateUrl: '404.html',
+            controller: 'mainCtrl'
+        });
     $locationProvider.html5Mode(true);
 }])
 .run(['$rootScope', 'authService', 'lightLoggingService', function ($rootScope, authService, lightLoggingService) {

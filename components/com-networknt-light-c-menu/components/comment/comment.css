@@ -1,0 +1,43 @@
+.comment {
+    margin: .25em;
+}
+
+.comment > .comments {
+    margin-top: 1em;
+    margin-left: 2em;
+    margin-bottom: 1em;
+}
+
+.comment-header {
+    vertical-align: middle;
+    line-height: 2em;
+}
+
+.comment-header > h4 {
+    display: inline;
+}
+
+.comment > .page-header {
+    margin-top: 0;
+    padding-top: 0;
+}
+
+.commenter-container {
+    border-top: 1px solid #ddd;
+}
+
+.add_comment .commenter-container {
+    margin-top: 20px;
+    border: 1px solid #C2C2C2;
+    border-radius: 4px;
+    background: #F0F0F0;
+}
+
+.clear-square {
+    vertical-align: sub;
+    border: none;
+    background: none;
+    outline: none;
+    min-width: 36px;
+    min-height: 34px;
+}
