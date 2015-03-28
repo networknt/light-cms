@@ -6,7 +6,7 @@ angular.module('lightApp')
             header: '@header'
         },
         restrict:'E',
-        templateUrl: 'views/menu.html',
+        templateUrl: 'components/menu/menu.html',
         controller: 'menuCtrl',
         link: function(scope, elm, attr) {
         }
