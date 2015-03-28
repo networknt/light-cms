@@ -34,15 +34,23 @@ gulp.task('non-minified-dist', function() {
                   .pipe(templateCache({
                     module: 'lightApp',
                     root: 'views/'
-                  }))
+                  })),
+        gulp.src('./components/**/*.html')
+            .pipe(templateCache({
+                module: 'lightApp',
+                root: 'components/'
+            }))
     );
   stream.queue(gulp.src('./scripts/*.js'));
+  stream.queue(gulp.src('./components/*.js'));
   stream.done();
 });
 
 gulp.task('jscs', function() {
   gulp.src('./scripts/**/*.js')
       .pipe(jscs());
+  gulp.src('./components/**/*.js')
+        .pipe(jscs());
 });
 
 gulp.task('default', [
@@ -52,6 +60,7 @@ gulp.task('default', [
 
 gulp.task('watch', function() {
   gulp.watch('./scripts/**/*', ['default']);
+  gulp.watch('./components/**/*', ['default']);
 });
 
 gulp.task('webserver', function() {

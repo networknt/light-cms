@@ -43,7 +43,7 @@ var lightApp = angular.module('lightApp', [
 
     $routeProvider
       .when('/', {
-        templateUrl: 'views/com-networknt-light-v-forum-home.html'
+        templateUrl: 'components/forum/com-networknt-light-v-forum-home.html'
       })
       .when('/signin', {
         templateUrl: 'views/form.html',
@@ -54,13 +54,13 @@ var lightApp = angular.module('lightApp', [
         controller: 'formCtrl'
       })
       .when('/page/com-networknt-light-v-forum-home', {
-          templateUrl: 'views/com-networknt-light-v-forum-home.html'
+          templateUrl: 'components/forum/com-networknt-light-v-forum-home.html'
       })
       .when('/page/com-networknt-light-v-forum-post', {
-          templateUrl: 'views/com-networknt-light-v-forum-post.html'
+          templateUrl: 'components/forum/com-networknt-light-v-forum-post.html'
       })
       .when('/page/com-networknt-light-v-forum-post-view', {
-          templateUrl: 'views/com-networknt-light-v-forum-post-view.html'
+          templateUrl: 'components/forum/com-networknt-light-v-forum-post-view.html'
       })
       .when('/page/com-networknt-light-v-forum-admin-home', {
           templateUrl: 'views/com-networknt-light-v-forum-admin-home.html'

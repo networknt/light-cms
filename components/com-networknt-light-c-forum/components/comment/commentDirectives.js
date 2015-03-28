@@ -168,7 +168,7 @@ angular.module('lightApp')
 .directive('commenter', function () {
     return {
         restrict:'E',
-        templateUrl: 'views/commenter.html',
+        templateUrl: 'components/comment/commenter.html',
         transclude: true,
         link: function(scope, elm, attr) {
             var action;
