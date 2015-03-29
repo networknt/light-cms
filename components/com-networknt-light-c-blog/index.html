@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="shared/toaster/toaster.css">
     <link rel="stylesheet" href="components/comment/comment.css">
     <link rel="stylesheet" href="components/forum/forum.css">
+    <link rel="stylesheet" href="components/menu/menu.css">
     <link rel="stylesheet" href="components/blog/blog.css">
     <link rel="stylesheet" href="bower_components/angular-ui-tree/dist/angular-ui-tree.min.css" />
     <link href="bower_components/angular-ui-select/dist/select.css" rel="stylesheet" />
@@ -27,11 +28,7 @@
     <toaster-container toaster-options="{'position-class': 'toast-bottom-full-width'}"></toaster-container>
 
     <!-- Add your site or application content here -->
-    <header class="navbar navbar-default navbar-fixed-top">
-        <div class="navbar-inner">
-            <menu host="example" header="Forum Component"></menu>
-        </div>
-    </header>
+    <menu host="example" header="Forum Component"></menu>
 
     <div class="header-placeholder"></div>
     <div role="main" ng-view></div>
