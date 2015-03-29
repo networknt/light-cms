@@ -43,7 +43,7 @@ var lightApp = angular.module('lightApp', [
 
     $routeProvider
       .when('/', {
-        templateUrl: 'components/forum/com-networknt-light-v-forum-home.html'
+        templateUrl: 'components/blog/com-networknt-light-v-blog-home.html'
       })
       .when('/signin', {
         templateUrl: 'shared/form/form.html',
@@ -52,6 +52,12 @@ var lightApp = angular.module('lightApp', [
       .when('/form/:id/:parentId?', {
         templateUrl: 'shared/form/form.html',
         controller: 'formCtrl'
+      })
+      .when ('/page/com-networknt-light-v-blog-home', {
+        templateUrl: 'components/blog/com-networknt-light-v-blog-home.html'
+      })
+      .when ('/page/com-networknt-light-v-blog-post-view', {
+        templateUrl: 'components/blog/com-networknt-light-v-blog-post-view.html'
       })
       .when('/page/com-networknt-light-v-forum-home', {
           templateUrl: 'components/forum/com-networknt-light-v-forum-home.html'
