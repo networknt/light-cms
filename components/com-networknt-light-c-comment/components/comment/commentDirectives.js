@@ -81,7 +81,7 @@ angular.module('lightApp')
             }
             var children = false, compiled,
                 sub = $compile('<div comments child-comments="true" ' +
-                    'comment-data="comment.children"></div>'),
+                    'comment-data="comment.out_HasComment"></div>'),
                 transclude;
             // Notify controller without bubbling
             function notify(scope, name, data) {
@@ -135,7 +135,7 @@ angular.module('lightApp')
             }
 
             scope.$watch('comment', function(newval) {
-                update(scope.comment.children);
+                update(scope.comment.out_HasComment);
             }, true);
         }
     };
@@ -168,7 +168,7 @@ angular.module('lightApp')
 .directive('commenter', function () {
     return {
         restrict:'E',
-        templateUrl: 'views/commenter.html',
+        templateUrl: 'components/comment/commenter.html',
         link: function(scope, elm, attr) {
             var action;
             scope.toggled = scope.$eval(attr.toggle) || false;

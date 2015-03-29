@@ -8,17 +8,17 @@
                     createDate: new Date(),
                     profileUrl: 'https://github.com/caitp',
                     content: 'UI-Comments is designed to simplify the process of creating comment systems similar to Reddit, Imgur or Discuss in AngularJS.',
-                    children: [{
+                    out_HasComment: [{
                         createUserId: '@bizarro-caitp',
                         createDate: new Date(),
                         profileUrl: 'https://github.com/bizarro-caitp',
                         content: 'We support nested comments, in a very simple fashion. It\'s great!',
-                        children: [{
+                        out_HasComment: [{
                             createUserId: '@caitp',
                             createDate: new Date(),
                             profileUrl: 'https://github.com/caitp',
                             content: 'These nested comments can descend arbitrarily deep, into many levels. This can be used to reflect a long and detailed conversation about typical folly which occurs in comments',
-                            children: [{
+                            out_HasComment: [{
                                 createUserId: '@bizarro-caitp',
                                 createDate: new Date(),
                                 profileUrl: 'https://github.com/bizarro-caitp',
@@ -29,7 +29,7 @@
                             createDate: new Date(),
                             profileUrl: 'https://github.com/bizarro-caitp',
                             content: 'Is it REALLY all that wonderful? People tend to populate comments with innane nonsense that ought to get them hellbanned!',
-                            comments: [{
+                            out_HasComment: [{
                                 createUserId: '@caitp',
                                 createDate: new Date(),
                                 profileUrl: 'https://github.com/caitp',
@@ -47,7 +47,7 @@
                     createDate: new Date(),
                     profileUrl: 'https://github.com/bizarro-caitp',
                     content: 'We can do other fancy things too, maybe...',
-                    children: [{
+                    out_HasComment: [{
                         createUserId: '@caitp',
                         createDate: new Date(),
                         profileUrl: 'https://github.com/caitp',
@@ -57,7 +57,7 @@
                         createDate: new Date(),
                         profileUrl: 'https://github.com/caitp',
                         content: 'suddenly I\'m all curious, what else can we do...',
-                        children: [{
+                        out_HasComment: [{
                             createUserId: '@bizarro-caitp',
                             createDate: new Date(),
                             profileUrl: 'https://github.com/bizarro-caitp',

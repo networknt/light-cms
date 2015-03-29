@@ -33,11 +33,11 @@ angular.module('lightApp')
             createDate: new Date(),
             content: comment.text
         });
-        if(!$scope.comment.children) {
-            $scope.comment.children = [];
+        if(!$scope.comment.out_HasComment) {
+            $scope.comment.out_HasComment = [];
         }
         $scope.submitComment ($scope.comment, childComment);
-        $scope.comment.children.push(childComment);
+        $scope.comment.out_HasComment.push(childComment);
     };
 
     $scope.postAddComment = {

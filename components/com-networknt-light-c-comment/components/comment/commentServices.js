@@ -2,8 +2,8 @@
 angular.module('lightApp')
 .provider('commentsConfig', function() {
     var config = {
-        containerTemplate: 'views/comments.html',
-        commentTemplate: 'views/comment.html',
+        containerTemplate: 'components/comment/comments.html',
+        commentTemplate: 'components/comment/comment.html',
         orderBy: 'best',
         commentController: 'commentCtrl',
         depthLimit: 3

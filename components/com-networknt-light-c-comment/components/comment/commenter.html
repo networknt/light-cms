@@ -11,6 +11,11 @@
         </div>
         <button ng-disabled="form.$invalid" type="submit" class="btn btn-primary">Submit</button>
     </form>
-  <span class="label pull-right pointer" ng-click="toggle()"
-        ng-class="{'label-success': toggled, 'label-warning': !toggled}">{{ btnText }}</span>
+    <div style="position:relative; width:100%;">
+        <button ng-if="comment.out_HasComment" class="fa-lg clear-square fa"
+                ng-class="{'glyphicon glyphicon-minus': !collapsed, 'glyphicon glyphicon-plus': collapsed}"
+                title="toggle children" ng-click="collapse()" style="padding:0px; margin:0px; border:0px; height:0%;"></button>
+        <div class="label pull-right pointer" ng-click="toggle()"
+              ng-class="{'label-success': toggled, 'label-warning': !toggled}" style="position:absolute; right:2em; top:50%; margin-top:-8px;">{{ btnText }}</div>
+    </div>
 </div>
