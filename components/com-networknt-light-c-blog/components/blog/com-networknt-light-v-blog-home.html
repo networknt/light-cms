@@ -1,10 +1,27 @@
 <script type='text/javascript'>
 'use strict';
 angular.module('lightApp').controller('BlogCtrl', ['$scope', '$http', '$location', '$filter', 'toaster', 'modelDataService', function ($scope, $http, $location, $filter, toaster, modelDataService) {
-    $scope.blogPosts = [];
+    $scope.blogPosts = [
+        {
+            blogPostId: 1,
+            title: 'This is the title of the first post',
+            subtitle: 'I am considering adding a post subtitle, for additional info too large to include in the title.',
+            createById: 'NicholasAzar',
+            createDate: '3/29/2015'
+        }, {
+            blogPostId: '2',
+            title: 'And here... youll find the second post!',
+            subtitle: 'The second post is the second post... after the first, and behind the third.',
+            createById: 'NicholasAzar',
+            createDate: '3/29/2015'
+        }
+        ];
+    $scope.itemsPerPage = 5;
+
+    /*$scope.blogPosts = [];
     // Pagination variables;
     $scope.currentPage = 1;
-    $scope.itemsPerPage = 5;
+
     $scope.noOfPages = $scope.blogPosts.length / $scope.itemsPerPage;
 
     $scope.$watch('currentPage', function() {
@@ -65,6 +82,7 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$http', '$location
         });
         $location.path("/page/com-networknt-light-v-blog-post-view");
     };
+    */
 }]);
 </script>
 <div class="container" data-ng-controller="BlogCtrl">
@@ -87,25 +105,20 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$http', '$location
 
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <ul class="forum-ul">
-                        <li ng-repeat="blogPost in paged.blogPosts | filter:pattern" >
-                            <div class="forum-row">
-                                <a href ng-click="goToForum(blogPost.blogPostId)"  ng-bind-html="blogPost.blogPostId | highlight:pattern | trust"></a><br />
-                                <small ng-bind-html="blogPost.desc | highlight:pattern | trust"></small>
-                                <!-- TODO: Redo this to only one span with angular. -->
-                                <span style="float:right;width:5%;height:100%" ng-if="!forum.out_HasPost">
-                                    Empty
-                                </span>
-                                <span style="float:right;width:5%;height:100%" ng-if="forum.out_HasPost.length == 1">
-                                    {{forum.out_HasPost.length}} Post
-                                </span>
-                                <span style="float:right;width:5%;height:100%" ng-if="forum.out_HasPost.length > 1">
-                                    {{forum.out_HasPost.length}} Posts
-                                </span>
-                            </div>
+                    <div class="post-preview" ng-repeat="post in blogPosts">
+                        <a href="#{{post.blogPostId}}">
+                            <h2 class="post-title">{{post.title}}</h2>
+                            <h3 class="post-subtitle">{{post.subtitle}}</h3>
+                        </a>
+                        <p class="post-meta">Posted by <user id="{{post.createById}}"></user> on {{post.createDate}}</p>
+                        <hr/>
+                    </div>
+                    <ul class="pager" ng-class="{'disabled': blogPosts.length <= itemsPerPage}">
+                        <li class="next">
+                            <a href="#">Older Posts <i class="fa fa-arrow-right"></i></a>
                         </li>
                     </ul>
-                    <pagination ng-model="currentPage" total-items="blogPosts.length" items-per-page="itemsPerPage"></pagination>
+                    <!--<pagination ng-model="currentPage" total-items="blogPosts.length" items-per-page="itemsPerPage" style="float:right;"></pagination>-->
                 </div>
             </div>
         </div>

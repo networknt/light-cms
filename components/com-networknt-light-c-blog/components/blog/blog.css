@@ -1,0 +1,75 @@
+/* Uncomment to hide border around blog post previews
+div.panel.panel-default {
+    border: 0px;
+}
+*/
+
+/* Set link color to black.*/
+.post-preview > a {
+  color: #404040;
+}
+
+/* Set link hover color to boostrap text-primary*/
+.post-preview > a:hover,
+.post-preview > a:focus {
+  text-decoration: none;
+  color: #31708f;
+}
+
+.post-preview > a > .post-title {
+  font-size: 30px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  padding-left:10px;
+  padding-right:10px;
+}
+.post-preview > a > .post-subtitle {
+  margin: 0;
+  font-weight: 300;
+  margin-bottom: 10px;
+  padding-left:10px;
+  padding-right:10px;
+}
+.post-preview > .post-meta {
+  color: #808080;
+  font-size: 18px;
+  font-style: italic;
+  margin-top: 0;
+  padding-left:10px;
+  padding-right:10px;
+}
+
+@media only screen and (min-width: 768px) {
+  .post-preview > a > .post-title {
+    font-size: 36px;
+  }
+}
+
+.pager {
+  margin: 20px 0 0;
+}
+.pager li > a,
+.pager li > span {
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  font-size: 14px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  padding: 15px 25px;
+  background-color: white;
+  border-radius: 0;
+}
+.pager li > a:hover,
+.pager li > a:focus {
+  color: white;
+  background-color: #31708f;
+  border: 1px solid #31708f;
+}
+.pager.disabled li > a,
+.pager.disabled li > a:hover,
+.pager.disabled li > a:focus {
+  color: #808080;
+  background-color: white;
+  border: 1px solid #808080;
+  cursor: not-allowed;
+}
