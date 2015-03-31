@@ -11,7 +11,7 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$http', '$location
             createDate: '3/29/2015'
         }, {
             blogPostId: '2',
-            title: 'And here... youll find the second post!',
+            title: 'And here... you\'ll find the second post!',
             subtitle: 'The second post is the second post... after the first, and behind the third.',
             content: 'This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. ',
             createById: 'NicholasAzar',
@@ -99,7 +99,7 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$http', '$location
     <div class="row">
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="panel panel-default">
-                <div class="panel-body">
+                <div class="panel-body" style="padding-left:0px;">
                     <div class="post-preview" ng-repeat="post in blogPosts">
                         <a href ng-click="goToBlogPost({{post.blogPostId}})">
                             <h2 class="post-title">{{post.title}}</h2>
