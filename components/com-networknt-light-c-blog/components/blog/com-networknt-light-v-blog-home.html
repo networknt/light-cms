@@ -62,28 +62,25 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$http', '$location
         }
     });
 
-    /*$
-
-
-
-
     $scope.getBlogPosts = {
         category : 'blog',
-        name : 'getBlogPosts',
+        name : 'getBlogTree',
         readOnly: true
     };
-
     $scope.fetchResult = function () {
         $http.post('api/rs', $scope.getBlogPosts)
             .success(function (result, status, headers, config) {
-                $scope.blogPosts = result;
-                console.log("blogPosts returned:", $scope.blogPosts);
-                $scope.paged = {
+                //$scope.blogPosts = result;
+                console.log("blogPosts returned:", $scope.result);
+                /*$scope.paged = {
                     blogPosts: $scope.blogPosts.slice(0,  $scope.itemsPerPage)
-                };
+                };*/
             })
     };
     $scope.fetchResult();
+
+    /*
+
 
     $scope.toggle = function(scope) {
         console.log(scope);

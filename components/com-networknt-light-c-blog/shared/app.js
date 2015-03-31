@@ -82,6 +82,10 @@ var lightApp = angular.module('lightApp', [
             templateUrl: 'components/user-profile/com-networknt-light-v-user-public-profile.html',
             controller: 'UserPublicProfileCtrl'
       })
+      .when('/page/:id', {
+          templateUrl: 'shared/page/page.html',
+          controller: 'pageCtrl'
+      })
       .otherwise({
           templateUrl: '404.html',
           controller: 'mainCtrl'
