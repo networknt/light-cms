@@ -128,7 +128,7 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$http', '$location
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="panel panel-default">
                 <div class="panel-body" style="padding-left:0px;">
-                    <div class="post-preview" ng-repeat="post in paged.blogPosts">
+                    <div class="post-preview" ng-repeat="post in paged.blogPosts | filter:pattern">
                         <a href ng-click="goToBlogPost({{post.blogPostId}})">
                             <h2 class="post-title">{{post.title}}</h2>
                             <h3 class="post-subtitle">{{post.subtitle}}</h3>
@@ -143,7 +143,7 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$http', '$location
                         </li>
                     </ul>
                     -->
-                    <pagination ng-model="currentPage" total-items="blogPosts.length" items-per-page="itemsPerPage" style="float:left;"></pagination>
+                    <pagination ng-model="currentPage" total-items="(blogPosts | filter:pattern).length" items-per-page="itemsPerPage" style="float:left;"></pagination>
                 </div>
             </div>
         </div>
