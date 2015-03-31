@@ -9,7 +9,7 @@ angular.module('lightApp').controller('BlogPostCtrl', ['$scope', '$http', '$loca
         $scope.post = {
             blogPostId: 1,
             title: 'This is the title of the first post',
-            subtitle: 'I am considering adding a post subtitle, for additional info too large to include in the title.',
+            summary: 'I am considering adding a post subtitle, for additional info too large to include in the title.',
             content: 'This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. ',
             createById: 'stevehu',
             createDate: '3/29/2015'
@@ -18,7 +18,7 @@ angular.module('lightApp').controller('BlogPostCtrl', ['$scope', '$http', '$loca
         $scope.post = {
             blogPostId: '2',
             title: 'And here... you\'ll find the second post!',
-            subtitle: 'The second post is the second post... after the first, and behind the third.',
+            summary: 'The second post is the second post... after the first, and behind the third.',
             content: 'This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. ',
             createById: 'NicholasAzar',
             createDate: '3/29/2015'
@@ -89,7 +89,7 @@ angular.module('lightApp').controller('BlogPostCtrl', ['$scope', '$http', '$loca
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="post-heading">
                 <h1>{{post.title}}</h1>
-                <h2 class="subheading">{{post.subtitle}}</h2>
+                <h2 class="subheading">{{post.summary}}</h2>
                 <span class="meta">Posted by <user id="{{post.createById}}"></user> on {{post.createDate}}</span>
             </div>
         </div>

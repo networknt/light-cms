@@ -8,42 +8,42 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$http', '$location
         {
             blogPostId: 1,
             title: 'This is the title of the first post',
-            subtitle: 'I am considering adding a post subtitle, for additional info too large to include in the title.',
+            summary: 'I am considering adding a post subtitle, for additional info too large to include in the title.',
             content: 'This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. ',
             createById: 'stevehu',
             createDate: '3/29/2015'
         }, {
             blogPostId: '2',
             title: 'And here... you\'ll find the second post!',
-            subtitle: 'The second post is the second post... after the first, and behind the third.',
+            summary: 'The second post is the second post... after the first, and behind the third.',
             content: 'This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. ',
             createById: 'NicholasAzar',
             createDate: '3/29/2015'
         }, {
             blogPostId: '2',
             title: 'And here... you\'ll find the third post!',
-            subtitle: 'The third post is the third post... after the second, and behind the fourth.',
+            summary: 'The third post is the third post... after the second, and behind the fourth.',
             content: 'This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. ',
             createById: 'NicholasAzar',
             createDate: '3/29/2015'
         }, {
             blogPostId: '2',
             title: 'And here... you\'ll find the fourth post!',
-            subtitle: 'The fourth post is the fourth post... after the third, and behind the fifth.',
+            summary: 'The fourth post is the fourth post... after the third, and behind the fifth.',
             content: 'This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. ',
             createById: 'NicholasAzar',
             createDate: '3/29/2015'
         }, {
             blogPostId: '2',
             title: 'And here... you\'ll find the fifth post!',
-            subtitle: 'The fifth post is the fifth post... after the fourth, and behind the sixth.',
+            summary: 'The fifth post is the fifth post... after the fourth, and behind the sixth.',
             content: 'This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. ',
             createById: 'NicholasAzar',
             createDate: '3/29/2015'
         }, {
             blogPostId: '2',
             title: 'And here... you\'ll find the sixth post!',
-            subtitle: 'The sixth post is the sixth post... after the fifth, and behind the none.',
+            summary: 'The sixth post is the sixth post... after the fifth, and behind the none.',
             content: 'This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. ',
             createById: 'NicholasAzar',
             createDate: '3/29/2015'
@@ -131,7 +131,7 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$http', '$location
                     <div class="post-preview" ng-repeat="post in paged.blogPosts | filter:pattern">
                         <a href ng-click="goToBlogPost({{post.blogPostId}})">
                             <h2 class="post-title">{{post.title}}</h2>
-                            <h3 class="post-subtitle">{{post.subtitle}}</h3>
+                            <h3 class="post-subtitle">{{post.summary}}</h3>
                         </a>
                         <p class="post-meta">Posted by <user id="{{post.createById}}"></user> on {{post.createDate}}</p>
                         <hr/>
