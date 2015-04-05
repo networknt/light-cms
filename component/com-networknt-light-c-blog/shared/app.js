@@ -43,7 +43,7 @@ var lightApp = angular.module('lightApp', [
 
     $routeProvider
       .when('/', {
-        templateUrl: 'components/blog/com-networknt-light-v-blog-home.html'
+        templateUrl: 'components/blog/com-networknt-light-v-blog.html'
       })
       .when('/signin', {
         templateUrl: 'shared/form/form.html',

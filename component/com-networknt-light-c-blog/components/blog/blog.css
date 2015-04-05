@@ -72,6 +72,27 @@ h2.blog-header {
   cursor: not-allowed;
 }
 
+.small-pager {
+  margin: 20px 0 0;
+}
+.small-pager li > a,
+.small-pager li > span {
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  text-transform: uppercase;
+  font-size: 10px;
+  font-weight: 800;
+  letter-spacing: 1px;
+  padding: 5px 15px;
+  background-color: white;
+  border-radius: 0;
+}
+.small-pager li > a:hover,
+.small-pager li > a:focus {
+  color: white;
+  background-color: #31708f;
+  border: 1px solid #31708f;
+}
+
 .post-heading {
   text-align: center;
 }

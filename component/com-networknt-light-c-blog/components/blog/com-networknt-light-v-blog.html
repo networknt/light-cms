@@ -1,0 +1,71 @@
+<script type='text/javascript'>
+'use strict';
+angular.module('lightApp').controller('BlogCtrl', ['$scope', '$http', '$location', '$filter', 'toaster', 'modelDataService', function ($scope, $http, $location, $filter, toaster, modelDataService) {
+
+    $scope.blogs = [];
+    $scope.currentPage = 1;
+    $scope.itemsPerPage = 3;
+    $scope.noOfPages = $scope.blogs.length / $scope.itemsPerPage;
+    $scope.goToBlog = function(blogId) {
+        $location.path("/page/com-networknt-light-v-blog-home/" + blogId);
+    };
+
+    $scope.$watch('currentPage', function() {
+        var begin = ($scope.currentPage - 1) * $scope.itemsPerPage;
+        var end = begin + $scope.itemsPerPage;
+
+        $scope.paged = {
+            blogs: $scope.blogs.slice(begin, end)
+        }
+    });
+
+    $scope.getBlogTree = {
+        category : 'blog',
+        name : 'getBlogTree',
+        readOnly: true,
+        data: {
+            host: 'example'
+        }
+    };
+
+    $scope.fetchResult = function () {
+        $http.post('api/rs', $scope.getBlogTree)
+            .success(function (result, status, headers, config) {
+                $scope.blogs = result;
+                console.log("blogs returned:", result);
+                $scope.paged = {
+                    blogs: $scope.blogs.slice(0,  $scope.itemsPerPage)
+                };
+            })
+    };
+    $scope.fetchResult();
+}]);
+</script>
+<div class="container" data-ng-controller="BlogCtrl">
+    <div class="row">
+        <div class="col-md-4 col-lg-4 component-header-left">
+            <h1><a href="/">Blog Component</a></h1>
+        </div>
+        <div class="col-md-3 col-lg-3 component-header-right">
+            <span>
+                <span class="glyphicon glyphicon-search forum-header-search-icon"></span><input ng-model="pattern" placeholder="Search"/>
+            </span>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-xs-3 col-sm-3 col-md-3" data-ng-repeat="blog in paged.blogs | filter:pattern">
+            <div class="panel panel-default" style="border:2px;">
+                <div class="panel-heading">
+                    {{blog.blogId}}
+                </div>
+                <div class="panel-body" style="height: 125px;">
+                    {{blog.description}}
+                    <br />
+                    <a class="btn btn-sm btn-success" href="#" style="position:absolute; bottom:25px;">Open</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <pagination ng-model="currentPage" total-items="(blogPosts | filter:pattern).length" items-per-page="itemsPerPage" style="float:left;"></pagination>
+</div>
