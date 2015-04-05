@@ -134,3 +134,29 @@ h2.blog-header {
     font-size: 30px;
   }
 }
+
+.blogCard>.content>.header {
+  font-size: 30px;
+}
+
+.blogPanel {
+  border-style: solid;
+  border-width: 2px;
+  border-color: black;
+}
+
+.blogPanel > .panel-heading {
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 20px;
+  font-weight: 30;
+  border-style: ridge;
+  border-width: 2px;
+  border-bottom: none;
+}
+.blogPanel > .panel-body {
+  font-size: 15px;
+  font-weight: 15;
+  color: #808080;
+  border-style: ridge;
+  border-width: 2px;
+}

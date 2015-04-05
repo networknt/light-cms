@@ -1,13 +1,13 @@
+<link rel="stylesheet" href="bower_components/semantic-ui-grid/grid.min.css" />
+<link rel="stylesheet" href="bower_components/semantic-ui-card/card.min.css" />
 <script type='text/javascript'>
 'use strict';
 angular.module('lightApp').controller('BlogCtrl', ['$scope', '$http', '$location', '$filter', 'toaster', 'modelDataService', function ($scope, $http, $location, $filter, toaster, modelDataService) {
-
-    $scope.blogPosts = [];
     $scope.currentPage = 1;
     $scope.itemsPerPage = 3;
-    $scope.noOfPages = $scope.blogPosts.length / $scope.itemsPerPage;
-    $scope.goToBlogPost = function(blogPostId) {
-        $location.path("/page/com-networknt-light-v-blog-post-view/" + blogPostId);
+    $scope.blogs = [];
+    $scope.goToBlog = function(blogId) {
+        $location.path("/page/com-networknt-light-v-blog-home/" + blogId);
     };
 
     $scope.$watch('currentPage', function() {
@@ -15,26 +15,26 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$http', '$location
         var end = begin + $scope.itemsPerPage;
 
         $scope.paged = {
-            blogPosts: $scope.blogPosts.slice(begin, end)
+            blogs: $scope.blogs.slice(begin, end)
         }
     });
 
-    $scope.getBlogPosts = {
-        category : 'blog',
-        name : 'getBlog',
+    $scope.getBlogTree = {
+        category : "blog",
+        name : "getBlogTree",
         readOnly: true,
         data: {
-            host: 'example'
+            host: "example"
         }
     };
 
     $scope.fetchResult = function () {
-        $http.post('api/rs', $scope.getBlogPosts)
+        $http.post('api/rs', $scope.getBlogTree)
             .success(function (result, status, headers, config) {
-                $scope.blogPosts = result;
-                console.log("blogPosts returned:", result);
+                console.log("blogs returned:", result);
+                $scope.blogs = result;
                 $scope.paged = {
-                    blogPosts: $scope.blogPosts.slice(0,  $scope.itemsPerPage)
+                    blogs: result.slice(0,  $scope.itemsPerPage)
                 };
             })
     };
@@ -53,28 +53,36 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$http', '$location
         </div>
     </div>
     <br />
-    <div class="row">
-        <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-body" style="padding-left:0px;">
-                    <div class="post-preview" ng-repeat="post in paged.blogPosts | filter:pattern">
-                        <a href ng-click="goToBlogPost(&quot;{{post.blogId}}&quot;)">
-                            <h2 class="post-title">{{post.blogId}}</h2>
-                            <h3 class="post-subtitle">{{post.description}}</h3>
-                        </a>
-                        <p class="post-meta">Posted by <user id="{{post.in_Create.createById}}"></user> on {{post.createDate}}</p>
-                        <hr/>
+    <div class="ui stackable page grid" style="margin-left: 0px; padding-left: 0px; border-left: 0px;">
+        <div class="five wide column" data-ng-repeat="blog in paged.blogs | filter:pattern">
+            <div class="ui card">
+                <div class="content">
+                    <a class="header" style="font-size: 20px;" href="/page/com-networknt-light-v-blog-view/{{blog.blogId}}">{{blog.blogId}}</a>
+                    <div class="meta" style="font-size: 15px;">
+                        <span class="date">{{blog.createDate| calendar}}</span>
                     </div>
-                    <!--
-                    <ul class="pager" ng-class="{'disabled': blogPosts.length <= itemsPerPage}">
-                        <li class="next">
-                            <a href="#">Older Posts <i class="fa fa-arrow-right"></i></a>
-                        </li>
-                    </ul>
-                    -->
-                    <pagination ng-model="currentPage" total-items="(blogPosts | filter:pattern).length" items-per-page="itemsPerPage" style="float:left;"></pagination>
+                    <div class="description" style="font-size: 18px;">
+                        {{blog.description}}
+                    </div>
+                </div>
+                <div class="extra content" style="font-size: 15px;">
+                    <a>
+                        <i class="user icon"></i>
+                        x Posts
+                    </a>
                 </div>
             </div>
+            <!--
+            <div class="blogPanel panel panel-default">
+                <div class="panel-heading">
+                    {{blog.blogId}}
+                </div>
+                <div class="panel-body" style="min-height:100px; max-height: 101px; border-style: ridge; border-width: 2px;">
+                    {{blog.description}}
+                </div>
+            </div>
+            -->
         </div>
     </div>
+    <pagination ng-model="currentPage" total-items="(blogPosts | filter:pattern).length" items-per-page="itemsPerPage" style="float:left;"></pagination>
 </div>
