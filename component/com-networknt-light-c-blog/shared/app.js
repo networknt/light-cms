@@ -59,7 +59,7 @@ var lightApp = angular.module('lightApp', [
       .when ('/page/com-networknt-light-v-blog-view/:blogId', {
         templateUrl: 'components/blog/com-networknt-light-v-blog-view.html'
       })
-      .when ('/page/com-networknt-light-v-blog-post-view/:blogPostId', {
+      .when ('/page/com-networknt-light-v-blog-post-view/:postId', {
         templateUrl: 'components/blog/com-networknt-light-v-blog-post-view.html'
       })
       .when('/page/com-networknt-light-v-forum-home', {

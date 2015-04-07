@@ -1,23 +1,24 @@
 <script type='text/javascript'>
 'use strict';
 angular.module('lightApp').controller('BlogPostCtrl', ['$scope', '$http', '$location', '$filter', 'toaster', 'modelDataService', '$routeParams', function ($scope, $http, $location, $filter, toaster, modelDataService, $routeParams) {
-    $scope.blogPostId = $routeParams.blogPostId;
+    $scope.postId = $routeParams.postId;
+
     $scope.post = {};
 
     $scope.getBlogPost = {
-        category : 'blog',
-        name : 'getBlogPost',
+        category : 'post',
+        name : 'getPost',
         readOnly: true,
         data: {
             host: 'example',
-            blogId: $scope.blogPostId
+            postId: $scope.postId
         }
     };
 
     $scope.fetchResult = function () {
         $http.post('api/rs', $scope.getBlogPost)
             .success(function (result, status, headers, config) {
-                $scope.post = result;
+                $scope.post = result.posts[0];
                 console.log("Post returned:", result);
             })
             .error(function (result, status, headers, config) {
@@ -25,6 +26,10 @@ angular.module('lightApp').controller('BlogPostCtrl', ['$scope', '$http', '$loca
             })
     };
     $scope.fetchResult();
+
+    $scope.goBack = function() {
+        $location.path("/page/com-networknt-light-v-blog-view/" + $scope.post.parentId);
+    };
 }]);
 </script>
 <div class="container" data-ng-controller="BlogPostCtrl">
@@ -33,7 +38,7 @@ angular.module('lightApp').controller('BlogPostCtrl', ['$scope', '$http', '$loca
             <div class="post-heading">
                 <h1>{{post.title}}</h1>
                 <h2 class="subheading">{{post.summary}}</h2>
-                <span class="meta">Posted by <user id="{{post.createById}}"></user> on {{post.createDate}}</span>
+                <span class="meta">Posted by <user id="{{post.in_Create[0].userId}}"></user> on {{post.createDate}}</span>
             </div>
         </div>
     </div>
@@ -47,7 +52,7 @@ angular.module('lightApp').controller('BlogPostCtrl', ['$scope', '$http', '$loca
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
                     <ul class="pager" style="float:left;">
                         <li class="next">
-                            <a href="/"><i class="fa fa-arrow-left"></i> Go Back</a>
+                            <a ng-click="goBack()"><i class="fa fa-arrow-left"></i> Go Back</a>
                         </li>
                     </ul>
                 </div>

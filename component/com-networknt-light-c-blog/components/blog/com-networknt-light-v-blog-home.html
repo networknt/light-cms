@@ -61,7 +61,7 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$http', '$location
                     <div class="meta" style="font-size: 15px;">
                         <span class="date">{{blog.createDate| calendar}}</span>
                     </div>
-                    <div class="description" style="font-size: 18px;">
+                    <div class="description" style="font-size: 18px;word-wrap: break-word;">
                         {{blog.description}}
                     </div>
                 </div>
