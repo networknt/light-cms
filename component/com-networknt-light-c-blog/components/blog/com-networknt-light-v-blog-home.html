@@ -4,8 +4,9 @@
 'use strict';
 angular.module('lightApp').controller('BlogCtrl', ['$scope', '$http', '$location', '$filter', 'toaster', 'modelDataService', function ($scope, $http, $location, $filter, toaster, modelDataService) {
     $scope.currentPage = 1;
-    $scope.itemsPerPage = 3;
+    $scope.itemsPerPage = 9;
     $scope.blogs = [];
+
     $scope.goToBlog = function(blogId) {
         $location.path("/page/com-networknt-light-v-blog-home/" + blogId);
     };
@@ -84,5 +85,5 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$http', '$location
             -->
         </div>
     </div>
-    <pagination ng-model="currentPage" total-items="(blogPosts | filter:pattern).length" items-per-page="itemsPerPage" style="float:left;"></pagination>
+    <pagination ng-model="currentPage" total-items="(blogs | filter:pattern).length" items-per-page="itemsPerPage" style="float:left;"></pagination>
 </div>
