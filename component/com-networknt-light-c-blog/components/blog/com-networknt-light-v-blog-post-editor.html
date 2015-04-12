@@ -6,14 +6,6 @@ angular.module('lightApp').controller('BlogPostEditorCtrl', ['$scope', '$http', 
     $scope.postTitle = "";
     $scope.postRid = "";
 
-    $("#post-content").markdown({
-        autofocus:true,
-        savable:false,
-        onChange: function(e){
-            $scope.postContent = e.getContent();
-        }
-    });
-
     $scope.updateBlogPost = {
         category : 'blog',
         name : 'updPost',
@@ -119,18 +111,12 @@ angular.module('lightApp').controller('BlogPostEditorCtrl', ['$scope', '$http', 
                         <textarea ng-model="postContent" markdownedit></textarea>
                     </div>
                 </div>
-
                 <div class="row clearfix">
                     <div class="col-md-12 column text-center">
                         <h2>Preview</h2>
                         <markdown bind-from="postContent"></markdown>
                     </div>
                 </div>
-
-                <!--
-
-                <textarea placeholder="Markdown Content" name="content" id="post-content" data-provide="markdown-editable" rows="15" style="width:100%;"></textarea><br/>
-                -->
                 <hr/>
                 <button type="submit" class="btn btn-success">Submit</button>
             </form>

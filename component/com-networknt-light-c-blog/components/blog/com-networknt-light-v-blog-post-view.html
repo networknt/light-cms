@@ -2,19 +2,7 @@
 'use strict';
 angular.module('lightApp').controller('BlogPostCtrl', ['$scope', '$http', '$location', '$filter', 'toaster', 'modelDataService', '$routeParams', 'authService', function ($scope, $http, $location, $filter, toaster, modelDataService, $routeParams, authService) {
     $scope.postId = $routeParams.postId;
-    $scope.markedContent = "";
     $scope.post = {};
-
-    marked.setOptions({
-        renderer: new marked.Renderer(),
-        gfm: true,
-        tables: true,
-        breaks: false,
-        pedantic: false,
-        sanitize: false, // if false -> allow plain old HTML.
-        smartLists: true,
-        smartypants: false
-    });
 
     $scope.getBlogPost = {
         category : 'post',
@@ -119,7 +107,9 @@ angular.module('lightApp').controller('BlogPostCtrl', ['$scope', '$http', '$loca
     <article>
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" ng-bind-html="markedContent" ></div>
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
+                        <markdown bind-from="post.content"></markdown>
+                </div>
             </div>
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
