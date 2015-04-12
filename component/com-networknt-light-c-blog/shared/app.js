@@ -62,14 +62,20 @@ var lightApp = angular.module('lightApp', [
       .when ('/page/com-networknt-light-v-blog-post-view/:postId', {
         templateUrl: 'components/blog/com-networknt-light-v-blog-post-view.html'
       })
+      .when('/page/com-networknt-light-v-blog-post-editor/:blogId', {
+        templateUrl: 'components/blog/com-networknt-light-v-blog-post-editor.html'
+      })
+      .when('/page/com-networknt-light-v-blog-post-editor/:blogId/:postId', {
+        templateUrl: 'components/blog/com-networknt-light-v-blog-post-editor.html'
+      })
       .when('/page/com-networknt-light-v-forum-home', {
-          templateUrl: 'components/forum/com-networknt-light-v-forum-home.html'
+        templateUrl: 'components/forum/com-networknt-light-v-forum-home.html'
       })
       .when('/page/com-networknt-light-v-forum-post', {
-          templateUrl: 'components/forum/com-networknt-light-v-forum-post.html'
+        templateUrl: 'components/forum/com-networknt-light-v-forum-post.html'
       })
       .when('/page/com-networknt-light-v-forum-post-view', {
-          templateUrl: 'components/forum/com-networknt-light-v-forum-post-view.html'
+        templateUrl: 'components/forum/com-networknt-light-v-forum-post-view.html'
       })
       .when('/page/com-networknt-light-v-user-logout', {
           templateUrl: 'components/user-profile/com-networknt-light-v-user-logout.html'

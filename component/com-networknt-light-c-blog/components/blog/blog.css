@@ -6,19 +6,24 @@ div.panel.panel-default {
 h2.blog-header {
   font-weight: 800;
 }
+
+.post-preview {
+  display:flex; align-items:center;
+}
+
 /* Set link color to black.*/
-.post-preview > a {
+.post-preview > div > a {
   color: #404040;
 }
 
 /* Set link hover color to boostrap text-primary*/
-.post-preview > a:hover,
-.post-preview > a:focus {
+.post-preview > div > a:hover,
+.post-preview > div > a:focus {
   text-decoration: none;
   color: #31708f;
 }
 
-.post-preview > a > .post-title {
+.post-preview > div > a > .post-title {
   font-size: 30px;
   font-weight:600;
   margin-top: 30px;
@@ -26,7 +31,7 @@ h2.blog-header {
   padding-left:0px;
   padding-right:10px;
 }
-.post-preview > a > .post-subtitle {
+.post-preview > div > a > .post-subtitle {
   font-size: 20px;
   font-weight: 300;
   margin: 0;
@@ -34,7 +39,7 @@ h2.blog-header {
   padding-left:0px;
   padding-right:10px;
 }
-.post-preview > .post-meta {
+.post-preview > div > .post-meta {
   color: #808080;
   font-size: 15px;
   font-style: italic;

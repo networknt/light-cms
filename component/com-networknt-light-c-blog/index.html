@@ -10,16 +10,20 @@
     <link rel="stylesheet" href="bower_components/angular-motion/dist/angular-motion.css" />
     <link rel="stylesheet" href="bower_components/angular-loading-bar/build/loading-bar.css" />
     <link rel="stylesheet" href="shared/main/main.css">
-    <link rel="stylesheet" href="shared/main/app.css">
+    <!--<link rel="stylesheet" href="shared/main/app.css">-->
     <link rel="stylesheet" href="shared/toaster/toaster.css">
     <link rel="stylesheet" href="components/comment/comment.css">
     <link rel="stylesheet" href="components/forum/forum.css">
     <link rel="stylesheet" href="components/menu/menu.css">
     <link rel="stylesheet" href="components/blog/blog.css">
-    <link rel="stylesheet" href="bower_components/angular-ui-tree/dist/angular-ui-tree.min.css" />
-    <link href="bower_components/angular-ui-select/dist/select.css" rel="stylesheet" />
+    <!--<link rel="stylesheet" href="bower_components/angular-ui-tree/dist/angular-ui-tree.min.css" />-->
+    <!--<link href="bower_components/angular-ui-select/dist/select.css" rel="stylesheet" />-->
     <link href="shared/font-awesome/css/font-awesome.min.css" rel="stylesheet" />
     <link href="bower_components/themify-icons/themify-icons.css" rel="stylesheet"/>
+    <link href="bower_components/semantic-ui-card/card.min.css" rel="stylesheet" />
+    <link href="bower_components/bootstrap-markdown/css/bootstrap-markdown.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" media="screen" href="shared/markdown-editpreview-ng-js/lib/codemwnci/bootstrap-markdown.min.css">
+
   </head>
   <body ng-app="lightApp">
     <!--[if lt IE 7]>
@@ -133,5 +137,12 @@
     <script src="components/menu/menuDirectives.js"></script>
 
     <!-- Blog -->
+
+    <script src="shared/markdown-editpreview-ng-js/lib/codemwnci/Markdown.Converter.js"></script>
+    <script src="shared/markdown-editpreview-ng-js/lib/codemwnci/Markdown.Sanitizer.js"></script>
+    <script src="shared/markdown-editpreview-ng-js/lib/codemwnci/bootstrap-markdown.js"></script>
+    <script src="shared/markdown-editpreview-ng-js/lib/codemwnci/markdown-editpreview-ng.js"></script>
+    <script src="bower_components/marked/lib/marked.js"></script>
+
 </body>
 </html>

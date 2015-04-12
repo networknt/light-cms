@@ -1,0 +1,139 @@
+<script type='text/javascript'>
+angular.module('lightApp').controller('BlogPostEditorCtrl', ['$scope', '$http', '$location', '$filter', 'toaster', 'modelDataService', '$routeParams', function ($scope, $http, $location, $filter, toaster, modelDataService, $routeParams) {
+    $scope.blogId = $routeParams.blogId;
+    $scope.postId = $routeParams.postId;
+    $scope.postContent = "";
+    $scope.postTitle = "";
+    $scope.postRid = "";
+
+    $("#post-content").markdown({
+        autofocus:true,
+        savable:false,
+        onChange: function(e){
+            $scope.postContent = e.getContent();
+        }
+    });
+
+    $scope.updateBlogPost = {
+        category : 'blog',
+        name : 'updPost',
+        readOnly: false,
+        data: {
+            host: 'example',
+            '@rid': $scope.blogId
+        }
+    };
+
+    $scope.submitPost = function () {
+        if ($scope.postId == null && $scope.blogId != null) {
+            $scope.addBlogPost = {
+                category : 'blog',
+                name : 'addPost',
+                readOnly: false,
+                data: {
+                    host: 'example',
+                    parentId: $scope.blogId,
+                    title: $scope.postTitle,
+                    content: $scope.postContent,
+                    tags: ''
+                }
+            };
+            $http.post('api/rs', $scope.addBlogPost)
+                .success(function (result, status, headers, config) {
+                    console.log("Result:", result);
+                    // TODO: get new postId back from server and route directly to created post.
+                    $location.path("/page/com-networknt-light-v-blog-view/" + $scope.blogId);
+                })
+                .error(function (result, status, headers, config) {
+                    console.log("getBlogPost error:", result);
+                })
+        } else if ($scope.postId != null && $scope.blogId != null) {
+            console.log("Submitting as edit");
+            $scope.updBlogPost = {
+                category : 'blog',
+                name : 'updPost',
+                readOnly: false,
+                data: {
+                    host: 'example',
+                    "@rid": $scope.postRid,
+                    title: $scope.postTitle,
+                    content: $scope.postContent,
+                    tags: ''
+                }
+            };
+            $http.post('api/rs', $scope.updBlogPost)
+                .success(function (result, status, headers, config) {
+                    console.log("Result:", result);
+                    $location.path("/page/com-networknt-light-v-blog-post-view/" + $scope.postId);
+                })
+                .error(function (result, status, headers, config) {
+                    console.log("getBlogPost error:", result);
+                })
+        }
+
+    };
+    $scope.getBlogPost = {
+        category : 'post',
+        name : 'getPost',
+        readOnly: true,
+        data: {
+            host: 'example',
+            postId: $scope.postId
+        }
+    };
+
+    $scope.fetchBlogPost = function () {
+        $http.post('api/rs', $scope.getBlogPost)
+            .success(function (result, status, headers, config) {
+                $scope.postTitle = result.posts[0].title;
+                $scope.postContent = result.posts[0].content;
+                $scope.postRid = result.posts[0]["@rid"];
+                console.log("Post returned:", result);
+            });
+    };
+    if ($scope.postId != null) {
+        $scope.fetchBlogPost();
+    }
+}]);
+</script>
+<div class="container" data-ng-controller="BlogPostEditorCtrl">
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="jumbotron">
+                <h1>
+                    Network NT Official Blogs
+                </h1>
+                <p>
+                    Learn more about the Light Framework.
+                </p>
+            </div>
+        </div>
+    </div>
+    <div class="row clearfix">
+        <div class="col-md-12 column text-center">
+            <h2>Post Editor</h2>
+            <form ng-submit="submitPost()">
+                <input name="title" type="text" placeholder="Title" ng-model="postTitle" style="margin-bottom:10px; width:50%; height:40px;"/><br />
+                <div class="row">
+                    <div class="col-md-12 column text-center">
+                        <textarea ng-model="postContent" markdownedit></textarea>
+                    </div>
+                </div>
+
+                <div class="row clearfix">
+                    <div class="col-md-12 column text-center">
+                        <h2>Preview</h2>
+                        <markdown bind-from="postContent"></markdown>
+                    </div>
+                </div>
+
+                <!--
+
+                <textarea placeholder="Markdown Content" name="content" id="post-content" data-provide="markdown-editable" rows="15" style="width:100%;"></textarea><br/>
+                -->
+                <hr/>
+                <button type="submit" class="btn btn-success">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>

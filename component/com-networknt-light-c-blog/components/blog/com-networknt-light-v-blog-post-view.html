@@ -1,9 +1,20 @@
 <script type='text/javascript'>
 'use strict';
-angular.module('lightApp').controller('BlogPostCtrl', ['$scope', '$http', '$location', '$filter', 'toaster', 'modelDataService', '$routeParams', function ($scope, $http, $location, $filter, toaster, modelDataService, $routeParams) {
+angular.module('lightApp').controller('BlogPostCtrl', ['$scope', '$http', '$location', '$filter', 'toaster', 'modelDataService', '$routeParams', 'authService', function ($scope, $http, $location, $filter, toaster, modelDataService, $routeParams, authService) {
     $scope.postId = $routeParams.postId;
-
+    $scope.markedContent = "";
     $scope.post = {};
+
+    marked.setOptions({
+        renderer: new marked.Renderer(),
+        gfm: true,
+        tables: true,
+        breaks: false,
+        pedantic: false,
+        sanitize: false, // if false -> allow plain old HTML.
+        smartLists: true,
+        smartypants: false
+    });
 
     $scope.getBlogPost = {
         category : 'post',
@@ -15,15 +26,12 @@ angular.module('lightApp').controller('BlogPostCtrl', ['$scope', '$http', '$loca
         }
     };
 
-
-
-
-
     $scope.fetchResult = function () {
         $http.post('api/rs', $scope.getBlogPost)
             .success(function (result, status, headers, config) {
                 $scope.post = result.posts[0];
-                console.log("Post returned:", result);
+                $scope.markedContent = marked($scope.post.content);
+                console.log("Post returned:", $scope.post);
             })
             .error(function (result, status, headers, config) {
                 console.log("getBlogPost error:", result);
@@ -80,6 +88,21 @@ angular.module('lightApp').controller('BlogPostCtrl', ['$scope', '$http', '$loca
             })
     };
 
+    $scope.userCanEdit = function () {
+        for (var i = 0; i < authService.authentication.currentUser.roles.length; i++) {
+            // TODO: add test for current user matching blog creator.
+            if (authService.authentication.currentUser.roles[i] == "owner" || authService.authentication.currentUser.roles[i] == "blogAdmin") {
+                return true;
+            }
+        }
+        return false; //|| authService.authentication.currentUser.userId == $scope.post.in_Create[0].userId;
+    };
+
+    $scope.editPost = function () {
+        $location.path("/page/com-networknt-light-v-blog-post-editor/" + $scope.post.parentId + "/" + $scope.post.postId);
+    };
+
+
 }]);
 </script>
 <div class="container" data-ng-controller="BlogPostCtrl">
@@ -88,7 +111,7 @@ angular.module('lightApp').controller('BlogPostCtrl', ['$scope', '$http', '$loca
             <div class="post-heading">
                 <h1>{{post.title}}</h1>
                 <h2 class="subheading">{{post.summary}}</h2>
-                <span class="meta">Posted by <user id="{{post.in_Create[0].userId}}"></user> on {{post.createDate}}</span>
+                <span class="meta">Posted by <user id="{{post.in_Create[0].userId}}"></user> {{post.createDate | calendar}}</span>
             </div>
         </div>
     </div>
@@ -96,7 +119,7 @@ angular.module('lightApp').controller('BlogPostCtrl', ['$scope', '$http', '$loca
     <article>
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">{{post.content}}</div>
+                <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1" ng-bind-html="markedContent" ></div>
             </div>
             <div class="row">
                 <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
@@ -106,12 +129,14 @@ angular.module('lightApp').controller('BlogPostCtrl', ['$scope', '$http', '$loca
                         </li>
                     </ul>
                     <div class="vote" style="right:8px; bottom:0px; position:absolute;">
-                        What'd you think?
                         <button class="btn btn-success" ng-click="upvote()" ng-disabled="!canUserUpvote" style="margin-left: 5px;">
                             <i class="fa fa-thumbs-o-up fa-lg"></i>
                         </button>
                         <button class="btn btn-danger" ng-click="downvote()" ng-disabled="!canUserDownVote">
                             <i class="fa fa-thumbs-o-down fa-lg"></i>
+                        </button>
+                        <button class="btn btn-info" ng-click="editPost()" ng-if="userCanEdit">
+                            <i class="fa fa-pencil fa-lg"></i>
                         </button>
                     </div>
                 </div>

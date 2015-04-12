@@ -36,7 +36,6 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$http', '$location
         $http.post('api/rs', $scope.getBlogPosts)
             .success(function (result, status, headers, config) {
                 $scope.blogPosts = result;
-                console.log("blogPosts returned:", result);
                 $scope.paged = {
                     blogPosts: $scope.blogPosts.slice(0,  $scope.itemsPerPage)
                 };
@@ -55,49 +54,89 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$http', '$location
     }
 
     $scope.post = function () {
-        var modelData = modelDataService.getModelData();
         modelDataService.setModelData(null); // reset the modelDataService variable.
-        $location.path("/form/com.networknt.light.blog.post.add/" + $scope.blogId);
+        //$location.path("/form/com.networknt.light.blog.post.add/" + $scope.blogId);
+        $location.path("/page/com-networknt-light-v-blog-post-editor/" + $scope.blogId);
     };
+
+    $scope.goToBlogHome = function () {
+        var modelData = modelDataService.setModelData(null);
+        $location.path("/page/com-networknt-light-v-blog-home");
+    }
 }]);
 </script>
 <div class="container" data-ng-controller="BlogCtrl">
-    <div class="row">
-        <div class="col-md-4 col-lg-4 component-header-left">
-            <h1><a href="/">Blog Component</a></h1>
-        </div>
-        <div class="col-md-3 col-lg-3 component-header-right">
-            <span>
-                <span class="glyphicon glyphicon-search forum-header-search-icon"></span><input ng-model="pattern" placeholder="Search"/>
-            </span>
+    <div class="row clearfix">
+        <div class="col-md-12 column">
+            <div class="jumbotron">
+                <h1>
+                    Network NT Official Blogs
+                </h1>
+                <p>
+                    Learn more about the Light Framework.
+                </p>
+            </div>
         </div>
     </div>
-    <br />
-    <div class="row">
+    <div class="row clearfix">
+        <div class="col-xs-6 col-sm-6 col-md-6 column text-left">
+            <ol class="breadcrumb" style="background-color:white; padding-left:0px;">
+                <li><a href ng-click="goToBlogHome()" style="text-decoration:none;">Blogs</a></li>
+                <li class="active">{{blogId}}</li>
+            </ol>
+        </div>
+        <div class="col-xs-6 col-sm-6 col-md-6 column text-right">
+            <input ng-model="pattern" placeholder=" &#xE003; Search Posts" style="font-family: Helvetica, Glyphicons Halflings;"/>
+        </div>
+    </div>
+    <div class="row clearfix">
         <div class="col-xs-12 col-sm-12 col-md-12">
-            <div class="panel panel-default">
-                <div class="panel-body" style="padding-left:0px;">
-                    <div class="post-preview" ng-repeat="post in paged.blogPosts | filter:pattern">
-                        <a href ng-click="goToBlogPost(&quot;{{post.postId}}&quot;)">
-                            <h2 class="post-title">{{post.title}}</h2>
-                            <h3 class="post-subtitle">{{post.content}}</h3>
-                        </a>
-                        <p class="post-meta">Posted by <user id="{{post.in_Create[0].userId}}"></user> on {{post.createDate | calendar}}</p>
-                        <hr/>
+            <div class="panel panel-default" style="box-shadow:0 0 0;">
+                <div class="panel-body" style="padding:0px;">
+                    <div class="row clearfix post-preview" ng-repeat="post in paged.blogPosts | filter:pattern">
+                        <div class="col-md-8">
+                            <a href ng-click="goToBlogPost(&quot;{{post.postId}}&quot;)">
+                                <h2 class="post-title">{{post.title}}</h2>
+                            </a>
+                            <p class="post-meta">Posted by <user id="{{post.in_Create[0].userId}}"></user> {{post.createDate | calendar}}</p>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="text-right">
+                                <div class="btn-group">
+                                    <button class="btn btn-success" disabled="disabled" style="opacity:1; margin:0px;">
+                                        <span class="badge">{{post.in_UpVote.length || 0}}</span>
+                                    </button>
+                                    <button class="btn btn-danger" disabled="disabled" style="opacity:1; margin:0px;">
+                                        <span class="badge">{{post.in_DownVote.length || 0}}</span>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <hr />
                     </div>
-                    <!--
-                    <ul class="pager" ng-class="{'disabled': blogPosts.length <= itemsPerPage}">
-                        <li class="next">
-                            <a href="#">Older Posts <i class="fa fa-arrow-right"></i></a>
-                        </li>
-                    </ul>
-                    -->
-                    <pagination ng-model="currentPage" total-items="(blogPosts | filter:pattern).length" items-per-page="itemsPerPage" style="float:left;"></pagination>
+
+                    <div class="post-preview" ng-if="blogPosts.length == 0">
+                        <div>
+                            <h2 class="post-title">Shoot! Looks like we don't have any posts in this blog...</h2>
+                            <h3 class="post-subtitle">Can someone help us make days longer?</h3>
+                        </div>
+                    </div>
+                </div>
+                <div class="row clearfix" style="display:flex; align-items:center;">
+                    <div class="col-md-4"></div>
+                    <div class="col-md-4">
+                        <div class="text-center">
+                            <pagination ng-model="currentPage" total-items="(blogPosts | filter:pattern).length" items-per-page="itemsPerPage"></pagination>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="text-center" ng-if="canUserAddPost" >
+                            <button class="btn btn-info pull-right" ng-click="post()"><span class="glyphicon glyphicon-plus" style="padding-right:5px"></span>Post</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-    <div class="row" ng-if="canUserAddPost">
-        <button class="btn btn-info pull-right" ng-click="post()"><span class="glyphicon glyphicon-plus" style="padding-right:5px"></span>Post</button>
-    </div>
+
 </div>
