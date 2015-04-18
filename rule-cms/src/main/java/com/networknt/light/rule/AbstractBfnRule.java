@@ -16,6 +16,7 @@
 
 package com.networknt.light.rule;
 
+import com.googlecode.concurrentlinkedhashmap.ConcurrentLinkedHashMap;
 import com.networknt.light.server.DbService;
 import com.networknt.light.util.HashUtil;
 import com.networknt.light.util.ServiceLocator;
@@ -34,6 +35,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.*;
+import java.util.concurrent.ConcurrentMap;
 
 /**
  * Created by steve on 28/12/14.
@@ -129,6 +131,12 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
             inputMap.put("result", error);
             return false;
         } else {
+            // update the bfn tree as one of bfn has changed.
+            Map<String, Object> bfnMap = ServiceLocator.getInstance().getMemoryImage("bfnMap");
+            ConcurrentMap<Object, Object> cache = (ConcurrentMap<Object, Object>)bfnMap.get("treeCache");
+            if(cache != null) {
+                cache.remove(host + bfnType);
+            }
             return true;
         }
     }
@@ -218,6 +226,12 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
             inputMap.put("result", error);
             return false;
         } else {
+            // update the bfn tree as one of bfn has changed.
+            Map<String, Object> bfnMap = ServiceLocator.getInstance().getMemoryImage("bfnMap");
+            ConcurrentMap<Object, Object> cache = (ConcurrentMap<Object, Object>)bfnMap.get("treeCache");
+            if(cache != null) {
+                cache.remove(host + bfnType);
+            }
             return true;
         }
     }
@@ -353,6 +367,12 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
         } finally {
             graph.shutdown();
         }
+        // update the bfn tree as one of bfn has changed.
+        Map<String, Object> bfnMap = ServiceLocator.getInstance().getMemoryImage("bfnMap");
+        ConcurrentMap<Object, Object> cache = (ConcurrentMap<Object, Object>)bfnMap.get("treeCache");
+        if(cache != null) {
+            cache.remove(host + bfnType);
+        }
         return true;
     }
 
@@ -484,6 +504,12 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
             inputMap.put("result", error);
             return false;
         } else {
+            // update the bfn tree as one of bfn has changed.
+            Map<String, Object> bfnMap = ServiceLocator.getInstance().getMemoryImage("bfnMap");
+            ConcurrentMap<Object, Object> cache = (ConcurrentMap<Object, Object>)bfnMap.get("treeCache");
+            if(cache != null) {
+                cache.remove(host + bfnType);
+            }
             return true;
         }
     }
@@ -564,6 +590,12 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
             inputMap.put("result", error);
             return false;
         } else {
+            // update the bfn tree as one of bfn has changed.
+            Map<String, Object> bfnMap = ServiceLocator.getInstance().getMemoryImage("bfnMap");
+            ConcurrentMap<Object, Object> cache = (ConcurrentMap<Object, Object>)bfnMap.get("treeCache");
+            if(cache != null) {
+                cache.remove(host + bfnType);
+            }
             return true;
         }
     }
@@ -633,6 +665,12 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
             inputMap.put("result", error);
             return false;
         } else {
+            // update the bfn tree as the number of posts has changed.
+            Map<String, Object> bfnMap = ServiceLocator.getInstance().getMemoryImage("bfnMap");
+            ConcurrentMap<Object, Object> cache = (ConcurrentMap<Object, Object>)bfnMap.get("treeCache");
+            if(cache != null) {
+                cache.remove(host + bfnType);
+            }
             return true;
         }
     }
@@ -692,6 +730,7 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
         Map<String, Object> inputMap = (Map<String, Object>) objects[0];
         Map<String, Object> data = (Map<String, Object>) inputMap.get("data");
         String rid = (String)data.get("@rid");
+        String host = (String)data.get("host");
         String error = null;
         OrientGraph graph = ServiceLocator.getInstance().getGraph();
         try {
@@ -723,6 +762,12 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
             inputMap.put("result", error);
             return false;
         } else {
+            // update the bfn tree as the number of posts has changed.
+            Map<String, Object> bfnMap = ServiceLocator.getInstance().getMemoryImage("bfnMap");
+            ConcurrentMap<Object, Object> cache = (ConcurrentMap<Object, Object>)bfnMap.get("treeCache");
+            if(cache != null) {
+                cache.remove(host + bfnType);
+            }
             return true;
         }
     }
@@ -811,6 +856,12 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
             inputMap.put("result", error);
             return false;
         } else {
+            // update the bfn tree as the last update time has changed.
+            Map<String, Object> bfnMap = ServiceLocator.getInstance().getMemoryImage("bfnMap");
+            ConcurrentMap<Object, Object> cache = (ConcurrentMap<Object, Object>)bfnMap.get("treeCache");
+            if(cache != null) {
+                cache.remove(host + bfnType);
+            }
             return true;
         }
     }
@@ -897,7 +948,21 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
         Map<String, Object> inputMap = (Map<String, Object>) objects[0];
         Map<String, Object> data = (Map<String, Object>)inputMap.get("data");
         String host = (String)data.get("host");
-        String json = getBfnTree(bfnType, host);
+        String json = null;
+        Map<String, Object> bfnMap = ServiceLocator.getInstance().getMemoryImage("bfnMap");
+        ConcurrentMap<Object, Object> cache = (ConcurrentMap<Object, Object>)bfnMap.get("treeCache");
+        if(cache == null) {
+            cache = new ConcurrentLinkedHashMap.Builder<Object, Object>()
+                    .maximumWeightedCapacity(1000)
+                    .build();
+            bfnMap.put("treeCache", cache);
+        } else {
+            json = (String)cache.get(host + bfnType);
+        }
+        if(json == null) {
+            json = getBfnTreeDb(bfnType, host);
+            cache.put(host + bfnType, json);
+        }
         if(json != null) {
             inputMap.put("result", json);
             return true;
@@ -908,7 +973,7 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
         }
     }
 
-    protected String getBfnTree(String bfnType, String host) {
+    protected String getBfnTreeDb(String bfnType, String host) {
         String json = null;
         String sql = "SELECT FROM " + bfnType + " WHERE host = ? and in_Own IS NULL ORDER BY id";
         OrientGraph graph = ServiceLocator.getInstance().getGraph();
@@ -916,7 +981,7 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
             OSQLSynchQuery<ODocument> query = new OSQLSynchQuery<ODocument>(sql);
             List<ODocument> docs = graph.getRawGraph().command(query).execute(host);
             if(docs.size() > 0) {
-                json = OJSONWriter.listToJSON(docs, "rid,fetchPlan:out_Own.in_Create:-2 out_Own.out_Create:-2 out_Own:-1");
+                json = OJSONWriter.listToJSON(docs, "rid,fetchPlan:[*]in_Create:-2 [*]out_Create:-2 [*]in_Update:-2 [*]out_Update:-2 [*]out_Own:-1");
             }
         } catch (Exception e) {
             logger.error("Exception:", e);
@@ -1051,5 +1116,4 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
         }
         return json;
     }
-
 }
