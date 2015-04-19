@@ -16,6 +16,7 @@
 
 package com.networknt.light.rule;
 
+import com.fasterxml.jackson.core.type.TypeReference;
 import com.googlecode.concurrentlinkedhashmap.ConcurrentLinkedHashMap;
 import com.networknt.light.server.DbService;
 import com.networknt.light.util.HashUtil;
@@ -25,6 +26,7 @@ import com.orientechnologies.orient.core.index.OCompositeKey;
 import com.orientechnologies.orient.core.index.OIndex;
 import com.orientechnologies.orient.core.record.impl.ODocument;
 import com.orientechnologies.orient.core.serialization.serializer.OJSONWriter;
+import com.orientechnologies.orient.core.sql.OCommandSQL;
 import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
 import com.tinkerpop.blueprints.Direction;
 import com.tinkerpop.blueprints.Edge;
@@ -995,26 +997,116 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
         Map<String, Object> inputMap = (Map<String, Object>) objects[0];
         Map<String, Object> data = (Map<String, Object>)inputMap.get("data");
         String rid = (String)data.get("@rid");
+        String host = (String)data.get("host");
         if(rid == null) {
             inputMap.put("result", "@rid is required");
             inputMap.put("responseCode", 400);
             return false;
         }
-        String posts = getBfnPostDb(rid);
-        if(posts != null) {
-            inputMap.put("result", posts);
+        Integer pageSize = (Integer)data.get("pageSize");
+        Integer pageNo = (Integer)data.get("pageNo");
+        if(pageSize == null) {
+            inputMap.put("result", "pageSize is required");
+            inputMap.put("responseCode", 400);
+            return false;
+        }
+        if(pageNo == null) {
+            inputMap.put("result", "pageNo is required");
+            inputMap.put("responseCode", 400);
+            return false;
+        }
+        String sortDir = (String)data.get("sortDir");
+        String sortedBy = (String)data.get("sortedBy");
+        if(sortDir == null) {
+            sortDir = "desc";
+        }
+        if(sortedBy == null) {
+            sortedBy = "createDate";
+        }
+        boolean allowPost = false;
+        Map<String, Object> payload = (Map<String, Object>) inputMap.get("payload");
+        if(payload != null) {
+            Map<String,Object> user = (Map<String, Object>)payload.get("user");
+            List roles = (List)user.get("roles");
+            if(roles.contains("owner")) {
+                allowPost = true;
+            } else if(roles.contains("admin") || roles.contains("blogAdmin") || roles.contains("blogUser")){
+                if(host.equals(user.get("host"))) {
+                    allowPost = true;
+                }
+            }
+        }
+
+        // TODO support the following lists: recent, popular, controversial
+        // Get the page from cache.
+        List<String> list = null;
+        Map<String, Object> bfnMap = ServiceLocator.getInstance().getMemoryImage("bfnMap");
+        ConcurrentMap<Object, Object> listCache = (ConcurrentMap<Object, Object>)bfnMap.get("listCache");
+        if(listCache == null) {
+            listCache = new ConcurrentLinkedHashMap.Builder<Object, Object>()
+                    .maximumWeightedCapacity(1000)
+                    .build();
+            bfnMap.put("listCache", listCache);
+        } else {
+            list = (List<String>)listCache.get(rid + sortedBy);
+        }
+
+        ConcurrentMap<Object, Object> postCache = (ConcurrentMap<Object, Object>)bfnMap.get("postCache");
+        if(postCache == null) {
+            postCache = new ConcurrentLinkedHashMap.Builder<Object, Object>()
+                    .maximumWeightedCapacity(1000)
+                    .build();
+            bfnMap.put("postCache", postCache);
+        }
+
+        if(list == null) {
+            // get the list for db
+            list = new ArrayList<String>();
+            String json = getBfnPostDb(rid, sortedBy);
+            // convert json to list of maps.
+            List<Map<String, Object>> posts = mapper.readValue(json,
+                    new TypeReference<ArrayList<HashMap<String, Object>>>() {
+                    });
+            for(Map<String, Object> post: posts) {
+                String postRid = (String)post.get("rid");
+                list.add(postRid);
+                post.remove("@rid");
+                post.remove("@type");
+                post.remove("@version");
+                post.remove("@fieldTypes");
+                postCache.put(postRid, post);
+            }
+            listCache.put(rid + sortedBy, list);
+        }
+        long total = list.size();
+        if(total > 0) {
+            List<Map<String, Object>> posts = new ArrayList<Map<String, Object>>();
+            for(int i = pageSize*(pageNo - 1); i < Math.min(pageSize*pageNo, list.size()); i++) {
+                String postRid = list.get(i);
+                Map<String, Object> post = (Map<String, Object>)postCache.get(postRid);
+                posts.add(post);
+            }
+            Map<String, Object> result = new HashMap<String, Object>();
+            result.put("total", total);
+            result.put("posts", posts);
+            result.put("allowPost", allowPost);
+            inputMap.put("result", mapper.writeValueAsString(result));
             return true;
         } else {
-            inputMap.put("result", "No post can be found");
-            inputMap.put("responseCode", 404);
-            return false;
+            // there is no post available. but still need to return allowPost
+            Map<String, Object> result = new HashMap<String, Object>();
+            result.put("total", 0);
+            result.put("allowPost", allowPost);
+            inputMap.put("result", mapper.writeValueAsString(result));
+            return true;
         }
     }
 
-    protected String getBfnPostDb(String rid) {
+    protected String getBfnPostDb(String rid, String sortedBy) {
         String json = null;
-        String sql = "select @rid, postId, title, content, createDate, parentId, in_Create[0].@rid as createRid, " +
-                "in_Create[0].userId as createUserId from (traverse out_Own, out_HasPost from ?) where @class = 'Post' order by createDate desc";
+        // TODO there is a bug that prepared query only support one parameter. That is why sortedBy is concat into the sql.
+        String sql = "select @rid, postId, title, content, createDate, parentId, in_Create[0].@rid as createRid, in_Create[0].userId as createUserId " +
+                "from (traverse out_Own, out_HasPost from ?) where @class = 'Post' order by " + sortedBy + " desc";
         OrientGraph graph = ServiceLocator.getInstance().getGraph();
         try {
             OSQLSynchQuery<ODocument> query = new OSQLSynchQuery<ODocument>(sql);

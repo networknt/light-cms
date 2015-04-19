@@ -80,7 +80,9 @@ public class BlogRuleTest extends TestCase {
     String addDemoPost1 = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"addPost\",\"data\":{\"host\":\"demo.networknt.com\",\"title\":\"post1\",\"content\":\"content1\",\"parentId\":\"blog1\"}}";
     String addDemoPost2 = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"addPost\",\"data\":{\"host\":\"demo.networknt.com\",\"title\":\"post2\",\"content\":\"content2\",\"parentId\":\"blog2\"}}";
 
-    String getExamBlogPost1 = "{\"readOnly\":true,\"category\":\"blog\",\"name\":\"getBlogPost\",\"data\":{\"host\":\"www.example.com\",\"blogId\":\"blog1\"}}";
+    String getExamBlogPost1 = "{\"readOnly\":true,\"category\":\"blog\",\"name\":\"getBlogPost\",\"data\":{\"host\":\"www.example.com\",\"pageSize\":3,\"pageNo\":1}}";
+    String getExamBlogPost2 = "{\"readOnly\":true,\"category\":\"blog\",\"name\":\"getBlogPost\",\"data\":{\"host\":\"www.example.com\",\"pageSize\":3,\"pageNo\":2}}";
+    String getExamBlogPost3 = "{\"readOnly\":true,\"category\":\"blog\",\"name\":\"getBlogPost\",\"data\":{\"host\":\"www.example.com\",\"pageSize\":3,\"pageNo\":3}}";
 
     public BlogRuleTest(String name) {
         super(name);
@@ -444,6 +446,13 @@ public class BlogRuleTest extends TestCase {
         {
             String json = getBlogPost(getExamBlogPost1, (String)examBlog1.get("@rid"), ownerToken);
             System.out.println("blogPost for ExamBlog1" + json);
+
+            json = getBlogPost(getExamBlogPost2, (String)examBlog1.get("@rid"), ownerToken);
+            System.out.println("blogPost for ExamBlog2" + json);
+
+            json = getBlogPost(getExamBlogPost3, (String)examBlog1.get("@rid"), ownerToken);
+            System.out.println("blogPost for ExamBlog3" + json);
+
         }
     }
 
