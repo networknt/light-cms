@@ -27,6 +27,6 @@ import com.networknt.light.rule.Rule;
  */
 public class GetBlogPostRule extends AbstractBfnRule implements Rule {
     public boolean execute (Object ...objects) throws Exception {
-        return getBfnPost("blog", objects);
+        return getBfnPost(objects);
     }
 }

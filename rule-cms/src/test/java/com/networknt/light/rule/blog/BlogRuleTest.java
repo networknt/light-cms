@@ -68,6 +68,20 @@ public class BlogRuleTest extends TestCase {
     String updExamBlog = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"updBlog\",\"data\":{\"host\":\"www.example.com\"}}";
     String updDemoBlog = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"updBlog\",\"data\":{\"host\":\"demo.networknt.com\"}}";
 
+
+    String addExamPost1 = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"addPost\",\"data\":{\"host\":\"www.example.com\",\"title\":\"post1\",\"content\":\"content1\",\"parentId\":\"blog1\"}}";
+    String addExamPost11 = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"addPost\",\"data\":{\"host\":\"www.example.com\",\"title\":\"post11\",\"content\":\"content11\",\"parentId\":\"blog11\"}}";
+    String addExamPost12 = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"addPost\",\"data\":{\"host\":\"www.example.com\",\"title\":\"post12\",\"content\":\"content12\",\"parentId\":\"blog12\"}}";
+    String addExamPost111 = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"addPost\",\"data\":{\"host\":\"www.example.com\",\"title\":\"post111\",\"content\":\"content111\",\"parentId\":\"blog111\"}}";
+    String addExamPost121 = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"addPost\",\"data\":{\"host\":\"www.example.com\",\"title\":\"post121\",\"content\":\"content121\",\"parentId\":\"blog121\"}}";
+    String addExamPost112 = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"addPost\",\"data\":{\"host\":\"www.example.com\",\"title\":\"post112\",\"content\":\"content112\",\"parentId\":\"blog112\"}}";
+    String addExamPost2 = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"addPost\",\"data\":{\"host\":\"www.example.com\",\"title\":\"post2\",\"content\":\"content2\",\"parentId\":\"blog2\"}}";
+
+    String addDemoPost1 = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"addPost\",\"data\":{\"host\":\"demo.networknt.com\",\"title\":\"post1\",\"content\":\"content1\",\"parentId\":\"blog1\"}}";
+    String addDemoPost2 = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"addPost\",\"data\":{\"host\":\"demo.networknt.com\",\"title\":\"post2\",\"content\":\"content2\",\"parentId\":\"blog2\"}}";
+
+    String getExamBlogPost1 = "{\"readOnly\":true,\"category\":\"blog\",\"name\":\"getBlogPost\",\"data\":{\"host\":\"www.example.com\",\"blogId\":\"blog1\"}}";
+
     public BlogRuleTest(String name) {
         super(name);
     }
@@ -412,6 +426,25 @@ public class BlogRuleTest extends TestCase {
             System.out.println("demo blog tree = " + result);
         }
 
+        // add example posts
+        {
+            addPost(addExamPost1, ownerToken);
+            addPost(addExamPost11, ownerToken);
+            addPost(addExamPost12, ownerToken);
+            addPost(addExamPost111, ownerToken);
+            addPost(addExamPost121, ownerToken);
+            addPost(addExamPost112, ownerToken);
+            addPost(addExamPost2, ownerToken);
+
+            addPost(addDemoPost1, ownerToken);
+            addPost(addDemoPost2, ownerToken);
+        }
+
+        // get blog post for ExamBlog1
+        {
+            String json = getBlogPost(getExamBlogPost1, (String)examBlog1.get("@rid"), ownerToken);
+            System.out.println("blogPost for ExamBlog1" + json);
+        }
     }
 
     private void addBlog(String json, JsonToken token) throws Exception {
@@ -429,6 +462,38 @@ public class BlogRuleTest extends TestCase {
         AddBlogEvRule evRule = new AddBlogEvRule();
         ruleResult = evRule.execute(eventMap);
         assertTrue(ruleResult);
+    }
+
+    private void addPost(String json, JsonToken token) throws Exception {
+        Map<String, Object> jsonMap = null;
+        boolean ruleResult = false;
+        jsonMap = mapper.readValue(json,
+                new TypeReference<HashMap<String, Object>>() {
+                });
+        jsonMap.put("payload", token.getPayload());
+
+        AddPostRule rule = new AddPostRule();
+        ruleResult = rule.execute(jsonMap);
+        assertTrue(ruleResult);
+        Map<String, Object> eventMap = (Map<String, Object>)jsonMap.get("eventMap");
+        AddPostEvRule evRule = new AddPostEvRule();
+        ruleResult = evRule.execute(eventMap);
+        assertTrue(ruleResult);
+    }
+
+    private String getBlogPost(String json, String rid, JsonToken token) throws Exception {
+        Map<String, Object> jsonMap = null;
+        boolean ruleResult = false;
+        jsonMap = mapper.readValue(json,
+                new TypeReference<HashMap<String, Object>>() {
+                });
+        jsonMap.put("payload", token.getPayload());
+        Map<String, Object> data = (Map<String, Object>)jsonMap.get("data");
+        data.put("@rid", rid);
+        GetBlogPostRule rule = new GetBlogPostRule();
+        ruleResult = rule.execute(jsonMap);
+        assertTrue(ruleResult);
+        return (String)jsonMap.get("result");
     }
 
 }

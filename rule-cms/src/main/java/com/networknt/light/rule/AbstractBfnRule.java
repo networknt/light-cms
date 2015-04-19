@@ -991,15 +991,16 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
         return json;
     }
 
-    public boolean getBfnPost(String bfnType, Object ...objects) throws Exception {
+    public boolean getBfnPost(Object ...objects) throws Exception {
         Map<String, Object> inputMap = (Map<String, Object>) objects[0];
         Map<String, Object> data = (Map<String, Object>)inputMap.get("data");
-        if(data.get(bfnType + "Id") == null || data.get("host") == null) {
-            inputMap.put("result", "Host and Id are required");
+        String rid = (String)data.get("@rid");
+        if(rid == null) {
+            inputMap.put("result", "@rid is required");
             inputMap.put("responseCode", 400);
             return false;
         }
-        String posts = getBfnPostDb(bfnType, data);
+        String posts = getBfnPostDb(rid);
         if(posts != null) {
             inputMap.put("result", posts);
             return true;
@@ -1010,15 +1011,16 @@ public abstract class AbstractBfnRule  extends AbstractRule implements Rule {
         }
     }
 
-    protected String getBfnPostDb(String bfnType, Map<String, Object> data) {
+    protected String getBfnPostDb(String rid) {
         String json = null;
-        String sql = "select from (traverse posts, out_HasPost from (select from " + bfnType + " where host = ? and " + bfnType + "Id = ?)) where @class = 'Post'";
+        String sql = "select @rid, postId, title, content, createDate, parentId, in_Create[0].@rid as createRid, " +
+                "in_Create[0].userId as createUserId from (traverse out_Own, out_HasPost from ?) where @class = 'Post' order by createDate desc";
         OrientGraph graph = ServiceLocator.getInstance().getGraph();
         try {
             OSQLSynchQuery<ODocument> query = new OSQLSynchQuery<ODocument>(sql);
-            List<ODocument> forums = graph.getRawGraph().command(query).execute(data.get("host"), data.get(bfnType + "Id"));
-            if(forums.size() > 0) {
-                json = OJSONWriter.listToJSON(forums, "rid,fetchPlan:in_Create:1");
+            List<ODocument> posts = graph.getRawGraph().command(query).execute(rid);
+            if(posts.size() > 0) {
+                json = OJSONWriter.listToJSON(posts, null);
             }
         } catch (Exception e) {
             logger.error("Exception:", e);
