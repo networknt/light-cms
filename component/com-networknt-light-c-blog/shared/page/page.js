@@ -9,7 +9,10 @@
 angular.module('lightApp')
 .controller('pageCtrl', ['$scope', '$routeParams', '$http', 'toaster', 'modelDataService', function($scope, $routeParams, $http, toaster, modelDataService) {
 
-    var getPagePost = {
+    console.log('id =', $routeParams.id);
+    console.log('file =', '/' + $routeParams.id + '.html');
+
+    var getPage = {
         category : 'page',
         name : 'getPage',
         readOnly: true,
@@ -17,11 +20,16 @@ angular.module('lightApp')
             pageId : $routeParams.id
         }
     };
-    console.log("Getting page with id:", $routeParams.id);
 
-    $http.post('api/rs', getPagePost)
-        .success(function(result, status, headers, config) {
-            $scope.html = result.content;
-        })
+    $scope.html = '';
+    $http.get('/src/' + $routeParams.pageId + '.html').success (function(data){
+        $scope.html = data;
+    }).error(function() {
+        console.log("Could not load file from src folder, try REST API...");
+        $http.get('api/rs', {params: { cmd: encodeURIComponent(JSON.stringify(getPage))}})
+            .success(function (result, status, headers, config) {
+                $scope.html = result.content;
+            })
+    })
 
 }]);

@@ -117,6 +117,8 @@ public class BlogRuleTest extends TestCase {
         Map<String, Object> demoBlog1 = null;
         Map<String, Object> demoBlog2 = null;
 
+
+
         JsonToken ownerToken = null;
         JsonToken userToken = null;
         // signIn owner by userId
@@ -452,8 +454,9 @@ public class BlogRuleTest extends TestCase {
 
             json = getBlogPost(getExamBlogPost3, (String)examBlog1.get("@rid"), ownerToken);
             System.out.println("blogPost for ExamBlog3" + json);
-
         }
+
+
     }
 
     private void addBlog(String json, JsonToken token) throws Exception {

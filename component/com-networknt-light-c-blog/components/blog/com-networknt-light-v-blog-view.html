@@ -2,56 +2,54 @@
 'use strict';
 angular.module('lightApp').controller('BlogCtrl', ['$scope', '$http', '$location', '$filter', 'toaster', 'modelDataService', '$routeParams', 'authService', function ($scope, $http, $location, $filter, toaster, modelDataService, $routeParams, authService) {
 
-    $scope.blogId = $routeParams.blogId;
-    console.log("blogId", $scope.blogId);
-    $scope.blogPosts = [];
-    $scope.currentPage = 1;
-    $scope.itemsPerPage = 5;
-    $scope.noOfPages = $scope.blogPosts.length / $scope.itemsPerPage;
+    $scope.posts = [];
+    $scope.page = { maxSize: 10, totalItems: 0, numPages: 0 };
+    $scope.allowPost = false;
 
-    $scope.goToBlogPost = function(postId) {
+    $scope.goToPost = function(post) {
+        modelDataService.setModelData({post: post});
         $location.path("/page/com-networknt-light-v-blog-post-view/" + postId);
     };
 
-    $scope.$watch('currentPage', function() {
-        var begin = ($scope.currentPage - 1) * $scope.itemsPerPage;
-        var end = begin + $scope.itemsPerPage;
-
-        $scope.paged = {
-            blogPosts: $scope.blogPosts.slice(begin, end)
-        }
-    });
-
-    $scope.getBlogPosts = {
+    var getPost = {
         category : 'blog',
         name : 'getBlogPost',
         readOnly: true,
         data: {
-            host: 'example',
-            blogId: $scope.blogId
+            pageSize : 10,
+            pageNo : 1,
+            sortDir : 'desc',
+            sortedBy : 'createDate',
+            '@rid': modelDataService.getModelData.blog['@rid']
         }
     };
 
+    console.log('getPost', getPost);
+
+    var delPost = {
+        category: 'blog',
+        name: 'delPost',
+        readOnly: false
+    }
+
+    var UpdPost = {
+        category: 'blog',
+        name: 'updPost',
+        readOnly: false
+    }
+
     $scope.fetchResult = function () {
-        $http.post('api/rs', $scope.getBlogPosts)
+        console.log("getPost = ", getPost);
+        $http.post('api/rs', getPost)
             .success(function (result, status, headers, config) {
-                $scope.blogPosts = result;
-                $scope.paged = {
-                    blogPosts: $scope.blogPosts.slice(0,  $scope.itemsPerPage)
-                };
+                console.log('result = ', result);
+                $scope.posts = result.posts;
+                $scope.page.totalItems = result.total;
+                $scope.allow = result.allowPost;
+
             })
     };
     $scope.fetchResult();
-
-    console.log("userRoles", authService.authentication.currentUser.roles);
-    $scope.canUserAddPost = false;
-    for (var i = 0; i < authService.authentication.currentUser.roles.length; i++) {
-        // TODO: add test for current user matching blog creator.
-        if (authService.authentication.currentUser.roles[i] == "owner" || authService.authentication.currentUser.roles[i] == "blogAdmin") {
-            $scope.canUserAddPost = true;
-            break;
-        }
-    }
 
     $scope.post = function () {
         modelDataService.setModelData(null); // reset the modelDataService variable.
@@ -95,7 +93,7 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$http', '$location
                 <div class="panel-body" style="padding:0px;">
                     <div class="row clearfix post-preview" ng-repeat="post in paged.blogPosts | filter:pattern">
                         <div class="col-md-8">
-                            <a href ng-click="goToBlogPost(&quot;{{post.postId}}&quot;)">
+                            <a href ng-click="goToPost(post)">
                                 <h2 class="post-title">{{post.title}}</h2>
                             </a>
                             <p class="post-meta">Posted by <user id="{{post.in_Create[0].userId}}"></user> {{post.createDate | calendar}}</p>
@@ -130,7 +128,7 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$http', '$location
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="text-center" ng-if="canUserAddPost" >
+                        <div class="text-center" ng-if="allowPost" >
                             <button class="btn btn-info pull-right" ng-click="post()"><span class="glyphicon glyphicon-plus" style="padding-right:5px"></span>Post</button>
                         </div>
                     </div>

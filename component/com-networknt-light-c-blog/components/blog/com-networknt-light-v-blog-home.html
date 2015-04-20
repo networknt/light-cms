@@ -13,8 +13,9 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$http', '$location
         $scope.pagedBlogs = $scope.blogs.slice(begin, end);
     };
 
-    $scope.goToBlog = function(blogId) {
-        $location.path("/page/com-networknt-light-v-blog-view/" + blogId);
+    $scope.goToBlog = function(blog) {
+        modelDataService.setModelData({blog: blog});
+        $location.path("/page/com-networknt-light-v-blog-view");
     };
 
     $scope.getBlogTree = {
@@ -63,7 +64,7 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$http', '$location
     <div class="row">
         <div class="col-md-12 column">
             <div class="ui three cards">
-                <a class="green card" ng-repeat="blog in pagedBlogs | limitTo:itemsPerPage | filter:pattern" ng-click="goToBlog(&quot;{{blog.blogId}}&quot;)" style="text-decoration:none;">
+                <a class="green card" ng-repeat="blog in pagedBlogs | limitTo:itemsPerPage | filter:pattern" ng-click="goToBlog({{blog}})" style="text-decoration:none;">
                     <div class="content">
                         <div class="header text-center">
                             {{blog.blogId}}
@@ -77,7 +78,7 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$http', '$location
                         {{blog.out_HasPost.length || 0}} Posts
                     </div>
                     <div class="ui bottom attached button">
-                        <button type="button" class="btn btn-default" style="width:100%; text-align:center;" ng-click="goToBlog(&quot;{{blog.blogId}}&quot;)">Read More</button>
+                        <button type="button" class="btn btn-default" style="width:100%; text-align:center;" ng-click="goToBlog({{blog}})">Read More</button>
                     </div>
                 </a>
             </div>
