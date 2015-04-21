@@ -2,59 +2,47 @@
 'use strict';
 angular.module('lightApp').controller('BlogCtrl', ['$scope', '$http', '$location', '$filter', 'toaster', 'modelDataService', '$routeParams', 'authService', function ($scope, $http, $location, $filter, toaster, modelDataService, $routeParams, authService) {
 
-    $scope.posts = [];
-    $scope.page = { maxSize: 10, totalItems: 0, numPages: 0 };
-    $scope.allowPost = false;
+    $scope.blog = modelDataService.getModelData().blog;
+    console.log("blogId", $scope.blogId);
+    $scope.blogPosts = [];
+    $scope.currentPage = 1;
+    $scope.itemsPerPage = 5;
+    $scope.allowUserToPost = false;
 
-    $scope.goToPost = function(post) {
-        modelDataService.setModelData({post: post});
+    $scope.goToBlogPost = function(postId) {
         $location.path("/page/com-networknt-light-v-blog-post-view/" + postId);
     };
 
-    var getPost = {
-        category : 'blog',
-        name : 'getBlogPost',
-        readOnly: true,
-        data: {
-            pageSize : 10,
-            pageNo : 1,
-            sortDir : 'desc',
-            sortedBy : 'createDate',
-            '@rid': modelDataService.getModelData.blog['@rid']
-        }
-    };
+    $scope.$watch('currentPage', function() {
+        $scope.fetchResult($scope.currentPage);
+    });
 
-    console.log('getPost', getPost);
-
-    var delPost = {
-        category: 'blog',
-        name: 'delPost',
-        readOnly: false
-    }
-
-    var UpdPost = {
-        category: 'blog',
-        name: 'updPost',
-        readOnly: false
-    }
-
-    $scope.fetchResult = function () {
-        console.log("getPost = ", getPost);
-        $http.post('api/rs', getPost)
+    $scope.fetchResult = function (page) {
+        $scope.getBlogPosts = {
+            category : 'blog',
+            name : 'getBlogPost',
+            readOnly: true,
+            data: {
+                host: 'example',
+                "@rid": $scope.blog["@rid"],
+                pageSize : $scope.itemsPerPage,
+                pageNo: page,
+                sortDir : 'desc',
+                sortedBy : 'createDate'
+            }
+        };
+        $http.post('api/rs', $scope.getBlogPosts)
             .success(function (result, status, headers, config) {
-                console.log('result = ', result);
-                $scope.posts = result.posts;
-                $scope.page.totalItems = result.total;
-                $scope.allow = result.allowPost;
-
+                $scope.blogPosts = result.posts;
+                $scope.allowUserToPost = result.allowPost;
+                console.log("result:", result);
             })
     };
-    $scope.fetchResult();
+    $scope.fetchResult(1);
 
     $scope.post = function () {
-        modelDataService.setModelData(null); // reset the modelDataService variable.
-        //$location.path("/form/com.networknt.light.blog.post.add/" + $scope.blogId);
-        $location.path("/page/com-networknt-light-v-blog-post-editor/" + $scope.blogId);
+        modelDataService.setModelData({blogId:$scope.blog.blogId}); // reset the modelDataService variable.
+        $location.path("/page/com-networknt-light-v-blog-post-editor");
     };
 
     $scope.goToBlogHome = function () {
@@ -91,9 +79,9 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$http', '$location
         <div class="col-xs-12 col-sm-12 col-md-12">
             <div class="panel panel-default" style="box-shadow:0 0 0;">
                 <div class="panel-body" style="padding:0px;">
-                    <div class="row clearfix post-preview" ng-repeat="post in paged.blogPosts | filter:pattern">
+                    <div class="row clearfix post-preview" ng-repeat="post in blogPosts | filter:pattern">
                         <div class="col-md-8">
-                            <a href ng-click="goToPost(post)">
+                            <a href ng-click="goToBlogPost(&quot;{{post.postId}}&quot;)">
                                 <h2 class="post-title">{{post.title}}</h2>
                             </a>
                             <p class="post-meta">Posted by <user id="{{post.in_Create[0].userId}}"></user> {{post.createDate | calendar}}</p>
@@ -128,7 +116,7 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$http', '$location
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="text-center" ng-if="allowPost" >
+                        <div class="text-center" ng-if="allowUserToPost" >
                             <button class="btn btn-info pull-right" ng-click="post()"><span class="glyphicon glyphicon-plus" style="padding-right:5px"></span>Post</button>
                         </div>
                     </div>

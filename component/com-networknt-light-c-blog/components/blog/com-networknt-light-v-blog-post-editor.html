@@ -1,7 +1,7 @@
 <script type='text/javascript'>
 angular.module('lightApp').controller('BlogPostEditorCtrl', ['$scope', '$http', '$location', '$filter', 'toaster', 'modelDataService', '$routeParams', function ($scope, $http, $location, $filter, toaster, modelDataService, $routeParams) {
-    $scope.blogId = $routeParams.blogId;
-    $scope.postId = $routeParams.postId;
+    $scope.blogId = modelDataService.getModelData().blogId;
+    $scope.postId = modelDataService.getModelData().postId;
     $scope.postContent = "";
     $scope.postTitle = "";
     $scope.postRid = "";
