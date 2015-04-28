@@ -14,7 +14,7 @@ import com.networknt.light.rule.Rule;
  *
  * to make is simple for now.
  *
- * AccessLevel R [owner, admin, forumAdmin]
+ * AccessLevel R [owner, admin, newsAdmin]
  *
  * Due to the implementation of orientdb delete graph scheduled for 2.2
  * https://github.com/orientechnologies/orientdb/issues/1108
