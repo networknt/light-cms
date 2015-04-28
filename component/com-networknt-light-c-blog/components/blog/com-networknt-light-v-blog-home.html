@@ -1,41 +1,30 @@
 <script type='text/javascript'>
 'use strict';
-angular.module('lightApp').controller('BlogCtrl', ['$scope', '$http', '$location', '$filter', 'toaster', 'modelDataService', function ($scope, $http, $location, $filter, toaster, modelDataService) {
+angular.module('lightApp').controller('BlogCtrl', ['$scope', '$http', '$location', '$filter', 'toaster', 'modelDataService', 'blogBackend', function ($scope, $http, $location, $filter, toaster, modelDataService, blogBackend) {
     $scope.currentPage = 1;
     $scope.itemsPerPage = 6;
-    $scope.blogs = [];
+    $scope.blogs = null;
     $scope.pagedBlogs = [];
 
     $scope.pageChanged = function() {
-        console.log('Page changed to: ' + $scope.currentPage);
         var begin = ($scope.currentPage - 1) * $scope.itemsPerPage;
         var end = begin + $scope.itemsPerPage;
-        $scope.pagedBlogs = $scope.blogs.slice(begin, end);
-    };
-
-    $scope.goToBlog = function(blog) {
-        modelDataService.setModelData({blog: blog});
-        $location.path("/page/com-networknt-light-v-blog-view");
-    };
-
-    $scope.getBlogTree = {
-        category : "blog",
-        name : "getBlogTree",
-        readOnly: true,
-        data: {
-            host: "example"
+        if ($scope.blogs != null) {
+            $scope.pagedBlogs = $scope.blogs.slice(begin, end);
         }
     };
 
-    $scope.fetchResult = function () {
-        $http.post('api/rs', $scope.getBlogTree)
-            .success(function (result, status, headers, config) {
-                console.log("blogs returned:", result);
-                $scope.blogs = result;
-                $scope.pageChanged();
-            })
+    $scope.goToBlog = function(blog) {
+        modelDataService.setModelData({
+            blog: blog
+        });
+        $location.path("/page/com-networknt-light-v-blog-view/" +  blog["@rid"]);
     };
-    $scope.fetchResult();
+
+    blogBackend.getBlogTree("example").then(function(result) {
+        $scope.blogs = result.data;
+        $scope.pageChanged();
+   });
 }]);
 </script>
 <div class="container" data-ng-controller="BlogCtrl">

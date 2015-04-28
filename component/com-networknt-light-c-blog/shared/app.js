@@ -56,29 +56,17 @@ var lightApp = angular.module('lightApp', [
       .when ('/page/com-networknt-light-v-blog-home', {
         templateUrl: 'components/blog/com-networknt-light-v-blog-home.html'
       })
-      .when ('/page/com-networknt-light-v-blog-view/:blogId', {
+      .when ('/page/com-networknt-light-v-blog-view/:blogRid', {
         templateUrl: 'components/blog/com-networknt-light-v-blog-view.html'
       })
-      .when ('/page/com-networknt-light-v-blog-post-view/:postId', {
+      .when ('/page/com-networknt-light-v-blog-post-view/:blogRid/:postRid', {
         templateUrl: 'components/blog/com-networknt-light-v-blog-post-view.html'
       })
-      .when('/page/com-networknt-light-v-blog-post-editor/:blogId', {
+      .when('/page/com-networknt-light-v-blog-post-editor', {
         templateUrl: 'components/blog/com-networknt-light-v-blog-post-editor.html'
       })
       .when('/page/com-networknt-light-v-blog-post-editor/:blogId/:postId', {
         templateUrl: 'components/blog/com-networknt-light-v-blog-post-editor.html'
-      })
-      .when('/page/com-networknt-light-v-forum-home', {
-        templateUrl: 'components/forum/com-networknt-light-v-forum-home.html'
-      })
-      .when('/page/com-networknt-light-v-forum-post', {
-        templateUrl: 'components/forum/com-networknt-light-v-forum-post.html'
-      })
-      .when('/page/com-networknt-light-v-forum-post-view', {
-        templateUrl: 'components/forum/com-networknt-light-v-forum-post-view.html'
-      })
-      .when('/page/com-networknt-light-v-user-logout', {
-          templateUrl: 'components/user-profile/com-networknt-light-v-user-logout.html'
       })
       .when('/users/:id', {
           templateUrl: 'components/user-profile/com-networknt-light-v-user-public-profile.html',

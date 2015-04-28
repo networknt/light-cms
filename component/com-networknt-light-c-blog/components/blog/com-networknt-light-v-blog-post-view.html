@@ -1,89 +1,55 @@
 <script type='text/javascript'>
 'use strict';
-angular.module('lightApp').controller('BlogPostCtrl', ['$scope', '$http', '$location', '$filter', 'toaster', 'modelDataService', '$routeParams', 'authService', function ($scope, $http, $location, $filter, toaster, modelDataService, $routeParams, authService) {
-    $scope.postId = $routeParams.postId;
-    $scope.post = {};
+angular.module('lightApp').controller('BlogPostCtrl', ['$scope', '$http', '$location', '$filter', 'toaster', 'modelDataService', '$routeParams', 'blogBackend', 'postBackend', function ($scope, $http, $location, $filter, toaster, modelDataService, $routeParams, blogBackend, postBackend) {
+    $scope.post = null;
+    $scope.blog = null;
+    $scope.markedContent = "";
+    $scope.allowEdit = false;
+    $scope.canUserUpvote = true;
+    $scope.canUserDownVote = true;
+    $scope.host = "example";
 
-    $scope.getBlogPost = {
-        category : 'post',
-        name : 'getPost',
-        readOnly: true,
-        data: {
-            host: 'example',
-            postId: $scope.postId
-        }
+    $scope.fetchPost = function (postRid) {
+        postBackend.getPost($scope.host, postRid).then(function(result) {
+            $scope.post = result.data.posts[0];
+            $scope.allowEdit = result.data.allowEdit;
+            $scope.markedContent = marked($scope.post.content);
+        });
     };
 
-    $scope.fetchResult = function () {
-        $http.post('api/rs', $scope.getBlogPost)
-            .success(function (result, status, headers, config) {
-                $scope.post = result.posts[0];
-                $scope.markedContent = marked($scope.post.content);
-                console.log("Post returned:", $scope.post);
-            })
-            .error(function (result, status, headers, config) {
-                console.log("getBlogPost error:", result);
-            })
-    };
-    $scope.fetchResult();
+    if (modelDataService.getModelData() != null && modelDataService.getModelData().blog != null) {
+        $scope.blog = modelDataService.getModelData().blog;
+    } else if ($routeParams.blogRid != null) {
+        blogBackend.getBlog($scope.host, $routeParams.blogRid).then(function (result) {
+            $scope.blog = result.data.bfn;
+        });
+    }
+
+    // If the postRid & blog are available in modelDataService, use that.
+    if (modelDataService.getModelData() != null && modelDataService.getModelData().postRid != null) {
+        $scope.fetchPost(modelDataService.getModelData().postRid);
+    } else if ($routeParams.postRid != null) {
+        $scope.fetchPost($routeParams.postRid);
+    }
 
     $scope.goBack = function() {
-        $location.path("/page/com-networknt-light-v-blog-view/" + $scope.post.parentId);
+        modelDataService.setModelData({
+            "blog": $scope.blog
+        });
+        $location.path("/page/com-networknt-light-v-blog-view/" + $scope.blog["@rid"]);
     };
 
-    $scope.canUserUpvote = true;
+
     $scope.upvote = function () {
-        console.log('$scope.post', $scope.post);
-        $scope.upvoteContent = {
-            category: 'post',
-            name: 'upPost',
-            readOnly: false,
-            data: {
-                host: 'example',
-                '@rid': $scope.post['@rid']
-            }
-        };
-        $http.post('api/rs', $scope.upvoteContent)
-            .success(function (result, status, headers, config) {
-                console.log("Upvote result:", result);
-                $scope.canUserDownVote = true;
-                $scope.canUserUpvote = false;
-            })
-            .error(function (result, status, headers, config) {
-                console.log("Upvote error:", result);
-            })
+        postBackend.upvote("example", $scope.post["@rid"]);
+        $scope.canUserUpvote = false;
+        $scope.canUserDownVote = true;
     };
 
-    $scope.canUserDownVote = true;
     $scope.downvote = function () {
-        $scope.downvoteContent = {
-            category: 'post',
-            name: 'downPost',
-            readOnly: false,
-            data: {
-                host: 'example',
-                '@rid': $scope.post['@rid']
-            }
-        };
-        $http.post('api/rs', $scope.downvoteContent)
-            .success(function (result, status, headers, config) {
-                console.log("Downvote result:", result);
-                $scope.canUserDownVote = false;
-                $scope.canUserUpvote = true;
-            })
-            .error(function (result, status, headers, config) {
-                console.log("Downvote error:", result);
-            })
-    };
-
-    $scope.userCanEdit = function () {
-        for (var i = 0; i < authService.authentication.currentUser.roles.length; i++) {
-            // TODO: add test for current user matching blog creator.
-            if (authService.authentication.currentUser.roles[i] == "owner" || authService.authentication.currentUser.roles[i] == "blogAdmin") {
-                return true;
-            }
-        }
-        return false; //|| authService.authentication.currentUser.userId == $scope.post.in_Create[0].userId;
+        postBackend.downvote("example", $scope.post["@rid"]);
+        $scope.canUserUpvote = true;
+        $scope.canUserDownVote = false;
     };
 
     $scope.editPost = function () {
@@ -125,7 +91,7 @@ angular.module('lightApp').controller('BlogPostCtrl', ['$scope', '$http', '$loca
                         <button class="btn btn-danger" ng-click="downvote()" ng-disabled="!canUserDownVote">
                             <i class="fa fa-thumbs-o-down fa-lg"></i>
                         </button>
-                        <button class="btn btn-info" ng-click="editPost()" ng-if="userCanEdit">
+                        <button class="btn btn-info" ng-click="editPost()" ng-if="allowEdit">
                             <i class="fa fa-pencil fa-lg"></i>
                         </button>
                     </div>
