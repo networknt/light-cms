@@ -24,6 +24,7 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$http', '$location
     blogBackend.getBlogTree("example").then(function(result) {
         $scope.blogs = result.data;
         $scope.pageChanged();
+        console.log("Blogs returned:", $scope.blogs);
    });
 }]);
 </script>

@@ -51,6 +51,7 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$http', '$location
     // Used to fetch posts from the database.
     $scope.fetchPosts = function (page) {
         postBackend.getBlogPosts("example", $scope.blogRid, page, $scope.itemsPerPage, "desc", "createDate").then(function (result) {
+            console.log("GetBlogPosts result:", result.data);
             $scope.blogPosts = result.data.posts;
             $scope.allowPost = result.data.allowPost;
         });
@@ -136,7 +137,7 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$http', '$location
                         </div>
                     </div>
                     <div class="col-md-4">
-                        <div class="text-center" ng-if="allowUserToPost" >
+                        <div class="text-center" ng-if="allowPost" >
                             <button class="btn btn-info pull-right" ng-click="addPost()"><span class="glyphicon glyphicon-plus" style="padding-right:5px"></span>Post</button>
                         </div>
                     </div>
