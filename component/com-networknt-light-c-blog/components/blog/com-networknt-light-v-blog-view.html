@@ -4,13 +4,16 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$filter', 'toaster
     if (modelDataService.getModelData() == null) {
         blogRouting.blogHome();
     }
-
-    $scope.blog = modelDataService.getModelData().blog;
-    $scope.blogRid = $scope.blog["@rid"];
-    $scope.blogPosts = [];
-    $scope.currentPageNumber = 1;
     $scope.itemsPerPage = 5;
-    $scope.allowPost = false;
+
+    $scope.initPage = function (blog) {
+        $scope.blog = blog;
+        $scope.blogRid = $scope.blog["@rid"];
+        $scope.blogPosts = [];
+        $scope.currentPageNumber = 1;
+        $scope.allowPost = false;
+        $scope.fetchPosts();
+    };
 
     // Triggered when a user clicks on a post.
     $scope.goToBlogPost = function(post) {
@@ -19,18 +22,12 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$filter', 'toaster
 
     // Triggered when a user clicks on a blog category in the right sidebar.
     $scope.goToBlog = function(blog) {
-        blogRouting.blogView(blog);
+        $scope.initPage(blog);
     };
 
-    // Automatically triggered when a user changes page. (and on load).
-    $scope.$watch('currentPage', function() {
-        $scope.fetchPosts($scope.currentPageNumber);
-    });
-
-
     // Used to fetch posts from the database.
-    $scope.fetchPosts = function (page) {
-        blogBackend.getBlogPosts("example", $scope.blogRid, page, $scope.itemsPerPage, "desc", "createDate").then(function (result) {
+    $scope.fetchPosts = function () {
+        blogBackend.getBlogPosts("example", $scope.blogRid, $scope.currentPageNumber, $scope.itemsPerPage, "desc", "createDate").then(function (result) {
             $scope.blogPosts = result.data.posts;
             $scope.allowPost = result.data.allowPost;
         });
@@ -45,6 +42,9 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$filter', 'toaster
     $scope.goToBlogHome = function () {
         blogRouting.blogHome();
     };
+
+    // Initialize the page & fetch posts.
+    $scope.initPage(modelDataService.getModelData().blog);
 }]);
 </script>
 <div class="container" data-ng-controller="BlogCtrl">
@@ -80,7 +80,7 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$filter', 'toaster
                             <a href ng-click="goToBlogPost({{post}})">
                                 <h2 class="post-title">{{post.title}}</h2>
                             </a>
-                            <p class="post-meta">Posted by {{post.in_Create[0].userId}} {{post.createDate | calendar}}</p>
+                            <p class="post-meta">Posted by {{post.createUserId}} {{post.createDate | calendar}}</p>
                         </div>
                         <div class="col-md-4">
                             <div class="text-right">
@@ -108,7 +108,7 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$filter', 'toaster
                     <div class="col-md-4"></div>
                     <div class="col-md-4">
                         <div class="text-center">
-                            <pagination ng-model="currentPageNumber" total-items="(blogPosts | filter:pattern).length" items-per-page="itemsPerPage"></pagination>
+                            <pagination ng-model="currentPageNumber" total-items="(blogPosts | filter:pattern).length" items-per-page="itemsPerPage" ng-change="fetchPosts()"></pagination>
                         </div>
                     </div>
                     <div class="col-md-4">

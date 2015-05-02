@@ -54,7 +54,7 @@ angular.module('lightApp').controller('BlogPostCtrl', ['$scope', '$filter', 'toa
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="post-heading">
                 <h1>{{post.title}}</h1>
-                <span class="meta">Posted by {{post.in_Create[0].userId}} {{post.createDate | calendar}}</span>
+                <span class="meta">Posted by {{post.createUserId}} {{post.createDate | calendar}}</span>
                 <h2 class="subheading">{{post.summary}}</h2>
             </div>
         </div>
