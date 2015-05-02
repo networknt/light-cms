@@ -163,4 +163,44 @@ angular.module('lightApp')
             $location.path("/page/com-networknt-light-v-blog-post-editor");
         }
     };
-}]);
+}])
+.directive('node', function($compile) {
+    return {
+        restrict: 'E',
+        replace: true,
+        template: '<li class="item" style="list-style-type:none;"><a ng-click="goToBlog(node)" href><span style="font-weight:bold;">{{node.blogId}}</span></a><div class="toggleButton" style="display:inline;padding-left:5px;" ng-show="node.out_Own != null && node.out_Own.length > 0"><i class="fa fa-plus"></i></div></li>', // goToBlog(node)
+
+        link: function(scope, elm, attrs) {
+            $(elm.find(".toggleButton")).on('click', function (e) {
+                var button = $(elm.find("> .toggleButton"));
+                var children = $(elm).find('li.item');
+                if (children.is(":visible")) {
+                    children.hide('fast');
+                    button.html('<i class="fa fa-plus"></i>');
+                } else {
+                    button.html('<i class="fa fa-minus"></i>');
+                    children.show('fast');
+                    var subchildren = $(children).find('li.item');
+                    $(children).find('> .toggleButton').html('<i class="fa fa-plus"></i>');
+                    subchildren.hide();
+                }
+                e.stopPropagation();
+            });
+            if (scope.node.out_Own != null && scope.node.out_Own.length > 0) {
+                var childNode = $compile('<ul><node-tree style="display:none" ng-model-blog="node.out_Own"/></ul>')(scope);
+                elm.append(childNode);
+            }
+        }
+    };
+})
+.directive('nodeTree', function() {
+    return {
+        template: '<node ng-repeat="node in blogTree"/>',
+        replace: true,
+        transclude: true,
+        restrict: 'E',
+        scope: {
+            blogTree: '=ngModelBlog'
+        }
+    };
+});
