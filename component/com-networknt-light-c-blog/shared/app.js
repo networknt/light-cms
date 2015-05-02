@@ -56,16 +56,13 @@ var lightApp = angular.module('lightApp', [
       .when ('/page/com-networknt-light-v-blog-home', {
         templateUrl: 'components/blog/com-networknt-light-v-blog-home.html'
       })
-      .when ('/page/com-networknt-light-v-blog-view/:blogRid', {
+      .when ('/page/com-networknt-light-v-blog-view', {
         templateUrl: 'components/blog/com-networknt-light-v-blog-view.html'
       })
-      .when ('/page/com-networknt-light-v-blog-post-view/:blogRid/:postRid', {
+      .when ('/page/com-networknt-light-v-blog-post-view', {
         templateUrl: 'components/blog/com-networknt-light-v-blog-post-view.html'
       })
       .when('/page/com-networknt-light-v-blog-post-editor', {
-        templateUrl: 'components/blog/com-networknt-light-v-blog-post-editor.html'
-      })
-      .when('/page/com-networknt-light-v-blog-post-editor/:blogId/:postId', {
         templateUrl: 'components/blog/com-networknt-light-v-blog-post-editor.html'
       })
       .when('/users/:id', {

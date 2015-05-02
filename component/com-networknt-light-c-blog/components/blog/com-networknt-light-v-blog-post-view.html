@@ -1,8 +1,13 @@
 <script type='text/javascript'>
 'use strict';
-angular.module('lightApp').controller('BlogPostCtrl', ['$scope', '$http', '$location', '$filter', 'toaster', 'modelDataService', '$routeParams', 'blogBackend', 'postBackend', function ($scope, $http, $location, $filter, toaster, modelDataService, $routeParams, blogBackend, postBackend) {
+angular.module('lightApp').controller('BlogPostCtrl', ['$scope', '$filter', 'toaster', 'modelDataService', 'blogBackend', 'blogRouting', function ($scope, $filter, toaster, modelDataService, blogBackend, blogRouting) {
+    if (modelDataService.getModelData() == null) {
+        blogRouting.blogHome();
+    }
+
     $scope.post = null;
-    $scope.blog = null;
+    $scope.postRid = modelDataService.getModelData().postRid;
+    $scope.blog = modelDataService.getModelData().blog;
     $scope.markedContent = "";
     $scope.allowEdit = false;
     $scope.canUserUpvote = true;
@@ -10,53 +15,38 @@ angular.module('lightApp').controller('BlogPostCtrl', ['$scope', '$http', '$loca
     $scope.host = "example";
 
     $scope.fetchPost = function (postRid) {
-        postBackend.getPost($scope.host, postRid).then(function(result) {
+        blogBackend.getPost($scope.host, postRid).then(function(result) {
             $scope.post = result.data.posts[0];
             $scope.allowEdit = result.data.allowEdit;
             $scope.markedContent = marked($scope.post.content);
         });
     };
-
-    if (modelDataService.getModelData() != null && modelDataService.getModelData().blog != null) {
-        $scope.blog = modelDataService.getModelData().blog;
-    } else if ($routeParams.blogRid != null) {
-        blogBackend.getBlog($scope.host, $routeParams.blogRid).then(function (result) {
-            $scope.blog = result.data.bfn;
-        });
-    }
-
-    // If the postRid & blog are available in modelDataService, use that.
-    if (modelDataService.getModelData() != null && modelDataService.getModelData().postRid != null) {
-        $scope.fetchPost(modelDataService.getModelData().postRid);
-    } else if ($routeParams.postRid != null) {
-        $scope.fetchPost($routeParams.postRid);
-    }
+    $scope.fetchPost($scope.postRid);
 
     $scope.goBack = function() {
-        modelDataService.setModelData({
-            "blog": $scope.blog
-        });
-        $location.path("/page/com-networknt-light-v-blog-view/" + $scope.blog["@rid"]);
+        blogRouting.blogView($scope.blog);
     };
 
-
     $scope.upvote = function () {
-        postBackend.upvote("example", $scope.post["@rid"]);
+        blogBackend.upvotePost("example", $scope.post["@rid"]).then(function (result) {
+            $('#upvoteModal').modal();
+        });
         $scope.canUserUpvote = false;
         $scope.canUserDownVote = true;
+
     };
 
     $scope.downvote = function () {
-        postBackend.downvote("example", $scope.post["@rid"]);
+        blogBackend.downvotePost("example", $scope.post["@rid"]).then(function (result) {
+            $('#downvoteModal').modal();
+        });
         $scope.canUserUpvote = true;
         $scope.canUserDownVote = false;
     };
 
     $scope.editPost = function () {
-        $location.path("/page/com-networknt-light-v-blog-post-editor/" + $scope.post.parentId + "/" + $scope.post.postId);
+        blogRouting.editPost($scope.blog, $scope.post);
     };
-
-
 }]);
 </script>
 <div class="container" data-ng-controller="BlogPostCtrl">
@@ -64,8 +54,8 @@ angular.module('lightApp').controller('BlogPostCtrl', ['$scope', '$http', '$loca
         <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1">
             <div class="post-heading">
                 <h1>{{post.title}}</h1>
+                <span class="meta">Posted by {{post.in_Create[0].userId}} {{post.createDate | calendar}}</span>
                 <h2 class="subheading">{{post.summary}}</h2>
-                <span class="meta">Posted by <user id="{{post.in_Create[0].userId}}"></user> {{post.createDate | calendar}}</span>
             </div>
         </div>
     </div>
@@ -99,5 +89,34 @@ angular.module('lightApp').controller('BlogPostCtrl', ['$scope', '$http', '$loca
             </div>
         </div>
     </article>
-
+    <div class="modal fade" id="upvoteModal" tabindex="-1" role="dialog" aria-labelledby="upvoteModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">On behalf of NetworkNT...</h4>
+                </div>
+                <div class="modal-body">
+                    <h3>Thank you so much for the upvote!</h3>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="downvoteModal" tabindex="-1" role="dialog" aria-labelledby="downvoteModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">On behalf of NetworkNT...</h4>
+                </div>
+                <div class="modal-body">
+                    <h3>We appreciate your feedback, please let us know if you have any suggestions on improving the content by contacting us at: [insert email] </h3>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

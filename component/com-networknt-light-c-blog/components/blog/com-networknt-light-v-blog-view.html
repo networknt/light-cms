@@ -1,45 +1,25 @@
 <script type='text/javascript'>
 'use strict';
-angular.module('lightApp').controller('BlogCtrl', ['$scope', '$http', '$location', '$filter', 'toaster', 'modelDataService', '$routeParams', 'blogBackend', 'postBackend', function ($scope, $http, $location, $filter, toaster, modelDataService, $routeParams, blogBackend, postBackend) {
+angular.module('lightApp').controller('BlogCtrl', ['$scope', '$filter', 'toaster', 'modelDataService', 'blogBackend', 'blogRouting', function ($scope, $filter, toaster, modelDataService, blogBackend, blogRouting) {
+    if (modelDataService.getModelData() == null) {
+        blogRouting.blogHome();
+    }
 
-    $scope.blog = null;
-    $scope.blogRid = "";
+    $scope.blog = modelDataService.getModelData().blog;
+    $scope.blogRid = $scope.blog["@rid"];
     $scope.blogPosts = [];
     $scope.currentPageNumber = 1;
     $scope.itemsPerPage = 5;
     $scope.allowPost = false;
 
-    // If the blog object can be picked up from modelDataService, use that.
-    if (modelDataService.getModelData() != null && modelDataService.getModelData().blog != null) {
-        $scope.blog = modelDataService.getModelData().blog;
-        $scope.blogRid = $scope.blog["@rid"];
-    }
-
-    // If the blog cannot be found in modelDataService and we have the RID, fetch the blog from DB.
-    if ($scope.blog == null && $routeParams.blogRid != null) {
-        $scope.blogRid = $routeParams.blogRid;
-        blogBackend.getBlog("example", $scope.blogRid).then(function(result) {
-            $scope.blog = result.data;
-        });
-    }
-
     // Triggered when a user clicks on a post.
     $scope.goToBlogPost = function(post) {
-        console.log("Going to post", post);
-        modelDataService.setModelData({
-            "blog": $scope.blog,
-            "postRid": post.rid
-        });
-        $location.path("/page/com-networknt-light-v-blog-post-view/" + $scope.blogRid + "/" + post.rid);
+        blogRouting.blogPost($scope.blog, post.rid);
     };
 
     // Triggered when a user clicks on a blog category in the right sidebar.
     $scope.goToBlog = function(blog) {
-        $scope.blog = blog;
-        $scope.blogRid = blog["@rid"];
-        $scope.currentPageNumber = 1;
-        $scope.fetchPosts($scope.currentPageNumber);
-        console.log("New blog", $scope.blog);
+        blogRouting.blogView(blog);
     };
 
     // Automatically triggered when a user changes page. (and on load).
@@ -50,8 +30,7 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$http', '$location
 
     // Used to fetch posts from the database.
     $scope.fetchPosts = function (page) {
-        postBackend.getBlogPosts("example", $scope.blogRid, page, $scope.itemsPerPage, "desc", "createDate").then(function (result) {
-            console.log("GetBlogPosts result:", result.data);
+        blogBackend.getBlogPosts("example", $scope.blogRid, page, $scope.itemsPerPage, "desc", "createDate").then(function (result) {
             $scope.blogPosts = result.data.posts;
             $scope.allowPost = result.data.allowPost;
         });
@@ -59,16 +38,12 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$http', '$location
 
     // Routes the user to the post editor to add a post.
     $scope.addPost = function () {
-        modelDataService.setModelData({
-            blogId: $scope.blog.blogId
-        });
-        $location.path("/page/com-networknt-light-v-blog-post-editor");
+        blogRouting.addPost($scope.blog);
     };
 
     // Routes the user back to the blog home page.
     $scope.goToBlogHome = function () {
-        modelDataService.setModelData(null);
-        $location.path("/page/com-networknt-light-v-blog-home");
+        blogRouting.blogHome();
     };
 }]);
 </script>
@@ -89,7 +64,7 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$http', '$location
         <div class="col-xs-6 col-sm-6 col-md-6 column text-left">
             <ol class="breadcrumb" style="background-color:white; padding-left:0px;">
                 <li><a href ng-click="goToBlogHome()" style="text-decoration:none;">Blogs</a></li>
-                <li class="active">{{blogId}}</li>
+                <li class="active">{{blog.blogId}}</li>
             </ol>
         </div>
         <div class="col-xs-6 col-sm-6 col-md-6 column text-right">
@@ -105,7 +80,7 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$http', '$location
                             <a href ng-click="goToBlogPost({{post}})">
                                 <h2 class="post-title">{{post.title}}</h2>
                             </a>
-                            <p class="post-meta">Posted by <user id="{{post.in_Create[0].userId}}"></user> {{post.createDate | calendar}}</p>
+                            <p class="post-meta">Posted by {{post.in_Create[0].userId}} {{post.createDate | calendar}}</p>
                         </div>
                         <div class="col-md-4">
                             <div class="text-right">

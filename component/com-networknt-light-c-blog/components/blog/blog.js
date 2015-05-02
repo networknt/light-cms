@@ -29,12 +29,7 @@ angular.module('lightApp')
             return $http.post('api/rs', getBlogQuery).then(function (response) {
                 return response;
             });
-        }
-    };
-}])
-
-.service('postBackend', ['$http', function($http) {
-    return {
+        },
         getBlogPosts : function (host, blogRid, pageNo, itemsPerPage, sortDir, sortBy) {
             var getBlogPostsQuery = {
                 category : 'blog',
@@ -67,8 +62,8 @@ angular.module('lightApp')
                 return response;
             });
         },
-        upvote : function (host, postRid) {
-            var upvoteQuery = {
+        upvotePost : function (host, postRid) {
+            var upvotePostQuery = {
                 category: 'post',
                 name: 'upPost',
                 readOnly: false,
@@ -77,12 +72,12 @@ angular.module('lightApp')
                     '@rid': postRid
                 }
             };
-            return $http.post('api/rs', upvoteQuery).then(function (response) {
+            return $http.post('api/rs', upvotePostQuery).then(function (response) {
                 return response;
             });
         },
-        downvote : function (host, postRid) {
-            var downvoteQuery = {
+        downvotePost : function (host, postRid) {
+            var downvotePostQuery = {
                 category: 'post',
                 name: 'downPost',
                 readOnly: false,
@@ -91,9 +86,81 @@ angular.module('lightApp')
                     '@rid': postRid
                 }
             };
-            return $http.post('api/rs', downvoteQuery).then (function (response) {
+            return $http.post('api/rs', downvotePostQuery).then (function (response) {
                 return response;
             });
+        },
+        addPost : function (host, blogId, title, content, tags, source, summary) {
+            var addPostQuery = {
+                category : 'blog',
+                name : 'addPost',
+                readOnly: false,
+                data: {
+                    host: host,
+                    parentId: blogId,
+                    title: title,
+                    content: content,
+                    tags: tags,
+                    source: source,
+                    summary: summary
+                }
+            };
+            return $http.post('api/rs', addPostQuery).then (function (response) {
+                return response;
+            });
+        },
+        updatePost : function (host, postRid, title, content, tags, source, summary) {
+            var updatePostQuery = {
+                category : 'blog',
+                name : 'updPost',
+                readOnly: false,
+                data: {
+                    host: host,
+                    "@rid": postRid,
+                    title: title,
+                    content: content,
+                    tags: tags,
+                    source: source,
+                    summary: summary
+                }
+            };
+            return $http.post('api/rs', updatePostQuery).then (function (response) {
+                return response;
+            });
+        }
+    };
+}])
+.service('blogRouting', ['$location', 'modelDataService', function($location, modelDataService) {
+    return {
+        blogHome : function () {
+            modelDataService.setModelData(null);
+            $location.path("page/com-networknt-light-v-blog-home");
+        },
+        blogView : function (blog) {
+            modelDataService.setModelData({
+                blog: blog
+            });
+            $location.path("/page/com-networknt-light-v-blog-view");
+        },
+        blogPost : function (blog, postRid) {
+            modelDataService.setModelData({
+                blog: blog,
+                postRid: postRid
+            });
+            $location.path("/page/com-networknt-light-v-blog-post-view");
+        },
+        addPost : function (blog) {
+            modelDataService.setModelData({
+                blog: blog
+            });
+            $location.path("/page/com-networknt-light-v-blog-post-editor");
+        },
+        editPost : function (blog, post) {
+            modelDataService.setModelData({
+                blog: blog,
+                post: post
+            });
+            $location.path("/page/com-networknt-light-v-blog-post-editor");
         }
     };
 }]);

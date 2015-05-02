@@ -1,11 +1,12 @@
 <script type='text/javascript'>
 'use strict';
-angular.module('lightApp').controller('BlogCtrl', ['$scope', '$http', '$location', '$filter', 'toaster', 'modelDataService', 'blogBackend', function ($scope, $http, $location, $filter, toaster, modelDataService, blogBackend) {
+angular.module('lightApp').controller('BlogCtrl', ['$scope', '$filter', 'toaster', 'blogBackend', 'blogRouting', function ($scope, $filter, toaster, blogBackend, blogRouting) {
     $scope.currentPage = 1;
     $scope.itemsPerPage = 6;
     $scope.blogs = null;
     $scope.pagedBlogs = [];
 
+    // Frontend pagination
     $scope.pageChanged = function() {
         var begin = ($scope.currentPage - 1) * $scope.itemsPerPage;
         var end = begin + $scope.itemsPerPage;
@@ -14,17 +15,15 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$http', '$location
         }
     };
 
+    // Triggered on blog click. Route user to specific blog.
     $scope.goToBlog = function(blog) {
-        modelDataService.setModelData({
-            blog: blog
-        });
-        $location.path("/page/com-networknt-light-v-blog-view/" +  blog["@rid"]);
+        blogRouting.blogView(blog);
     };
 
+    // Onload -> Get full blog tree for "example" host.
     blogBackend.getBlogTree("example").then(function(result) {
         $scope.blogs = result.data;
         $scope.pageChanged();
-        console.log("Blogs returned:", $scope.blogs);
    });
 }]);
 </script>

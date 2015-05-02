@@ -1,91 +1,36 @@
 <script type='text/javascript'>
-angular.module('lightApp').controller('BlogPostEditorCtrl', ['$scope', '$http', '$location', '$filter', 'toaster', 'modelDataService', '$routeParams', function ($scope, $http, $location, $filter, toaster, modelDataService, $routeParams) {
-    $scope.blogId = modelDataService.getModelData().blogId;
-    $scope.postId = modelDataService.getModelData().postId;
+angular.module('lightApp').controller('BlogPostEditorCtrl', ['$scope', '$filter', 'toaster', 'modelDataService', 'blogBackend', 'blogRouting', function ($scope, $filter, toaster, modelDataService, blogBackend, blogRouting) {
+    if (modelDataService.getModelData() == null) {
+        blogRouting.blogHome();
+    }
+    $scope.blog = modelDataService.getModelData().blog;
+    $scope.post = modelDataService.getModelData().post;
+    console.log("blog", $scope.blog, "post", $scope.post);
     $scope.postContent = "";
     $scope.postTitle = "";
-    $scope.postRid = "";
-
-    $scope.updateBlogPost = {
-        category : 'blog',
-        name : 'updPost',
-        readOnly: false,
-        data: {
-            host: 'example',
-            '@rid': $scope.blogId
-        }
-    };
+    $scope.postSummary = "";
+    $scope.postTags = "";
+    $scope.postSource = "";
+    if ($scope.post != null) {
+        $scope.postContent = $scope.post.content;
+        $scope.postTitle = $scope.post.title;
+        $scope.postSummary = $scope.post.summary;
+        $scope.postTags = $scope.post.tags;
+        $scope.postSource = $scope.post.source;
+    }
 
     $scope.submitPost = function () {
-        if ($scope.postId == null && $scope.blogId != null) {
-            $scope.addBlogPost = {
-                category : 'blog',
-                name : 'addPost',
-                readOnly: false,
-                data: {
-                    host: 'example',
-                    parentId: $scope.blogId,
-                    title: $scope.postTitle,
-                    content: $scope.postContent,
-                    tags: ''
-                }
-            };
-            $http.post('api/rs', $scope.addBlogPost)
-                .success(function (result, status, headers, config) {
-                    console.log("Result:", result);
-                    // TODO: get new postId back from server and route directly to created post.
-                    $location.path("/page/com-networknt-light-v-blog-view/" + $scope.blogId);
-                })
-                .error(function (result, status, headers, config) {
-                    console.log("getBlogPost error:", result);
-                })
-        } else if ($scope.postId != null && $scope.blogId != null) {
-            console.log("Submitting as edit");
-            $scope.updBlogPost = {
-                category : 'blog',
-                name : 'updPost',
-                readOnly: false,
-                data: {
-                    host: 'example',
-                    "@rid": $scope.postRid,
-                    title: $scope.postTitle,
-                    content: $scope.postContent,
-                    tags: ''
-                }
-            };
-            $http.post('api/rs', $scope.updBlogPost)
-                .success(function (result, status, headers, config) {
-                    console.log("Result:", result);
-                    $location.path("/page/com-networknt-light-v-blog-post-view/" + $scope.postId);
-                })
-                .error(function (result, status, headers, config) {
-                    console.log("getBlogPost error:", result);
-                })
-        }
-
-    };
-    $scope.getBlogPost = {
-        category : 'post',
-        name : 'getPost',
-        readOnly: true,
-        data: {
-            host: 'example',
-            postId: $scope.postId
-        }
-    };
-
-    $scope.fetchBlogPost = function () {
-        $http.post('api/rs', $scope.getBlogPost)
-            .success(function (result, status, headers, config) {
-                $scope.postTitle = result.posts[0].title;
-                $scope.postContent = result.posts[0].content;
-                $scope.postRid = result.posts[0]["@rid"];
-                console.log("Post returned:", result);
+        if ($scope.post == null && $scope.blog != null) {
+            blogBackend.addPost("example", $scope.blog.blogId, $scope.postTitle, $scope.postContent, $scope.postTags, $scope.postSource, $scope.postSummary).then(function (result) {
+                blogRouting.blogHome();
             });
+        } else if ($scope.post != null && $scope.blog != null) {
+            console.log("Editing post");
+            blogBackend.updatePost("example", $scope.post["@rid"], $scope.postTitle, $scope.postContent, $scope.postTags, $scope.postSource, $scope.postSummary).then(function (result) {
+                blogRouting.blogPost($scope.blog, $scope.post["@rid"]);
+            });
+        }
     };
-    if ($scope.postId != null) {
-        $scope.fetchBlogPost();
-    }
 }]);
 </script>
 <div class="container" data-ng-controller="BlogPostEditorCtrl">
@@ -104,22 +49,35 @@ angular.module('lightApp').controller('BlogPostEditorCtrl', ['$scope', '$http', 
     <div class="row clearfix">
         <div class="col-md-12 column text-center">
             <h2>Post Editor</h2>
-            <form ng-submit="submitPost()">
-                <input name="title" type="text" placeholder="Title" ng-model="postTitle" style="margin-bottom:10px; width:50%; height:40px;"/><br />
-                <div class="row">
-                    <div class="col-md-12 column text-center">
-                        <textarea ng-model="postContent" markdownedit></textarea>
-                    </div>
+            <input name="title" type="text" placeholder="Title" ng-model="postTitle" style="margin-bottom:10px; width:50%; height:40px;"/><br />
+            <div class="row clearfix">
+                <div class="col-md-12 column text-center">
+                    <textarea name="postSummary" type="text" placeholder="Summary" ng-model="postSummary" style="margin-top:10px; width:100%; height:40px;"></textarea>
                 </div>
-                <div class="row clearfix">
-                    <div class="col-md-12 column text-center">
-                        <h2>Preview</h2>
-                        <markdown bind-from="postContent"></markdown>
-                    </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-12 column text-center">
+                    <textarea ng-model="postContent" placeholder="Content" markdownedit></textarea>
                 </div>
-                <hr/>
-                <button type="submit" class="btn btn-success">Submit</button>
-            </form>
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-12 column text-center">
+                    <input name="postSource" type="text" placeholder="Source" ng-model="postSource" style="margin-top:10px; width:50%; height:40px;"/>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-12 column text-center">
+                    <input name="postTags" type="text" placeholder="Tags" ng-model="postTags" style="margin-top:10px; width:50%; height:40px;"/>
+                </div>
+            </div>
+            <div class="row clearfix">
+                <div class="col-md-12 column text-center">
+                    <h2>Preview</h2>
+                    <markdown bind-from="postContent"></markdown>
+                </div>
+            </div>
+            <hr/>
+            <button ng-click="submitPost()" class="btn btn-success">Submit</button>
         </div>
     </div>
 </div>
