@@ -12,6 +12,7 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$filter', 'toaster
         $scope.blogPosts = [];
         $scope.currentPageNumber = 1;
         $scope.allowPost = false;
+        $scope.total = 0;
         $scope.fetchPosts();
     };
 
@@ -22,6 +23,7 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$filter', 'toaster
 
     // Triggered when a user clicks on a blog category in the right sidebar.
     $scope.goToBlog = function(blog) {
+        console.log('goToBlog blog = ', blog);
         $scope.initPage(blog);
     };
 
@@ -30,6 +32,7 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$filter', 'toaster
         blogBackend.getBlogPosts("example", $scope.blogRid, $scope.currentPageNumber, $scope.itemsPerPage, "desc", "createDate").then(function (result) {
             $scope.blogPosts = result.data.posts;
             $scope.allowPost = result.data.allowPost;
+            $scope.total = result.data.total;
         });
     };
 
@@ -108,7 +111,7 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$filter', 'toaster
                     <div class="col-md-4"></div>
                     <div class="col-md-4">
                         <div class="text-center">
-                            <pagination ng-model="currentPageNumber" total-items="(blogPosts | filter:pattern).length" items-per-page="itemsPerPage" ng-change="fetchPosts()"></pagination>
+                            <pagination ng-model="currentPageNumber" total-items="total" items-per-page="itemsPerPage" ng-change="fetchPosts()"></pagination>
                         </div>
                     </div>
                     <div class="col-md-4">
@@ -126,7 +129,7 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$filter', 'toaster
                 </div>
                 <div class="panel-body">
                     <li data-ng-repeat="subBlog in blog.out_Own">
-                        <a ng-click="goToBlog({{subBlog}})">{{subBlog.blogId}}</a>
+                        <a ng-click="goToBlog(subBlog)">{{subBlog.blogId}}</a>
                     </li>
                 </div>
             </div>
