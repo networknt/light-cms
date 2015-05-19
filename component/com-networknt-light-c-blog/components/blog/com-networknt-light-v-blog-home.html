@@ -13,6 +13,7 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$filter', 'toaster
         if ($scope.blogs != null) {
             $scope.pagedBlogs = $scope.blogs.slice(begin, end);
         }
+        console.log("pagedBlogs:", $scope.pagedBlogs);
     };
 
     // Triggered on blog click. Route user to specific blog.
@@ -64,37 +65,38 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$filter', 'toaster
         </div>
     </div>
     <div class="row">
-        <div class="col-md-12 column">
-            <div class="ui cards">
-                <div class="green card" ng-repeat="blog in pagedBlogs | limitTo:itemsPerPage | filter:pattern" style="text-decoration:none;">
-                    <div class="content">
-                        <div class="header text-center">
+        <div class="col-md-4 column" ng-repeat="blog in pagedBlogs | limitTo:itemsPerPage | filter:pattern" style="text-decoration:none;">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <div class="row">
+                        <div class="col-md-12 column text-center">
                             {{blog.blogId}}
                         </div>
-                        <div class="description text-center" style="word-wrap: break-word;">
-                            {{blog.description}}
-                        </div>
-
-                    </div>
-                    <div class="extra content">
-                        <div class="row">
-                            <div class="col-md-6 column">
-                                {{blog.out_HasPost.length || 0}} Posts
-                            </div>
-                            <div class="col-md-6 column text-right pull-right" ng-if="blog.out_Own.length > 0">
-                                <button id="{{blog.blogId}}-button" type="button" class="btn btn-default" style="padding-right:6px; padding-left:6px; padding-top:1px; padding-bottom:1px;" ng-click="toggleSubBlog(blog.blogId)"><i class="fa fa-plus"></i></button>
-                            </div>
-                        </div>
-                        <div class="row" id="{{blog.blogId}}-subblogs" style="display:none;">
-                            <hr style="width:100%;" />
-                            <div class="col-md-12 column">
-                                <span class="text-right pull-right">Sub blogs</span>
-                                <node-tree ng-model-blog="blog.out_Own"></node-tree>
-                            </div>
+                        <div class="col-md-2 column text-right pull-right" ng-if="blog.out_Own.length > 0">
+                            <button id="{{blog.blogId}}-button" type="button" class="btn btn-default" style="padding-right:6px; padding-left:6px; padding-top:1px; padding-bottom:1px;" ng-click="toggleSubBlog(blog.blogId)"><i class="fa fa-plus"></i></button>
                         </div>
                     </div>
-                    <div class="ui bottom attached button">
-                        <button type="button" class="btn btn-default" style="width:100%; text-align:center;" ng-click="goToBlog({{blog}})">Read More</button>
+                </div>
+                <div class="panel-body">
+                    <div class="text-center" style="word-wrap: break-word;">
+                        {{blog.description}}
+                    </div>
+                    <div class="row" id="{{blog.blogId}}-subblogs" style="display:none;">
+                        <hr style="width:100%;" />
+                        <div class="col-md-12 column">
+                            <span class="text-right pull-right">Sub blogs</span>
+                            <node-tree ng-model-blog="blog.out_Own"></node-tree>
+                        </div>
+                    </div>
+                </div>
+                <div class="panel-footer text-right">
+                    <div class="row">
+                        <div class="col-md-6 column text-left">
+                            {{blog.out_HasPost.length || 0}} Posts
+                        </div>
+                        <div class="col-md-6 column text-right">
+                            <button type="button" class="btn btn-success" style="text-align:center;" ng-click="goToBlog({{blog}})">Read More</button>
+                        </div>
                     </div>
                 </div>
             </div>

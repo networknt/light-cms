@@ -62,19 +62,8 @@ var lightApp = angular.module('lightApp', [
       .when('/page/com-networknt-light-v-forum-post-view', {
           templateUrl: 'components/forum/com-networknt-light-v-forum-post-view.html'
       })
-      .when('/page/com-networknt-light-v-forum-admin-home', {
-          templateUrl: 'components/user-profile/com-networknt-light-v-forum-admin-home.html'
-      })
       .when('/page/com-networknt-light-v-user-logout', {
           templateUrl: 'components/user-profile/com-networknt-light-v-user-logout.html'
-      })
-      .when('/users/:id', {
-          templateUrl: 'components/user-profile/com-networknt-light-v-user-public-profile.html',
-          controller: 'UserPublicProfileCtrl'
-      })
-      .when('/user/:id', {
-            templateUrl: 'components/user-profile/com-networknt-light-v-user-public-profile.html',
-            controller: 'UserPublicProfileCtrl'
       })
       .when('/page/:id', {
         templateUrl: 'shared/page/page.html',
