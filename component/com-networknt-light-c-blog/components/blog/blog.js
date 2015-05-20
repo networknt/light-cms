@@ -168,28 +168,43 @@ angular.module('lightApp')
     return {
         restrict: 'E',
         replace: true,
-        template: '<li class="item" style="list-style-type:none;"><a ng-click="goToBlog(node)" href><span style="font-weight:bold;">{{node.blogId}}</span></a><div class="toggleButton" style="display:inline;padding-left:5px;" ng-show="node.out_Own != null && node.out_Own.length > 0"><i class="fa fa-plus"></i></div></li>', // goToBlog(node)
-
+        template:   '<div class="panel-group" style="margin-bottom:5px;"> \
+                        <div class="panel panel-default"> \
+                            <div class="panel-heading" data-toggle="collapse" data-target="#collapse-{{node.blogId}}" href="#collapse-{{node.blogId}}" style="cursor: pointer;"> \
+                                <h4 class="panel-title"> \
+                                    <div class="row" style="display:flex; align-items:center;"> \
+                                        <div class="col-xs-6 col-sm-6 col-md-6 text-left" style="font-family: \'Open Sans\', \'Helvetica Neue\', Helvetica, Arial, sans-serif; font-weight: 600;"> \
+                                            <span class="badge" style="margin-right:20px;">{{node.out_HasPost.length || 0}}</span> {{node.blogId}} \
+                                        </div> \
+                                        <div class="col-xs-6 col-sm-6 col-md-6 text-right"> \
+                                            <button type="button" class="btn btn-success" style="text-align:center;" ng-click="goToBlog({{node}})">Read More</button> \
+                                        </div> \
+                                    </div> \
+                                </h4> \
+                            </div> \
+                            <div id="collapse-{{node.blogId}}" class="panel-collapse collapse"> \
+                                <div class="panel-body"> \
+                                    <div class="text-center" style="word-wrap: break-word;"> \
+                                        {{node.description}} \
+                                    </div> \
+                                    <div ng-if="node.out_Own.length > 0"> \
+                                        <hr style="width:100%;" /> \
+                                        <node-tree ng-model-blog="node.out_Own"></node-tree> \
+                                    </div> \
+                                </div> \
+                            </div> \
+                        </div> \
+                    </div>',
+         compile: function (el) {
+                     var contents = el.contents().remove();
+                     return function(scope,el){
+                         $compile(contents)(scope,function(clone){
+                             el.append(clone);
+                         });
+                     };
+                 },
         link: function(scope, elm, attrs) {
-            $(elm.find(".toggleButton")).on('click', function (e) {
-                var button = $(elm.find("> .toggleButton"));
-                var children = $(elm).find('li.item');
-                if (children.is(":visible")) {
-                    children.hide('fast');
-                    button.html('<i class="fa fa-plus"></i>');
-                } else {
-                    button.html('<i class="fa fa-minus"></i>');
-                    children.show('fast');
-                    var subchildren = $(children).find('li.item');
-                    $(children).find('> .toggleButton').html('<i class="fa fa-plus"></i>');
-                    subchildren.hide();
-                }
-                e.stopPropagation();
-            });
-            if (scope.node.out_Own != null && scope.node.out_Own.length > 0) {
-                var childNode = $compile('<ul><node-tree style="display:none" ng-model-blog="node.out_Own"/></ul>')(scope);
-                elm.append(childNode);
-            }
+
         }
     };
 })

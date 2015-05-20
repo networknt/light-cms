@@ -26,19 +26,6 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$filter', 'toaster
         $scope.blogs = result.data;
         $scope.pageChanged();
    });
-
-    $scope.toggleSubBlog = function (blogId) {
-        var subBlogTree = jQuery("#" + blogId + "-subblogs");
-        var button = jQuery("#" + blogId + "-button");
-        console.log("button:", button);
-        if (subBlogTree.is(':visible')) {
-            subBlogTree.hide('fast');
-            button.html('<i class="fa fa-plus"></i>');
-        } else {
-            subBlogTree.show('fast');
-            button.html('<i class="fa fa-minus"></i>');
-        }
-    };
 }]);
 </script>
 <div class="container" data-ng-controller="BlogCtrl">
@@ -64,45 +51,7 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$filter', 'toaster
             <input ng-model="pattern" placeholder=" &#xE003; Search Blogs" style="font-family: Helvetica, Glyphicons Halflings;"/>
         </div>
     </div>
-    <div class="row">
-        <div class="col-md-4 column" ng-repeat="blog in pagedBlogs | limitTo:itemsPerPage | filter:pattern" style="text-decoration:none;">
-            <div class="panel panel-default">
-                <div class="panel-heading">
-                    <div class="row">
-                        <div class="col-md-12 column text-center">
-                            {{blog.blogId}}
-                        </div>
-                        <div class="col-md-2 column text-right pull-right" ng-if="blog.out_Own.length > 0">
-                            <button id="{{blog.blogId}}-button" type="button" class="btn btn-default" style="padding-right:6px; padding-left:6px; padding-top:1px; padding-bottom:1px;" ng-click="toggleSubBlog(blog.blogId)"><i class="fa fa-plus"></i></button>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel-body">
-                    <div class="text-center" style="word-wrap: break-word;">
-                        {{blog.description}}
-                    </div>
-                    <div class="row" id="{{blog.blogId}}-subblogs" style="display:none;">
-                        <hr style="width:100%;" />
-                        <div class="col-md-12 column">
-                            <span class="text-right pull-right">Sub blogs</span>
-                            <node-tree ng-model-blog="blog.out_Own"></node-tree>
-                        </div>
-                    </div>
-                </div>
-                <div class="panel-footer text-right">
-                    <div class="row">
-                        <div class="col-md-6 column text-left">
-                            {{blog.out_HasPost.length || 0}} Posts
-                        </div>
-                        <div class="col-md-6 column text-right">
-                            <button type="button" class="btn btn-success" style="text-align:center;" ng-click="goToBlog({{blog}})">Read More</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <hr />
-        </div>
-    </div>
+    <node-tree ng-model-blog="pagedBlogs"></node-tree>
     <div class="row">
         <div class="col-md-12">
             <center>
