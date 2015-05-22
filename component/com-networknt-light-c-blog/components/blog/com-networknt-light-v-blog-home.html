@@ -1,6 +1,6 @@
 <script type='text/javascript'>
 'use strict';
-angular.module('lightApp').controller('BlogCtrl', ['$scope', '$filter', 'toaster', 'blogBackend', 'blogRouting', function ($scope, $filter, toaster, blogBackend, blogRouting) {
+angular.module('lightApp').controller('BlogCtrl', ['$scope', '$filter', 'toaster', 'bfnBackend', 'blogRouting', function ($scope, $filter, toaster, bfnBackend, blogRouting) {
     $scope.currentPage = 1;
     $scope.itemsPerPage = 6;
     $scope.blogs = null;
@@ -22,7 +22,7 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$filter', 'toaster
     };
 
     // Onload -> Get full blog tree for "example" host.
-    blogBackend.getBlogTree("example").then(function(result) {
+    bfnBackend.getTree("blog", "example").then(function(result) {
         $scope.blogs = result.data;
         $scope.pageChanged();
    });

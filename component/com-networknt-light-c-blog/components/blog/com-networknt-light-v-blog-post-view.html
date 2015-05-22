@@ -1,6 +1,6 @@
 <script type='text/javascript'>
 'use strict';
-angular.module('lightApp').controller('BlogPostCtrl', ['$scope', '$filter', 'toaster', 'modelDataService', 'blogBackend', 'blogRouting', function ($scope, $filter, toaster, modelDataService, blogBackend, blogRouting) {
+angular.module('lightApp').controller('BlogPostCtrl', ['$scope', '$filter', 'toaster', 'modelDataService', 'bfnBackend', 'blogRouting', function ($scope, $filter, toaster, modelDataService, bfnBackend, blogRouting) {
     if (modelDataService.getModelData() == null) {
         blogRouting.blogHome();
     }
@@ -15,7 +15,7 @@ angular.module('lightApp').controller('BlogPostCtrl', ['$scope', '$filter', 'toa
     $scope.host = "example";
 
     $scope.fetchPost = function (postRid) {
-        blogBackend.getPost($scope.host, postRid).then(function(result) {
+        bfnBackend.getPost($scope.host, postRid).then(function(result) {
             $scope.post = result.data.posts[0];
             $scope.allowEdit = result.data.allowEdit;
             $scope.markedContent = marked($scope.post.content);
@@ -28,7 +28,7 @@ angular.module('lightApp').controller('BlogPostCtrl', ['$scope', '$filter', 'toa
     };
 
     $scope.upvote = function () {
-        blogBackend.upvotePost("example", $scope.post["@rid"]).then(function (result) {
+        bfnBackend.upvotePost("example", $scope.post["@rid"]).then(function (result) {
             $('#upvoteModal').modal();
         });
         $scope.canUserUpvote = false;
@@ -37,7 +37,7 @@ angular.module('lightApp').controller('BlogPostCtrl', ['$scope', '$filter', 'toa
     };
 
     $scope.downvote = function () {
-        blogBackend.downvotePost("example", $scope.post["@rid"]).then(function (result) {
+        bfnBackend.downvotePost("example", $scope.post["@rid"]).then(function (result) {
             $('#downvoteModal').modal();
         });
         $scope.canUserUpvote = true;

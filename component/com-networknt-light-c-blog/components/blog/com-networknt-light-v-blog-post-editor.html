@@ -1,5 +1,5 @@
 <script type='text/javascript'>
-angular.module('lightApp').controller('BlogPostEditorCtrl', ['$scope', '$filter', 'toaster', 'modelDataService', 'blogBackend', 'blogRouting', function ($scope, $filter, toaster, modelDataService, blogBackend, blogRouting) {
+angular.module('lightApp').controller('BlogPostEditorCtrl', ['$scope', '$filter', 'toaster', 'modelDataService', 'bfnBackend', 'blogRouting', function ($scope, $filter, toaster, modelDataService, bfnBackend, blogRouting) {
     if (modelDataService.getModelData() == null) {
         blogRouting.blogHome();
     }
@@ -21,12 +21,12 @@ angular.module('lightApp').controller('BlogPostEditorCtrl', ['$scope', '$filter'
 
     $scope.submitPost = function () {
         if ($scope.post == null && $scope.blog != null) {
-            blogBackend.addPost("example", $scope.blog.blogId, $scope.postTitle, $scope.postContent, $scope.postTags, $scope.postSource, $scope.postSummary).then(function (result) {
+            bfnBackend.addPost("blog", "example", $scope.blog.blogId, $scope.postTitle, $scope.postContent, $scope.postTags, $scope.postSource, $scope.postSummary).then(function (result) {
                 blogRouting.blogHome();
             });
         } else if ($scope.post != null && $scope.blog != null) {
             console.log("Editing post");
-            blogBackend.updatePost("example", $scope.post["@rid"], $scope.postTitle, $scope.postContent, $scope.postTags, $scope.postSource, $scope.postSummary).then(function (result) {
+            bfnBackend.updatePost("blog", "example", $scope.post["@rid"], $scope.postTitle, $scope.postContent, $scope.postTags, $scope.postSource, $scope.postSummary).then(function (result) {
                 blogRouting.blogPost($scope.blog, $scope.post["@rid"]);
             });
         }

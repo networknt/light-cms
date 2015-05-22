@@ -1,6 +1,6 @@
 <script type='text/javascript'>
 'use strict';
-angular.module('lightApp').controller('BlogCtrl', ['$scope', '$filter', 'toaster', 'modelDataService', 'blogBackend', 'blogRouting', function ($scope, $filter, toaster, modelDataService, blogBackend, blogRouting) {
+angular.module('lightApp').controller('BlogCtrl', ['$scope', '$filter', 'toaster', 'modelDataService', 'bfnBackend', 'blogRouting', function ($scope, $filter, toaster, modelDataService, bfnBackend, blogRouting) {
     if (modelDataService.getModelData() == null) {
         blogRouting.blogHome();
     }
@@ -29,7 +29,7 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$filter', 'toaster
 
     // Used to fetch posts from the database.
     $scope.fetchPosts = function () {
-        blogBackend.getBlogPosts("example", $scope.blogRid, $scope.currentPageNumber, $scope.itemsPerPage, "desc", "createDate").then(function (result) {
+        bfnBackend.getPosts("blog", "example", $scope.blogRid, $scope.currentPageNumber, $scope.itemsPerPage, "desc", "createDate").then(function (result) {
             $scope.blogPosts = result.data.posts;
             $scope.allowPost = result.data.allowPost;
             $scope.total = result.data.total;
