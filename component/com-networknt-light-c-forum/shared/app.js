@@ -56,8 +56,8 @@ var lightApp = angular.module('lightApp', [
       .when('/page/com-networknt-light-v-forum-home', {
           templateUrl: 'components/forum/com-networknt-light-v-forum-home.html'
       })
-      .when('/page/com-networknt-light-v-forum-post', {
-          templateUrl: 'components/forum/com-networknt-light-v-forum-post.html'
+      .when('/page/com-networknt-light-v-forum-posts', {
+          templateUrl: 'components/forum/com-networknt-light-v-forum-posts.html'
       })
       .when('/page/com-networknt-light-v-forum-post-view', {
           templateUrl: 'components/forum/com-networknt-light-v-forum-post-view.html'

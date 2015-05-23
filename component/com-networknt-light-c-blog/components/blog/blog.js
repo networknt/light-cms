@@ -81,12 +81,12 @@ angular.module('lightApp')
 })
 .directive('nodeTree', function() {
     return {
-        template: '<node ng-repeat="node in blogTree"/>',
+        template: '<node ng-repeat="node in nodeTree"/>',
         replace: true,
         transclude: true,
         restrict: 'E',
         scope: {
-            blogTree: '=ngModelBlog'
+            nodeTree: '=ngModelNode'
         }
     };
 });
