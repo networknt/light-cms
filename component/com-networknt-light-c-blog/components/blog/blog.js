@@ -45,7 +45,7 @@ angular.module('lightApp')
                                 <h4 class="panel-title"> \
                                     <div class="row" style="display:flex; align-items:center;"> \
                                         <div class="col-xs-6 col-sm-6 col-md-6 text-left" style="font-family: \'Open Sans\', \'Helvetica Neue\', Helvetica, Arial, sans-serif; font-weight: 600;"> \
-                                            <span class="badge" style="margin-right:20px;">{{node.out_HasPost.length || 0}}</span> {{node.blogId}} \
+                                            <span class="badge" style="margin-right:20px;">{{node.out_HasPost.length || 0}}</span><span ng-click="goToBlog({{node}})">{{node.blogId}}</span> \
                                         </div> \
                                         <div class="col-xs-6 col-sm-6 col-md-6 text-right"> \
                                             <button type="button" class="btn btn-success" style="text-align:center;" ng-click="goToBlog({{node}})">Read More</button> \
