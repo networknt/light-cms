@@ -1,8 +1,10 @@
 'use strict';
 
-var React = require('react');
-var InlineUser = require('./scripts/component/InlineUser');
-//var UserProfile = require('./scripts/component/UserProfile');
-require('./assets/css/user.css');
+window.jQuery = require('./node_modules/jquery/dist/jquery.min');
+require('./node_modules/semantic-ui/dist/semantic.min.css');
+require('./node_modules/semantic-ui/dist/semantic.min');
 
-React.render(<InlineUser />, document.getElementById('content'));
+var React = require('react');
+var UserExample = require('./scripts/component/UserExample.js');
+
+React.render(<UserExample></UserExample>, document.getElementById('content'));

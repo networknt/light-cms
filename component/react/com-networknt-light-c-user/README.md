@@ -1,11 +1,11 @@
 **User Component**
 
 -- Installing:
-npm install webpack webpack-dev-server react-hot-loader babel-loader style-loader css-loader
+npm install
 
 -- For single build:
 webpack
 
--- While developing:
+-- While developing: (live reload enabled)
 node server.js
 navigate to localhost:3000 in browser.

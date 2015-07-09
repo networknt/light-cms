@@ -2,7 +2,7 @@ var webpack = require('webpack');
 
 module.exports = {
   entry: [
-    'webpack-dev-server/client?http://0.0.0.0:3000',
+    'webpack-dev-server/client?http://localhost:3000',
     'webpack/hot/only-dev-server',
     './app' // app entry point
   ],
@@ -21,7 +21,7 @@ module.exports = {
         exclude: /node_modules/
       },
       { test: /\.css$/, loader: 'style-loader!css-loader' },
-      { test: /\.(png|woff|woff2|eot|ttf)$/, loader: 'url-loader?limit=100000' }
+      { test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' }
     ]
   },
   plugins: [
