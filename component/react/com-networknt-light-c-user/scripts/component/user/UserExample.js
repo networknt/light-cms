@@ -1,11 +1,12 @@
 var React =  require('react');
-
 var InlineUser = require('./InlineUser.js');
+
+
 
 var UserExample = React.createClass({
     render: function() {
         return (
-            <div>
+            <div class="ui vertical segment">
                 <div class="ui vertical segment">
                     <div class="ui centered page grid">
                         <div class="row">
