@@ -2,38 +2,27 @@
 <html lang="en">
 	<head>
 		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<title>User Component</title>
-		<link href="dist/bundle.css" rel="stylesheet" />
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<link rel="stylesheet" type="text/css" href="assets/css/user.css">
 	</head>
 	<body>
-	<h1>
-		The following is rendered by react...
-	</h1>
 	<div id="content"></div>
-	<h1>
-		And the following is the same code in place...
-	</h1>
-	<div>
-		<div class="ui vertical segment">
-			<div class="ui vertical segment">
-				<div class="ui centered page grid">
-					<div class="row">
-						<h1>Network NT User Example</h1>
-					</div>
-				</div>
-			</div>
-			<div class="ui vertical segment">
-				<div class="ui centered page grid">
-					<div class="row">
-						The following is an example rendering of how a user would appear inline to text referencing this user.
-					</div>
-					<div class="row">
-						This is some text where we reference the user with id = testuser.
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+	<script>
+		var WebFontConfig = {
+			google: { families: [ 'Roboto:400,300,500:latin' ] }
+		};
+		(function() {
+			var wf = document.createElement('script');
+			wf.src = ('https:' == document.location.protocol ? 'https' : 'http') +
+			'://ajax.googleapis.com/ajax/libs/webfont/1/webfont.js';
+			wf.type = 'text/javascript';
+			wf.async = 'true';
+			var s = document.getElementsByTagName('script')[0];
+			s.parentNode.insertBefore(wf, s);
+		})();
+	</script>
 	<script src="dist/bundle.js"></script>
 	</body>
 </html>

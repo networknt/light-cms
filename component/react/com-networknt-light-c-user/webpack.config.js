@@ -21,13 +21,12 @@ module.exports = {
         loaders: ['react-hot', 'babel'],
         exclude: /node_modules/
       },
-      { test: /\.css$/, loader: ExtractTextPlugin.extract("style-loader", "css-loader") },
+      { test: /\.css$/, loader: 'style-loader!css-loader' },
       { test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' }
     ]
   },
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
-    new webpack.NoErrorsPlugin(),
-    new ExtractTextPlugin("dist/bundle.css")
+    new webpack.NoErrorsPlugin()
   ]
 };
