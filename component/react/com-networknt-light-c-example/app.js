@@ -2,7 +2,7 @@
 
 var React = require('react');
 var injectTapEventPlugin = require('react-tap-event-plugin');
-var UserExample = require('./scripts/component/user/UserExample');
+var UserExample = require('./components/user/components/UserExample');
 
 window.React = React;
 

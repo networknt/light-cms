@@ -31,11 +31,18 @@ var UserExample = React.createClass({
         ];
         return (
             <div>
-                <AppBar title='User Example' onLeftIconButtonTouchTap={this.showSideBar}/>
-                <Paper zDepth={2}>
-                    <p>The following is an example rendering of how a user would appear inline to text referencing this user.</p>
-                    <p>This is some text where we reference the user with id = testuser.</p>
-                </Paper>
+                <AppBar title='Component Examples' onLeftIconButtonTouchTap={this.showSideBar}/>
+                <div id="grid-cont">
+                    <section class="grid_outer chapter">
+                        <h1 class="chapter-title">Introduction</h1>
+                        <div class="chapter-content">
+                            <Paper zDepth={2}>
+                                <p>The following is an example rendering of how a user would appear inline to text referencing this user.</p>
+                                <p>This is some text where we reference the user with id = testuser.</p>
+                            </Paper>
+                        </div>
+                    </section>
+                </div>
                 <LeftNav ref="leftNav" docked={false} menuItems={menuItems} />
             </div>
         );
