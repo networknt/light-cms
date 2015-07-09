@@ -2,7 +2,7 @@
 
 var React = require('react');
 var injectTapEventPlugin = require('react-tap-event-plugin');
-var UserExample = require('./components/user/components/UserExample');
+var Main = require('./components/main.js');
 
 window.React = React;
 
@@ -12,5 +12,4 @@ window.React = React;
 //https://github.com/zilverline/react-tap-event-plugin
 injectTapEventPlugin();
 
-
-React.render(<UserExample/>, document.getElementById('content'));
+React.render(<Main/>, document.getElementById('content'));

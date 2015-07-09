@@ -1,17 +1,25 @@
-**Component Examples**
+# [NetworkNT](https://github.com/orgs/networknt) - Example Components
 
--- Installing:
+This is an example project that uses react components.
+
+## Installing:
+After cloning the repository, install dependencies:
+```
 npm install
+```
 
--- To build:
--- Prod configs will be added later
+Building: (Prod configs will be added later)
+```
 webpack
+```
 
--- To develop: (live reload enabled)
+Developing: (live-reload enabled)
+```
 node server.js
-navigate to localhost:3000 in browser.
+```
+- navigate to localhost:3000 in browser.
 
-**Structure**
+## Structure
 - Primary for the main application (Example) are within the /components folder.
 - Primary components can be made up of secondary components, which will be nested in the primary components /components folder.
 - If multiple primary components make use of the same secondary components, refractor the secondary to primary.
@@ -19,6 +27,6 @@ navigate to localhost:3000 in browser.
 - Component style -> ./style
 - Component assets -> ./assets
 
-Reasoning
+**Reasoning**
 - Structuring by file type is not scalable.
 - src directory is redundant.
