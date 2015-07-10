@@ -21,6 +21,13 @@ import com.networknt.light.rule.Rule;
 
 /**
  * Created by steve on 28/12/14.
+ *
+ * Post news in certain new category
+ *
+ * AccessLevel R [owner, admin, newsAdmin, newsUser]
+ *
+ * newsUser can only post in category?
+ *
  */
 public class AddPostRule extends AbstractBfnRule implements Rule {
     public boolean execute (Object ...objects) throws Exception {

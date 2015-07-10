@@ -21,9 +21,14 @@ import com.networknt.light.rule.Rule;
 
 /**
  * Created by steve on 28/12/14.
+ *
+ * Get news dropdown list for news admin page
+ *
+ * AccessLevel R [owner, admin, newsAdmin]
+ *
  */
 public class GetNewsDropdownRule extends AbstractBfnRule implements Rule {
     public boolean execute (Object ...objects) throws Exception {
-        return getBfnDropdown("news", objects);
+        return getBranchDropdown("news", objects);
     }
 }

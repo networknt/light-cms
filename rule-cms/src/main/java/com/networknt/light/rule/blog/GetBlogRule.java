@@ -21,10 +21,15 @@ import com.networknt.light.rule.Rule;
 
 /**
  * Created by husteve on 10/8/2014.
+ *
+ * This is for blog admin screen.
+ *
+ * AccessLevel R [owner, admin, blogAdmin]
+ *
  */
 public class GetBlogRule extends AbstractBfnRule implements Rule {
     public boolean execute (Object ...objects) throws Exception {
-        return getBfn("blog", objects);
+        return getBranch("blog", objects);
     }
 
     /*

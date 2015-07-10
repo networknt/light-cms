@@ -16,25 +16,10 @@
 
 package com.networknt.light.rule.blog;
 
-import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.googlecode.concurrentlinkedhashmap.ConcurrentLinkedHashMap;
 import com.networknt.light.rule.AbstractRule;
 import com.networknt.light.rule.Rule;
-import com.networknt.light.server.DbService;
 import com.networknt.light.util.ServiceLocator;
-import com.orientechnologies.orient.core.db.document.ODatabaseDocumentTx;
-import com.orientechnologies.orient.core.db.record.OIdentifiable;
-import com.orientechnologies.orient.core.id.ORecordId;
-import com.orientechnologies.orient.core.index.OCompositeKey;
-import com.orientechnologies.orient.core.index.OIndex;
-import com.orientechnologies.orient.core.metadata.schema.OSchema;
-import com.orientechnologies.orient.core.record.impl.ODocument;
-import com.orientechnologies.orient.core.serialization.serializer.OJSONWriter;
-import com.orientechnologies.orient.core.sql.query.OSQLSynchQuery;
-
-import java.util.*;
-import java.util.concurrent.ConcurrentMap;
 
 /**
  * Created by steve on 08/10/14.
@@ -44,7 +29,7 @@ public abstract class AbstractBlogRule extends AbstractRule implements Rule {
     ObjectMapper mapper = ServiceLocator.getInstance().getMapper();
 
     public abstract boolean execute (Object ...objects) throws Exception;
-
+    /*
     protected String getJsonByRid(String blogRid) {
         // try to get it from cache first.
         String json = null;
@@ -100,7 +85,7 @@ public abstract class AbstractBlogRule extends AbstractRule implements Rule {
             blog = new ODocument(schema.getClass("Blog"));
             blog.field("host", data.get("host"));
             blog.field("id", data.get("id"));
-            if(data.get("desc") != null) blog.field("desc", data.get("desc"));
+            if(data.get("description") != null) blog.field("description", data.get("description"));
             if(data.get("attributes") != null) blog.field("attributes", data.get("attributes"));
             blog.field("createDate", data.get("createDate"));
             blog.field("createUserId", data.get("createUserId"));
@@ -150,7 +135,7 @@ public abstract class AbstractBlogRule extends AbstractRule implements Rule {
         }
         return blog;
     }
-
+    */
     /*
     protected void addBlog(Map<String, Object> data) throws Exception {
         ODocument blog = addBlogDb(data);
@@ -247,7 +232,7 @@ public abstract class AbstractBlogRule extends AbstractRule implements Rule {
         return blog;
     }
     */
-
+    /*
     protected boolean delBlog(Map<String, Object> data) throws Exception {
         boolean result = false;
         ODatabaseDocumentTx db = ServiceLocator.getInstance().getDb();
@@ -290,6 +275,7 @@ public abstract class AbstractBlogRule extends AbstractRule implements Rule {
         }
         return result;
     }
+    */
     /*
     protected void delBlogUpdCache(String blogRid, String host) throws Exception {
         delBlogDb(blogRid);
@@ -370,6 +356,7 @@ public abstract class AbstractBlogRule extends AbstractRule implements Rule {
         return recordsUpdated;
     }
     */
+    /*
     protected void updBlog(Map<String, Object> data, String userRid, String userId) throws Exception {
         ODocument blog = updBlogDb(data, userRid, userId);
         String blogRid = blog.field("@rid").toString();
@@ -561,8 +548,6 @@ public abstract class AbstractBlogRule extends AbstractRule implements Rule {
         }
         return blog;
     }
-
-    /*
     protected long getTotalNumberBlogFromDb(Map<String, Object> criteria) {
         long total = 0;
         StringBuilder sql = new StringBuilder("SELECT COUNT(*) as count FROM Blog");
@@ -583,7 +568,6 @@ public abstract class AbstractBlogRule extends AbstractRule implements Rule {
         }
         return total;
     }
-    */
 
     protected List<Map<String, Object>> searchBlogFromDb(Map<String, Object> criteria) {
         List<Map<String,Object>> list = null;
@@ -758,5 +742,5 @@ public abstract class AbstractBlogRule extends AbstractRule implements Rule {
         }
         return blog;
     }
-
+    */
 }

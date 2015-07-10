@@ -21,9 +21,14 @@ import com.networknt.light.rule.Rule;
 
 /**
  * Created by steve on 28/12/14.
+ *
+ * This is to get blogs displayed on the blog home page.
+ *
+ * AccessLevel A
+ *
  */
 public class GetBlogTreeRule extends AbstractBfnRule implements Rule {
     public boolean execute (Object ...objects) throws Exception {
-        return getBfnTree("blog", objects);
+        return getBranchTree("blog", objects);
     }
 }

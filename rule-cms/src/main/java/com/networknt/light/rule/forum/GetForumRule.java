@@ -21,9 +21,14 @@ import com.networknt.light.rule.Rule;
 
 /**
  * Created by steve on 26/11/14.
+ *
+ * Get all the forums belong to a host for admin interface.
+ *
+ * AccessLevel R [owner, admin, forumAdmin]
+ *
  */
 public class GetForumRule extends AbstractBfnRule implements Rule {
     public boolean execute (Object ...objects) throws Exception {
-        return getBfn("forum", objects);
+        return getBranch("forum", objects);
     }
 }

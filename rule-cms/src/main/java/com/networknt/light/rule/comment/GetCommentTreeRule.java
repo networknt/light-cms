@@ -22,6 +22,11 @@ import java.util.Map;
 
 /**
  * Created by steve on 03/12/14.
+ *
+ * AccessLevel A
+ *
+ * everyone can have read only access to all comments
+ *
  */
 public class GetCommentTreeRule extends AbstractCommentRule implements Rule {
     public boolean execute (Object ...objects) throws Exception {
@@ -32,7 +37,7 @@ public class GetCommentTreeRule extends AbstractCommentRule implements Rule {
             inputMap.put("result", comments);
             return true;
         } else {
-            inputMap.put("error", "No comment can be found");
+            inputMap.put("result", "No comment can be found");
             inputMap.put("responseCode", 404);
             return false;
         }

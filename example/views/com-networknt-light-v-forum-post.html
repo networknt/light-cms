@@ -1,0 +1,158 @@
+<script type='text/javascript'>
+    angular.module('lightApp').controller('com.networknt.light.ForumPostCtrl', ['$scope', '$http', '$location', 'authService', '$filter', 'toaster', 'modelDataService', function ($scope, $http, $location, authService, $filter, toaster, modelDataService) {
+        $scope.getForumPost = {
+            category : 'forum',
+            name: 'getForumPost',
+            readOnly: true,
+            data: {}
+        };
+
+        $scope.delPost = {
+            category: 'post',
+            name: 'delPost',
+            readOnly: false,
+            data: {}
+        };
+
+        $scope.posts = [];
+        $scope.forums = [];
+        $scope.fetchForumsDisplayClass = "info";
+        $scope.fetchForumsStateText = "Getting forums...";
+
+        $scope.fetchResult = function () {
+            var modelData = modelDataService.getModelData();
+            // Check if the id is null before setting it.
+            // Otherwise it will be overwritten with null.
+            console.log('modelData', modelDataService.getModelData());
+            if ($scope.getForumPost.data.forumId == null && modelData != null) {
+                if (modelData != null && modelData.forumId == null) {
+                    $scope.getForumPost.data.forumId = modelData;
+                } else {
+                    $scope.getForumPost.data.forumId = modelDataService.getModelData().forumId;
+                }
+            }
+            console.log('posting with:', $scope.getForumPost);
+            $http.post('api/rs', $scope.getForumPost)
+                .success(function (result, status, headers, config) {
+                    console.log("received success, posts", result);
+                    $scope.posts = result;
+                })
+                .error(function (result, status, headers, config) {
+                    console.log("received error", result);
+                    $scope.posts = [];
+                    if (status == 404) {
+                        $scope.fetchForumsStateText = "No posts can be found in this forum... Be the first!";
+                        $scope.fetchForumsDisplayClass = "success";
+                    } else {
+                        $scope.fetchForumsStateText = "There was an error retrieving forum posts, please contact a moderator";
+                        $scope.fetchForumsDisplayClass = "danger";
+                    }
+                });
+        };
+        $scope.fetchResult();
+
+        $scope.post = function() {
+            var modelData = modelDataService.getModelData();
+            modelDataService.setModelData(null); // reset the modelDataService variable.
+            $location.path("/form/com.networknt.light.forum.post.add/" + $scope.getForumPost.data.forumId);
+        };
+
+        $scope.view = function(post, editing) {
+            modelDataService.setModelData({
+                forumId: $scope.getForumPost.data.forumId,
+                post: post,
+                editing: editing
+            });
+            $location.path("/page/com-networknt-light-v-forum-post-view");
+        };
+
+        $scope.del = function (post) {
+            $scope.delPost.data = post;
+            $http.post('api/rs', $scope.delPost)
+                .success(function (result, status, headers, config) {
+                    $scope.fetchResult();
+                });
+        };
+
+        $scope.postIsVisible = function (post) {
+            if ($("#" + post.id).is(':visible')) {
+                return true;
+            } else {
+                return false;
+            }
+        }
+
+        $scope.canCurrentUserEdit = function (post) {
+            var currentUser = authService.authentication.currentUser;
+            var currentUserRoles = currentUser.roles;
+
+            for (var i = 0; i < currentUserRoles.length; i++) {
+                if (currentUserRoles[i] == "owner"
+                    || currentUserRoles[i] == "forumAdmin"
+                    || currentUser.userId == post.createUserId) {
+                    return true;
+                }
+            }
+            return false;
+        };
+
+        $scope.canCurrentUserDelete = function (post) {
+            var currentUser = authService.authentication.currentUser;
+            var currentUserRoles = currentUser.roles;
+
+            for (var i = 0; i < currentUserRoles.length; i++) {
+                if (currentUserRoles[i] == "owner"
+                    || currentUserRoles[i] == "forumAdmin"
+                    || currentUser.userId == post.createUserId) {
+                    return true;
+                }
+            }
+            return false;
+        };
+
+    }]);
+</script>
+<div class="container" ng-controller="com.networknt.light.ForumPostCtrl">
+    <div class="jumbotron" ng-if="getForumPost.data.id != null">
+        <h2>{{getForumPost.data.id}}</h2>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="pull-right">
+                <button class="btn btn-info" ng-click="post()"><span class="glyphicon glyphicon-plus" style="padding-right:5px"></span>Post</button>
+            </div>
+            <tabset>
+                <tab heading="Posts">
+                    <table class="table table-bordered">
+                        <tbody>
+                            <tr ng-if="posts.length == 0">
+                                <td colspan="4" ng-class="fetchForumsDisplayClass"><span class="glyphicon glyphicon-warning-sign" style="padding-right:5px;"></span>{{fetchForumsStateText}}</td>
+                            </tr>
+                        </tbody>
+                        <tbody ng-repeat="post in posts | filter: filter | orderBy: sort.sortedBy">
+                            <tr style="height:100px;">
+                                <td style="position:relative; width:20%;">
+                                    <div style="height:100%; float:left; display:block;">
+                                        <a href ng-click="view(post, false)">{{post.title}}</a><br />
+                                        By: <user id="{{post.in_Create[0].userId}}" /><br />
+                                        On: {{post.createDate | date: 'MMMM dd, yyyy'}}<br/>
+                                        Replies: {{post.out_HasChildren.length || 0}}
+                                    </div>
+                                </td>
+                                <td style="position:relative;">
+                                    <div style="padding-left:10px; height:100%; float:left; display:block;">
+                                        {{post.content}}
+                                    </div>
+                                    <span style="position:absolute;right:10px;bottom:10px;">
+                                        <a href ng-show="canCurrentUserEdit(post)" ng-click="view(post, true)" style="padding-right:5px; padding-left:5px;"><span class="glyphicon glyphicon-pencil"></span></a>
+                                        <a href ng-show="canCurrentUserDelete(post)" ng-click="del(post)" style="padding-right:5px; padding-left:5px;"><span class="glyphicon glyphicon-remove"></span></a>
+                                    </span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </tab>
+            </tabset>
+        </div>
+    </div>
+</div> <!-- /container -->

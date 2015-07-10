@@ -18,55 +18,64 @@ package com.networknt.light.rule.comment;
 
 import com.networknt.light.rule.Rule;
 import com.networknt.light.server.DbService;
-import com.orientechnologies.orient.core.record.impl.ODocument;
+import com.networknt.light.util.HashUtil;
+import com.networknt.light.util.ServiceLocator;
+import com.tinkerpop.blueprints.impls.orient.OrientGraph;
+import com.tinkerpop.blueprints.impls.orient.OrientVertex;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Map;
 
 /**
  * Created by steve on 03/12/14.
+ *
+ * AccessLevel R [user]
+ *
  */
 public class AddCommentRule extends AbstractCommentRule implements Rule {
+    static final Logger logger = LoggerFactory.getLogger(AddCommentRule.class);
 
     public boolean execute (Object ...objects) throws Exception {
         Map<String, Object> inputMap = (Map<String, Object>)objects[0];
         Map<String, Object> data = (Map<String, Object>)inputMap.get("data");
+        Map<String, Object> payload = (Map<String, Object>) inputMap.get("payload");
+        Map<String, Object> user = (Map<String, Object>)payload.get("user");
         String host = (String)data.get("host");
         String parentRid = (String)data.get("@rid");
-        String comment = (String)data.get("comment");
         String error = null;
-        Map<String, Object> payload = (Map<String, Object>) inputMap.get("payload");
-        if(host == null || parentRid == null || comment == null) {
-            error = "Host, parentRid and comment are required";
-            inputMap.put("responseCode", 400);
-        } else {
-            if(payload == null) {
-                error = "Login is required";
-                inputMap.put("responseCode", 401);
+        OrientGraph graph = ServiceLocator.getInstance().getGraph();
+        try {
+            OrientVertex parent = (OrientVertex)DbService.getVertexByRid(graph, parentRid);
+            if(parent == null ) {
+                error = "Parent @rid " + parentRid + " cannot be found";
+                inputMap.put("responseCode", 404);
             } else {
-                Map<String, Object> user = (Map<String, Object>)payload.get("user");
-                // make sure that the parent exists.
-                ODocument parent = DbService.getODocumentByRid(parentRid);
-                if(parent != null) {
-                    Map eventMap = getEventMap(inputMap);
-                    Map<String, Object> eventData = (Map<String, Object>)eventMap.get("data");
-                    inputMap.put("eventMap", eventMap);
-                    // identify parent.
-                    eventData.put("host", host);
-                    eventData.put("parentClassName", parent.getClassName());
-                    eventData.put("parentId", parent.field("id"));
-                    // generate unique identifier
-                    eventData.put("id", DbService.incrementCounter("commentId"));
-                    eventData.put("comment", comment);
-                    eventData.put("createDate", new java.util.Date());
-                    eventData.put("createUserId", user.get("userId"));
+                Map eventMap = getEventMap(inputMap);
+                Map<String, Object> eventData = (Map<String, Object>)eventMap.get("data");
+                inputMap.put("eventMap", eventMap);
+                eventData.put("host", host);
+                eventData.put("comment", data.get("comment"));
+                String parentClassName = parent.getProperty("@class");
+                eventData.put("parentClassName", parentClassName); // parent can be a post or a comment
+                if("Post".equals(parentClassName)) {
+                    eventData.put("parentId", parent.getProperty("postId"));
                 } else {
-                    error = "Parent with @rid " + parentRid + " doesn't exist";
-                    inputMap.put("responseCode", 404);
+                    eventData.put("parentId", parent.getProperty("commentId"));
                 }
+                // generate unique identifier
+                eventData.put("commentId", HashUtil.generateUUID());
+                eventData.put("createDate", new java.util.Date());
+                eventData.put("createUserId", user.get("userId"));
             }
+        } catch (Exception e) {
+            logger.error("Exception:", e);
+            throw e;
+        } finally {
+            graph.shutdown();
         }
         if(error != null) {
-            inputMap.put("error", error);
+            inputMap.put("result", error);
             return false;
         } else {
             return true;

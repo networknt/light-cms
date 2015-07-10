@@ -21,6 +21,11 @@ import com.networknt.light.rule.Rule;
 
 /**
  * Created by steve on 02/12/14.
+ *
+ * Post a new topic in a forum
+ *
+ * AccessLevel R [user]
+ *
  */
 public class AddPostRule extends AbstractBfnRule implements Rule {
     public boolean execute (Object ...objects) throws Exception {

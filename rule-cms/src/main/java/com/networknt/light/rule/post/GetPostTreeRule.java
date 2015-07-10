@@ -26,6 +26,9 @@ import java.util.Map;
 
 /**
  * Created by steve on 01/12/14.
+ *
+ * Not sure if it is used.
+ *
  */
 public class GetPostTreeRule extends AbstractPostRule implements Rule {
     public boolean execute (Object ...objects) throws Exception {
@@ -44,7 +47,7 @@ public class GetPostTreeRule extends AbstractPostRule implements Rule {
             inputMap.put("result", mapper.writeValueAsString(result));
             return true;
         } else {
-            inputMap.put("error", "No post can be found.");
+            inputMap.put("result", "No post can be found.");
             inputMap.put("responseCode", 404);
             return false;
         }

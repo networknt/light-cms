@@ -26,13 +26,16 @@ import java.util.Map;
 
 /**
  * Created by steve on 06/12/14.
+ *
+ * Should not be here. will be part of bfn
+ *
  */
 public class GetRecentPostRule extends AbstractPostRule implements Rule {
     public boolean execute (Object ...objects) throws Exception {
         Map<String, Object> inputMap = (Map<String, Object>) objects[0];
         Map<String, Object> data = (Map<String, Object>) inputMap.get("data");
         if(data.get("host") == null || data.get("limitTo") == null) {
-            inputMap.put("error", "Host and limitTo are required");
+            inputMap.put("result", "Host and limitTo are required");
             inputMap.put("responseCode", 404);
             return false;
         } else {
@@ -58,7 +61,7 @@ public class GetRecentPostRule extends AbstractPostRule implements Rule {
             inputMap.put("result", mapper.writeValueAsString(result));
             return true;
         } else {
-            inputMap.put("error", "No post can be found.");
+            inputMap.put("result", "No post can be found.");
             inputMap.put("responseCode", 404);
             return false;
         }

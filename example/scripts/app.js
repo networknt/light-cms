@@ -43,7 +43,8 @@ var lightApp = angular.module('lightApp', [
 
     $routeProvider
       .when('/', {
-        templateUrl: 'views/demo.html'
+        templateUrl: 'views/main.html',
+        controller: 'mainCtrl'
       })
       .when('/signin', {
         templateUrl: 'views/form.html',
@@ -52,10 +53,6 @@ var lightApp = angular.module('lightApp', [
       .when('/form/:id/:parentId?', {
         templateUrl: 'views/form.html',
         controller: 'formCtrl'
-      })
-      .when('/page/:id', {
-        templateUrl: 'views/page.html',
-        controller: 'pageCtrl'
       })
       .when('/formAdmin', {
         templateUrl: 'views/formAdmin.html',
@@ -69,8 +66,22 @@ var lightApp = angular.module('lightApp', [
         templateUrl: 'views/blog.html',
         controller: 'BlogCtrl'
       })
+      .when('/page/com-networknt-light-v-forum-home', {
+          templateUrl: 'views/com-networknt-light-v-forum-home.html'
+      })
+      .when('/page/com-networknt-light-v-forum-post', {
+          templateUrl: 'views/com-networknt-light-v-forum-post.html'
+      })
+      .when('/page/com-networknt-light-v-forum-post-view', {
+          templateUrl: 'views/com-networknt-light-v-forum-post-view.html'
+      })
+      .when('/page/:id', {
+          templateUrl: 'views/page.html',
+          controller: 'pageCtrl'
+      })
       .otherwise({
-        redirectTo: '/'
+          templateUrl: '404.html',
+          controller: 'mainCtrl'
       });
     $locationProvider.html5Mode(true);
 }])

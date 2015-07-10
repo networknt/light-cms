@@ -25,6 +25,9 @@ import java.util.Map;
 
 /**
  * Created by steve on 03/12/14.
+ *
+ * Not sure if this is used or not. Do we have a comment admin page to list all of them?
+ *
  */
 public class GetCommentRule extends AbstractCommentRule implements Rule {
     public boolean execute (Object ...objects) throws Exception {
@@ -43,7 +46,7 @@ public class GetCommentRule extends AbstractCommentRule implements Rule {
             inputMap.put("result", mapper.writeValueAsString(result));
             return true;
         } else {
-            inputMap.put("error", "No user can be found.");
+            inputMap.put("result", "No user can be found.");
             inputMap.put("responseCode", 404);
             return false;
         }

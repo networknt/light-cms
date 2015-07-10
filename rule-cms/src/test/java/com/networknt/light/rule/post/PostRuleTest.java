@@ -36,12 +36,17 @@ public class PostRuleTest extends TestCase {
     String signInOwner = "{\"readOnly\":false,\"category\":\"user\",\"name\":\"signInUser\",\"data\":{\"host\":\"example\",\"userIdEmail\":\"stevehu\",\"password\":\"123456\",\"rememberMe\":true, \"clientId\":\"example@Browser\"}}";
     String signInUser = "{\"readOnly\":false,\"category\":\"user\",\"name\":\"signInUser\",\"data\":{\"host\":\"example\",\"userIdEmail\":\"test\",\"password\":\"123456\",\"rememberMe\":true, \"clientId\":\"example@Browser\"}}";
 
-    String addPost1 = "{\"readOnly\":false,\"category\":\"post\",\"name\":\"addPost\",\"data\":{\"host\":\"www.example.com\",\"title\":\"Test blog1\",\"source\":\"http://www.networknt.com/blog/1\",\"content\":\"This is just a test1\"}}";
-    String addPost2 = "{\"readOnly\":false,\"category\":\"post\",\"name\":\"addPost\",\"data\":{\"host\":\"www.example.com\",\"title\":\"Test blog2\",\"source\":\"http://www.networknt.com/blog/1\",\"content\":\"This is just a test2\",\"tags\":\"test, blog, java\"}}";
-    String addPost3 = "{\"readOnly\":false,\"category\":\"post\",\"name\":\"addPost\",\"data\":{\"host\":\"www.example.com\",\"title\":\"Test blog3\",\"source\":\"http://www.networknt.com/blog/1\",\"content\":\"This is just a test3\",\"tags\":\"test, blog, java\"}}";
-    String addPost4 = "{\"readOnly\":false,\"category\":\"post\",\"name\":\"addPost\",\"data\":{\"host\":\"www.example.com\",\"title\":\"Test blog4\",\"source\":\"http://www.networknt.com/blog/1\",\"content\":\"This is just a test4\",\"tags\":\"test, blog, java\"}}";
-    String addPost5 = "{\"readOnly\":false,\"category\":\"post\",\"name\":\"addPost\",\"data\":{\"host\":\"www.example.com\",\"title\":\"Test blog5\",\"source\":\"http://www.networknt.com/blog/1\",\"content\":\"This is just a test5\",\"tags\":\"test, blog, java\"}}";
-    String addPost6 = "{\"readOnly\":false,\"category\":\"post\",\"name\":\"addPost\",\"data\":{\"host\":\"www.example.com\",\"title\":\"Test blog6\",\"source\":\"http://www.networknt.com/blog/1\",\"content\":\"This is just a test6\",\"tags\":\"test, blog, java\"}}";
+    String getExamBlog = "{\"readOnly\":true,\"category\":\"blog\",\"name\":\"getBlog\",\"data\":{\"host\":\"www.example.com\"}}";
+    String delExamBlog = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"delBlog\",\"data\":{\"host\":\"www.example.com\"}}";
+    String addExamBlog1 = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"addBlog\",\"data\":{\"host\":\"www.example.com\",\"blogId\":\"blog1\",\"description\":\"blog1\"}}";
+
+
+    String addPost1 = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"addPost\",\"data\":{\"host\":\"www.example.com\",\"title\":\"Test blog1\",\"source\":\"http://www.networknt.com/blog/1\",\"content\":\"This is just a test1\",\"parentId\":\"blog1\"}}";
+    String addPost2 = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"addPost\",\"data\":{\"host\":\"www.example.com\",\"title\":\"Test blog2\",\"source\":\"http://www.networknt.com/blog/1\",\"content\":\"This is just a test2\",\"tags\":\"test, blog, java\",\"parentId\":\"blog1\"}}";
+    String addPost3 = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"addPost\",\"data\":{\"host\":\"www.example.com\",\"title\":\"Test blog3\",\"source\":\"http://www.networknt.com/blog/1\",\"content\":\"This is just a test3\",\"tags\":\"test, blog, java\",\"parentId\":\"blog1\"}}";
+    String addPost4 = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"addPost\",\"data\":{\"host\":\"www.example.com\",\"title\":\"Test blog4\",\"source\":\"http://www.networknt.com/blog/1\",\"content\":\"This is just a test4\",\"tags\":\"test, blog, java\",\"parentId\":\"blog1\"}}";
+    String addPost5 = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"addPost\",\"data\":{\"host\":\"www.example.com\",\"title\":\"Test blog5\",\"source\":\"http://www.networknt.com/blog/1\",\"content\":\"This is just a test5\",\"tags\":\"test, blog, java\",\"parentId\":\"blog1\"}}";
+    String addPost6 = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"addPost\",\"data\":{\"host\":\"www.example.com\",\"title\":\"Test blog6\",\"source\":\"http://www.networknt.com/blog/1\",\"content\":\"This is just a test6\",\"tags\":\"test, blog, java\",\"parentId\":\"blog1\"}}";
 
 
     String getPost = "{\"readOnly\":true,\"category\":\"post\",\"name\":\"getPost\",\"data\":{\"host\":\"www.example.com\"}}";

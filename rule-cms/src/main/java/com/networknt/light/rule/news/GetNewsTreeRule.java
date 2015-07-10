@@ -21,9 +21,14 @@ import com.networknt.light.rule.Rule;
 
 /**
  * Created by steve on 28/12/14.
+ *
+ * Display news category on news home page.
+ *
+ * AccessLevel A
+ *
  */
 public class GetNewsTreeRule extends AbstractBfnRule implements Rule {
     public boolean execute (Object ...objects) throws Exception {
-        return getBfnTree("news", objects);
+        return getBranchTree("news", objects);
     }
 }

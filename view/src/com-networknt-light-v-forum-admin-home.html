@@ -18,12 +18,12 @@
                 value: 'delete'
             },
             {
-                title: 'Id',
-                value: 'id'
+                title: 'Forum Id',
+                value: 'forumId'
             },
             {
-                title: 'Desc',
-                value: 'desc'
+                title: 'Description',
+                value: 'description'
             },
             {
                 title: 'Create User Id',
@@ -72,7 +72,7 @@
         };
 
         $scope.fetchResult = function () {
-            $http.post('api/rs', $scope.getForum)
+            $http.get('api/rs', {params: { cmd: encodeURIComponent(JSON.stringify($scope.getForum))}})
                     .success(function (result, status, headers, config) {
                         $scope.forums = result;
                         console.log($scope.forums);
@@ -101,8 +101,8 @@
                         <tbody>
                         <tr>
                             <td></td>
-                            <td><input ng-model="filter.id" type="text" /></td>
-                            <td><input ng-model="filter.desc" type="text" /></td>
+                            <td><input ng-model="filter.forumId" type="text" /></td>
+                            <td><input ng-model="filter.description" type="text" /></td>
                             <td><input ng-model="filter.createUserId" type="text" /></td>
                             <td><input ng-model="filter.createDate" type="text" /></td>
                             <td><input ng-model="filter.updateUserId" type="text" /></td>
@@ -110,8 +110,8 @@
                         </tr>
                         <tr ng-repeat="forum in forums | filter: filter | orderBy: sort.sortedBy">
                             <td><a href ng-click="delete(forum)">Delete</a></td>
-                            <td><a href ng-click="update(forum)">{{forum.id}}</a></td>
-                            <td>{{forum.desc}}</td>
+                            <td><a href ng-click="update(forum)">{{forum.forumId}}</a></td>
+                            <td>{{forum.description}}</td>
                             <td>{{forum.createUserId}}</td>
                             <td>{{forum.createDate}}</td>
                             <td>{{forum.updateUserId}}</td>

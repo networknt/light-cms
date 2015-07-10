@@ -1,0 +1,148 @@
+<script type='text/javascript'>
+'use strict';
+angular.module('lightApp').controller('BlogCtrl', ['$scope', '$http', '$location', '$filter', 'toaster', 'modelDataService', function ($scope, $http, $location, $filter, toaster, modelDataService) {
+    // Pagination variables;
+    $scope.currentPage = 1;
+    $scope.itemsPerPage = 3;
+    $scope.blogPosts = [
+        {
+            blogPostId: 1,
+            title: 'This is the title of the first post',
+            summary: 'I am considering adding a post subtitle, for additional info too large to include in the title.',
+            content: 'This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. ',
+            createById: 'stevehu',
+            createDate: '3/29/2015'
+        }, {
+            blogPostId: '2',
+            title: 'And here... you\'ll find the second post!',
+            summary: 'The second post is the second post... after the first, and behind the third.',
+            content: 'This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. ',
+            createById: 'NicholasAzar',
+            createDate: '3/29/2015'
+        }, {
+            blogPostId: '2',
+            title: 'And here... you\'ll find the third post!',
+            summary: 'The third post is the third post... after the second, and behind the fourth.',
+            content: 'This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. ',
+            createById: 'NicholasAzar',
+            createDate: '3/29/2015'
+        }, {
+            blogPostId: '2',
+            title: 'And here... you\'ll find the fourth post!',
+            summary: 'The fourth post is the fourth post... after the third, and behind the fifth.',
+            content: 'This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. ',
+            createById: 'NicholasAzar',
+            createDate: '3/29/2015'
+        }, {
+            blogPostId: '2',
+            title: 'And here... you\'ll find the fifth post!',
+            summary: 'The fifth post is the fifth post... after the fourth, and behind the sixth.',
+            content: 'This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. ',
+            createById: 'NicholasAzar',
+            createDate: '3/29/2015'
+        }, {
+            blogPostId: '2',
+            title: 'And here... you\'ll find the sixth post!',
+            summary: 'The sixth post is the sixth post... after the fifth, and behind the none.',
+            content: 'This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. This is the content. ',
+            createById: 'NicholasAzar',
+            createDate: '3/29/2015'
+        }
+        ];
+    $scope.noOfPages = $scope.blogPosts.length / $scope.itemsPerPage;
+    $scope.goToBlogPost = function(blogPostId) {
+        $location.path("/page/com-networknt-light-v-blog-post-view/" + blogPostId);
+    };
+    $scope.$watch('currentPage', function() {
+        var begin = ($scope.currentPage - 1) * $scope.itemsPerPage;
+        var end = begin + $scope.itemsPerPage;
+
+        $scope.paged = {
+            blogPosts: $scope.blogPosts.slice(begin, end)
+        }
+    });
+
+    $scope.getBlogPosts = {
+        category : 'blog',
+        name : 'getBlogTree',
+        readOnly: true
+    };
+    $scope.fetchResult = function () {
+        $http.post('api/rs', $scope.getBlogPosts)
+            .success(function (result, status, headers, config) {
+                //$scope.blogPosts = result;
+                console.log("blogPosts returned:", $scope.result);
+                /*$scope.paged = {
+                    blogPosts: $scope.blogPosts.slice(0,  $scope.itemsPerPage)
+                };*/
+            })
+    };
+    $scope.fetchResult();
+
+    /*
+
+
+    $scope.toggle = function(scope) {
+        console.log(scope);
+        scope.toggle();
+    };
+
+    var getRootNodesScope = function() {
+        return angular.element(document.getElementById("tree-root")).scope();
+    };
+
+    $scope.collapseAll = function() {
+        var scope = getRootNodesScope();
+        console.log(scope);
+        scope.collapseAll();
+    };
+
+    $scope.expandAll = function() {
+        var scope = getRootNodesScope();
+        console.log(scope);
+        scope.expandAll();
+    };
+
+    $scope.treeFilter = $filter('uiTreeFilter');
+
+    $scope.supportedFields = ['id', 'desc'];
+    */
+}]);
+</script>
+<div class="container" data-ng-controller="BlogCtrl">
+    <div class="row">
+        <div class="col-md-4 col-lg-4 component-header-left">
+            <h1><a href="/">Blog Component</a></h1>
+        </div>
+        <div class="col-md-3 col-lg-3 component-header-right">
+            <span>
+                <span class="glyphicon glyphicon-search forum-header-search-icon"></span><input ng-model="pattern" placeholder="Search"/>
+            </span>
+        </div>
+    </div>
+    <br />
+    <div class="row">
+        <div class="col-xs-12 col-sm-12 col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-body" style="padding-left:0px;">
+                    <div class="post-preview" ng-repeat="post in paged.blogPosts | filter:pattern">
+                        <a href ng-click="goToBlogPost({{post.blogPostId}})">
+                            <h2 class="post-title">{{post.title}}</h2>
+                            <h3 class="post-subtitle">{{post.summary}}</h3>
+                        </a>
+                        <p class="post-meta">Posted by <user id="{{post.createById}}"></user> on {{post.createDate}}</p>
+                        <hr/>
+                    </div>
+                    <!--
+                    <ul class="pager" ng-class="{'disabled': blogPosts.length <= itemsPerPage}">
+                        <li class="next">
+                            <a href="#">Older Posts <i class="fa fa-arrow-right"></i></a>
+                        </li>
+                    </ul>
+                    -->
+                    <pagination ng-model="currentPage" total-items="(blogPosts | filter:pattern).length" items-per-page="itemsPerPage" style="float:left;"></pagination>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

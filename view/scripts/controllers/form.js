@@ -10,12 +10,11 @@ angular.module('lightApp').controller('formCtrl', ['$scope', '$routeParams', '$h
         name : 'getForm',
         readOnly: true,
         data : {
-            id : $routeParams.id,
+            formId : $routeParams.formId,
             parentId: $routeParams.parentId
         }
     };
 
-    console.log("data", getFormPost.data);
 
     $http.post('api/rs', getFormPost)
         .success(function(result, status, headers, config) {

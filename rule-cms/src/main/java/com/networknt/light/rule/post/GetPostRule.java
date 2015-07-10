@@ -26,24 +26,44 @@ import java.util.Map;
 
 /**
  * Created by steve on 27/11/14.
+ *
+ * Get post for post admin page? user?
+ *
+ * AccessLevel R [owner, admin, ?]
  */
 public class GetPostRule extends AbstractPostRule implements Rule {
     public boolean execute (Object ...objects) throws Exception {
         Map<String, Object> inputMap = (Map<String, Object>) objects[0];
         Map<String, Object> data = (Map<String, Object>) inputMap.get("data");
+        String host = (String)data.get("host");
+
+        boolean allowEdit = false;
+        Map<String, Object> payload = (Map<String, Object>) inputMap.get("payload");
+        if(payload != null) {
+            Map<String,Object> user = (Map<String, Object>)payload.get("user");
+            List roles = (List)user.get("roles");
+            if(roles.contains("owner")) {
+                allowEdit = true;
+            } else if(roles.contains("admin") || roles.contains("blogAdmin") || roles.contains("blogUser")){
+                if(host.equals(user.get("host"))) {
+                    allowEdit = true;
+                }
+            }
+        }
+
         long total = DbService.getCount("Post", data);
         if(total > 0) {
             Map<String, Object> result = new HashMap<String, Object>();
             result.put("total", total);
             String posts = DbService.getData("Post", data);
             List<Map<String, Object>> jsonList = mapper.readValue(posts,
-                    new TypeReference<List<HashMap<String, Object>>>() {
-                    });
+                    new TypeReference<List<HashMap<String, Object>>>() {});
             result.put("posts", jsonList);
+            result.put("allowEdit", allowEdit);
             inputMap.put("result", mapper.writeValueAsString(result));
             return true;
         } else {
-            inputMap.put("error", "No post can be found.");
+            inputMap.put("result", "No post can be found.");
             inputMap.put("responseCode", 404);
             return false;
         }

@@ -1,0 +1,17 @@
+<div class="panel panel-default comment">
+    <div class="panel-heading comment-header">
+        <h4 class="comment-user">
+
+            <span class="comment-username">@{{comment.in_Create[0].userId}}</span>
+            <small class="comment-date" ng-if="comment.createDate" title="{{comment.createDate | calendar}}">
+                {{comment.createDate | timeago}}
+            </small>
+        </h4>
+        <button ng-if="comment.out_HasComment" class="fa-1x clear-square fa"
+                ng-class="{'fa fa-minus': !collapsed, 'fa fa-plus': collapsed}"
+                title="toggle children" ng-click="collapse()" style="float:right;"></button>
+    </div>
+    <div class="comment-body panel-body" ng-bind-html="comment.comment"></div>
+    <div comments-transclude></div>
+    <commenter action="submitComment" toggle="true"></commenter>
+</div>

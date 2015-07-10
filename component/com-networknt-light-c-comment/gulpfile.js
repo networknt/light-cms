@@ -13,7 +13,7 @@ var jscs = require('gulp-jscs');
 gulp.task('minify', function() {
   var stream = streamqueue({objectMode: true});
   stream.queue(
-              gulp.src('./tpl/*.html')
+              gulp.src('./components/**/*.html')
                   .pipe(minifyHtml({
                     empty: true,
                     spare: true,
@@ -21,37 +21,31 @@ gulp.task('minify', function() {
                   }))
                   .pipe(templateCache({
                     module: 'lightApp',
-                    root: 'tpl/'
+                    root: 'components/'
                   }))
     );
-  stream.queue(gulp.src('./src/*.js'));
+  stream.queue(gulp.src('./components/**/*.js'));
 
-  stream.done()
-        .pipe(concat('com-networknt-light-c-comment.min.js'))
-        .pipe(uglify())
-        .pipe(gulp.dest('.'));
+  stream.done();
 
 });
 
 gulp.task('non-minified-dist', function() {
   var stream = streamqueue({objectMode: true});
   stream.queue(
-              gulp.src('./tpl/*.html')
+              gulp.src('./components/**/*.html')
                   .pipe(templateCache({
                     module: 'lightApp',
-                    root: 'tpl/'
+                    root: 'components/'
                   }))
     );
-  stream.queue(gulp.src('./src/*.js'));
-
-  stream.done()
-        .pipe(concat('com-networknt-light-c-comment.js'))
-        .pipe(gulp.dest('.'));
+  stream.queue(gulp.src('./components/**/*.js'));
+  stream.done();
 
 });
 
 gulp.task('jscs', function() {
-  gulp.src('./src/**/*.js')
+  gulp.src('./components/**/*.js')
       .pipe(jscs());
 });
 
@@ -61,7 +55,7 @@ gulp.task('default', [
 ]);
 
 gulp.task('watch', function() {
-  gulp.watch('./src/**/*', ['default']);
+  gulp.watch('./components/**/*', ['default']);
 });
 
 gulp.task('webserver', function() {
