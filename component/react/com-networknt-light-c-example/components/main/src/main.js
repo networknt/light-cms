@@ -1,6 +1,6 @@
 var React = require('react');
 var Router = require('react-router');
-var {Styles, RaisedButton, AppBar, MenuItem, IconButton} = require('material-ui')
+var {Styles, RaisedButton, AppBar, MenuItem, FlatButton} = require('material-ui')
 var ThemeManager = new Styles.ThemeManager();
 var Colors = Styles.Colors;
 var RouteHandler = Router.RouteHandler;
@@ -25,11 +25,7 @@ var Main = React.createClass({
 
         // TODO: Add github icon.
         var githubButton = (
-            <IconButton
-                iconStyle={styles.iconButton}
-                iconClassName="muidocs-icon-github"
-                href="https://github.com/networknt"
-                linkButton={true} />
+            <FlatButton label="Github" buttonStyle={styles.githubButton} primary={true} linkButton={true} href="https://github.com/networknt"/>
         );
         return (
             <div>
@@ -46,22 +42,22 @@ var Main = React.createClass({
         );
     },
     getStyles: function () {
-        let darkWhite = Colors.darkWhite;
+        let red = Colors.red;
         return {
             footer: {
                 backgroundColor: Colors.grey900,
                 textAlign: 'center'
             },
             a: {
-                color: darkWhite
+                color: red
             },
             p: {
                 margin: '0 auto',
                 padding: '0',
                 color: Colors.lightWhite
             },
-            iconButton: {
-                color: darkWhite
+            githubButton: {
+                backgroundColor: red
             }
         };
     },
