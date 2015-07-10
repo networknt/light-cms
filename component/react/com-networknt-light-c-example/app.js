@@ -1,8 +1,9 @@
 'use strict';
 
 var React = require('react');
+var Router = require('react-router');
 var injectTapEventPlugin = require('react-tap-event-plugin');
-var Main = require('./components/main.js');
+var AppRoutes = require('./components/main/src/main-routes.js');
 
 window.React = React;
 
@@ -12,4 +13,10 @@ window.React = React;
 //https://github.com/zilverline/react-tap-event-plugin
 injectTapEventPlugin();
 
-React.render(<Main/>, document.getElementById('content'));
+Router.create({
+        routes: AppRoutes,
+        scrollBehavior: Router.ScrollToTopBehavior
+    })
+    .run(function (Handler) {
+        React.render(<Handler/>, document.getElementById('content'));
+    });
