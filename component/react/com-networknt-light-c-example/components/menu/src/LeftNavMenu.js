@@ -17,15 +17,7 @@ var menuItems = [
 
 
 var LeftNavMenu = React.createClass({
-/*
-    constructor: function() {
-        //super();
-        this.toggle = this.toggle.bind(this);
-        this.getSelectedIndex = this.getSelectedIndex.bind(this);
-        this.onLeftNavChange = this.onLeftNavChange.bind(this);
-        this.onHeaderClick = this.onHeaderClick.bind(this);
-    },
-*/
+
     getStyles: function() {
         return {
             cursor: 'pointer',
