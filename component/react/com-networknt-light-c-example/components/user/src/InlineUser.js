@@ -21,6 +21,7 @@ var InlineUser = React.createClass({
                 border: 0,
                 minWidth: 0
             }
+        }
     }
 });
 
