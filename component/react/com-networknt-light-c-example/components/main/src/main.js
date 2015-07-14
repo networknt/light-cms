@@ -2,7 +2,7 @@ var React = require('react');
 var Router = require('react-router');
 var {Styles, RaisedButton, AppBar, MenuItem, FlatButton} = require('material-ui')
 var ThemeManager = new Styles.ThemeManager();
-var Colors = Styles.Colors;
+var {Colors, Typography} = Styles;
 var RouteHandler = Router.RouteHandler;
 var FullWidthSection = require('./../../layout/src/full-width-section.js');
 
@@ -25,7 +25,7 @@ var Main = React.createClass({
 
         // TODO: Add github icon.
         var githubButton = (
-            <FlatButton label="Github" buttonStyle={styles.githubButton} primary={true} linkButton={true} href="https://github.com/networknt"/>
+            <FlatButton label="Github" style={styles.githubButton} linkButton={true} href="https://github.com/networknt"/>
         );
         return (
             <div>
@@ -37,7 +37,6 @@ var Main = React.createClass({
                 <FullWidthSection style={styles.footer}>
                     <p style={styles.p}>Copyright NetworkNT - 2015</p>
                 </FullWidthSection>
-
             </div>
         );
     },
@@ -57,7 +56,10 @@ var Main = React.createClass({
                 color: Colors.lightWhite
             },
             githubButton: {
-                backgroundColor: red
+                backgroundColor: Colors.transparent,
+                color: Typography.textFullWhite,
+                margin: 0,
+                paddingTop: 6
             }
         };
     },
@@ -65,7 +67,7 @@ var Main = React.createClass({
         this.refs.leftNav.toggle()
     },
     componentWillMount: function() {
-        ThemeManager.setTheme(ThemeManager.types.LIGHT);
+        ThemeManager.setTheme(ThemeManager.types.DARK);
     },
     componentDidMount: function() {
         console.log("Main Mounted");

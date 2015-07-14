@@ -1,25 +1,26 @@
 var React =  require('react');
-var {Styles} = require('material-ui');
+var {Styles, FlatButton, EnhancedButton, IconButton} = require('material-ui');
 var Colors = Styles.Colors;
+var {Router, Link} = require('react-router');
 
 var InlineUser = React.createClass({
     render: function() {
-        var style = this.getStyles();
+        var styles = this.getStyles();
         return (
-            <span style={style.inlineUser} onClick={this.gotoUserProfile(this.props.id)}>@{this.props.id}</span>
+            <Link to="/user-profile">
+                <FlatButton label={this.props.id} style={styles.inlineUser}/>
+            </Link>
         );
     },
     getStyles: function () {
-        var lightBlue = Colors.red500;
+        var lightBlue = Colors.lightBlue300;
         return {
             inlineUser: {
-                color: lightBlue
+                color: lightBlue,
+                backgroundColor: Colors.transparent,
+                border: 0,
+                minWidth: 0
             }
-        };
-    },
-    gotoUserProfile: function (userId) {
-        //Todo
-        console.log("Pretend we went to the user profile...");
     }
 });
 

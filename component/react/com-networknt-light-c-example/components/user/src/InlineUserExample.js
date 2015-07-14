@@ -6,6 +6,7 @@ var InlineUserExample = React.createClass({
     render: function() {
         return (
             <FullWidthSection>
+                <h1>NetworkNT - Inline User Example</h1>
                 <p>This is an example where we pass the userId of an example
                 user as it would appear when referenced in line in some text.
                 </p>
