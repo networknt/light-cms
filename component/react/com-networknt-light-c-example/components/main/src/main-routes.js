@@ -23,7 +23,7 @@ var AppRoutes = (
     <Route name="root" path="/" handler={Main}>
         <Route name="home" handler={Home} />
         <Route name="inline-user" handler={InlineUserExample} />
-        <Route name="user-profile" handler={UserProfile} />
+        <Route name="user-profile/:userID" handler={UserProfile} />
         <DefaultRoute handler={Home}/>
     </Route>
 );

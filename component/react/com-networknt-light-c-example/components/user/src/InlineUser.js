@@ -7,8 +7,8 @@ var InlineUser = React.createClass({
     render: function() {
         var styles = this.getStyles();
         return (
-            <Link to="/user-profile">
-                <FlatButton label={this.props.id} style={styles.inlineUser}/>
+            <Link to={"/user-profile/" + this.props.id}>
+                <FlatButton label={this.props.id} style={styles.inlineUser} labelStyle={styles.inlineUserLabel}/>
             </Link>
         );
     },
@@ -18,6 +18,14 @@ var InlineUser = React.createClass({
             inlineUser: {
                 color: lightBlue,
                 backgroundColor: Colors.transparent,
+                padding: 0,
+                margin: 0,
+                border: 0,
+                minWidth: 0
+            },
+            inlineUserLabel: {
+                padding: 0,
+                margin: 0,
                 border: 0,
                 minWidth: 0
             }
