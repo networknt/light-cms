@@ -7,7 +7,7 @@ var InlineUser = React.createClass({
     render: function() {
         var styles = this.getStyles();
         return (
-            <Link to={"/user-profile/" + this.props.id}>
+            <Link to={"/u/" + this.props.id}>
                 <FlatButton label={this.props.id} style={styles.inlineUser} labelStyle={styles.inlineUserLabel}/>
             </Link>
         );

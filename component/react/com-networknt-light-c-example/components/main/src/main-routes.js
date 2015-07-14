@@ -6,7 +6,7 @@ var DefaultRoute = Router.DefaultRoute;
 
 // Here we define all our component examples
 var Main = require('./main');
-var InlineUserExample = require('./../../user/src/InlineUserExample');
+var UserExample = require('./../../user/src/UserExample');
 var UserProfile = require('./../../user/src/UserProfile');
 var Home = require('./../../home/src/Home');
 
@@ -22,8 +22,8 @@ var Home = require('./../../home/src/Home');
 var AppRoutes = (
     <Route name="root" path="/" handler={Main}>
         <Route name="home" handler={Home} />
-        <Route name="inline-user" handler={InlineUserExample} />
-        <Route name="user-profile/:userID" handler={UserProfile} />
+        <Route name="user-example" handler={UserExample} />
+        <Route name="u/:userId" handler={UserProfile} />
         <DefaultRoute handler={Home}/>
     </Route>
 );

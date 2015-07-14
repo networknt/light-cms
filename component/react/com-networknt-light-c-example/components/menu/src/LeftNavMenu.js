@@ -5,8 +5,7 @@ var { Colors, Spacing, Typography } = Styles;
 
 var menuItems = [
     { type: MenuItem.Types.SUBHEADER, text: 'Component Examples' },
-    { route: 'inline-user', text: 'Inline User' },
-    { route: 'user-profile', text: 'User Profile' },
+    { route: 'user-example', text: 'User Example' },
     { type: MenuItem.Types.SUBHEADER, text: 'NetworkNT' },
     {
         type: MenuItem.Types.LINK,
