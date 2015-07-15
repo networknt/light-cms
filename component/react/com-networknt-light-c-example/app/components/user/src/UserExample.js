@@ -1,7 +1,7 @@
 var React =  require('react');
 var FullWidthSection = require('./../../layout/src/full-width-section.js');
 var InlineUser = require('./InlineUser');
-var marked = require('react-marked');
+var marked = require('marked');
 
 var UserExample = React.createClass({
     componentWillMount: function() {
@@ -19,22 +19,23 @@ var UserExample = React.createClass({
     getInitialState: function() {
         return {
             markedText: "#NetworkNT - Inline User Example# \n" +
-            "This is an example where we pass the userId of an" +
+            "This is an example where we pass the userId of an " +
             "example user as it would appear when referenced inline with some text.\n" +
-            "This is the user /u/nick who has id 'nick'."
+            "This is the user <InlineUser id=\"nick\" /> who has id 'nick'. It's a work in progress... it should look like:"
         };
     },
     render: function() {
         return (
             <FullWidthSection>
-                {marked(this.state.markedText)}
-                <h1>NetworkNT - Inline User Example</h1>
-                <p>This is an example where we pass the userId of an example
-                user as it would appear when referenced in line in some text.
-                </p>
-                <p>This is the user <InlineUser id="nick" /> who has id "nick".</p>
+                <div dangerouslySetInnerHTML={{
+                    __html: this.processText(this.state.markedText)
+                }}></div>
+                <InlineUser id="nick" />
             </FullWidthSection>
         );
+    },
+    processText: function (text) {
+        return marked(text, {sanitize: true});
     }
 });
 

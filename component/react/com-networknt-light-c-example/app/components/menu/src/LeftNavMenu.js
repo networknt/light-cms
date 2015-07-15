@@ -5,6 +5,9 @@ var { Colors, Spacing, Typography } = Styles;
 
 var menuItems = [
     { type: MenuItem.Types.SUBHEADER, text: 'Component Examples' },
+    { route: 'blog', text: 'Blog'},
+    { route: 'forum', text: 'Forum'},
+    { route: 'news', text: 'News'},
     { route: 'user-example', text: 'User Example' },
     { type: MenuItem.Types.SUBHEADER, text: 'NetworkNT' },
     {

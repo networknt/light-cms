@@ -5,10 +5,13 @@ var Redirect = Router.Redirect;
 var DefaultRoute = Router.DefaultRoute;
 
 // Here we define all our component examples
-var Main = require('./main');
-var UserExample = require('./../../user/src/UserExample');
-var UserProfile = require('./../../user/src/UserProfile');
-var Home = require('./../../home/src/Home');
+var Main = require('./../components/main/src/main');
+var UserExample = require('./../components/user/src/UserExample');
+var UserProfile = require('./../components/user/src/UserProfile');
+var Home = require('./../components/home/src/Home');
+var Blog = require('./../components/blog/src/Blog');
+var Forum = require('./../components/forum/src/Forum');
+var News = require('./../components/news/src/News');
 
 /** Routes: https://github.com/rackt/react-router/blob/master/docs/api/components/Route.md
  *
@@ -24,6 +27,9 @@ var AppRoutes = (
         <Route name="home" handler={Home} />
         <Route name="user-example" handler={UserExample} />
         <Route name="u/:userId" handler={UserProfile} />
+        <Route name="blog" handler={Blog} />
+        <Route name="forum" handler={Forum} />
+        <Route name="news" handler={News} />
         <DefaultRoute handler={Home}/>
     </Route>
 );

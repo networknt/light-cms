@@ -28,7 +28,7 @@ var Main = React.createClass({
             <FlatButton label="Github" style={styles.githubButton} linkButton={true} href="https://github.com/networknt"/>
         );
         return (
-            <div>
+            <div style={styles.main>
                 <AppBar title='NetworkNT' onLeftIconButtonTouchTap={this.showSideBar} iconElementRight={githubButton} zDepth={0}/>
                 <LeftNavMenu ref="leftNav"/>
 
@@ -60,6 +60,9 @@ var Main = React.createClass({
                 color: Typography.textFullWhite,
                 margin: 0,
                 paddingTop: 6
+            },
+            main: {
+
             }
         };
     },
