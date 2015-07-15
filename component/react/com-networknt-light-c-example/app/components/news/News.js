@@ -1,5 +1,5 @@
 var React =  require('react');
-var FullWidthSection = require('./../../layout/src/full-width-section.js');
+var FullWidthSection = require('./../common/full-width-section.js');
 
 var News = React.createClass({
     componentWillMount: function() {

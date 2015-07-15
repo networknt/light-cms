@@ -5,7 +5,7 @@ module.exports = {
   entry: [
     'webpack-dev-server/client?http://localhost:3000',
     'webpack/hot/only-dev-server',
-    './app' // app entry point
+    './app/app' // app entry point
   ],
   output: {
     path: __dirname,

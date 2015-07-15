@@ -4,7 +4,7 @@ var {Styles, RaisedButton, AppBar, MenuItem, FlatButton} = require('material-ui'
 var ThemeManager = new Styles.ThemeManager();
 var {Colors, Typography} = Styles;
 var RouteHandler = Router.RouteHandler;
-var FullWidthSection = require('./../../layout/src/full-width-section.js');
+var FullWidthSection = require('../../common/full-width-section.js');
 
 var InlineUser = require('./../../user/src/InlineUser.js');
 
@@ -28,7 +28,7 @@ var Main = React.createClass({
             <FlatButton label="Github" style={styles.githubButton} linkButton={true} href="https://github.com/networknt"/>
         );
         return (
-            <div style={styles.main>
+            <div>
                 <AppBar title='NetworkNT' onLeftIconButtonTouchTap={this.showSideBar} iconElementRight={githubButton} zDepth={0}/>
                 <LeftNavMenu ref="leftNav"/>
 
@@ -60,9 +60,6 @@ var Main = React.createClass({
                 color: Typography.textFullWhite,
                 margin: 0,
                 paddingTop: 6
-            },
-            main: {
-
             }
         };
     },

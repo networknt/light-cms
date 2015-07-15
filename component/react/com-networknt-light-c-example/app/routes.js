@@ -5,22 +5,13 @@ var Redirect = Router.Redirect;
 var DefaultRoute = Router.DefaultRoute;
 
 // Here we define all our component examples
-var Main = require('./../components/main/src/main');
-var UserExample = require('./../components/user/src/UserExample');
-var UserProfile = require('./../components/user/src/UserProfile');
-var Home = require('./../components/home/src/Home');
-var Blog = require('./../components/blog/src/Blog');
-var Forum = require('./../components/forum/src/Forum');
-var News = require('./../components/news/src/News');
-
-/** Routes: https://github.com/rackt/react-router/blob/master/docs/api/components/Route.md
- *
- * Routes are used to declare your view hierarchy.
- *
- * Say you go to http://material-ui.com/#/components/paper
- * The react router will search for a route named 'paper' and will recursively render its
- * handler and its parent handler like so: Paper > Components > Master
- */
+var Main = require('./components/main/src/Main');
+var UserExample = require('./components/user/src/UserExample');
+var UserProfile = require('./components/user/src/UserProfile');
+var Home = require('./components/home/Home');
+var Blog = require('./components/blog/Blog');
+var Forum = require('./components/forum/Forum');
+var News = require('./components/news/News');
 
 var AppRoutes = (
     <Route name="root" path="/" handler={Main}>
