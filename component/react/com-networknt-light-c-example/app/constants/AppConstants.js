@@ -19,7 +19,11 @@ var keyMirror = require('react/lib/keyMirror');
 module.exports = {
     APIRoot:  '/api/rs',
     ClientId: 'example@Browser',
-    CHANGE_EVENT: 'change',
+
+    ChangeEvents: {
+        ROUTE_CHANGE_EVENT: 'routeChange',
+        BLOG_CHANGE_EVENT: 'blogChange'
+    },
 
     ActionTypes: keyMirror({
         // Routes

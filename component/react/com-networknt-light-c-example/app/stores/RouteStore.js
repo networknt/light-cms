@@ -13,20 +13,19 @@ var router = Router.create({
 });
 
 var ActionTypes = AppConstants.ActionTypes;
-var CHANGE_EVENT = AppConstants.CHANGE_EVENT;
 
 var RouteStore = assign({}, EventEmitter.prototype, {
 
     emitChange: function() {
-        this.emit(CHANGE_EVENT);
+        this.emit(AppConstants.ChangeEvents.ROUTE_CHANGE_EVENT);
     },
 
     addChangeListener: function(callback) {
-        this.on(CHANGE_EVENT, callback);
+        this.on(AppConstants.ChangeEvents.ROUTE_CHANGE_EVENT, callback);
     },
 
     removeChangeListener: function() {
-        this.removeListener(CHANGE_EVENT, callback);
+        this.removeListener(AppConstants.ChangeEvents.ROUTE_CHANGE_EVENT, callback);
     },
 
     getRouter: function() {
@@ -39,7 +38,7 @@ var RouteStore = assign({}, EventEmitter.prototype, {
 });
 
 RouteStore.dispatchToken = AppDispatcher.register(function(payload) {
-    console.log('payload', payload);
+    console.log('RouteStore received payload:',  payload);
     var type = payload.type;
 
     switch(type) {
