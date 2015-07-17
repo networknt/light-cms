@@ -1,17 +1,32 @@
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var BlogConstants = require('../constants/BlogConstants');
+var BlogData = require('../components/blog/MockBlogData');
 
 var BlogActions = {
 
-    receiveBlogs: function(data) {
-        AppDispatcher.handleBlogAction({
+    initBlogs: function() {
+        return BlogData.init();
+    },
+
+    receiveBlogs: function() {
+        var data = JSON.parse(localStorage.getItem('blogs'));
+        if (data == null) {
+            data = this.initBlogs();
+        }
+        AppDispatcher.handleAction({
             actionType: BlogConstants.RECEIVE_DATA,
             data: data
         })
     },
 
+    gotoBlog: function(blogId) {
+        AppDispatcher.handleAction(({
+
+        }));
+    },
+
     addBlog: function(blogId, update) {
-        AppDispatcher.handleBlogAction({
+        AppDispatcher.handleAction({
             actionType: BlogConstants.BLOG_ADD,
             blogId: blogId,
             update: update
@@ -19,14 +34,14 @@ var BlogActions = {
     },
 
     removeBlog: function(blogId) {
-        AppDispatcher.handleBlogAction({
+        AppDispatcher.handleAction({
             actionType: BlogConstants.BLOG_REMOVE,
             blogId: blogId
         })
     },
 
     updateBlog: function(blogId, updateData) {
-        AppDispatcher.handleBlogAction({
+        AppDispatcher.handleAction({
             actionType: BlogConstants.BLOG_UPDATE,
             blogId: blogId,
             updateData: updateData

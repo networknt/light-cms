@@ -1,41 +1,40 @@
 var React =  require('react');
 var FullWidthSection = require('../common/full-width-section.js');
-var BlogData = require('./MockBlogData');
 var BlogStore = require('../../stores/BlogStore');
-var BlogAPI = require('../../services/BlogAPI');
-
-function getBlogState() {
-    return {
-        blogs: BlogStore.getBlogs()
-    };
-}
+var BlogAction = require('../../actions/BlogActions');
+var BlogRow = require('./BlogRow');
+var {List, ListItem} = require('material-ui')
 
 var Blog = React.createClass({
 
-    componentWillMount: function() {
-        BlogData.init();
-    },
-
     componentDidMount: function() {
         BlogStore.addChangeListener(this._onChange);
-        BlogAPI.getBlogs();
+        BlogAction.receiveBlogs();
     },
 
     getInitialState: function() {
-        return getBlogState();
+        return BlogStore.getBlogState();
     },
 
     render: function() {
         return (
             <FullWidthSection>
-                Blog Data:
-                {JSON.stringify(this.state.blogs)}
+                <h1>Blogs</h1>
+                <List>
+                {
+                    this.state.blogs.map(function (blog) {
+                        return (
+                            <BlogRow blog={blog}></BlogRow>
+                        );
+                    })
+                }
+                </List>
             </FullWidthSection>
         );
     },
 
     _onChange: function() {
-        this.state = getBlogState();
+        this.setState(BlogStore.getBlogState());
     },
 
     componentWillUnmount: function() {

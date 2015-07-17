@@ -67,7 +67,7 @@ var Main = React.createClass({
         this.refs.leftNav.toggle()
     },
     componentWillMount: function() {
-        ThemeManager.setTheme(ThemeManager.types.DARK);
+        ThemeManager.setTheme(ThemeManager.types.LIGHT);
     },
     componentDidMount: function() {
         console.log("Main Mounted");

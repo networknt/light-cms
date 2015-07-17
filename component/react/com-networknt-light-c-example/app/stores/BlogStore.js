@@ -11,8 +11,10 @@ function loadBlogs(data) {
 }
 
 var BlogStore = _.extend({}, EventEmitter.prototype, {
-    getBlogs: function() {
-        return _blogs;
+    getBlogState: function() {
+        return {
+            "blogs": _blogs
+        };
     },
 
     emitChange: function() {

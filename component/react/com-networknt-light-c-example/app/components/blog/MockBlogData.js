@@ -95,6 +95,6 @@ module.exports = {
                 "$$hashKey":"object:246"
             }
         ]));
+        return JSON.parse(localStorage.getItem('blogs'));
     }
-
 };
