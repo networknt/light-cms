@@ -1,5 +1,6 @@
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var BlogConstants = require('../constants/BlogConstants');
+var AppConstants = require('../constants/AppConstants');
 var BlogData = require('../components/blog/MockBlogData');
 
 var BlogActions = {
@@ -19,9 +20,11 @@ var BlogActions = {
         })
     },
 
-    gotoBlog: function(blogId) {
+    gotoBlog: function(blog) {
         AppDispatcher.handleAction(({
-
+            actionType: AppConstants.ActionTypes.REDIRECT,
+            route: 'blogView',
+            data: blog
         }));
     },
 

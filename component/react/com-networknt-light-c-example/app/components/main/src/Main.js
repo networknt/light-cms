@@ -68,9 +68,6 @@ var Main = React.createClass({
     },
     componentWillMount: function() {
         ThemeManager.setTheme(ThemeManager.types.LIGHT);
-    },
-    componentDidMount: function() {
-        console.log("Main Mounted");
     }
 });
 

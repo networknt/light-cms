@@ -3,9 +3,11 @@ var FullWidthSection = require('../common/full-width-section.js');
 var BlogStore = require('../../stores/BlogStore');
 var BlogAction = require('../../actions/BlogActions');
 var BlogRow = require('./BlogRow');
-var {List, ListItem} = require('material-ui')
+var {List, ListItem} = require('material-ui');
+var BlogStore = require('../../stores/BlogStore');
+var BlogAction = require('../../actions/BlogActions');
 
-var Blog = React.createClass({
+var Blogs = React.createClass({
 
     componentDidMount: function() {
         BlogStore.addChangeListener(this._onChange);
@@ -18,18 +20,15 @@ var Blog = React.createClass({
 
     render: function() {
         return (
-            <FullWidthSection>
-                <h1>Blogs</h1>
-                <List>
+            <List subheader="Blogs">
                 {
                     this.state.blogs.map(function (blog) {
                         return (
-                            <BlogRow blog={blog}></BlogRow>
+                            <BlogRow key={blog.blogId} blog={blog} nestedLevel={0}></BlogRow>
                         );
                     })
-                }
-                </List>
-            </FullWidthSection>
+                    }
+            </List>
         );
     },
 
@@ -43,4 +42,4 @@ var Blog = React.createClass({
 
 });
 
-module.exports = Blog;
+module.exports = Blogs;

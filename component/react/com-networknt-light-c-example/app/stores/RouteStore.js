@@ -39,13 +39,17 @@ var RouteStore = assign({}, EventEmitter.prototype, {
 
 RouteStore.dispatchToken = AppDispatcher.register(function(payload) {
     console.log('RouteStore received payload:',  payload);
-    var type = payload.type;
+    var action = payload.action;
+    var type = action.actionType;
+    var data = action.data;
 
     switch(type) {
         case ActionTypes.REDIRECT:
-            router.transitionTo(action.route);
+            console.log("Routing to...", action);
+            router.transitionTo(action.route, data);
             break;
         default:
+            return true;
     }
 
     return true;
