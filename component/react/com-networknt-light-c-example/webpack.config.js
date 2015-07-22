@@ -1,12 +1,20 @@
 var webpack = require('webpack');
-var ExtractTextPlugin = require("extract-text-webpack-plugin");
+var path = require('path');
+var nodeModulesPath = path.resolve(__dirname, 'node_modules');
+var buildPath = path.resolve(__dirname, 'dist');
+var mainPath = path.resolve(__dirname, 'app', 'app.js');
 
 module.exports = {
+
+  // Makes sure errors in console map to the correct file and line number
+  //devtool: 'eval',
+
   entry: [
     'webpack-dev-server/client?http://localhost:3000',
-    'webpack/hot/only-dev-server',
-    './app/app' // app entry point
+    'webpack/hot/dev-server',
+    mainPath
   ],
+
   output: {
     path: __dirname,
     filename: 'dist/bundle.js',
@@ -18,8 +26,8 @@ module.exports = {
   module: {
     loaders: [
       { test: /\.js$/,
-        loaders: ['react-hot', 'babel'],
-        exclude: /node_modules/
+        loaders: ['babel'],
+        exclude: [nodeModulesPath]
       },
       { test: /\.css$/, loader: 'style-loader!css-loader' },
       { test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' }
