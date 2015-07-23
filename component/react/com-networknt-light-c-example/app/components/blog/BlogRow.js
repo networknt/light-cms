@@ -7,27 +7,8 @@ var BlogRow = React.createClass({
         console.log("BlogRow props:", this.props);
     },
     render: function() {
-        var children;
-        if (this.props.blog.out_Own != null && this.props.nestedLevel < 1) {
-            // Recursive nesting ListItem seems to be broken in material-ui...
-            // will fix eventually...
-            /*
-            var nestedLevel = this.props.nestedLevel + 1;
-            children = this.props.blog.out_Own.map(function (blogChild) {
-                return <BlogRow blog={blogChild} nestedLevel={nestedLevel} />;
-            });
-            */
-            /*
-             if (!this.props.blog.out_Own) this.props.blog.out_Own = [];
-             this.props.blog.out_Own.map(function (child) {
-             return <BlogRow blog={child} nestedLevel={nestedLevel} />
-             }.bind(this))
-             */
-        }
-
         return (
             this._createItems(this.props.blog)
-            //<ListItem primaryText={this.props.blog.blogId} secondaryText={this.props.blog.description} onClick={this._onClick}/>
         );
     },
 
@@ -44,7 +25,7 @@ var BlogRow = React.createClass({
             }.bind(this));
         }
         return (
-            <ListItem primaryText={this.props.blog.blogId} secondaryText={this.props.blog.description}>{children}</ListItem>
+            <ListItem primaryText={this.props.blog.blogId} secondaryText={this.props.blog.description} onClick={this._onClick}>{children}</ListItem>
         );
     }
 

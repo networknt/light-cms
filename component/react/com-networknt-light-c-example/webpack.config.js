@@ -18,7 +18,7 @@ module.exports = {
   output: {
     path: __dirname,
     filename: 'dist/bundle.js',
-    publicPath: 'http://localhost:3000/'
+    publicPath: buildPath
   },
   resolve: {
     extensions: ['', '.js', '.jsx']
