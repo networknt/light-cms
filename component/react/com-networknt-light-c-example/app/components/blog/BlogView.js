@@ -3,23 +3,32 @@ var FullWidthSection = require('../common/full-width-section.js');
 var BlogStore = require('../../stores/BlogStore');
 var BlogAction = require('../../actions/BlogActions');
 var BlogRow = require('./BlogRow');
-var {List, ListItem} = require('material-ui')
+var {List, ListItem, Paper, RaisedButton} = require('material-ui')
 
 var BlogView = React.createClass({
 
+    getDefaultProps: function() {
+        blogId: '#33:12'
+    },
+
     componentDidMount: function() {
-        console.log("BlogView - props:", this.props);
-        console.log("BlogView - state:", this.state);
+        BlogStore.addChangeListener(this._receivedBlog);
+        BlogAction.receiveBlog(this.props.blogId);
     },
 
     render: function() {
         return (
             <FullWidthSection>
-                Blog View!
+                <RaisedButton label="Back" />
+                <Paper circle="false" rouded="true" transitionEnabled="true">
+                    Blog View!
+                </Paper>
             </FullWidthSection>
         );
+    },
+    _receivedBlog: function(data) {
+        console.log("Received blog:", data);
     }
-
 });
 
 module.exports = BlogView;

@@ -22,12 +22,9 @@ var AppRoutes = (
         <Route name="home" handler={Home} />
         <Route name="user-example" handler={UserExample} />
         <Route name="u/:userId" handler={UserProfile} />
-        <Route name="blogroot" path ="/blog" handler={BlogRoot}>
-            <Route name="blogs" handler={Blogs} />
-            <Route name="blogView" handler={BlogView} />
-            <Route name="blogPostView" handler={BlogPostView} />
-            <DefaultRoute handler={Blogs} />
-        </Route>
+        <Route name="blogs" handler={Blogs} />
+        <Route name="blogView" handler={BlogView} />
+        <Route name="blogPostView" handler={BlogPostView} />
         <Route name="forum" handler={Forum} />
         <Route name="news" handler={News} />
         <DefaultRoute handler={Home}/>

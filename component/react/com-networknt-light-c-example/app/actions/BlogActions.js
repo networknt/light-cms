@@ -15,7 +15,21 @@ var BlogActions = {
             data = this.initBlogs();
         }
         AppDispatcher.handleAction({
-            actionType: BlogConstants.RECEIVE_DATA,
+            actionType: BlogConstants.RECEIVE_BLOGS,
+            data: data
+        })
+    },
+
+    /*
+    TODO: Actually use blogId for starters...
+     */
+    receiveBlog: function(blogId) {
+        var data = JSON.parse(localStorage.getItem('blog'));
+        if (data == null) {
+            data = this.initBlogs();
+        }
+        AppDispatcher.handleAction({
+            actionType: BlogConstants.RECEIVE_BLOG,
             data: data
         })
     },

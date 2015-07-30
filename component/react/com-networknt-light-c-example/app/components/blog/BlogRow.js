@@ -12,7 +12,7 @@ var BlogRow = React.createClass({
         );
     },
 
-    _onClick: function() {
+    _onTouchTap: function() {
         console.log("Going to blog", this.props.blog);
         BlogActions.gotoBlog(this.props.blog);
     },
@@ -25,7 +25,7 @@ var BlogRow = React.createClass({
             }.bind(this));
         }
         return (
-            <ListItem primaryText={this.props.blog.blogId} secondaryText={this.props.blog.description} onClick={this._onClick}>{children}</ListItem>
+            <ListItem primaryText={this.props.blog.blogId} secondaryText={this.props.blog.description} onTouchTap={this._onTouchTap}>{children}</ListItem>
         );
     }
 

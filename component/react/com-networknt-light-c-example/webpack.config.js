@@ -1,7 +1,6 @@
 var webpack = require('webpack');
 var path = require('path');
 var nodeModulesPath = path.resolve(__dirname, 'node_modules');
-var buildPath = path.resolve(__dirname, 'dist');
 var mainPath = path.resolve(__dirname, 'app', 'app.js');
 
 module.exports = {
@@ -12,13 +11,13 @@ module.exports = {
   entry: [
     'webpack-dev-server/client?http://localhost:3000',
     'webpack/hot/dev-server',
-    mainPath
+    './app/app'
   ],
 
   output: {
     path: __dirname,
     filename: 'dist/bundle.js',
-    publicPath: buildPath
+    publicPath: 'http://localhost:3000/'
   },
   resolve: {
     extensions: ['', '.js', '.jsx']

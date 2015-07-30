@@ -94,6 +94,15 @@ module.exports = {
                 "$$hashKey":"object:246"
             }
         ]));
+        localStorage.setItem('blog', JSON.stringify({
+            "@rid":"#33:12",
+            "host":"example",
+            "description":"New and improved??",
+            "blogId":"The new blog ID",
+            "createDate":"2015-05-22T00:22:37.607",
+            "$$hashKey":"object:241"
+            }
+        ));
         return JSON.parse(localStorage.getItem('blogs'));
     }
 };
