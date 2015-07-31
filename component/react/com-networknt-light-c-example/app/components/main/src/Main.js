@@ -44,7 +44,14 @@ var Main = React.createClass({
         return {
             footer: {
                 backgroundColor: Colors.grey800,
-                textAlign: 'center'
+                textAlign: 'center',
+                position: 'absolute',
+                left: 0,
+                bottom: 0,
+                height: '100px',
+                width: '100%',
+                overflow: 'hidden',
+                zIndex: '-10'
             },
             a: {
                 color: red
