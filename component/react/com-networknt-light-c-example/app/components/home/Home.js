@@ -6,24 +6,31 @@ var { Colors, Spacing, Typography } = Styles;
 
 var Home = React.createClass({
     render: function() {
-        var style=this.getStyles();
+        var styles=this.getStyles();
         return (
-            <FullWidthSection style={style.root}>
-                <div style={style.tagline}>
-                    <h1 style={style.h1}>NetworkNT - Components Example</h1>
-                    <h2 style={style.h2}>
-                        Please select any page from the menu in the top left corner to view the example.
-                    </h2>
+            <div>
+                <FullWidthSection style={styles.root}>
+                    <div style={styles.tagline}>
+                        <h1 style={styles.h1}>NetworkNT - Components Example</h1>
+                        <h2 style={styles.h2}>
+                            Please select any page from the menu in the top left corner to view the example.
+                        </h2>
+
+                    </div>
+                </FullWidthSection>
+                <FullWidthSection style={styles.githubSection}>
+                    <h2 style={styles.githubSectionh2}>Want to learn more about this project? Check out our repo!</h2>
                     <RaisedButton label="GitHub" linkButton={true} href="https://github.com/networknt"/>
-                </div>
-            </FullWidthSection>
+                </FullWidthSection>
+            </div>
         );
     },
     getStyles: function () {
         return {
             root: {
                 backgroundColor: Colors.green400,
-                overflow: 'hidden'
+                overflow: 'hidden',
+                width: '100%'
             },
             tagline: {
                 margin: '16px auto 0 auto',
@@ -43,6 +50,19 @@ var Home = React.createClass({
                 letterSpacing: '0',
                 color: Colors.darkWhite,
                 fontWeight: Typography.fontWeightLight
+            },
+            githubSection: {
+                backgroundColor: Colors.grey200,
+                textAlign: 'center'
+            },
+            githubSectionh2: {
+                color: Colors.grey900,
+                fontSize: '20px',
+                lineHeight: '28px',
+                paddingTop: '19px',
+                marginBottom: '13px',
+                letterSpacing: '0',
+                fontWeight: Typography.fontWeightLight,
             }
         };
     }

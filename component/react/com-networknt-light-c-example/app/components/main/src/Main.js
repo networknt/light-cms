@@ -31,8 +31,8 @@ var Main = React.createClass({
             <div>
                 <AppBar title='NetworkNT' onLeftIconButtonTouchTap={this.showSideBar} iconElementRight={githubButton} zDepth={0} style={styles.topMenu}/>
                 <LeftNavMenu ref="leftNav"/>
-
                 <RouteHandler />
+
                 <FullWidthSection style={styles.footer}>
                     <p style={styles.p}>Copyright NetworkNT - 2015</p>
                 </FullWidthSection>
@@ -40,7 +40,6 @@ var Main = React.createClass({
         );
     },
     getStyles: function () {
-        let red = Colors.red;
         return {
             footer: {
                 backgroundColor: Colors.grey800,
@@ -54,7 +53,7 @@ var Main = React.createClass({
                 zIndex: '-10'
             },
             a: {
-                color: red
+                color: Colors.red
             },
             p: {
                 margin: '0 auto',

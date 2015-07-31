@@ -1,6 +1,7 @@
 var React = require('react');
 var Router = require('react-router');
 var { MenuItem, LeftNav, Styles } = require('material-ui');
+var ThemeManager = Styles.ThemeManager();
 var { Colors, Spacing, Typography } = Styles;
 
 var menuItems = [
@@ -9,7 +10,7 @@ var menuItems = [
     { route: 'forum', text: 'Forum'},
     { route: 'news', text: 'News'},
     { route: 'user-example', text: 'User Example' },
-    { type: MenuItem.Types.SUBHEADER, text: 'NetworkNT' },
+    { type: MenuItem.Types.SUBHEADER, text: 'NetworkNT'},
     {
         type: MenuItem.Types.LINK,
         payload: 'https://github.com/networknt',
@@ -19,6 +20,14 @@ var menuItems = [
 
 
 var LeftNavMenu = React.createClass({
+
+    componentWillMount: function() {
+        ThemeManager.setComponentThemes({
+            menuSubheader: {
+                textColor: Colors.green300
+            }
+        });
+    },
 
     getStyles: function() {
         return {
@@ -79,12 +88,23 @@ var LeftNavMenu = React.createClass({
     onHeaderClick: function () {
         this.context.router.transitionTo('root');
         this.refs.leftNav.close();
+    },
+
+    getChildContext: function() {
+        return {
+            muiTheme: ThemeManager.getCurrentTheme()
+        };
+
     }
 
 });
 
 LeftNavMenu.contextTypes = {
     router: React.PropTypes.func
+};
+
+LeftNavMenu.childContextTypes = {
+    muiTheme: React.PropTypes.object
 };
 
 module.exports = LeftNavMenu;
