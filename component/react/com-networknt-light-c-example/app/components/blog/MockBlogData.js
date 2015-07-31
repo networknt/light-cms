@@ -94,15 +94,36 @@ module.exports = {
                 "$$hashKey":"object:246"
             }
         ]));
-        localStorage.setItem('blog', JSON.stringify({
-            "@rid":"#33:12",
-            "host":"example",
-            "description":"New and improved??",
-            "blogId":"The new blog ID",
-            "createDate":"2015-05-22T00:22:37.607",
-            "$$hashKey":"object:241"
+        localStorage.setItem('blogPosts', JSON.stringify([
+            {
+                "createUserId":"stevehu",
+                "postId":"GT3ZmMIxTxiE8WzGudooQA",
+                "createRid":"#14:0",
+                "rid":"#36:11",
+                "title":"TEst",
+                "content":"This is the post - Edited -5/21/2015",
+                "parentId":"asdga",
+                "createDate":"2015-05-02T14:20:13.512"
+            },{
+                "createUserId":"stevehu",
+                "postId":"uGRKOudDR4e3EGwrNYi6cQ",
+                "createRid":"#14:0",
+                "rid":"#36:10",
+                "title":"jdfgjdfgjd",
+                "content":"fgjdfgj",
+                "parentId":"asdga",
+                "createDate":"2015-05-02T12:57:12.315"
+            },{
+                "createUserId":"stevehu",
+                "postId":"FY4pUJ1CSzSURhihDlLg5g",
+                "createRid":"#14:0",
+                "rid":"#36:9",
+                "title":"sdfhsdfhsdf",
+                "content":"hsdfhsdfhsdf",
+                "parentId":"asdga",
+                "createDate":"2015-05-02T12:55:51.351"
             }
-        ));
+        ]));
         return JSON.parse(localStorage.getItem('blogs'));
     }
 };

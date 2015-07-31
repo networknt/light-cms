@@ -22,27 +22,35 @@ var LeftNavMenu = React.createClass({
 
     getStyles: function() {
         return {
-            cursor: 'pointer',
-            //.mui-font-style-headline
-            fontSize: '24px',
-            color: Typography.textFullWhite,
-            lineHeight: Spacing.desktopKeylineIncrement + 'px',
-            fontWeight: Typography.fontWeightLight,
-            backgroundColor: Colors.cyan500,
-            paddingLeft: Spacing.desktopGutter,
-            paddingTop: '0px',
-            marginBottom: '8px'
+            root: {
+                cursor: 'pointer',
+                //.mui-font-style-headline
+                fontSize: '24px',
+                color: Typography.textFullWhite,
+                lineHeight: Spacing.desktopKeylineIncrement + 'px',
+                fontWeight: Typography.fontWeightLight,
+                backgroundColor: Colors.green300,
+                paddingLeft: Spacing.desktopGutter,
+                paddingTop: '0px',
+                marginBottom: '8px'
+            },
+            leftNav: {
+                ".SubheaderMenuItem backgroundColor": Colors.green300
+            }
+
         };
     },
 
     render: function() {
+        var style = this.getStyles();
         var header = (
-            <div style={this.getStyles()} onTouchTap={this.onHeaderClick}>NetworkNT</div>
+            <div style={style.root} onTouchTap={this.onHeaderClick}>NetworkNT</div>
         );
 
         return (
             <LeftNav
                 ref="leftNav"
+                style={style.leftNav}
                 docked={false}
                 isInitiallyOpen={false}
                 header={header}

@@ -29,11 +29,10 @@ var Main = React.createClass({
         );
         return (
             <div>
-                <AppBar title='NetworkNT' onLeftIconButtonTouchTap={this.showSideBar} iconElementRight={githubButton} zDepth={0}/>
+                <AppBar title='NetworkNT' onLeftIconButtonTouchTap={this.showSideBar} iconElementRight={githubButton} zDepth={0} style={styles.topMenu}/>
                 <LeftNavMenu ref="leftNav"/>
 
                 <RouteHandler />
-
                 <FullWidthSection style={styles.footer}>
                     <p style={styles.p}>Copyright NetworkNT - 2015</p>
                 </FullWidthSection>
@@ -44,7 +43,7 @@ var Main = React.createClass({
         let red = Colors.red;
         return {
             footer: {
-                backgroundColor: Colors.grey900,
+                backgroundColor: Colors.grey800,
                 textAlign: 'center'
             },
             a: {
@@ -60,6 +59,12 @@ var Main = React.createClass({
                 color: Typography.textFullWhite,
                 margin: 0,
                 paddingTop: 6
+            },
+            topMenu: {
+                backgroundColor: Colors.green300
+            },
+            subheaderMenuItem: {
+                backgroundColor: Colors.green300
             }
         };
     },

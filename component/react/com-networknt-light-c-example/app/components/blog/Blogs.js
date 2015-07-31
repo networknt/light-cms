@@ -27,7 +27,7 @@ var Blogs = React.createClass({
                     {
                         this.state.blogs.map(function (blog) {
                             return (
-                                <BlogRow key={blog.blogId} blog={blog} nestedLevel={0}></BlogRow>
+                                <BlogRow blog={blog}></BlogRow>
                             );
                         })
                         }

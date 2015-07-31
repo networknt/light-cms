@@ -6,13 +6,13 @@ var _ = require('underscore');
 
 var _blogs = [];
 
-var _blog = {};
+var _blogPosts = [];
 
 function loadBlogs(data) {
     _blogs = data;
 }
-function loadBlog(data) {
-    _blog = data;
+function loadBlogPosts(data) {
+    _blogPosts = data;
 }
 
 var BlogStore = _.extend({}, EventEmitter.prototype, {
@@ -20,6 +20,11 @@ var BlogStore = _.extend({}, EventEmitter.prototype, {
         return {
             "blogs": _blogs
         };
+    },
+    getBlogPostsState: function() {
+        return {
+            "blogPosts": _blogPosts
+        }
     },
 
     emitChange: function() {
@@ -46,9 +51,9 @@ AppDispatcher.register(function(payload) {
             console.log("BlogStore received BLOGS:", action.data);
             loadBlogs(action.data);
             break;
-        case BlogConstants.RECEIVE_BLOG:
-            console.log("BlogStore received BLOG:", action.data);
-            loadBlog(action.data);
+        case BlogConstants.RECEIVE_BLOG_POSTS:
+            console.log("BlogStore received BLOG_POSTS:", action.data);
+            loadBlogPosts(action.data);
             break;
         default:
             return true;

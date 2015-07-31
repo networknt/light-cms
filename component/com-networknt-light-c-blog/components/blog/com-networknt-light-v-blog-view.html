@@ -31,6 +31,7 @@ angular.module('lightApp').controller('BlogCtrl', ['$scope', '$filter', 'toaster
     $scope.fetchPosts = function () {
         bfnBackend.getPosts("blog", "example", $scope.blogRid, $scope.currentPageNumber, $scope.itemsPerPage, "desc", "createDate").then(function (result) {
             $scope.blogPosts = result.data.posts;
+            console.log("posts:", JSON.stringify(result.data.posts));
             $scope.allowPost = result.data.allowPost;
             $scope.total = result.data.total;
         });

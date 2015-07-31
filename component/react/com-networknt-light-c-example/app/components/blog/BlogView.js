@@ -1,33 +1,39 @@
 var React =  require('react');
+var {Link} = require('react-router');
 var FullWidthSection = require('../common/full-width-section.js');
 var BlogStore = require('../../stores/BlogStore');
 var BlogAction = require('../../actions/BlogActions');
 var BlogRow = require('./BlogRow');
-var {List, ListItem, Paper, RaisedButton} = require('material-ui')
+var {List, ListItem, Paper, RaisedButton} = require('material-ui');
+var BlogPostsView = require('./BlogPostsView');
 
 var BlogView = React.createClass({
-
+    getInitialState: function() {
+        return {
+            blogPosts: []
+        };
+    },
     getDefaultProps: function() {
-        blogId: '#33:12'
+        blogId: ''
     },
 
     componentDidMount: function() {
         BlogStore.addChangeListener(this._receivedBlog);
-        BlogAction.receiveBlog(this.props.blogId);
+        BlogAction.receiveBlogPosts(this.props.blogId);
     },
 
     render: function() {
         return (
             <FullWidthSection>
-                <RaisedButton label="Back" />
-                <Paper circle="false" rouded="true" transitionEnabled="true">
-                    Blog View!
-                </Paper>
+                <Link to="/blogs">
+                    <RaisedButton label="Back"/>
+                </Link>
+                <BlogPostsView blogPosts={this.state.blogPosts}></BlogPostsView>
             </FullWidthSection>
         );
     },
     _receivedBlog: function(data) {
-        console.log("Received blog:", data);
+        this.setState(BlogStore.getBlogPostsState());
     }
 });
 

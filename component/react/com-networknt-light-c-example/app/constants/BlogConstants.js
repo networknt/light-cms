@@ -5,5 +5,5 @@ module.exports = keyMirror({
     BLOG_REMOVE: null,
     BLOG_UPDATE: null,
     RECEIVE_BLOGS: null,
-    RECEIVE_BLOG: null
+    RECEIVE_BLOG_POSTS: null
 });
