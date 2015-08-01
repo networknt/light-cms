@@ -28,7 +28,7 @@ var Main = React.createClass({
             <FlatButton label="Github" style={styles.githubButton} linkButton={true} href="https://github.com/networknt"/>
         );
         return (
-            <div>
+            <div style={styles.html}>
                 <AppBar title='NetworkNT' onLeftIconButtonTouchTap={this.showSideBar} iconElementRight={githubButton} zDepth={0} style={styles.topMenu}/>
                 <LeftNavMenu ref="leftNav"/>
                 <RouteHandler />
@@ -41,15 +41,18 @@ var Main = React.createClass({
     },
     getStyles: function () {
         return {
+            html: {
+                position: 'relative',
+                margin: '0 0 200px'
+            },
             footer: {
                 backgroundColor: Colors.grey800,
                 textAlign: 'center',
-                position: 'absolute',
-                left: 0,
-                bottom: 0,
+                position: 'fixed',
+                left: '0px',
+                bottom: '0px',
                 height: '100px',
                 width: '100%',
-                overflow: 'hidden',
                 zIndex: '-10'
             },
             a: {

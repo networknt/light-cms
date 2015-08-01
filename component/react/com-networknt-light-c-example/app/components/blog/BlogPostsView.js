@@ -1,7 +1,9 @@
 var React =  require('react');
 var FullWidthSection = require('../common/full-width-section.js');
-var {List, ListItem, Paper} = require('material-ui')
-
+var {List, ListItem, Paper, Avatar, Styles, SvgIcon} = require('material-ui');
+var { Colors, Spacing, Typography } = Styles;
+// var {ActionAssignment} = SvgIcon;
+// using leftAvatar={<Avatar icon={<ActionAssignment />}/>} in ListItem causing an error... figure out why.
 var BlogPostsView = React.createClass({
     getDefaultProps: function() {
         blogPosts: []

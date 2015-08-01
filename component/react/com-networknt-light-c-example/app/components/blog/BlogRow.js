@@ -1,6 +1,9 @@
 var React =  require('react');
-var {ListItem} = require('material-ui')
+var {ListItem, Styles} = require('material-ui')
 var BlogActions = require('../../actions/BlogActions');
+var { Colors, Spacing, Typography } = Styles;
+
+
 
 var BlogRow = React.createClass({
     componentDidMount: function() {
@@ -19,14 +22,34 @@ var BlogRow = React.createClass({
 
     _createItems: function(blogs) {
         var children;
+        var styles = this.getStyles();
         if (blogs.out_Own) {
             children = blogs.out_Own.map(function (child) {
                 return this._createItems(child);
             }.bind(this));
         }
         return (
-            <ListItem primaryText={this.props.blog.blogId} secondaryText={this.props.blog.description} onTouchTap={this._onTouchTap}>{children}</ListItem>
+            <ListItem
+
+                primaryText={this.props.blog.blogId} secondaryText={this.props.blog.description} onTouchTap={this._onTouchTap}>{children}</ListItem>
         );
+    },
+
+    getStyles: function() {
+        return {
+            primaryTextStyle: {
+                fontSize: '20px',
+                lineHeight: '28px',
+                paddingTop: '19px',
+                marginBottom: '13px',
+                letterSpacing: '0',
+                color: Colors.darkWhite,
+                fontWeight: Typography.fontWeightLight
+            },
+            secondaryText: {
+
+            }
+        };
     }
 
 });

@@ -19,8 +19,8 @@ var Home = React.createClass({
                     </div>
                 </FullWidthSection>
                 <FullWidthSection style={styles.githubSection}>
-                    <h2 style={styles.githubSectionh2}>Want to learn more about this project? Check out our repo!</h2>
-                    <RaisedButton label="GitHub" linkButton={true} href="https://github.com/networknt"/>
+                    <h2 style={styles.githubSectionh2}>To learn more about this project, Check out our repo!</h2>
+                    <RaisedButton label="GitHub" primary={true} linkButton={true} href="https://github.com/networknt"/>
                 </FullWidthSection>
             </div>
         );
@@ -62,7 +62,7 @@ var Home = React.createClass({
                 paddingTop: '19px',
                 marginBottom: '13px',
                 letterSpacing: '0',
-                fontWeight: Typography.fontWeightLight,
+                fontWeight: Typography.fontWeightLight
             }
         };
     }
