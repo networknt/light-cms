@@ -1,5 +1,6 @@
 var React = require('react');
 var Router = require('react-router');
+var {Link} = require('react-router');
 var {Styles, RaisedButton, AppBar, MenuItem, FlatButton} = require('material-ui')
 var ThemeManager = new Styles.ThemeManager();
 var {Colors, Typography} = Styles;
@@ -25,7 +26,9 @@ var Main = React.createClass({
 
         // TODO: Add github icon.
         var githubButton = (
-            <FlatButton label="Github" style={styles.githubButton} linkButton={true} href="https://github.com/networknt"/>
+            <Link to="/signup">
+                <FlatButton label="Signup" style={styles.githubButton}/>
+            </Link>
         );
         return (
             <div style={styles.html}>
