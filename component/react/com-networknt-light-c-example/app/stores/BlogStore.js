@@ -46,6 +46,7 @@ AppDispatcher.register(function(payload) {
     var action = payload.action;
     var text;
     console.log("BlogStore received payload: ", payload);
+    if (action == null) return;
     switch(action.actionType) {
         case BlogConstants.RECEIVE_BLOGS:
             console.log("BlogStore received BLOGS:", action.data);

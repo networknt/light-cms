@@ -28,6 +28,7 @@ var Signup = React.createClass({
     },
 
     _onSubmit: function(e) {
+        console.log("This.refs:", this.refs);
         e.preventDefault();
         this.setState({ errors: [] });
         var email = this.refs.email.getDOMNode().value;
@@ -47,15 +48,43 @@ var Signup = React.createClass({
         return (
             <FullWidthSection style={styles.root}>
                 {errors}
-                <Paper style={styles.paper}>
-                <form onSubmit={this._onSubmit}>
-                    <TextField hintText="Email" floatingLabelText="Email" type="email" /><br />
-                    <TextField hintText="Username" floatingLabelText="Username" type="text" /><br />
-                    <TextField hintText="Password" floatingLabelText="Password" type="password" /><br />
-                    <TextField hintText="Password Confirmation" floatingLabelText="Password Confirmation" type="password" /><br />
-                    <RaisedButton label="Submit" primary={true} type="submit"/>
-                </form>
-                </Paper>
+                <div style={styles.div}>
+                    <form onSubmit={this._onSubmit}>
+                        <TextField
+                            hintText="Email"
+                            floatingLabelText="Email"
+                            type="email"
+                            ref="email"
+                            name="email"
+                            onChange={this._handleErrorInputChangeEmail}
+                            errorText={this.state.errorTextEmail}/><br />
+                        <TextField
+                            hintText="Username"
+                            floatingLabelText="Username"
+                            type="text"
+                            ref="username"
+                            name="username"
+                            onChange={this._handleErrorInputChangeUsername}
+                            errorText={this.state.errorTextUsername}/><br />
+                        <TextField
+                            hintText="Password"
+                            floatingLabelText="Password"
+                            type="password"
+                            ref="password"
+                            name="password"
+                            onChange={this._handleErrorInputChangePassword}
+                            errorText={this.state.errorTextPassword}/><br />
+                        <TextField
+                            hintText="Password Confirmation"
+                            floatingLabelText="Password Confirmation"
+                            type="password"
+                            ref="passwordConfirmation"
+                            name="passwordConfirmation"
+                            onChange={this._handleErrorInputChangePasswordConfirmation}
+                            errorText={this.state.errorTextPasswordConfirmation}/><br />
+                        <RaisedButton label="Signup" primary={true} type="submit" style={styles.submitButton}/>
+                    </form>
+                </div>
             </FullWidthSection>
         );
     },
@@ -66,15 +95,42 @@ var Signup = React.createClass({
                 overflow: 'hidden',
                 width: '100%',
                 textAlign: 'center',
-                display: 'center'
+                display: 'center',
+                backgroundColor: Colors.white,
+                padding: '0px',
+                marginBottom: '0px'
             },
-            paper: {
+            div: {
                 width: '70%',
                 margin: 'auto',
                 paddingTop: '2%',
                 paddingBottom: '2%'
+            },
+            submitButton: {
+                marginTop: '15px'
             }
         };
+    },
+
+    _handleErrorInputChangeEmail(e) {
+        this.setState({
+            emailErrorText: e.target.value ? '' : 'This field is required.'
+        });
+    },
+    _handleErrorInputChangeUsername(e) {
+        this.setState({
+            emailErrorUsername: e.target.value ? '' : 'This field is required.'
+        });
+    },
+    _handleErrorInputChangePassword(e) {
+        this.setState({
+            emailErrorPassword: e.target.value ? '' : 'This field is required.'
+        });
+    },
+    _handleErrorInputChangePasswordConfirmation(e) {
+        this.setState({
+            emailErrorPasswordConfirmation: e.target.value ? '' : 'This field is required.'
+        });
     }
 });
 

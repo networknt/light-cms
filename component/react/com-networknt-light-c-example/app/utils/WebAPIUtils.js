@@ -26,26 +26,29 @@ var ClientId = AppConstants.ClientId;
 module.exports = {
 
     signup: function(email, username, password, passwordConfirmation) {
-        request.post(APIEndpoints.REGISTRATION)
-            .send({ user: {
-                email: email,
-                username: username,
-                password: password,
-                password_confirmation: passwordConfirmation,
-                clientId: ClientId
-            }})
-            .set('Accept', 'application/json')
-            .end(function(error, res) {
-                if (res) {
-                    if (res.error) {
-                        var errorMsgs = _getErrors(res);
-                        ServerActionCreators.receiveLogin(null, errorMsgs);
-                    } else {
-                        json = JSON.parse(res.text);
-                        ServerActionCreators.receiveLogin(json, null);
-                    }
+        $.ajax({
+            type: 'POST',
+            url: 'http://example:8080/api/rs',
+            data: JSON.stringify({
+                user: {
+                    email: email,
+                    username: username,
+                    password: password,
+                    password_confirmation: passwordConfirmation,
+                    clientId: ClientId
                 }
-            });
+            }),
+            contentType: 'application/json',
+            dataType: 'json',
+            error: function(jqXHR, status, error) {
+                console.log('signup error', error);
+                ServerActionCreators.receiveLogin(null, error);
+            },
+            success: function(result, status, xhr) {
+                console.log('signup success', result);
+                ServerActionCreators.receiveLogin(result, null);
+            }
+        });
     },
 
     login: function(userIdEmail, password, rememberMe) {
