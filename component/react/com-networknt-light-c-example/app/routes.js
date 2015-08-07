@@ -18,6 +18,8 @@ var BlogView = require('./components/blog/BlogView');
 var BlogPostView = require('./components/blog/BlogPostView.js');
 
 var SignUp = require('./components/auth/Signup.js');
+var Login = require('./components/auth/Login.js');
+var Logout = require('./components/auth/Logout.js');
 
 var AppRoutes = (
     <Route name="root" path="/" handler={Main}>
@@ -29,9 +31,9 @@ var AppRoutes = (
         <Route name="blogPostView" handler={BlogPostView} />
         <Route name="forum" handler={Forum} />
         <Route name="news" handler={News} />
-        <Route name="signUp" path="/signUp" handler={SignUp}/>
-
-
+        <Route name="signup" path="/signup" handler={SignUp}/>
+        <Route name="login" path="/login" handler={Login} />
+        <Route name="logout" path="/logout" handler={Logout} />
         <DefaultRoute handler={Home}/>
     </Route>
 );

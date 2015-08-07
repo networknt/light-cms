@@ -10,6 +10,10 @@ var menuItems = [
     { route: 'forum', text: 'Forum'},
     { route: 'news', text: 'News'},
     { route: 'user-example', text: 'User Example' },
+    { type: MenuItem.Types.SUBHEADER, text: 'User'},
+    { route: 'login', text: 'Login'},
+    { route: 'logout', text: 'Logout'},
+    { route: 'signup', text: 'Sign up'},
     { type: MenuItem.Types.SUBHEADER, text: 'NetworkNT'},
     {
         type: MenuItem.Types.LINK,

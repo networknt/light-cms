@@ -1,13 +1,37 @@
-/**
- * Created by hus5 on 7/16/2015.
- */
 var React = require('react');
+var {Dialog} = require('material-ui');
 
 var Logout = React.createClass({
+    contextTypes: {
+        router: React.PropTypes.func
+    },
+
+    getInitialState: function() {
+        return {
+            modal: true
+        }
+    },
+
     render: function() {
+        var standardActions = [
+            { text: 'Thank you!', onTouchTap: this._onDialogAck, ref: 'submit' }
+        ];
         return (
-            <div>You just logged out</div>
+        <Dialog
+            title="Log out successful"
+            actions={standardActions}
+            actionFocus="submit"
+            ref="logoutDialog"
+            modal={this.state.modal}
+            openImmediately={true}>
+            You are now logged out.
+        </Dialog>
         );
+    },
+
+    _onDialogAck: function() {
+        this.refs.logoutDialog.dismiss();
+        this.context.router.transitionTo('/home');
     }
 });
 
