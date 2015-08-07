@@ -5,6 +5,9 @@ var React = require('react');
 var AuthActionCreators = require('../../actions/AuthActionCreators.js');
 var AuthStore = require('../../stores/AuthStore.js');
 var ErrorNotice = require('../../components/common/ErrorNotice.js');
+var {TextField, RaisedButton, Paper, Styles, Checkbox} = require('material-ui');
+var FullWidthSection = require('../common/full-width-section.js');
+var { Colors, Spacing, Typography } = Styles;
 
 var Login = React.createClass({
 
@@ -21,7 +24,8 @@ var Login = React.createClass({
     },
 
     _onChange: function() {
-        this.setState({rememberMe : !this.state.rememberMe });
+        this.state.rememberMe = !this.state.rememberMe;
+        console.log("onchange called?");
     },
 
     _onSubmit: function(e) {
@@ -38,32 +42,68 @@ var Login = React.createClass({
 
     render: function() {
         var errors = (this.state.errors.length > 0) ? <ErrorNotice errors={this.state.errors}/> : <div></div>;
+        var styles = this.getStyles();
         return (
-            <div>
+            <FullWidthSection style={styles.root}>
                 {errors}
-                <div className="row">
-                    <div className="card card--login small-10 medium-6 large-4 columns small-centered">
-                        <form onSubmit={this._onSubmit}>
-                            <div className="card--login__field">
-                                <label name="userIdEmail">UserId or Email</label>
-                                <input type="text" name="userIdEmail" ref="userIdEmail" />
-                            </div>
-                            <div className="card--login__field">
-                                <label name="password">Password</label>
-                                <input type="password" name="password" ref="password" />
-                            </div>
-                            <div className="card--login__field">
-                                <label name="rememberMe">Remember me</label>
-                                <input type="checkbox" onChange={this.onChange} name="rememberMe" ref="rememberMe" />
-                            </div>
-                            <button type="submit" className="card--login__submit">Login</button>
-                        </form>
-                    </div>
+                <div style={styles.div}>
+                    <form onSubmit={this._onSubmit}>
+                        <TextField
+                            hintText="User ID or Email"
+                            floatingLabelText="User ID or Email"
+                            type="text"
+                            ref="userIdEmail"
+                            name="userIdEmail" /><br />
+                        <TextField
+                            hintText="Password"
+                            floatingLabelText="Password"
+                            type="password"
+                            ref="password"
+                            name="password" /><br />
+                        <div style={styles.rememberMe}>
+                        <Checkbox
+                            name="rememberMe"
+                            value="rememberMe"
+                            ref="rememberMe"
+                            onCheck={this._onChange}
+                            label="Remember Me"
+                            />
+                        </div>
+                        <RaisedButton label="Signup" primary={true} type="submit" style={styles.submitButton}/>
+                    </form>
                 </div>
-            </div>
+            </FullWidthSection>
         );
+    },
+
+    getStyles: function() {
+        return {
+            root: {
+                overflow: 'hidden',
+                width: '100%',
+                textAlign: 'center',
+                display: 'center',
+                backgroundColor: Colors.white,
+                padding: '0px',
+                marginBottom: '0px'
+            },
+            div: {
+                width: '70%',
+                margin: 'auto',
+                paddingTop: '2%',
+                paddingBottom: '2%'
+            },
+            submitButton: {
+                marginTop: '15px'
+            },
+            rememberMe: {
+                width: '15%',
+                margin: 'auto',
+                paddingTop: '10px'
+
+            }
+        };
     }
 });
 
 module.exports = Login;
-

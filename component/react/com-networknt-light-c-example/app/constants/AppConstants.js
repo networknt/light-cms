@@ -15,6 +15,7 @@
  */
 var keyMirror = require('react/lib/keyMirror');
 
+var host = "example";
 
 module.exports = {
     APIRoot:  '/api/rs',
@@ -28,6 +29,25 @@ module.exports = {
     ActionTypes: keyMirror({
         // Routes
         REDIRECT: null
-    })
+    }),
+
+    APIEndpoints: {
+        SIGNIN:         {
+            category : 'user',
+            name : 'signInUser',
+            readOnly: false
+        },
+        REGISTRATION:   {
+
+        },
+        GETMENU: {
+            category : 'menu',
+            name : 'getMenu',
+            readOnly: true,
+            data : {
+                host : host
+            }
+        }
+    }
 
 };
