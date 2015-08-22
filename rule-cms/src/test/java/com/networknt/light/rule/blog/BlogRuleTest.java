@@ -18,7 +18,6 @@ package com.networknt.light.rule.blog;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.networknt.light.rule.forum.*;
 import com.networknt.light.rule.user.SignInUserEvRule;
 import com.networknt.light.rule.user.SignInUserRule;
 import com.networknt.light.util.JwtUtil;

@@ -35,7 +35,6 @@ angular.module('lightApp').controller('menuCtrl', ['$scope', '$http', 'authServi
 
     $http.post('api/rs', getMenuPost)
         .success(function(result, status, headers, config) {
-            console.log('getMenuPost result', result);
             $scope.tree = result.out_Own;
             console.log('get menus', $scope.tree);
         });
