@@ -5,21 +5,38 @@ var {Styles, RaisedButton, AppBar, MenuItem, FlatButton} = require('material-ui'
 var ThemeManager = new Styles.ThemeManager();
 var {Colors, Typography} = Styles;
 var RouteHandler = Router.RouteHandler;
-var FullWidthSection = require('../../common/full-width-section.js');
+var FullWidthSection = require('../common/full-width-section.js');
+var AuthStore = require('../../stores/AuthStore.js');
 
-var InlineUser = require('./../../user/src/InlineUser.js');
+var InlineUser = require('./../user/src/InlineUser.js');
 
-require('./../style/main.css');
+require('./style/main.css');
 
-var LeftNavMenu = require('../../menu/src/LeftNavMenu');
+var LeftNavMenu = require('../menu/src/LeftNavMenu');
 
 var Main = React.createClass({
-
     getChildContext: function() {
         return {
             muiTheme: ThemeManager.getCurrentTheme()
         };
     },
+
+    getInitialState: function() {
+        return {
+            isLoggedIn: AuthStore.isLoggedIn
+        };
+    },
+
+    componentDidMount: function() {
+        AuthStore.addChangeListener(this._userLoginChange);
+    },
+
+    _userLoginChange: function() {
+        this.setState({
+            isLoggedIn: AuthStore.isLoggedIn
+        })
+    },
+
     render: function() {
         var styles = this.getStyles();
 

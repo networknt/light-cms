@@ -10,7 +10,7 @@ var ActionTypes = AppConstants.ActionTypes;
 module.exports = {
 
     signup: function(email, username, password, passwordConfirmation) {
-        AppDispatcher.dispatch({
+        AppDispatcher.handleAction({
             type: ActionTypes.SIGNUP_REQUEST,
             email: email,
             username: username,
@@ -21,7 +21,7 @@ module.exports = {
     },
 
     login: function(userIdEmail, password, rememberMe) {
-        AppDispatcher.dispatch({
+        AppDispatcher.handleAction({
             type: ActionTypes.LOGIN_REQUEST,
             userIdEmail: userIdEmail,
             password: password,
@@ -33,21 +33,21 @@ module.exports = {
 
     init: function() {
         console.log('the inti action is called', AppDispatcher);
-        AppDispatcher.dispatch({
+        AppDispatcher.handleAction({
             type: ActionTypes.INIT
         });
     },
 
     refresh: function(accessToken) {
         console.log('refresh in AuthActionCreators is called.');
-        AppDispatcher.dispatch({
+        AppDispatcher.handleAction({
             type: ActionTypes.REFRESH,
             accessToken: accessToken
         });
     },
 
     logout: function() {
-        AppDispatcher.dispatch({
+        AppDispatcher.handleAction({
             type: ActionTypes.LOGOUT
         });
     }
