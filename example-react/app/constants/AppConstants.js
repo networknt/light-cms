@@ -20,10 +20,12 @@ var host = "example";
 module.exports = {
     APIRoot:  '/api/rs',
     ClientId: 'example@Browser',
+    host: host,
 
     ChangeEvents: {
         ROUTE_CHANGE_EVENT: 'routeChange',
-        BLOG_CHANGE_EVENT: 'blogChange'
+        BLOG_CHANGE_EVENT: 'blogChange',
+        MENU_CHANGE_EVENT: 'menuChange'
     },
 
     ActionTypes: keyMirror({
@@ -35,7 +37,8 @@ module.exports = {
         LOGIN_REQUEST: null,
         LOGIN_RESPONSE: null,
         LOGOUT: null,
-        REFRESH: null
+        REFRESH: null,
+        MENU_RESPONSE: null,
     }),
 
     APIEndpoints: {

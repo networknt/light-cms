@@ -13,7 +13,7 @@ var InlineUser = require('./../user/src/InlineUser.js');
 
 require('./main.css');
 
-var LeftNavMenu = require('../menu/src/LeftNavMenu');
+var LeftNavMenu = require('../menu/LeftNavMenu');
 
 var Main = React.createClass({
     contextTypes: {

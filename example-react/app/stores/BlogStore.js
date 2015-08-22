@@ -36,22 +36,22 @@ var BlogStore = _.extend({}, EventEmitter.prototype, {
 
 AppDispatcher.register(function(payload) {
     var action = payload.action;
-    var text;
     console.log("BlogStore received payload: ", payload);
     if (action == null) return;
     switch(action.actionType) {
         case BlogConstants.RECEIVE_BLOGS:
             console.log("BlogStore received BLOGS:", action.data);
             _blogs = action.data;
+            BlogStore.emitChange();
             break;
         case BlogConstants.RECEIVE_BLOG_POSTS:
             console.log("BlogStore received BLOG_POSTS:", action.data);
             _blogPosts = action.data;
+            BlogStore.emitChange();
             break;
         default:
             return true;
     }
-    BlogStore.emitChange();
     return true;
 });
 

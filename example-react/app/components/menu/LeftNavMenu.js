@@ -4,16 +4,21 @@ var { MenuItem, LeftNav, Styles } = require('material-ui');
 var ThemeManager = Styles.ThemeManager();
 var { Colors, Spacing, Typography } = Styles;
 
-var menuItems = [
+var MenuStore = require('../../stores/MenuStore');
+var MenuActions = require('../../actions/MenuActions');
+
+var menu = [
     { type: MenuItem.Types.SUBHEADER, text: 'Component Examples' },
     { route: 'blogs', text: 'Blogs'},
     { route: 'forum', text: 'Forum'},
     { route: 'news', text: 'News'},
     { route: 'user-example', text: 'User Example' },
+    /*
     { type: MenuItem.Types.SUBHEADER, text: 'User'},
     { route: 'login', text: 'Login'},
     { route: 'logout', text: 'Logout'},
     { route: 'signup', text: 'Sign up'},
+    */
     { type: MenuItem.Types.SUBHEADER, text: 'NetworkNT'},
     {
         type: MenuItem.Types.LINK,
@@ -31,6 +36,16 @@ var LeftNavMenu = React.createClass({
                 textColor: Colors.green300
             }
         });
+    },
+
+    componentDidMount: function() {
+        MenuStore.addChangeListener(this._onMenuChange);
+        MenuActions.getMenu();
+    },
+
+    _onMenuChange: function() {
+        console.log('LeftNavMenu._onMenuChange');
+        // TODO. Menu items would now be set to MenuStore.getMenu(); however format is not currently conducive to this.
     },
 
     getStyles: function() {
@@ -67,7 +82,7 @@ var LeftNavMenu = React.createClass({
                 docked={false}
                 isInitiallyOpen={false}
                 header={header}
-                menuItems={menuItems}
+                menuItems={menu}
                 selectedIndex={this.getSelectedIndex()}
                 onChange={this.onLeftNavChange} />
         );
@@ -79,8 +94,8 @@ var LeftNavMenu = React.createClass({
 
     getSelectedIndex: function() {
         var currentItem;
-        for (var i = menuItems.length - 1; i >= 0; i--) {
-            currentItem = menuItems[i];
+        for (var i = menu.length - 1; i >= 0; i--) {
+            currentItem = menu[i];
             if (currentItem.route && this.context.router.isActive(currentItem.route)) return i;
         }
     },
