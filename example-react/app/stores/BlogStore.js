@@ -5,15 +5,7 @@ var AppConstants = require('../constants/AppConstants');
 var _ = require('underscore');
 
 var _blogs = [];
-
 var _blogPosts = [];
-
-function loadBlogs(data) {
-    _blogs = data;
-}
-function loadBlogPosts(data) {
-    _blogPosts = data;
-}
 
 var BlogStore = _.extend({}, EventEmitter.prototype, {
     getBlogState: function() {
@@ -50,11 +42,11 @@ AppDispatcher.register(function(payload) {
     switch(action.actionType) {
         case BlogConstants.RECEIVE_BLOGS:
             console.log("BlogStore received BLOGS:", action.data);
-            loadBlogs(action.data);
+            _blogs = action.data;
             break;
         case BlogConstants.RECEIVE_BLOG_POSTS:
             console.log("BlogStore received BLOG_POSTS:", action.data);
-            loadBlogPosts(action.data);
+            _blogPosts = action.data;
             break;
         default:
             return true;

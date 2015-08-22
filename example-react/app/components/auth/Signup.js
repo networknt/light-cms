@@ -2,17 +2,23 @@
  * Created by steve on 08/07/15.
  */
 var React = require('react');
-var AuthActionCreators = require('../../actions/AuthActionCreators.js');
+var AuthActions = require('../../actions/AuthActions.js');
 var AuthStore = require('../../stores/AuthStore.js');
 var ErrorNotice = require('../../components/common/ErrorNotice.js');
-var {TextField, RaisedButton, Paper, Styles} = require('material-ui');
+var {TextField, RaisedButton, Paper, Styles, Dialog} = require('material-ui');
 var FullWidthSection = require('../common/full-width-section.js');
 var { Colors, Spacing, Typography } = Styles;
 
 var Signup = React.createClass({
+    contextTypes: {
+        router: React.PropTypes.func
+    },
 
     getInitialState: function() {
-        return { errors: [] };
+        return {
+            error: "",
+            signupSuccessful: false
+        };
     },
 
     componentDidMount: function() {
@@ -24,30 +30,65 @@ var Signup = React.createClass({
     },
 
     _onChange: function() {
-        this.setState({ errors: AuthStore.getErrors() });
+        console.log("Signup._onChange");
+        this.setState({
+            error: AuthStore.getError(),
+            signupSuccessful: AuthStore.isLoggedIn()
+        });
+
+        if (this.state.error === "") {
+            this.refs.signupSuccessful.show();
+        } else {
+            this.refs.signupFailed.show();
+        }
     },
 
     _onSubmit: function(e) {
         console.log("This.refs:", this.refs);
         e.preventDefault();
         this.setState({ errors: [] });
-        var email = this.refs.email.getDOMNode().value;
-        var username = this.refs.username.getDOMNode().value;
-        var password = this.refs.password.getDOMNode().value;
-        var passwordConfirmation = this.refs.passwordConfirmation.getDOMNode().value;
+        var email = this.refs.email.getValue();
+        var username = this.refs.username.getValue();
+        var password = this.refs.password.getValue();
+        var passwordConfirmation = this.refs.passwordConfirmation.getValue();
         if (password !== passwordConfirmation) {
-            this.setState({ errors: ['Password and password confirmation should match']});
+            this.setState({
+                error: "Password and password confirmation should match"
+            });
         } else {
-            AuthActionCreators.signup(email, username, password, passwordConfirmation);
+            AuthActions.signup(email, username, password, passwordConfirmation);
         }
     },
 
     render: function() {
-        var errors = (this.state.errors.length > 0) ? <ErrorNotice errors={this.state.errors}/> : <div></div>;
         var styles = this.getStyles();
+        var signupSuccessActions = [
+            { text: 'Great!', onTouchTap: this._onDialogAck, ref: 'submit' }
+        ];
+        var signupFailedActions = [
+            { text: 'Try Again' },
+            { text: 'Contact Us...'} // Todo....
+        ];
+
         return (
             <FullWidthSection style={styles.root}>
-                {errors}
+                <Dialog
+                    title="Welcome Aboard!"
+                    actions={signupSuccessActions}
+                    ref="signupSuccessful"
+                    modal={false}
+                    openImmediately={false}
+                    onDismiss={this._dismissSignupSuccess}>
+                    An email has been sent to activate the account.
+                </Dialog>
+                <Dialog
+                    title="Error occured during singup"
+                    actions={signupFailedActions}
+                    ref="signupFailed"
+                    modal={false}
+                    openImmediately={false}>
+                    {this.state.error}
+                </Dialog>
                 <div style={styles.div}>
                     <form onSubmit={this._onSubmit}>
                         <TextField

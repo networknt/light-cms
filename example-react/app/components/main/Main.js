@@ -1,7 +1,8 @@
 var React = require('react');
 var Router = require('react-router');
 var {Link} = require('react-router');
-var {Styles, RaisedButton, AppBar, MenuItem, FlatButton} = require('material-ui')
+var {Styles, RaisedButton, AppBar, FlatButton, IconMenu, IconButton} = require('material-ui')
+var MenuItem = require ('material-ui/lib/menus/menu-item');
 var ThemeManager = new Styles.ThemeManager();
 var {Colors, Typography} = Styles;
 var RouteHandler = Router.RouteHandler;
@@ -10,11 +11,14 @@ var AuthStore = require('../../stores/AuthStore.js');
 
 var InlineUser = require('./../user/src/InlineUser.js');
 
-require('./style/main.css');
+require('./main.css');
 
 var LeftNavMenu = require('../menu/src/LeftNavMenu');
 
 var Main = React.createClass({
+    contextTypes: {
+        router: React.PropTypes.func
+    },
     getChildContext: function() {
         return {
             muiTheme: ThemeManager.getCurrentTheme()
@@ -23,7 +27,7 @@ var Main = React.createClass({
 
     getInitialState: function() {
         return {
-            isLoggedIn: AuthStore.isLoggedIn
+            isLoggedIn: AuthStore.isLoggedIn()
         };
     },
 
@@ -32,24 +36,49 @@ var Main = React.createClass({
     },
 
     _userLoginChange: function() {
+        console.log("Main._userLoginChange", AuthStore.isLoggedIn());
         this.setState({
-            isLoggedIn: AuthStore.isLoggedIn
+            isLoggedIn: AuthStore.isLoggedIn()
         })
+    },
+
+    _rightMenuChange: function(e, value) {
+        console.log("Main._rightMenuChange", value);
+        this.context.router.transitionTo('/' + value._store.props.value);
     },
 
     render: function() {
         var styles = this.getStyles();
-
-
-        // TODO: Add github icon.
-        var githubButton = (
-            <Link to="/signup">
-                <FlatButton label="Signup" style={styles.githubButton}/>
-            </Link>
+        var rightButton = (
+            <FlatButton style={styles.rightMenuButton}>
+                User
+            </FlatButton>
         );
+
+        var rightMenu;
+        if (this.state.isLoggedIn) {
+            rightMenu = (
+            <IconMenu iconButtonElement={rightButton}
+                      openDirection="bottom-left"
+                      onItemTouchTap={this._rightMenuChange}>
+                <MenuItem value={"logout"} primaryText="Sign out" />
+            </IconMenu>
+
+            );
+        } else {
+            rightMenu = (
+                <IconMenu iconButtonElement={rightButton}
+                          openDirection="bottom-left"
+                          onItemTouchTap={this._rightMenuChange}>
+                    <MenuItem value={"login"} primaryText="Log in" />
+                    <MenuItem value={"signup"} primaryText="Sign up" />
+                </IconMenu>
+            );
+        }
+
         return (
             <div style={styles.html}>
-                <AppBar title='NetworkNT' onLeftIconButtonTouchTap={this.showSideBar} iconElementRight={githubButton} zDepth={0} style={styles.topMenu}/>
+                <AppBar title='NetworkNT' onLeftIconButtonTouchTap={this.showSideBar} iconElementRight={rightMenu} zDepth={0} style={styles.topMenu}/>
                 <LeftNavMenu ref="leftNav"/>
                 <RouteHandler />
 
@@ -83,7 +112,7 @@ var Main = React.createClass({
                 padding: '0',
                 color: Colors.lightWhite
             },
-            githubButton: {
+            rightMenuButton: {
                 backgroundColor: Colors.transparent,
                 color: Typography.textFullWhite,
                 margin: 0,

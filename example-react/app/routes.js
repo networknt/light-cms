@@ -5,7 +5,7 @@ var Redirect = Router.Redirect;
 var DefaultRoute = Router.DefaultRoute;
 
 // Here we define all our component examples
-var Main = require('./components/main/src/Main');
+var Main = require('./components/main/Main');
 var UserExample = require('./components/user/src/UserExample');
 var UserProfile = require('./components/user/src/UserProfile');
 var Home = require('./components/home/Home');

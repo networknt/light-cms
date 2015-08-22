@@ -8,9 +8,7 @@ var AppRoutes = require('./routes.js');
 window.React = React;
 
 //Needed for onTouchTap
-//Can go away when react 1.0 release
-//Check this repo:
-//https://github.com/zilverline/react-tap-event-plugin
+//Can go away with the react 1.0 release.
 injectTapEventPlugin();
 
 var router = require('./stores/RouteStore.js').getRouter();

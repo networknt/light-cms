@@ -1,15 +1,18 @@
 var React = require('react');
 var {Dialog} = require('material-ui');
+var AuthActions = require('../../actions/AuthActions');
 
 var Logout = React.createClass({
     contextTypes: {
         router: React.PropTypes.func
     },
 
+    componentDidMount: function() {
+        AuthActions.logout();
+    },
+
     getInitialState: function() {
-        return {
-            modal: true
-        }
+        return {}
     },
 
     render: function() {
@@ -22,15 +25,15 @@ var Logout = React.createClass({
             actions={standardActions}
             actionFocus="submit"
             ref="logoutDialog"
-            modal={this.state.modal}
-            openImmediately={true}>
+            modal={false}
+            openImmediately={true}
+            onDismiss={this._onDialogAck}>
             You are now logged out.
         </Dialog>
         );
     },
 
     _onDialogAck: function() {
-        this.refs.logoutDialog.dismiss();
         this.context.router.transitionTo('/home');
     }
 });

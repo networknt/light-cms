@@ -28,7 +28,14 @@ module.exports = {
 
     ActionTypes: keyMirror({
         // Routes
-        REDIRECT: null
+        REDIRECT: null,
+        SIGNUP_REQUEST: null,
+        SIGNUP_RESPONSE: null,
+        INIT: null,
+        LOGIN_REQUEST: null,
+        LOGIN_RESPONSE: null,
+        LOGOUT: null,
+        REFRESH: null
     }),
 
     APIEndpoints: {
