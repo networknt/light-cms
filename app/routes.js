@@ -22,7 +22,7 @@ var Login = require('./components/auth/Login.js');
 var Logout = require('./components/auth/Logout.js');
 
 var AppRoutes = (
-    <Route name="root" path="/" handler={Main}>
+    <Route name="root" path="/light-cms/" handler={Main}>
         <Route name="home" handler={Home} />
         <Route name="user-example" handler={UserExample} />
         <Route name="u/:userId" handler={UserProfile} />

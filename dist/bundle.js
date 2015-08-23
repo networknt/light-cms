@@ -7424,15 +7424,16 @@ webpackJsonp([0],[
 	injectTapEventPlugin();
 
 	var router = __webpack_require__(478).getRouter();
+	var rootComponentInstance;
 	router.run(function (Handler) {
-	    React.render(React.createElement(Handler, null), document.getElementById('content'));
+	    rootComponentInstance = React.render(React.createElement(Handler, null), document.getElementById('content'));
 	});
 
 	if (true) {
 	    __webpack_require__(479).RootInstanceProvider.injectProvider({
 	        getRootInstances: function getRootInstances() {
 	            // Help React Hot Loader figure out the root component instances on the page:
-	            return [rootInstance];
+	            return [rootComponentInstance];
 	        }
 	    });
 	}
@@ -8627,7 +8628,7 @@ webpackJsonp([0],[
 
 	var AppRoutes = React.createElement(
 	    Route,
-	    { name: 'root', path: '/', handler: Main },
+	    { name: 'root', path: '/light-cms/', handler: Main },
 	    React.createElement(Route, { name: 'home', handler: Home }),
 	    React.createElement(Route, { name: 'user-example', handler: UserExample }),
 	    React.createElement(Route, { name: 'u/:userId', handler: UserProfile }),
@@ -10245,7 +10246,7 @@ webpackJsonp([0],[
 
 	        $.ajax({
 	            type: 'POST',
-	            url: 'http://example:8080/api/rs',
+	            url: 'http://networknt.com:8080/api/rs',
 	            data: JSON.stringify({
 	                category: 'menu',
 	                name: 'getMenu',
@@ -10673,7 +10674,7 @@ webpackJsonp([0],[
 	    getBlogs: function getBlogs() {
 	        $.ajax({
 	            type: 'POST',
-	            url: 'http://example:8080/api/rs',
+	            url: 'http://networknt.com:8080/api/rs',
 	            data: JSON.stringify({
 	                category: 'blog',
 	                name: 'getBlog',
@@ -10976,7 +10977,7 @@ webpackJsonp([0],[
 	                    React.createElement(
 	                        'h2',
 	                        { style: styles.h2 },
-	                        'Blog test?'
+	                        'Blog Component'
 	                    )
 	                )
 	            ),
@@ -11494,7 +11495,7 @@ webpackJsonp([0],[
 	        });
 	        $.ajax({
 	            type: 'POST',
-	            url: 'http://example:8080/api/rs',
+	            url: 'http://networknt.com:8080/api/rs',
 	            data: JSON.stringify({
 	                category: 'user',
 	                name: 'signUpUser',
@@ -11539,7 +11540,7 @@ webpackJsonp([0],[
 
 	        $.ajax({
 	            type: 'POST',
-	            url: 'http://example:8080/api/rs',
+	            url: 'http://networknt.com:8080/api/rs',
 	            data: JSON.stringify({
 	                category: 'user',
 	                name: 'signInUser',
