@@ -4,4 +4,3 @@
 *.ipr
 *.iws
 node_modules/*
-dist/*
