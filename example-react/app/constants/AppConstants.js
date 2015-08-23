@@ -39,7 +39,9 @@ module.exports = {
         LOGOUT: null,
         REFRESH: null,
         MENU_RESPONSE: null,
-        BLOG_RESPONSE: null
+        BLOGS_RESPONSE: null,
+        BLOG_POSTS_RESPONSE: null
+
     }),
 
     APIEndpoints: {

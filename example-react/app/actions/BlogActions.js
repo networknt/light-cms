@@ -1,7 +1,7 @@
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var BlogConstants = require('../constants/BlogConstants');
 var AppConstants = require('../constants/AppConstants');
-var BlogData = require('../components/blog/MockBlogData');
+var MockBlogData = require('../components/blog/MockBlogData');
 var $ = require('jquery');
 
 var BlogActions = {
@@ -22,11 +22,17 @@ var BlogActions = {
             dataType: 'json',
             error: function(jqXHR, status, error) {
                 console.log('BlogActions.getBlogs error', error);
+                console.log('Using mock data...');
+                AppDispatcher.handleAction({
+                    type: AppConstants.ActionTypes.BLOGS_RESPONSE,
+                    json: MockBlogData.getBlogs(),
+                    error: null
+                });
             },
             success: function(result, status, xhr) {
                 console.log("BlogActions.getBlogs success", result);
                 AppDispatcher.handleAction({
-                    type: AppConstants.ActionTypes.MENU_RESPONSE,
+                    type: AppConstants.ActionTypes.BLOGS_RESPONSE,
                     json: result,
                     error: null
                 });

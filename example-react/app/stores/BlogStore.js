@@ -38,14 +38,14 @@ AppDispatcher.register(function(payload) {
     console.log("BlogStore received payload: ", payload);
     if (action == null) return;
     switch(action.actionType) {
-        case BlogConstants.RECEIVE_BLOGS:
-            console.log("BlogStore received BLOGS:", action.data);
-            _blogs = action.data;
+        case AppConstants.ActionTypes.RECEIVE_BLOGS:
+            console.log("BlogStore received BLOGS:", action.json);
+            _blogs = action.json;
             BlogStore.emitChange();
             break;
         case BlogConstants.RECEIVE_BLOG_POSTS:
-            console.log("BlogStore received BLOG_POSTS:", action.data);
-            _blogPosts = action.data;
+            console.log("BlogStore received BLOG_POSTS:", action.json);
+            _blogPosts = action.json;
             BlogStore.emitChange();
             break;
         default:
