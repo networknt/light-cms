@@ -13,7 +13,7 @@ module.exports = {
 
         $.ajax({
             type: 'POST',
-            url: 'http://example:8080/api/rs',
+            url: 'http://networknt.com:8080/api/rs',
             data: JSON.stringify({
                 category : 'menu',
                 name : 'getMenu',
