@@ -33,7 +33,7 @@ var Blogs = React.createClass({
             <div>
                 <FullWidthSection style={styles.root}>
                     <div>
-                        <h2 style={styles.h2} >Blogs</h2>
+                        <h2 style={styles.h2} >Blog Component</h2>
                     </div>
                 </FullWidthSection>
 

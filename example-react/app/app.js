@@ -12,6 +12,16 @@ window.React = React;
 injectTapEventPlugin();
 
 var router = require('./stores/RouteStore.js').getRouter();
+var rootComponentInstance;
 router.run(function (Handler) {
-    React.render(<Handler/>, document.getElementById('content'));
+    rootComponentInstance = React.render(<Handler/>, document.getElementById('content'));
 });
+
+if (module.hot) {
+    require('react-hot-loader/Injection').RootInstanceProvider.injectProvider({
+        getRootInstances: function () {
+            // Help React Hot Loader figure out the root component instances on the page:
+            return [rootComponentInstance];
+        }
+    });
+}

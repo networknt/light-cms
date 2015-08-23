@@ -4,9 +4,7 @@
   "description": "User component in light framework",
   "main": "app.js",
   "scripts": {
-    "start": "webpack-dev-server --hot --progress --colors --inline",
-    "deploy": "NODE_ENV=production webpack -p",
-    "test": "rm -fr coverage && ./node_modules/karma/bin/karma start --single-run --browsers PhantomJS karma.conf.js"
+    "start": "webpack-dev-server --progess --colors"
   },
   "authors": [
     "Steve Hu",
@@ -31,7 +29,7 @@
     "karma-ng-html2js-preprocessor": "^0.1.0",
     "karma-phantomjs-launcher": "^0.1.4",
     "map-stream": "0.0.6",
-    "react-hot-loader": "^1.2.4",
+    "react-hot-loader": "~1.2.9",
     "require-dot-file": "^0.4.0",
     "style-loader": "^0.10.1",
     "url-loader": "^0.5.5",
@@ -53,6 +51,7 @@
     "superagent": "^1.2.0",
     "underscore": "^1.8.3",
     "jwt-decode": "^1.1.1",
-    "object-assign": "^3.0.0"
+    "object-assign": "^3.0.0",
+    "fs": "0.0.2"
   }
 }

@@ -14,7 +14,11 @@ webpack
 ```
 
 Developing: (live-reload enabled)
+
+(if on linux, make sure you sudo the below command otherwise it will not hot load).
+
 ```
-node server.js
+npm start
 ```
-- navigate to localhost:3000 in browser.
+
+navigate to localhost:3000 in browser.
