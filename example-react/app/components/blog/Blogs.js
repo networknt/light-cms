@@ -10,13 +10,21 @@ var { Colors, Spacing, Typography } = Styles;
 
 var Blogs = React.createClass({
 
-    componentDidMount: function() {
-        BlogStore.addChangeListener(this._onChange);
-        BlogAction.receiveBlogs();
+    getInitialState: function() {
+        return {
+            blogs: []
+        }
     },
 
-    getInitialState: function() {
-        return BlogStore.getBlogState();
+    componentDidMount: function() {
+        BlogStore.addChangeListener(this._onChange);
+        BlogAction.getBlogs();
+    },
+
+    _onChange: function() {
+        this.setState({
+            blogs: BlogStore.getBlogs()
+        });
     },
 
     render: function() {
@@ -44,9 +52,7 @@ var Blogs = React.createClass({
         );
     },
 
-    _onChange: function() {
-        this.setState(BlogStore.getBlogState());
-    },
+
 
     componentWillUnmount: function() {
         BlogStore.removeChangeListener(this._onChange);

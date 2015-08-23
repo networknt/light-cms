@@ -2,6 +2,7 @@ var AppDispatcher = require('../dispatcher/AppDispatcher');
 var BlogConstants = require('../constants/BlogConstants');
 var AppConstants = require('../constants/AppConstants');
 var BlogData = require('../components/blog/MockBlogData');
+var $ = require('jquery');
 
 var BlogActions = {
 
@@ -21,14 +22,6 @@ var BlogActions = {
             dataType: 'json',
             error: function(jqXHR, status, error) {
                 console.log('BlogActions.getBlogs error', error);
-                /*
-                 var errorText = jqXHR.responseText;
-                 AppDispatcher.handleAction({
-                 type: ActionTypes.SIGNUP_RESPONSE,
-                 json: null,
-                 error: errorText
-                 });
-                 */
             },
             success: function(result, status, xhr) {
                 console.log("BlogActions.getBlogs success", result);

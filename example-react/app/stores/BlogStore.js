@@ -8,11 +8,10 @@ var _blogs = [];
 var _blogPosts = [];
 
 var BlogStore = _.extend({}, EventEmitter.prototype, {
-    getBlogState: function() {
-        return {
-            "blogs": _blogs
-        };
+    getBlogs: function() {
+        return _blogs;
     },
+
     getBlogPostsState: function() {
         return {
             "blogPosts": _blogPosts

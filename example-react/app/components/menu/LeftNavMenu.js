@@ -60,7 +60,7 @@ var LeftNavMenu = React.createClass({
                 backgroundColor: Colors.green300,
                 paddingLeft: Spacing.desktopGutter,
                 paddingTop: '0px',
-                marginBottom: '8px'
+                marginBottom: '0px'
             },
             leftNav: {
                 ".SubheaderMenuItem backgroundColor": Colors.green300
