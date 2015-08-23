@@ -1,0 +1,57 @@
+{
+  "name": "com-networknt-light-c-user",
+  "version": "0.1.0",
+  "description": "User component in light framework",
+  "main": "app.js",
+  "scripts": {
+    "start": "webpack-dev-server --progess --colors"
+  },
+  "authors": [
+    "Steve Hu",
+    "Nicholas Azar"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "babel-core": "^5.0.12",
+    "babel-loader": "^5.0.0",
+    "better-console": "^0.2.4",
+    "css-loader": "^0.10.1",
+    "del": "^1.2.0",
+    "extend": "^3.0.0",
+    "file-loader": "^0.8.1",
+    "karma": "^0.12.23",
+    "karma-chai-sinon": "^0.1.3",
+    "karma-chrome-launcher": "^0.1.4",
+    "karma-coverage": "^0.2.1",
+    "karma-growler-reporter": "0.0.1",
+    "karma-jasmine": "^0.1.5",
+    "karma-mocha": "^0.1.3",
+    "karma-ng-html2js-preprocessor": "^0.1.0",
+    "karma-phantomjs-launcher": "^0.1.4",
+    "map-stream": "0.0.6",
+    "react-hot-loader": "~1.2.9",
+    "require-dot-file": "^0.4.0",
+    "style-loader": "^0.10.1",
+    "url-loader": "^0.5.5",
+    "webpack": "^1.10.1",
+    "webpack-dev-server": "^1.8.0",
+    "yamljs": "^0.2.3"
+  },
+  "dependencies": {
+    "express": "^4.13.1",
+    "extract-text-webpack-plugin": "^0.8.2",
+    "flux": "^2.0.3",
+    "http-proxy": "^1.11.1",
+    "jquery": "^2.1.4",
+    "marked": "^0.3.3",
+    "material-ui": "^0.10.4",
+    "path": "^0.11.14",
+    "react": "^0.13.3",
+    "react-router": "^0.13.3",
+    "superagent": "^1.2.0",
+    "underscore": "^1.8.3",
+    "jwt-decode": "^1.1.1",
+    "object-assign": "^3.0.0",
+    "fs": "0.0.2"
+  }
+}
