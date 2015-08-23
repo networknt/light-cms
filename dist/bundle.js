@@ -8628,7 +8628,7 @@ webpackJsonp([0],[
 
 	var AppRoutes = React.createElement(
 	    Route,
-	    { name: 'root', path: '/light-cms/', handler: Main },
+	    { name: 'root', path: '/', handler: Main },
 	    React.createElement(Route, { name: 'home', handler: Home }),
 	    React.createElement(Route, { name: 'user-example', handler: UserExample }),
 	    React.createElement(Route, { name: 'u/:userId', handler: UserProfile }),
@@ -10445,7 +10445,8 @@ webpackJsonp([0],[
 	            },
 	            h1: {
 	                color: Colors.darkWhite,
-	                fontWeight: Typography.fontWeightLight
+	                fontWeight: Typography.fontWeightLight,
+	                lineHeight: 1.5
 	            },
 	            h2: {
 	                //.mui-font-style-title

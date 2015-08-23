@@ -21,4 +21,4 @@ Developing: (live-reload enabled)
 npm start
 ```
 
-navigate to localhost:3000 in browser.
+navigate to localhost:8001 in browser.
