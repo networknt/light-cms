@@ -5,6 +5,42 @@ var BlogData = require('../components/blog/MockBlogData');
 
 var BlogActions = {
 
+    getBlogs: function() {
+        $.ajax({
+            type: 'POST',
+            url: 'http://example:8080/api/rs',
+            data: JSON.stringify({
+                category : 'blog',
+                name : 'getBlog',
+                readOnly: true,
+                "data": {
+                    host: AppConstants.host
+                }
+            }),
+            contentType: 'application/json',
+            dataType: 'json',
+            error: function(jqXHR, status, error) {
+                console.log('BlogActions.getBlogs error', error);
+                /*
+                 var errorText = jqXHR.responseText;
+                 AppDispatcher.handleAction({
+                 type: ActionTypes.SIGNUP_RESPONSE,
+                 json: null,
+                 error: errorText
+                 });
+                 */
+            },
+            success: function(result, status, xhr) {
+                console.log("BlogActions.getBlogs success", result);
+                AppDispatcher.handleAction({
+                    type: AppConstants.ActionTypes.MENU_RESPONSE,
+                    json: result,
+                    error: null
+                });
+            }
+        });
+    },
+
     initBlogs: function() {
         return BlogData.init();
     },

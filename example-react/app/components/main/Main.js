@@ -77,7 +77,7 @@ var Main = React.createClass({
         }
 
         return (
-            <div style={styles.html}>
+            <div style={styles.parent}>
                 <AppBar title='NetworkNT' onLeftIconButtonTouchTap={this.showSideBar} iconElementRight={rightMenu} zDepth={0} style={styles.topMenu}/>
                 <LeftNavMenu ref="leftNav"/>
                 <RouteHandler />
@@ -90,18 +90,18 @@ var Main = React.createClass({
     },
     getStyles: function () {
         return {
-            html: {
+            parent: {
                 position: 'relative',
-                margin: '0 0 200px'
+                margin: '64px 0 120px'
             },
             footer: {
                 backgroundColor: Colors.grey800,
                 textAlign: 'center',
                 position: 'fixed',
                 left: '0px',
+                right: '0px',
                 bottom: '0px',
-                height: '100px',
-                width: '100%',
+                height: '120px',
                 zIndex: '-10'
             },
             a: {
@@ -119,7 +119,12 @@ var Main = React.createClass({
                 paddingTop: 6
             },
             topMenu: {
-                backgroundColor: Colors.green300
+                backgroundColor: Colors.green300,
+                position: 'fixed',
+                top: '0px',
+                left: '0px',
+                right: '0px',
+                height: '64px'
             },
             subheaderMenuItem: {
                 backgroundColor: Colors.green300
