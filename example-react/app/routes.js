@@ -22,18 +22,18 @@ var Login = require('./components/auth/Login.js');
 var Logout = require('./components/auth/Logout.js');
 
 var AppRoutes = (
-    <Route name="root" path="/" handler={Main}>
+    <Route name="root" path="/light-cms/" handler={Main}>
         <Route name="home" handler={Home} />
-        <Route name="user-example" handler={UserExample} />
-        <Route name="u/:userId" handler={UserProfile} />
-        <Route name="blogs" handler={Blogs} />
-        <Route name="blogView" handler={BlogView} />
-        <Route name="blogPostView" handler={BlogPostView} />
-        <Route name="forum" handler={Forum} />
-        <Route name="news" handler={News} />
-        <Route name="signup" path="/signup" handler={SignUp}/>
-        <Route name="login" path="/login" handler={Login} />
-        <Route name="logout" path="/logout" handler={Logout} />
+        <Route name="user-example" handler={UserExample}/>
+        <Route name="u/:userId" handler={UserProfile}/>
+        <Route name="blogs" handler={Blogs}/>
+        <Route name="blogView" handler={BlogView}/>
+        <Route name="blogPostView" handler={BlogPostView}/>
+        <Route name="forum" handler={Forum}/>
+        <Route name="news" handler={News}/>
+        <Route name="signup" handler={SignUp}/>
+        <Route name="login" handler={Login}/>
+        <Route name="logout" handler={Logout}/>
         <DefaultRoute handler={Home}/>
     </Route>
 );

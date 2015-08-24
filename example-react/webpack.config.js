@@ -19,7 +19,7 @@ var nodeModulesPath = path.resolve(__dirname, 'node_modules');
 
 var host = "localhost";
 var port = "8001";
-var publicPath = "http://" + host + ":" + port + "/";
+var publicPath = "http://" + host + ":" + port + "/light-cms/";
 
 
 module.exports = {

@@ -25,7 +25,7 @@ var BlogView = React.createClass({
     render: function() {
         return (
             <FullWidthSection>
-                <Link to="/blogs">
+                <Link to="/light-cms/blogs">
                     <RaisedButton label="Back"/>
                 </Link>
                 <BlogPostsView blogPosts={this.state.blogPosts}></BlogPostsView>

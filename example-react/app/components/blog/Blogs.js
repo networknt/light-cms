@@ -33,13 +33,11 @@ var Blogs = React.createClass({
         return (
             <div>
                 <FullWidthSection style={styles.root}>
-                    <div>
                         <h2 style={styles.h2} >Blog Component</h2>
-                    </div>
                 </FullWidthSection>
 
                 <FullWidthSection style={styles.blogsSection}>
-                    <List>
+                    <List style={styles.blogsList} >
                         {
                             this.state.blogs.map(function (blog) {
                                 return (
@@ -65,23 +63,24 @@ var Blogs = React.createClass({
                 backgroundColor: Colors.green400,
                 overflow: 'hidden',
                 width: '100%',
-                textAlign: 'center'
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center'
+            },
+            h2: {
+                fontSize: '20px',
+                color: Colors.darkWhite,
+                fontWeight: Typography.fontWeightLight
             },
             blogsSection: {
                 backgroundColor: Colors.white,
-                textAlign: 'center',
-                display: 'inline-block',
-                width: '100%'
+                width: '100%',
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center'
             },
-            h2: {
-                //.mui-font-style-title
-                fontSize: '20px',
-                lineHeight: '28px',
-                paddingTop: '19px',
-                marginBottom: '13px',
-                letterSpacing: '0',
-                color: Colors.darkWhite,
-                fontWeight: Typography.fontWeightLight
+            blogsList: {
+                width: '600px'
             }
         };
     }

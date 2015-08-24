@@ -34,7 +34,7 @@ var Logout = React.createClass({
     },
 
     _onDialogAck: function() {
-        this.context.router.transitionTo('/home');
+        this.context.router.transitionTo('/light-cms/home');
     }
 });
 
