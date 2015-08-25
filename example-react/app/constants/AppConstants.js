@@ -41,7 +41,6 @@ module.exports = {
         MENU_RESPONSE: null,
         BLOGS_RESPONSE: null,
         BLOG_POSTS_RESPONSE: null
-
     }),
 
     APIEndpoints: {

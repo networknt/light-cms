@@ -1,0 +1,28 @@
+.blogRoot {
+    background-color: #EFEFEF;
+    padding: 20px;
+    width: 100%;
+}
+
+.blogPostsRoot {
+    padding-bottom: 20px;
+    margin-top: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    position: relative;
+    /*display: flex;*/
+}
+
+.blogPostsRoot > .blogPostsPaper {
+    width: 70%;
+    margin-top: 80px;
+    margin-bottom: 40px;
+    padding: 10px;
+}
+
+hr {
+    color: rgba(13, 16, 14, 0.1);
+    width: 70%;
+    left: 0px;
+    position: absolute;
+}

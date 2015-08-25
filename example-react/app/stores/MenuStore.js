@@ -26,11 +26,9 @@ var MenuStore = _.extend({}, EventEmitter.prototype, {
 
 AppDispatcher.register(function(payload) {
     var action = payload.action;
-    console.log("MenuStore received payload: ", payload);
     if (action == null) return;
     switch(action.type) {
         case AppConstants.ActionTypes.MENU_RESPONSE:
-            console.log("MenuStore received Menu:", action.json.out_Own);
             _menu = action.json.out_Own;
             MenuStore.emitChange();
             break;

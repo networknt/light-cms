@@ -12,10 +12,10 @@ var Home = require('./components/home/Home');
 var Forum = require('./components/forum/Forum');
 var News = require('./components/news/News');
 
-var BlogRoot = require('./components/blog/BlogRoot');
 var Blogs = require('./components/blog/Blogs');
-var BlogView = require('./components/blog/BlogView');
-var BlogPostView = require('./components/blog/BlogPostView.js');
+var Blog = require('./components/blog/Blog');
+var BlogPosts = require('./components/blog/BlogPosts');
+var BlogPost = require('./components/blog/BlogPost.js');
 
 var SignUp = require('./components/auth/Signup.js');
 var Login = require('./components/auth/Login.js');
@@ -27,8 +27,9 @@ var AppRoutes = (
         <Route name="user-example" handler={UserExample}/>
         <Route name="u/:userId" handler={UserProfile}/>
         <Route name="blogs" handler={Blogs}/>
-        <Route name="blogView" handler={BlogView}/>
-        <Route name="blogPostView" handler={BlogPostView}/>
+        <Route name="blog" handler={Blog}/>
+        <Route name="blogPosts" handler={BlogPosts} />
+        <Route name="blogPost" handler={BlogPost}/>
         <Route name="forum" handler={Forum}/>
         <Route name="news" handler={News}/>
         <Route name="signup" handler={SignUp}/>

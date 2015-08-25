@@ -64,7 +64,6 @@ var AuthStore = assign({}, EventEmitter.prototype, {
 });
 
 AuthStore.dispatchToken = AppDispatcher.register(function(payload) {
-    console.log('Authstore received payload', payload);
     var data = payload.action;
 
     switch(data.type) {

@@ -22,7 +22,6 @@ var Blogs = React.createClass({
     },
 
     _onChange: function() {
-        console.log("Blogs._onChange");
         this.setState({
             blogs: BlogStore.getBlogs()
         });

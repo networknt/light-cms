@@ -5,8 +5,8 @@ var { Colors, Spacing, Typography} = Styles;
 
 
 var BlogRow = React.createClass({
-    componentDidMount: function () {
-        console.log("BlogRow props:", this.props);
+    contextTypes: {
+        router: React.PropTypes.func
     },
     render: function () {
         return (
@@ -15,8 +15,7 @@ var BlogRow = React.createClass({
     },
 
     _onTouchTap: function () {
-        console.log("Going to blog", this.props.blog);
-        BlogActions.gotoBlog(this.props.blog);
+        this.context.router.transitionTo("/light-cms/blog");
     },
 
     _createItems: function (blogs) {
@@ -31,7 +30,7 @@ var BlogRow = React.createClass({
             <ListItem
                 leftAvatar={this._getLeftAvatar(blogs)}
                 primaryText={this._getPrimaryText(blogs)}
-                secondaryText={this.props.blog.description}
+                secondaryText={blogs.description}
                 onTouchTap={this._onTouchTap}>{children}</ListItem>
         );
     },
@@ -54,10 +53,6 @@ var BlogRow = React.createClass({
                 {blogs.blogId}
             </p>
         );
-    },
-
-    _getSecondaryText: function() {
-
     },
 
     getStyles: function () {
