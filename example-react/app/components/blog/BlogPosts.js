@@ -13,13 +13,27 @@ var BlogPostsView = React.createClass({
         var styles = this._getStyles();
         return (
             <div className="blogPostsRoot">
-                <Paper className="blogPostsPaper">
-                    <div style={styles.leftColumn}>
+                <Paper className="blogPostsPaper Grid">
+                    <div className="blogPostsLeftColumn">
                         <h2>
-                            <strong style={styles.strongDate}>August 24,</strong> <span style={styles.year}>2015</span>
+                            <strong className="strongDate">August 24,</strong> <span className="year">2015</span>
                         </h2>
-                        <h1 style={styles.title}>Title</h1>
-                        <p style={styles.content}>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        <h1 className="title">Title</h1>
+                        <p className="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                            At doloremque ducimus ea eaque, illo impedit officiis perferendis
+                            quibusdam quidem, quod sed sequi similique sit sunt voluptatum.
+                            Aspernatur assumenda deserunt nobis.
+                        </p>
+                    </div>
+                </Paper>
+                <hr />
+                <Paper className="blogPostsPaper GridCell">
+                    <div className="blogPostsLeftColumn">
+                        <h2>
+                            <strong className="strongDate">August 24,</strong> <span className="year">2015</span>
+                        </h2>
+                        <h1 className="title">Title</h1>
+                        <p className="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                             At doloremque ducimus ea eaque, illo impedit officiis perferendis
                             quibusdam quidem, quod sed sequi similique sit sunt voluptatum.
                             Aspernatur assumenda deserunt nobis.
@@ -28,26 +42,12 @@ var BlogPostsView = React.createClass({
                 </Paper>
                 <hr />
                 <Paper className="blogPostsPaper">
-                    <div style={styles.leftColumn}>
+                    <div className="blogPostsLeftColumn">
                         <h2>
-                            <strong style={styles.strongDate}>August 24,</strong> <span style={styles.year}>2015</span>
+                            <strong className="strongDate">August 24,</strong> <span className="year">2015</span>
                         </h2>
-                        <h1 style={styles.title}>Title</h1>
-                        <p style={styles.content}>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                            At doloremque ducimus ea eaque, illo impedit officiis perferendis
-                            quibusdam quidem, quod sed sequi similique sit sunt voluptatum.
-                            Aspernatur assumenda deserunt nobis.
-                        </p>
-                    </div>
-                </Paper>
-                <hr />
-                <Paper className="blogPostsPaper">
-                    <div style={styles.leftColumn}>
-                        <h2>
-                            <strong style={styles.strongDate}>August 24,</strong> <span style={styles.year}>2015</span>
-                        </h2>
-                        <h1 style={styles.title}>Title</h1>
-                        <p style={styles.content}>Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                        <h1 className="title">Title</h1>
+                        <p className="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                             At doloremque ducimus ea eaque, illo impedit officiis perferendis
                             quibusdam quidem, quod sed sequi similique sit sunt voluptatum.
                             Aspernatur assumenda deserunt nobis.
@@ -59,38 +59,7 @@ var BlogPostsView = React.createClass({
     },
     _getStyles: function() {
         return {
-            leftColumn: {
-                //backgroundColor: "orange",
-                marginTop: 0,
-                padding: 10,
-                //border: '1px solid black'
 
-            },
-            title: {
-                fontSize: '48px',
-                fontWeight: '300',
-                lineHeight: '72px',
-                fontFamily: 'Lato',
-                color: Colors.green400
-            },
-            strongDate: {
-                fontSize: '32px',
-                fontWeight: '700',
-                fontFamily: 'Lato',
-                color: Colors.black
-            },
-            year: {
-                fontSize: '24px',
-                fontWeight: '300',
-                fontFamily: 'Lato',
-                color: Colors.black
-            },
-            content: {
-                fontSize: '24px',
-                fontWeight: '300',
-                lineHeight: '40px',
-                fontFamily: 'Lato'
-            }
 
         }
     }

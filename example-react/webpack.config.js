@@ -16,6 +16,7 @@
 var webpack = require('webpack');
 var path = require('path');
 var nodeModulesPath = path.resolve(__dirname, 'node_modules');
+var ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 var host = "localhost";
 var port = "8001";
@@ -53,13 +54,17 @@ module.exports = {
             },
             {test: /\.css$/, loader: 'style-loader!css-loader' },
             {test: /\.less$/, loader: "style!css!less"},
+            {test: /\.scss$/, loader: ExtractTextPlugin.extract('css!sass')},
             {test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' }
         ]
     },
     plugins: [
         new webpack.optimize.CommonsChunkPlugin("vendors", "dist/vendor.bundle.js"),
         new webpack.HotModuleReplacementPlugin(),
-        new webpack.NoErrorsPlugin()
+        new webpack.NoErrorsPlugin(),
+        new ExtractTextPlugin('dist/style.css', {
+            allChunks: true
+        })
     ],
 
     devServer: {

@@ -5,6 +5,8 @@ var Router = require('react-router');
 var injectTapEventPlugin = require('react-tap-event-plugin');
 var AppRoutes = require('./routes.js');
 
+require('./stylesheets/main.scss');
+
 window.React = React;
 
 //Needed for onTouchTap
@@ -14,7 +16,7 @@ injectTapEventPlugin();
 var router = require('./stores/RouteStore.js').getRouter();
 var rootComponentInstance;
 router.run(function (Handler) {
-    rootComponentInstance = React.render(<Handler/>, document.getElementById('content'));
+    rootComponentInstance = React.render(<Handler className="light-cms"/>, document.getElementById('content'));
 });
 
 if (module.hot) {

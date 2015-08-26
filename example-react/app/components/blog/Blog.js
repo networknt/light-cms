@@ -6,8 +6,6 @@ var BlogActions = require('../../actions/BlogActions');
 var {List, ListItem, Paper, RaisedButton} = require('material-ui');
 var BlogPosts = require('./BlogPosts');
 
-require('./blog.css');
-
 var Blog = React.createClass({
     componentDidMount: function() {
         BlogStore.addChangeListener(this._receiveBlogPosts);

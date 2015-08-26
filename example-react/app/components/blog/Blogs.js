@@ -31,7 +31,7 @@ var Blogs = React.createClass({
         var styles = this.getStyles();
         return (
             <div>
-                <FullWidthSection style={styles.root}>
+                <FullWidthSection className="blogHeader" >
                         <h2 style={styles.h2} >Blog Component</h2>
                 </FullWidthSection>
 
@@ -58,14 +58,6 @@ var Blogs = React.createClass({
 
     getStyles: function() {
         return {
-            root: {
-                backgroundColor: Colors.green400,
-                overflow: 'hidden',
-                width: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center'
-            },
             h2: {
                 fontSize: '20px',
                 color: Colors.darkWhite,

@@ -20,7 +20,6 @@ var BlogRow = React.createClass({
 
     _createItems: function (blogs) {
         var children;
-        var styles = this.getStyles();
         if (blogs.out_Own) {
             children = blogs.out_Own.map(function (child) {
                 return this._createItems(child);
@@ -41,9 +40,7 @@ var BlogRow = React.createClass({
             count = blogs.out_HasPost.length.toString();
         }
         return (
-            <Avatar color={Colors.pinkA200}
-                    backgroundColor={Colors.green300}
-                    style={{borderRadius: '25%', left:8, fontWeight: Typography.fontWeightLight, fontSize: '20px'}}>{count}</Avatar>
+            <Avatar className="blogLeftAvatar">{count}</Avatar>
         );
     },
 
@@ -53,21 +50,6 @@ var BlogRow = React.createClass({
                 {blogs.blogId}
             </p>
         );
-    },
-
-    getStyles: function () {
-        return {
-            primaryTextStyle: {
-                fontSize: '20px',
-                lineHeight: '28px',
-                paddingTop: '19px',
-                marginBottom: '13px',
-                letterSpacing: '0',
-                color: Colors.darkWhite,
-                fontWeight: Typography.fontWeightLight
-            },
-            secondaryText: {}
-        };
     }
 
 });
