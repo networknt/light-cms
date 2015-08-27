@@ -44,7 +44,7 @@ var Main = React.createClass({
 
     _rightMenuChange: function(e, value) {
         console.log("Main._rightMenuChange", value);
-        this.context.router.transitionTo('/' + value._store.props.value);
+        this.context.router.transitionTo('/light-cms/' + value._store.props.value);
     },
 
     render: function() {

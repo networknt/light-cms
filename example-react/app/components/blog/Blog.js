@@ -27,11 +27,17 @@ var Blog = React.createClass({
 
     render: function() {
         return (
-            <div className="blogRoot">
-                <Link to="/light-cms/blogs">
-                    <RaisedButton label="Back"/>
-                </Link>
-                <BlogPosts blogPosts={this.state.blogPosts}></BlogPosts>
+            <div>
+
+                <div className="blogHeader">
+                    <h2 className="mainBlogHeader">NetworkNt Blogs</h2>
+                </div>
+                <div className="blogRoot">
+                    <BlogPosts blogPosts={this.state.blogPosts}></BlogPosts>
+                    <Link to="/light-cms/blogs">
+                        <RaisedButton label="Back"/>
+                    </Link>
+                </div>
             </div>
         );
     }

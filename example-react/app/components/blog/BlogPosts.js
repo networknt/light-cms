@@ -19,7 +19,7 @@ var BlogPostsView = React.createClass({
                             <h2>
                                 <strong className="strongDate">August 24,</strong> <span className="year">2015</span>
                             </h2>
-                            <h1 className="title">Title</h1>
+                            <h1 className="title"><a href="#">Title</a></h1>
                             <p className="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                                 At doloremque ducimus ea eaque, illo impedit officiis perferendis
                                 quibusdam quidem, quod sed sequi similique sit sunt voluptatum.
@@ -33,7 +33,7 @@ var BlogPostsView = React.createClass({
                             <h2>
                                 <strong className="strongDate">August 24,</strong> <span className="year">2015</span>
                             </h2>
-                            <h1 className="title">Title</h1>
+                            <h1 className="title"><a href="#">Title</a></h1>
                             <p className="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                                 At doloremque ducimus ea eaque, illo impedit officiis perferendis
                                 quibusdam quidem, quod sed sequi similique sit sunt voluptatum.
@@ -47,7 +47,7 @@ var BlogPostsView = React.createClass({
                             <h2>
                                 <strong className="strongDate">August 24,</strong> <span className="year">2015</span>
                             </h2>
-                            <h1 className="title">Title</h1>
+                            <h1 className="title"><a href="#">Title</a></h1>
                             <p className="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                                 At doloremque ducimus ea eaque, illo impedit officiis perferendis
                                 quibusdam quidem, quod sed sequi similique sit sunt voluptatum.
@@ -58,7 +58,11 @@ var BlogPostsView = React.createClass({
                 </div>
 
                 <div className="blogPostRightColumn">
-                    <h1>content</h1>
+                    <div className="blogInfo">
+                        <h1>Blog Information</h1>
+                        <p>In this section, you will see some information and references pertaining to the opened blog.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci alias cum, cumque cupiditate ea eum itaque, minus molestias necessitatibus nihil pariatur perspiciatis quam quas quod rem repellat, sint voluptate.</p>
+                    </div>
                 </div>
 
             </div>
