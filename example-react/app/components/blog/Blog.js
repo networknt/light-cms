@@ -28,7 +28,6 @@ var Blog = React.createClass({
     render: function() {
         return (
             <div>
-
                 <div className="blogHeader">
                     <h2 className="mainBlogHeader">NetworkNt Blogs</h2>
                 </div>

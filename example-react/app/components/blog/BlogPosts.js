@@ -61,6 +61,7 @@ var BlogPostsView = React.createClass({
                     <div className="blogInfo">
                         <h1>Blog Information</h1>
                         <p>In this section, you will see some information and references pertaining to the opened blog.</p>
+                        <p>Also, having the screen width be less then 64em will hide it, leaving reading room for mobile users only concerned with reading post content on the go.</p>
                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci alias cum, cumque cupiditate ea eum itaque, minus molestias necessitatibus nihil pariatur perspiciatis quam quas quod rem repellat, sint voluptate.</p>
                     </div>
                 </div>

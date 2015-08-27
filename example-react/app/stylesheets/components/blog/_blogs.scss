@@ -1,16 +1,12 @@
-$blogPostSpacing: 40px;
 
-$blogPostContentText: 24px;
 
 .blogHeader {
   background-color: $colors-green300;
   overflow: hidden;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 72px 24px;
+  padding: 55px 0;
   margin: 0;
+  text-align: center;
 
   .mainBlogHeader {
     font-size: 30px;
