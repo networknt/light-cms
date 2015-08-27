@@ -40,7 +40,7 @@ var BlogRow = React.createClass({
             count = blogs.out_HasPost.length.toString();
         }
         return (
-            <Avatar className="blogLeftAvatar">{count}</Avatar>
+            <div className="blogLeftAvatar">{count}</div>
         );
     },
 

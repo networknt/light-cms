@@ -28,15 +28,14 @@ var Blogs = React.createClass({
     },
 
     render: function() {
-        var styles = this.getStyles();
         return (
             <div>
-                <FullWidthSection className="blogHeader" >
-                        <h2 style={styles.h2} >Blog Component</h2>
-                </FullWidthSection>
+                <div className="blogHeader">
+                        <h2 className="mainBlogHeader">Blog Component</h2>
+                </div>
 
-                <FullWidthSection style={styles.blogsSection}>
-                    <List style={styles.blogsList} >
+                <div className="blogsSection">
+                    <List className="blogsList" >
                         {
                             this.state.blogs.map(function (blog) {
                                 return (
@@ -45,35 +44,13 @@ var Blogs = React.createClass({
                             })
                         }
                     </List>
-                </FullWidthSection>
+                </div>
             </div>
         );
     },
 
-
-
     componentWillUnmount: function() {
         BlogStore.removeChangeListener(this._onChange);
-    },
-
-    getStyles: function() {
-        return {
-            h2: {
-                fontSize: '20px',
-                color: Colors.darkWhite,
-                fontWeight: Typography.fontWeightLight
-            },
-            blogsSection: {
-                backgroundColor: Colors.white,
-                width: '100%',
-                display: 'flex',
-                justifyContent: 'center',
-                alignItems: 'center'
-            },
-            blogsList: {
-                width: '600px'
-            }
-        };
     }
 
 });

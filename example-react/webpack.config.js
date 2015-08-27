@@ -52,9 +52,20 @@ module.exports = {
                 loaders: ['react-hot', 'babel'],
                 exclude: [nodeModulesPath]
             },
-            {test: /\.css$/, loader: 'style-loader!css-loader' },
+            {
+                test: /\.css$/,
+                loaders: [
+                    "style-loader",
+                    "css-loader",
+                    "autoprefixer-loader?browsers=last 2 versions"
+                ]
+            },
+            {
+                test: /\.scss$/,
+                loader: ExtractTextPlugin.extract("style-loader", "css-loader!autoprefixer-loader?browsers=last 2 versions!sass-loader?indentedSyntax=sass&includePaths[]=" + path.resolve(__dirname, "/app/stylesheets"))
+            },
             {test: /\.less$/, loader: "style!css!less"},
-            {test: /\.scss$/, loader: ExtractTextPlugin.extract('css!sass')},
+
             {test: /\.(png|woff|woff2|eot|ttf|svg)$/, loader: 'url-loader?limit=100000' }
         ]
     },

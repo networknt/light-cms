@@ -92,7 +92,8 @@ var Main = React.createClass({
         return {
             parent: {
                 position: 'relative',
-                margin: '64px 0 120px'
+                margin: '64px 0 120px 0',
+                overflow: 'hidden'
             },
             footer: {
                 backgroundColor: Colors.grey800,

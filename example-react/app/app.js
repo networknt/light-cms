@@ -16,7 +16,7 @@ injectTapEventPlugin();
 var router = require('./stores/RouteStore.js').getRouter();
 var rootComponentInstance;
 router.run(function (Handler) {
-    rootComponentInstance = React.render(<Handler className="light-cms"/>, document.getElementById('content'));
+    rootComponentInstance = React.render(<Handler/>, document.getElementById('content'));
 });
 
 if (module.hot) {
