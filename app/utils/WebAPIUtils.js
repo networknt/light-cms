@@ -28,7 +28,7 @@ module.exports = {
     signup: function(email, username, password, passwordConfirmation) {
         $.ajax({
             type: 'POST',
-            url: 'https://www.networknt.com/api/rs',
+            url: 'http://example:8080/api/rs',
             data: JSON.stringify({
                 user: {
                     email: email,
@@ -65,7 +65,7 @@ module.exports = {
         $.ajax({
             type: 'POST',
             contentType: 'application/json',
-            url: 'https://www.networknt.com/api/rs',
+            url: 'http://example:8080/api/rs',
             data: JSON.stringify(APIEndpoints.SIGNIN),
             dataType: 'json',
             error: function(jqXHR, status, error) {
@@ -83,7 +83,7 @@ module.exports = {
         console.log('WebAPIUtils loadMenus is called');
         $.ajax({
             type: 'POST',
-            url: 'https://www.networknt.com/api/rs',
+            url: 'http://example:8080/api/rs',
             data: JSON.stringify(APIEndpoints.GETMENU),
             contentType: 'application/json',
             dataType: 'json'

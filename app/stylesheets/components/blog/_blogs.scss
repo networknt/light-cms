@@ -1,0 +1,44 @@
+
+
+.blogHeader {
+  background-color: $colors-green300;
+  overflow: hidden;
+  width: 100%;
+  padding: 55px 0;
+  margin: 0;
+  text-align: center;
+
+  .mainBlogHeader {
+    font-size: 30px;
+    color: $colors-darkWhite;
+    font-weight: $font-weight-light;
+    //font-family: "Roboto", sans-serif;
+  }
+}
+
+
+
+.blogsSection {
+  background-color: white;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.blogsList {
+  width: 600px;
+
+  .blogLeftAvatar {
+    color: $colors-pink200;
+    background-color: $colors-green300;
+    border-radius: 25%;
+    font-weight: $font-weight-light;
+    font-size: 20px;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

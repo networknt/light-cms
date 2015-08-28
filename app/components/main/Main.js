@@ -44,7 +44,7 @@ var Main = React.createClass({
 
     _rightMenuChange: function(e, value) {
         console.log("Main._rightMenuChange", value);
-        this.context.router.transitionTo('/' + value._store.props.value);
+        this.context.router.transitionTo('/light-cms/' + value._store.props.value);
     },
 
     render: function() {
@@ -92,7 +92,8 @@ var Main = React.createClass({
         return {
             parent: {
                 position: 'relative',
-                margin: '64px 0 120px'
+                margin: '64px 0 120px 0',
+                overflow: 'hidden'
             },
             footer: {
                 backgroundColor: Colors.grey800,

@@ -28,17 +28,14 @@ var Blogs = React.createClass({
     },
 
     render: function() {
-        var styles = this.getStyles();
         return (
             <div>
-                <FullWidthSection style={styles.root}>
-                    <div>
-                        <h2 style={styles.h2} >Blog Component</h2>
-                    </div>
-                </FullWidthSection>
+                <div className="blogHeader">
+                        <h2 className="mainBlogHeader">NetworkNt Blogs</h2>
+                </div>
 
-                <FullWidthSection style={styles.blogsSection}>
-                    <List>
+                <div className="blogsSection">
+                    <List className="blogsList" >
                         {
                             this.state.blogs.map(function (blog) {
                                 return (
@@ -47,42 +44,13 @@ var Blogs = React.createClass({
                             })
                         }
                     </List>
-                </FullWidthSection>
+                </div>
             </div>
         );
     },
 
-
-
     componentWillUnmount: function() {
         BlogStore.removeChangeListener(this._onChange);
-    },
-
-    getStyles: function() {
-        return {
-            root: {
-                backgroundColor: Colors.green400,
-                overflow: 'hidden',
-                width: '100%',
-                textAlign: 'center'
-            },
-            blogsSection: {
-                backgroundColor: Colors.white,
-                textAlign: 'center',
-                display: 'inline-block',
-                width: '100%'
-            },
-            h2: {
-                //.mui-font-style-title
-                fontSize: '20px',
-                lineHeight: '28px',
-                paddingTop: '19px',
-                marginBottom: '13px',
-                letterSpacing: '0',
-                color: Colors.darkWhite,
-                fontWeight: Typography.fontWeightLight
-            }
-        };
     }
 
 });

@@ -20,7 +20,7 @@ module.exports = {
         });
         $.ajax({
             type: 'POST',
-            url: 'http://www.networknt.com:8080/api/rs',
+            url: 'http://example:8080/api/rs',
             data: JSON.stringify({
                 category : 'user',
                 name : 'signUpUser',
@@ -65,7 +65,7 @@ module.exports = {
 
         $.ajax({
             type: 'POST',
-            url: 'http://demo.networknt.com:8080/api/rs',
+            url: 'http://example:8080/api/rs',
             data: JSON.stringify({
                 category : 'user',
                 name : 'signInUser',

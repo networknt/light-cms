@@ -193,7 +193,8 @@
       font-family: Lato serif; }
       .blogPostsRoot .blogPostsPaper .title a {
         text-decoration: none;
-        color: #66bb6a; }
+        color: #66bb6a;
+        cursor: pointer; }
     .blogPostsRoot .blogPostsPaper .year {
       font-size: 24px;
       font-weight: 300;
@@ -251,7 +252,6 @@
 
 .blogPostRoot {
   background-color: #EFEFEF;
-  width: 100%;
   display: -webkit-flex;
   display: -ms-flexbox;
   display: flex;
@@ -263,11 +263,11 @@
           align-items: center;
   -webkit-flex-direction: column;
       -ms-flex-direction: column;
-          flex-direction: column; }
+          flex-direction: column;
+  padding: 40px; }
   .blogPostRoot .blogPostPaper {
+    margin: 0;
     padding: 30px;
-    margin: 30px;
-    margin-bottom: 40px;
     width: 100%; }
     .blogPostRoot .blogPostPaper .title {
       font-size: 48px;
@@ -286,7 +286,7 @@
       font-weight: 300;
       line-height: 40px; }
   .blogPostRoot .aboutTheAuthor {
-    margin-top: 0;
+    margin-top: 30px;
     line-height: 1.2;
     padding: 30px;
     padding-top: 0;

@@ -55,7 +55,7 @@ var Login = React.createClass({
     },
 
     _dismissLoginSuccess: function () {
-        this.context.router.transitionTo('/home');
+        this.context.router.transitionTo('/light-cms/home');
     },
 
     render: function() {
@@ -106,7 +106,7 @@ var Login = React.createClass({
                             ref="rememberMe"
                             label="Remember Me"
                             style={styles.rememberMe}/><br />
-                        <RaisedButton label="Signup" primary={true} type="submit" style={styles.submitButton}/>
+                        <RaisedButton label="Login" primary={true} type="submit" style={styles.submitButton}/>
                     </form>
                 </center>
             </FullWidthSection>

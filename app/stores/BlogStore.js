@@ -1,6 +1,5 @@
 var AppDispatcher = require('../dispatcher/AppDispatcher');
 var EventEmitter = require('events').EventEmitter;
-var BlogConstants = require('../constants/BlogConstants');
 var AppConstants = require('../constants/AppConstants');
 var _ = require('underscore');
 
@@ -12,14 +11,11 @@ var BlogStore = _.extend({}, EventEmitter.prototype, {
         return _blogs;
     },
 
-    getBlogPostsState: function() {
-        return {
-            "blogPosts": _blogPosts
-        }
+    getBlogPosts: function() {
+        return _blogPosts;
     },
 
     emitChange: function() {
-        console.log("Emiting change event...");
         this.emit(AppConstants.ChangeEvents.BLOG_CHANGE_EVENT);
     },
 
@@ -34,22 +30,17 @@ var BlogStore = _.extend({}, EventEmitter.prototype, {
 });
 
 AppDispatcher.register(function(payload) {
-    var action = payload.action;
-    console.log("BlogStore received payload: ", payload);
-    if (action == null) return;
-    switch(action.actionType) {
-        case BlogConstants.RECEIVE_BLOGS:
-            console.log("BlogStore received BLOGS:", action.data);
-            _blogs = action.data;
-            BlogStore.emitChange();
-            break;
-        case BlogConstants.RECEIVE_BLOG_POSTS:
-            console.log("BlogStore received BLOG_POSTS:", action.data);
-            _blogPosts = action.data;
-            BlogStore.emitChange();
-            break;
-        default:
-            return true;
+    console.log("BlogStore payload:", payload);
+    var data = payload.action;
+    if (data == null) return;
+    if (data.type === AppConstants.ActionTypes.BLOGS_RESPONSE) {
+        console.log("BlogStore received BLOGS:", data.json);
+        _blogs = data.json;
+        BlogStore.emitChange();
+    } else if (data.type === AppConstants.ActionTypes.BLOG_POSTS_RESPONSE) {
+        console.log("BlogStore received BLOG_POSTS:", data.json);
+        _blogPosts = data.json;
+        BlogStore.emitChange();
     }
     return true;
 });
