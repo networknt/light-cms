@@ -11197,9 +11197,15 @@ webpackJsonp([0],[
 	var BlogPostsView = React.createClass({
 	    displayName: 'BlogPostsView',
 
+	    contextTypes: {
+	        router: React.PropTypes.func
+	    },
 	    componentDidMount: function componentDidMount() {
 	        //console.log("BlogPostsView.componentDidMount state", this.state);
 	        //console.log("BlogPostsView.componentDidMount props", this.props);
+	    },
+	    _routeToPost: function _routeToPost() {
+	        this.context.router.transitionTo("/light-cms/blogPost");
 	    },
 	    render: function render() {
 	        var styles = this._getStyles();
@@ -11235,7 +11241,7 @@ webpackJsonp([0],[
 	                            { className: 'title' },
 	                            React.createElement(
 	                                'a',
-	                                { href: '/light-cms/blogPost' },
+	                                { onClick: this._routeToPost },
 	                                'Title'
 	                            )
 	                        ),
@@ -11273,7 +11279,7 @@ webpackJsonp([0],[
 	                            { className: 'title' },
 	                            React.createElement(
 	                                'a',
-	                                { href: '/light-cms/blogPost' },
+	                                { onClick: this._routeToPost },
 	                                'Title'
 	                            )
 	                        ),
@@ -11311,7 +11317,7 @@ webpackJsonp([0],[
 	                            { className: 'title' },
 	                            React.createElement(
 	                                'a',
-	                                { href: '/light-cms/blogPost' },
+	                                { onClick: this._routeToPost },
 	                                'Title'
 	                            )
 	                        ),
