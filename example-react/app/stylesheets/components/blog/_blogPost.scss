@@ -1,0 +1,55 @@
+.blogPostRoot {
+  background-color: #EFEFEF;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+
+  .blogPostPaper {
+    padding: 30px;
+    margin: 30px;
+    margin-bottom: 40px;
+    width: 100%;
+
+    .title {
+      font-size: 2 * $blogPostContentText;
+      font-weight: $font-weight-light;
+      line-height: 72px;
+      font-family: Lato serif;
+      color: $colors-green300;
+      margin-bottom: 10px;
+    }
+    .date {
+      font-size: $blogPostContentText;
+      font-weight: $font-weight-light;
+      color: black;
+      margin-bottom: 50px;
+    }
+    .content {
+      font-size: $blogPostContentText;
+      font-weight: $font-weight-light;
+      line-height: 40px;
+    }
+  }
+  .aboutTheAuthor {
+    margin-top: 0;
+    line-height: 1.2;
+    padding: 30px;
+    padding-top: 0;
+    font-family: Roboto;
+    color: #999;
+    h1 {
+      margin-bottom: 20px;
+      margin-top: 5px;
+      
+      .author {
+        color: $colors-green300;
+      }
+    }
+    p {
+      font-weight: $font-weight-light;
+      font-size: 1em;
+    }
+  }
+}

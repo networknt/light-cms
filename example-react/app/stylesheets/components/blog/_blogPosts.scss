@@ -65,7 +65,7 @@ $blogPostContentText: 24px;
   min-width: 70%;
 }
 
-.blogPostRightColumn {
+.blogPostsRightColumn {
   display: flex;
   flex-direction: column;
   flex-grow: 1;
@@ -87,7 +87,7 @@ $blogPostContentText: 24px;
 }
 
 @media (max-width: 64em) {
-  .blogPostRightColumn {
+  .blogPostsRightColumn {
     display: none;
   }
   .blogPostsleftColumn {
