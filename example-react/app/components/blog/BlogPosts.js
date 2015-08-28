@@ -5,9 +5,15 @@ var { Colors, Spacing, Typography } = Styles;
 // var {ActionAssignment} = SvgIcon;
 // using leftAvatar={<Avatar icon={<ActionAssignment />}/>} in ListItem causing an error... figure out why.
 var BlogPostsView = React.createClass({
+    contextTypes: {
+        router: React.PropTypes.func
+    },
     componentDidMount: function() {
         //console.log("BlogPostsView.componentDidMount state", this.state);
         //console.log("BlogPostsView.componentDidMount props", this.props);
+    },
+    _routeToPost: function() {
+        this.context.router.transitionTo("/light-cms/blogPost");
     },
     render: function() {
         var styles = this._getStyles();
@@ -19,7 +25,7 @@ var BlogPostsView = React.createClass({
                             <h2>
                                 <strong className="strongDate">August 24,</strong> <span className="year">2015</span>
                             </h2>
-                            <h1 className="title"><a href="/light-cms/blogPost">Title</a></h1>
+                            <h1 className="title"><a onClick={this._routeToPost}>Title</a></h1>
                             <p className="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                                 At doloremque ducimus ea eaque, illo impedit officiis perferendis
                                 quibusdam quidem, quod sed sequi similique sit sunt voluptatum.
@@ -33,7 +39,7 @@ var BlogPostsView = React.createClass({
                             <h2>
                                 <strong className="strongDate">August 24,</strong> <span className="year">2015</span>
                             </h2>
-                            <h1 className="title"><a href="/light-cms/blogPost">Title</a></h1>
+                            <h1 className="title"><a onClick={this._routeToPost}>Title</a></h1>
                             <p className="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                                 At doloremque ducimus ea eaque, illo impedit officiis perferendis
                                 quibusdam quidem, quod sed sequi similique sit sunt voluptatum.
@@ -47,7 +53,7 @@ var BlogPostsView = React.createClass({
                             <h2>
                                 <strong className="strongDate">August 24,</strong> <span className="year">2015</span>
                             </h2>
-                            <h1 className="title"><a href="/light-cms/blogPost">Title</a></h1>
+                            <h1 className="title"><a onClick={this._routeToPost}>Title</a></h1>
                             <p className="content">Lorem ipsum dolor sit amet, consectetur adipisicing elit.
                                 At doloremque ducimus ea eaque, illo impedit officiis perferendis
                                 quibusdam quidem, quod sed sequi similique sit sunt voluptatum.
