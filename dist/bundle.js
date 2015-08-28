@@ -1,5 +1,12409 @@
-webpackJsonp([1],[function(e,t,n){n(471),n(506),e.exports=n(332)},,,,,,,,,,function(e,t,n){"use strict";function o(){s||console.warn("It appears that React Hot Loader isn't configured correctly. If you're using NPM, make sure your dependencies don't drag duplicate React distributions into their node_modules and that require(\"react\") corresponds to the React instance you render your app with.","If you're using a precompiled version of React, see https://github.com/gaearon/react-hot-loader/tree/master/docs#usage-with-external-react for integration instructions."),s=!0}var r=n(329),i=null,s=!1,a={injection:{injectProvider:function(e){i=e}},getRootInstances:function(e){if(i)return i.getRootInstances();var t=e&&r(e)||[];return Object.keys(t).length||o(),t}};e.exports=a},function(e,t,n){"use strict";function o(e,t){if(i(e.exports,t))return!1;var n=e.exports,o=r(e.exports,t),s=!1;o&&(e.exports=e.makeHot(e.exports,"__MODULE_EXPORTS"),s=!0);for(var a in e.exports)if(Object.prototype.hasOwnProperty.call(n,a)&&(!o||"type"!==a)){var l;try{l=n[a]}catch(c){continue}r(l,t)&&(Object.getOwnPropertyDescriptor(e.exports,a).writable?(e.exports[a]=e.makeHot(l,"__MODULE_EXPORTS_"+a),s=!0):console.warn("Can't make class "+a+" hot reloadable due to being read-only. To fix this you can try two solutions. First, you can exclude files or directories (for example, /node_modules/) using 'exclude' option in loader configuration. Second, if you are using Babel, you can enable loose mode for `es6.modules` using the 'loose' option. See: http://babeljs.io/docs/advanced/loose/ and http://babeljs.io/docs/usage/options/"))}return s}var r=n(180),i=n(352);e.exports=o},function(e,t,n){"use strict";e.exports=n(356)},,,,,,,,,,function(e,t,n){(function(e){!function(){var t=n(12),o=n(10),r=n(5),i=n(1);e.makeHot=e.hot.data?e.hot.data.makeHot:t(function(){return o.getRootInstances(r)},i)}(),function(){"use strict";var t=n(1),o=n(19),r=o.ClearFix,i=o.Mixins,s=o.Styles,a=i.StylePropable,l=i.StyleResizable,c=s.Spacing.desktopGutter,u=t.createClass({displayName:"FullWidthSection",mixins:[a,l],propTypes:{useContent:t.PropTypes.bool,contentType:t.PropTypes.string,contentStyle:t.PropTypes.object},getDefaultProps:function(){return{useContent:!1,contentType:"div"}},getStyles:function(){return{root:{padding:c+"px",boxSizing:"border-box"},content:{maxWidth:"1200px",margin:"0 auto"},rootWhenSmall:{paddingTop:2*c+"px",paddingBottom:2*c+"px"},rootWhenLarge:{paddingTop:3*c+"px",paddingBottom:3*c+"px"}}},render:function(){var e,n=this.getStyles(),o=this.props,i=o.style,s=o.useContent,a=o.contentType,c=o.contentStyle;return e=s?t.createElement(a,{style:this.mergeAndPrefix(n.content,c)},this.props.children):this.props.children,t.createElement(r,{style:this.mergeAndPrefix(n.root,i,this.isDeviceSize(l.statics.Sizes.SMALL)&&n.rootWhenSmall,this.isDeviceSize(l.statics.Sizes.LARGE)&&n.rootWhenLarge)},e)}});e.exports=u}.call(this),!function(){if(e.hot.dispose(function(t){t.makeHot=e.makeHot}),e.exports&&e.makeHot){var t=n(11),o=!1;t(e,n(1))&&(o=!0);var r=o;r&&e.hot.accept(function(e){e&&console.error("Cannot not apply hot update to full-width-section.js: "+e.message)})}}()}).call(t,n(9)(e))},,,,,,,,,function(e,t,n){(function(e){!function(){var t=n(12),o=n(10),r=n(5),i=n(1);e.makeHot=e.hot.data?e.hot.data.makeHot:t(function(){return o.getRootInstances(r)},i)}(),function(){"use strict";var t=n(51),o="example";e.exports={APIRoot:"/api/rs",ClientId:"example@Browser",host:o,ChangeEvents:{ROUTE_CHANGE_EVENT:"routeChange",BLOG_CHANGE_EVENT:"blogChange",MENU_CHANGE_EVENT:"menuChange"},ActionTypes:t({REDIRECT:null,SIGNUP_REQUEST:null,SIGNUP_RESPONSE:null,INIT:null,LOGIN_REQUEST:null,LOGIN_RESPONSE:null,LOGOUT:null,REFRESH:null,MENU_RESPONSE:null,BLOG_RESPONSE:null}),APIEndpoints:{SIGNIN:{category:"user",name:"signInUser",readOnly:!1},REGISTRATION:{},GETMENU:{category:"menu",name:"getMenu",readOnly:!0,data:{host:o}}}}}.call(this),!function(){if(e.hot.dispose(function(t){t.makeHot=e.makeHot}),e.exports&&e.makeHot){var t=n(11),o=!1;t(e,n(1))&&(o=!0);var r=o;r&&e.hot.accept(function(e){e&&console.error("Cannot not apply hot update to AppConstants.js: "+e.message)})}}()}).call(t,n(9)(e))},,,,,,,function(e,t,n){(function(e){!function(){var t=n(12),o=n(10),r=n(5),i=n(1);e.makeHot=e.hot.data?e.hot.data.makeHot:t(function(){return o.getRootInstances(r)},i)}(),function(){"use strict";var t=n(145).Dispatcher,o=n(8),r=o(new t,{handleAction:function(e){this.dispatch({source:"APP_ACTION",action:e})}});e.exports=r}.call(this),!function(){if(e.hot.dispose(function(t){t.makeHot=e.makeHot}),e.exports&&e.makeHot){var t=n(11),o=!1;t(e,n(1))&&(o=!0);var r=o;r&&e.hot.accept(function(e){e&&console.error("Cannot not apply hot update to AppDispatcher.js: "+e.message)})}}()}).call(t,n(9)(e))},,,,,,,,,,,,,,,,,,,,,function(e,t){function n(e){return e?o(e):void 0}function o(e){for(var t in n.prototype)e[t]=n.prototype[t];return e}e.exports=n,n.prototype.on=n.prototype.addEventListener=function(e,t){return this._callbacks=this._callbacks||{},(this._callbacks[e]=this._callbacks[e]||[]).push(t),this},n.prototype.once=function(e,t){function n(){o.off(e,n),t.apply(this,arguments)}var o=this;return this._callbacks=this._callbacks||{},n.fn=t,this.on(e,n),this},n.prototype.off=n.prototype.removeListener=n.prototype.removeAllListeners=n.prototype.removeEventListener=function(e,t){if(this._callbacks=this._callbacks||{},0==arguments.length)return this._callbacks={},this;var n=this._callbacks[e];if(!n)return this;if(1==arguments.length)return delete this._callbacks[e],this;for(var o,r=0;r<n.length;r++)if(o=n[r],o===t||o.fn===t){n.splice(r,1);break}return this},n.prototype.emit=function(e){this._callbacks=this._callbacks||{};var t=[].slice.call(arguments,1),n=this._callbacks[e];if(n){n=n.slice(0);for(var o=0,r=n.length;r>o;++o)n[o].apply(this,t)}return this},n.prototype.listeners=function(e){return this._callbacks=this._callbacks||{},this._callbacks[e]||[]},n.prototype.hasListeners=function(e){return!!this.listeners(e).length}},function(e,t,n){(function(e){function o(e,n){var o="b"+t.packets[e.type]+e.data.data;return n(o)}function r(e,n,o){if(!n)return t.encodeBase64Packet(e,o);var r=e.data,i=new Uint8Array(r),s=new Uint8Array(1+r.byteLength);s[0]=y[e.type];for(var a=0;a<i.length;a++)s[a+1]=i[a];return o(s.buffer)}function i(e,n,o){if(!n)return t.encodeBase64Packet(e,o);var r=new FileReader;return r.onload=function(){e.data=r.result,t.encodePacket(e,n,!0,o)},r.readAsArrayBuffer(e.data)}function s(e,n,o){if(!n)return t.encodeBase64Packet(e,o);if(g)return i(e,n,o);var r=new Uint8Array(1);r[0]=y[e.type];var s=new T([r.buffer,e.data]);return o(s)}function a(e,t,n){for(var o=new Array(e.length),r=h(e.length,n),i=function(e,n,r){t(n,function(t,n){o[e]=n,r(t,o)})},s=0;s<e.length;s++)i(s,e[s],r)}var l=n(483),c=n(488),u=n(485),p=n(486),h=n(484),d=n(490),f=navigator.userAgent.match(/Android/i),m=/PhantomJS/i.test(navigator.userAgent),g=f||m;t.protocol=3;var y=t.packets={open:0,close:1,ping:2,pong:3,message:4,upgrade:5,noop:6},v=l(y),b={type:"error",data:"parser error"},T=n(487);t.encodePacket=function(t,n,i,a){"function"==typeof n&&(a=n,n=!1),"function"==typeof i&&(a=i,i=null);var l=void 0===t.data?void 0:t.data.buffer||t.data;if(e.ArrayBuffer&&l instanceof ArrayBuffer)return r(t,n,a);if(T&&l instanceof e.Blob)return s(t,n,a);if(l&&l.base64)return o(t,a);var c=y[t.type];return void 0!==t.data&&(c+=i?d.encode(String(t.data)):String(t.data)),a(""+c)},t.encodeBase64Packet=function(n,o){var r="b"+t.packets[n.type];if(T&&n.data instanceof T){var i=new FileReader;return i.onload=function(){var e=i.result.split(",")[1];o(r+e)},i.readAsDataURL(n.data)}var s;try{s=String.fromCharCode.apply(null,new Uint8Array(n.data))}catch(a){for(var l=new Uint8Array(n.data),c=new Array(l.length),u=0;u<l.length;u++)c[u]=l[u];s=String.fromCharCode.apply(null,c)}return r+=e.btoa(s),o(r)},t.decodePacket=function(e,n,o){if("string"==typeof e||void 0===e){if("b"==e.charAt(0))return t.decodeBase64Packet(e.substr(1),n);if(o)try{e=d.decode(e)}catch(r){return b}var i=e.charAt(0);return Number(i)==i&&v[i]?e.length>1?{type:v[i],data:e.substring(1)}:{type:v[i]}:b}var s=new Uint8Array(e),i=s[0],a=u(e,1);return T&&"blob"===n&&(a=new T([a])),{type:v[i],data:a}},t.decodeBase64Packet=function(t,n){var o=v[t.charAt(0)];if(!e.ArrayBuffer)return{type:o,data:{base64:!0,data:t.substr(1)}};var r=p.decode(t.substr(1));return"blob"===n&&T&&(r=new T([r])),{type:o,data:r}},t.encodePayload=function(e,n,o){function r(e){return e.length+":"+e}function i(e,o){t.encodePacket(e,s?n:!1,!0,function(e){o(null,r(e))})}"function"==typeof n&&(o=n,n=null);var s=c(e);return n&&s?T&&!g?t.encodePayloadAsBlob(e,o):t.encodePayloadAsArrayBuffer(e,o):e.length?void a(e,i,function(e,t){return o(t.join(""))}):o("0:")},t.decodePayload=function(e,n,o){if("string"!=typeof e)return t.decodePayloadAsBinary(e,n,o);"function"==typeof n&&(o=n,n=null);var r;if(""==e)return o(b,0,1);for(var i,s,a="",l=0,c=e.length;c>l;l++){var u=e.charAt(l);if(":"!=u)a+=u;else{if(""==a||a!=(i=Number(a)))return o(b,0,1);if(s=e.substr(l+1,i),a!=s.length)return o(b,0,1);if(s.length){if(r=t.decodePacket(s,n,!0),b.type==r.type&&b.data==r.data)return o(b,0,1);var p=o(r,l+i,c);if(!1===p)return}l+=i,a=""}}return""!=a?o(b,0,1):void 0},t.encodePayloadAsArrayBuffer=function(e,n){function o(e,n){t.encodePacket(e,!0,!0,function(e){return n(null,e)})}return e.length?void a(e,o,function(e,t){var o=t.reduce(function(e,t){var n;return n="string"==typeof t?t.length:t.byteLength,e+n.toString().length+n+2},0),r=new Uint8Array(o),i=0;return t.forEach(function(e){var t="string"==typeof e,n=e;if(t){for(var o=new Uint8Array(e.length),s=0;s<e.length;s++)o[s]=e.charCodeAt(s);n=o.buffer}t?r[i++]=0:r[i++]=1;for(var a=n.byteLength.toString(),s=0;s<a.length;s++)r[i++]=parseInt(a[s]);r[i++]=255;for(var o=new Uint8Array(n),s=0;s<o.length;s++)r[i++]=o[s]}),n(r.buffer)}):n(new ArrayBuffer(0))},t.encodePayloadAsBlob=function(e,n){function o(e,n){t.encodePacket(e,!0,!0,function(e){var t=new Uint8Array(1);if(t[0]=1,"string"==typeof e){for(var o=new Uint8Array(e.length),r=0;r<e.length;r++)o[r]=e.charCodeAt(r);e=o.buffer,t[0]=0}for(var i=e instanceof ArrayBuffer?e.byteLength:e.size,s=i.toString(),a=new Uint8Array(s.length+1),r=0;r<s.length;r++)a[r]=parseInt(s[r]);if(a[s.length]=255,T){var l=new T([t.buffer,a.buffer,e]);n(null,l)}})}a(e,o,function(e,t){return n(new T(t))})},t.decodePayloadAsBinary=function(e,n,o){"function"==typeof n&&(o=n,n=null);for(var r=e,i=[],s=!1;r.byteLength>0;){for(var a=new Uint8Array(r),l=0===a[0],c="",p=1;255!=a[p];p++){if(c.length>310){s=!0;break}c+=a[p]}if(s)return o(b,0,1);r=u(r,2+c.length),c=parseInt(c);var h=u(r,0,c);if(l)try{h=String.fromCharCode.apply(null,new Uint8Array(h))}catch(d){var f=new Uint8Array(h);h="";for(var p=0;p<f.length;p++)h+=String.fromCharCode(f[p])}i.push(h),r=u(r,c)}var m=i.length;i.forEach(function(e,r){o(t.decodePacket(e,n,!0),r,m)})}}).call(t,function(){return this}())},,,,,,,,,,,function(e,t,n){(function(e){!function(){var t=n(12),o=n(10),r=n(5),i=n(1);e.makeHot=e.hot.data?e.hot.data.makeHot:t(function(){return o.getRootInstances(r)},i)}(),function(){"use strict";var t=n(38),o=n(178),r=n(31),i=n(341),s=n(62),a={getBlogs:function(){s.ajax({type:"POST",url:"http://networknt.com:8080/api/rs",data:JSON.stringify({category:"blog",name:"getBlog",readOnly:!0,data:{host:r.host}}),contentType:"application/json",dataType:"json",error:function(e,t,n){console.log("BlogActions.getBlogs error",n)},success:function(e,n,o){console.log("BlogActions.getBlogs success",e),t.handleAction({type:r.ActionTypes.MENU_RESPONSE,json:e,error:null})}})},initBlogs:function(){return i.init()},receiveBlogs:function(){var e=JSON.parse(localStorage.getItem("blogs"));null==e&&(e=this.initBlogs()),t.handleAction({actionType:o.RECEIVE_BLOGS,data:e})},receiveBlogPosts:function(e){var n=JSON.parse(localStorage.getItem("blogPosts"));null==n&&(n=this.initBlogs()),t.handleAction({actionType:o.RECEIVE_BLOG_POSTS,data:n})},gotoBlog:function(e){t.handleAction({actionType:r.ActionTypes.REDIRECT,route:"blogView",data:e})},addBlog:function(e,n){t.handleAction({actionType:o.BLOG_ADD,blogId:e,update:n})},removeBlog:function(e){t.handleAction({actionType:o.BLOG_REMOVE,blogId:e})},updateBlog:function(e,n){t.handleAction({actionType:o.BLOG_UPDATE,blogId:e,updateData:n})}};e.exports=a}.call(this),!function(){if(e.hot.dispose(function(t){t.makeHot=e.makeHot}),e.exports&&e.makeHot){var t=n(11),o=!1;t(e,n(1))&&(o=!0);var r=o;r&&e.hot.accept(function(e){e&&console.error("Cannot not apply hot update to BlogActions.js: "+e.message)})}}()}).call(t,n(9)(e))},,,,,,function(e,t){function n(e){return n.enabled(e)?function(t){t=o(t);var r=new Date,i=r-(n[e]||r);n[e]=r,t=e+" "+t+" +"+n.humanize(i),window.console&&console.log&&Function.prototype.apply.call(console.log,console,arguments)}:function(){}}function o(e){return e instanceof Error?e.stack||e.message:e}e.exports=n,n.names=[],n.skips=[],n.enable=function(e){try{localStorage.debug=e}catch(t){}for(var o=(e||"").split(/[\s,]+/),r=o.length,i=0;r>i;i++)e=o[i].replace("*",".*?"),"-"===e[0]?n.skips.push(new RegExp("^"+e.substr(1)+"$")):n.names.push(new RegExp("^"+e+"$"))},n.disable=function(){n.enable("")},n.humanize=function(e){var t=1e3,n=6e4,o=60*n;return e>=o?(e/o).toFixed(1)+"h":e>=n?(e/n).toFixed(1)+"m":e>=t?(e/t|0)+"s":e+"ms"},n.enabled=function(e){for(var t=0,o=n.skips.length;o>t;t++)if(n.skips[t].test(e))return!1;for(var t=0,o=n.names.length;o>t;t++)if(n.names[t].test(e))return!0;return!1};try{window.localStorage&&n.enable(localStorage.debug)}catch(r){}},,,,,,,,,,,function(e,t,n){(function(e){!function(){var t=n(12),o=n(10),r=n(5),i=n(1);e.makeHot=e.hot.data?e.hot.data.makeHot:t(function(){return o.getRootInstances(r)},i)}(),function(){"use strict";var t=n(38),o=n(52).EventEmitter,r=n(178),i=n(31),s=n(138),a=[],l=[],c=s.extend({},o.prototype,{getBlogs:function(){return a},getBlogPostsState:function(){return{blogPosts:l}},emitChange:function(){console.log("Emiting change event..."),this.emit(i.ChangeEvents.BLOG_CHANGE_EVENT)},addChangeListener:function(e){this.on(i.ChangeEvents.BLOG_CHANGE_EVENT,e)},removeChangeListener:function(e){this.removeListener(i.ChangeEvents.BLOG_CHANGE_EVENT,e)}});t.register(function(e){var t=e.action;if(console.log("BlogStore received payload: ",e),null!=t){switch(t.actionType){case r.RECEIVE_BLOGS:console.log("BlogStore received BLOGS:",t.data),a=t.data,c.emitChange();break;case r.RECEIVE_BLOG_POSTS:console.log("BlogStore received BLOG_POSTS:",t.data),l=t.data,c.emitChange();break;default:return!0}return!0}}),e.exports=c}.call(this),!function(){if(e.hot.dispose(function(t){t.makeHot=e.makeHot}),e.exports&&e.makeHot){var t=n(11),o=!1;t(e,n(1))&&(o=!0);var r=o;r&&e.hot.accept(function(e){e&&console.error("Cannot not apply hot update to BlogStore.js: "+e.message)})}}()}).call(t,n(9)(e))},,,,,,,,,,,function(e,t){e.exports=function(e,t){var n=function(){};n.prototype=t.prototype,e.prototype=new n,e.prototype.constructor=e}},function(e,t,n){function o(){return"WebkitAppearance"in document.documentElement.style||window.console&&(console.firebug||console.exception&&console.table)||navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/)&&parseInt(RegExp.$1,10)>=31}function r(){var e=arguments,n=this.useColors;if(e[0]=(n?"%c":"")+this.namespace+(n?" %c":" ")+e[0]+(n?"%c ":" ")+"+"+t.humanize(this.diff),!n)return e;var o="color: "+this.color;e=[e[0],o,"color: inherit"].concat(Array.prototype.slice.call(e,1));var r=0,i=0;return e[0].replace(/%[a-z%]/g,function(e){"%%"!==e&&(r++,"%c"===e&&(i=r))}),e.splice(i,0,o),e}function i(){return"object"==typeof console&&"function"==typeof console.log&&Function.prototype.apply.call(console.log,console,arguments)}function s(e){try{null==e?localStorage.removeItem("debug"):localStorage.debug=e}catch(t){}}function a(){var e;try{e=localStorage.debug}catch(t){}return e}t=e.exports=n(481),t.log=i,t.formatArgs=r,t.save=s,t.load=a,t.useColors=o,t.colors=["lightseagreen","forestgreen","goldenrod","dodgerblue","darkorchid","crimson"],t.formatters.j=function(e){return JSON.stringify(e)},t.enable(a())},,function(e,t,n){t=e.exports=n(235)(),t.push([e.id,"html{font-family:Roboto,sans-serif;-ms-text-size-adjust:100%;-webkit-text-size-adjust:100%}body{font-size:15px;line-height:20px;margin:0}",""])},,,,,,,,,,,,function(e,t,n){(function(e){!function(){var t=n(12),o=n(10),r=n(5),i=n(1);e.makeHot=e.hot.data?e.hot.data.makeHot:t(function(){return o.getRootInstances(r)},i)}(),function(){"use strict";var t=n(38),o=n(31),r=(n(351),n(62)),i=o.ActionTypes;e.exports={signup:function(e,n,s,a){t.handleAction({type:i.SIGNUP_REQUEST,email:e,username:n,password:s,passwordConfirmation:a}),r.ajax({type:"POST",url:"http://www.networknt.com:8080/api/rs",data:JSON.stringify({category:"user",name:"signUpUser",readOnly:!1,data:{email:e,userId:n,password:s,passwordConfirm:a,clientId:o.ClientId}}),contentType:"application/json",error:function(e,n,o){console.log("signup error",o);var r=e.responseText;t.handleAction({type:i.SIGNUP_RESPONSE,json:null,error:r})},success:function(e,n,o){console.log("signup success",e),t.handleAction({type:i.SIGNUP_RESPONSE,json:e,error:null})}})},login:function(e,n,s){t.handleAction({type:i.LOGIN_REQUEST,userIdEmail:e,password:n,rememberMe:s}),r.ajax({type:"POST",url:"http://demo.networknt.com:8080/api/rs",data:JSON.stringify({category:"user",name:"signInUser",readOnly:!1,data:{userIdEmail:e,password:n,rememberMe:s,clientId:o.ClientId}}),contentType:"application/json",dataType:"json",error:function(e,n,o){console.log("Login error received",o,e,n),t.handleAction({type:i.LOGIN_RESPONSE,json:null,error:JSON.parse(e.responseText)})},success:function(e,n,o){console.log("Login success received",e),t.handleAction({type:i.LOGIN_RESPONSE,json:e,error:null})}})},logout:function(){t.handleAction({type:i.LOGOUT})},init:function(){console.log("the inti action is called",t),t.handleAction({type:i.INIT})},refresh:function(e){console.log("refresh in AuthActionCreators is called."),t.handleAction({type:i.REFRESH,accessToken:e})}}}.call(this),!function(){if(e.hot.dispose(function(t){t.makeHot=e.makeHot}),e.exports&&e.makeHot){var t=n(11),o=!1;t(e,n(1))&&(o=!0);var r=o;r&&e.hot.accept(function(e){e&&console.error("Cannot not apply hot update to AuthActions.js: "+e.message)})}}()}).call(t,n(9)(e))},function(e,t,n){(function(e){!function(){var t=n(12),o=n(10),r=n(5),i=n(1);e.makeHot=e.hot.data?e.hot.data.makeHot:t(function(){return o.getRootInstances(r)},i)}(),function(){"use strict";var t=n(1),o=n(19),r=o.ListItem,i=o.Styles,s=n(71),a=i.Colors,l=(i.Spacing,i.Typography),c=t.createClass({displayName:"BlogRow",componentDidMount:function(){console.log("BlogRow props:",this.props)},render:function(){return this._createItems(this.props.blog)},_onTouchTap:function(){console.log("Going to blog",this.props.blog),s.gotoBlog(this.props.blog)},_createItems:function(e){var n;this.getStyles();return e.out_Own&&(n=e.out_Own.map(function(e){return this._createItems(e)}.bind(this))),t.createElement(r,{primaryText:this.props.blog.blogId,secondaryText:this.props.blog.description,onTouchTap:this._onTouchTap},n)},getStyles:function(){return{primaryTextStyle:{fontSize:"20px",lineHeight:"28px",paddingTop:"19px",marginBottom:"13px",letterSpacing:"0",color:a.darkWhite,fontWeight:l.fontWeightLight},secondaryText:{}}}});e.exports=c}.call(this),!function(){if(e.hot.dispose(function(t){t.makeHot=e.makeHot}),e.exports&&e.makeHot){var t=n(11),o=!1;t(e,n(1))&&(o=!0);var r=o;r&&e.hot.accept(function(e){e&&console.error("Cannot not apply hot update to BlogRow.js: "+e.message)})}}()}).call(t,n(9)(e))},function(e,t,n){(function(e){!function(){var t=n(12),o=n(10),r=n(5),i=n(1);e.makeHot=e.hot.data?e.hot.data.makeHot:t(function(){return o.getRootInstances(r)},i)}(),function(){"use strict";var t=n(38),o=n(31),r=n(52).EventEmitter,i=n(175),s=n(148),a=o.ActionTypes,l="change",c=!1,u={userId:"",roles:["anonymous"]},p=!1,h="",d="",f="",m=i({},r.prototype,{emitChange:function(){this.emit(l)},addChangeListener:function(e){this.on(l,e)},removeChangeListener:function(e){this.removeListener(l,e)},isLoggedIn:function(){return c},getAccessToken:function(){return h},getRefreshToken:function(){return d},getRoles:function(){return u.roles},getUserId:function(){return u.userId},getRememberMe:function(){return p},getError:function(){return f}});m.dispatchToken=t.register(function(e){console.log("Authstore received payload",e);var t=e.action;switch(t.type){case a.SIGNUP_REQUEST:case a.SIGNUP_RESPONSE:m.emitChange();break;case a.LOGIN_REQUEST:console.log("Authstore received Login Request",e),p=t.rememberMe;break;case a.LOGIN_RESPONSE:if(console.log("Authstore received Login Response",e),t.json){c=!0,h=t.json.accessToken,localStorage.setItem("accessToken",h),console.log("_accessToken",h);var n=s(h);console.log("jwt",n),u=n.user,p&&(d=t.json.refreshToken,localStorage.setItem("refreshToken",d))}t.error&&(f=t.error.error),m.emitChange();break;case a.REFRESH:console.log("refreshed access token is saved"),h=t.accessToken,localStorage.setItem("accessToken",h);break;case a.LOGOUT:console.log("logout  action type in AuthStore"),c=!1,h=null,localStorage.removeItem("accessToken"),p=!1,d=null,localStorage.removeItem("refreshToken"),m.emitChange();break;case a.INIT:console.log("init is called");var o=localStorage.getItem("accessToken");if(o){c=!0,h=o;var n=s(h);console.log("jwt",n),u=n.user}var r=localStorage.getItem("refreshToken");r&&(p=!0,d=r),m.emitChange()}return!0}),e.exports=m}.call(this),!function(){if(e.hot.dispose(function(t){t.makeHot=e.makeHot}),e.exports&&e.makeHot){var t=n(11),o=!1;t(e,n(1))&&(o=!0);var r=o;r&&e.hot.accept(function(e){e&&console.error("Cannot not apply hot update to AuthStore.js: "+e.message)})}}()}).call(t,n(9)(e))},,,,,,,,,,,,,,,,,,,,,,,function(e,t,n){function o(e){this.path=e.path,this.hostname=e.hostname,this.port=e.port,this.secure=e.secure,this.query=e.query,this.timestampParam=e.timestampParam,this.timestampRequests=e.timestampRequests,this.readyState="",this.agent=e.agent||!1,this.socket=e.socket,this.enablesXDR=e.enablesXDR,this.pfx=e.pfx,this.key=e.key,this.passphrase=e.passphrase,this.cert=e.cert,this.ca=e.ca,this.ciphers=e.ciphers,this.rejectUnauthorized=e.rejectUnauthorized}var r=n(60),i=n(59);e.exports=o,i(o.prototype),o.timestamps=0,o.prototype.onError=function(e,t){var n=new Error(e);return n.type="TransportError",n.description=t,this.emit("error",n),this},o.prototype.open=function(){return("closed"==this.readyState||""==this.readyState)&&(this.readyState="opening",this.doOpen()),this},o.prototype.close=function(){return("opening"==this.readyState||"open"==this.readyState)&&(this.doClose(),this.onClose()),this},o.prototype.send=function(e){if("open"!=this.readyState)throw new Error("Transport not open");this.write(e)},o.prototype.onOpen=function(){this.readyState="open",this.writable=!0,this.emit("open")},o.prototype.onData=function(e){var t=r.decodePacket(e,this.socket.binaryType);this.onPacket(t)},o.prototype.onPacket=function(e){this.emit("packet",e)},o.prototype.onClose=function(){this.readyState="closed",this.emit("close")}},function(e,t,n){var o=n(491);e.exports=function(e){var t=e.xdomain,n=e.xscheme,r=e.enablesXDR;try{if("undefined"!=typeof XMLHttpRequest&&(!t||o))return new XMLHttpRequest}catch(i){}try{if("undefined"!=typeof XDomainRequest&&!n&&r)return new XDomainRequest}catch(i){}if(!t)try{return new ActiveXObject("Microsoft.XMLHTTP")}catch(i){}}},function(e,t){t.encode=function(e){var t="";for(var n in e)e.hasOwnProperty(n)&&(t.length&&(t+="&"),t+=encodeURIComponent(n)+"="+encodeURIComponent(e[n]));return t},t.decode=function(e){for(var t={},n=e.split("&"),o=0,r=n.length;r>o;o++){var i=n[o].split("=");t[decodeURIComponent(i[0])]=decodeURIComponent(i[1])}return t}},function(e,t,n){function o(){}function r(e){var n="",o=!1;return n+=e.type,(t.BINARY_EVENT==e.type||t.BINARY_ACK==e.type)&&(n+=e.attachments,n+="-"),e.nsp&&"/"!=e.nsp&&(o=!0,n+=e.nsp),null!=e.id&&(o&&(n+=",",o=!1),n+=e.id),null!=e.data&&(o&&(n+=","),n+=p.stringify(e.data)),u("encoded %j as %s",e,n),n}function i(e,t){function n(e){var n=d.deconstructPacket(e),o=r(n.packet),i=n.buffers;i.unshift(o),t(i)}d.removeBlobs(e,n)}function s(){this.reconstructor=null}function a(e){var n={},o=0;if(n.type=Number(e.charAt(0)),null==t.types[n.type])return c();if(t.BINARY_EVENT==n.type||t.BINARY_ACK==n.type){for(var r="";"-"!=e.charAt(++o)&&(r+=e.charAt(o),o!=e.length););if(r!=Number(r)||"-"!=e.charAt(o))throw new Error("Illegal attachments");n.attachments=Number(r)}if("/"==e.charAt(o+1))for(n.nsp="";++o;){var i=e.charAt(o);if(","==i)break;if(n.nsp+=i,o==e.length)break}else n.nsp="/";var s=e.charAt(o+1);if(""!==s&&Number(s)==s){for(n.id="";++o;){var i=e.charAt(o);if(null==i||Number(i)!=i){--o;break}if(n.id+=e.charAt(o),o==e.length)break}n.id=Number(n.id)}if(e.charAt(++o))try{n.data=p.parse(e.substr(o))}catch(a){return c()}return u("decoded %s as %j",e,n),n}function l(e){this.reconPack=e,this.buffers=[]}function c(e){return{type:t.ERROR,data:"parser error"}}var u=n(77)("socket.io-parser"),p=n(501),h=(n(231),n(59)),d=n(500),f=n(230);t.protocol=4,t.types=["CONNECT","DISCONNECT","EVENT","BINARY_EVENT","ACK","BINARY_ACK","ERROR"],t.CONNECT=0,t.DISCONNECT=1,t.EVENT=2,t.ACK=3,t.ERROR=4,t.BINARY_EVENT=5,t.BINARY_ACK=6,t.Encoder=o,t.Decoder=s,o.prototype.encode=function(e,n){if(u("encoding packet %j",e),t.BINARY_EVENT==e.type||t.BINARY_ACK==e.type)i(e,n);else{var o=r(e);n([o])}},h(s.prototype),s.prototype.add=function(e){var n;if("string"==typeof e)n=a(e),t.BINARY_EVENT==n.type||t.BINARY_ACK==n.type?(this.reconstructor=new l(n),0===this.reconstructor.reconPack.attachments&&this.emit("decoded",n)):this.emit("decoded",n);else{if(!f(e)&&!e.base64)throw new Error("Unknown type: "+e);if(!this.reconstructor)throw new Error("got binary data when not reconstructing a packet");n=this.reconstructor.takeBinaryData(e),n&&(this.reconstructor=null,this.emit("decoded",n))}},s.prototype.destroy=function(){this.reconstructor&&this.reconstructor.finishedReconstruction()},l.prototype.takeBinaryData=function(e){if(this.buffers.push(e),this.buffers.length==this.reconPack.attachments){var t=d.reconstructPacket(this.reconPack,this.buffers);return this.finishedReconstruction(),t}return null},l.prototype.finishedReconstruction=function(){this.reconPack=null,this.buffers=[]}},,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,function(e,t,n){(function(e){!function(){var t=n(12),o=n(10),r=n(5),i=n(1);e.makeHot=e.hot.data?e.hot.data.makeHot:t(function(){return o.getRootInstances(r)},i)}(),function(){"use strict";var t=n(1),o=t.createClass({displayName:"ErrorNotice",render:function(){return t.createElement("div",{className:"error-notice"},t.createElement("ul",null,this.props.errors.map(function(e,n){return t.createElement("li",{className:"error-notice__error",key:"error-"+n},e)})))}});e.exports=o}.call(this),!function(){if(e.hot.dispose(function(t){t.makeHot=e.makeHot}),e.exports&&e.makeHot){var t=n(11),o=!1;t(e,n(1))&&(o=!0);var r=o;r&&e.hot.accept(function(e){e&&console.error("Cannot not apply hot update to ErrorNotice.js: "+e.message)})}}()}).call(t,n(9)(e))},function(e,t,n){(function(e){!function(){var t=n(12),o=n(10),r=n(5),i=n(1);e.makeHot=e.hot.data?e.hot.data.makeHot:t(function(){return o.getRootInstances(r)},i)}(),function(){"use strict";var t=n(1),o=n(19),r=o.Styles,i=o.FlatButton,s=(o.EnhancedButton,o.IconButton,r.Colors),a=n(27),l=(a.Router,a.Link),c=t.createClass({displayName:"InlineUser",render:function(){var e=this.getStyles();return t.createElement(l,{to:"/u/"+this.props.id},t.createElement(i,{label:this.props.id,style:e.inlineUser,labelStyle:e.inlineUserLabel}))},getStyles:function(){var e=s.lightBlue300;return{inlineUser:{color:e,backgroundColor:s.transparent,padding:0,margin:0,border:0,minWidth:0},inlineUserLabel:{padding:0,margin:0,border:0,minWidth:0}}}});e.exports=c}.call(this),!function(){if(e.hot.dispose(function(t){t.makeHot=e.makeHot}),e.exports&&e.makeHot){var t=n(11),o=!1;t(e,n(1))&&(o=!0);var r=o;r&&e.hot.accept(function(e){e&&console.error("Cannot not apply hot update to InlineUser.js: "+e.message)})}}()}).call(t,n(9)(e))},function(e,t,n){(function(e){!function(){var t=n(12),o=n(10),r=n(5),i=n(1);e.makeHot=e.hot.data?e.hot.data.makeHot:t(function(){return o.getRootInstances(r)},i)}(),function(){"use strict";var t=n(51);e.exports=t({BLOG_ADD:null,BLOG_REMOVE:null,BLOG_UPDATE:null,RECEIVE_BLOGS:null,RECEIVE_BLOG_POSTS:null})}.call(this),!function(){if(e.hot.dispose(function(t){t.makeHot=e.makeHot}),e.exports&&e.makeHot){var t=n(11),o=!1;t(e,n(1))&&(o=!0);var r=o;r&&e.hot.accept(function(e){e&&console.error("Cannot not apply hot update to BlogConstants.js: "+e.message)})}}()}).call(t,n(9)(e))},function(e,t,n){(function(e){!function(){var t=n(12),o=n(10),r=n(5),i=n(1);e.makeHot=e.hot.data?e.hot.data.makeHot:t(function(){return o.getRootInstances(r)},i)}(),function(){"use strict";var t=n(1),o=n(27),r=o.Route,i=(o.Redirect,o.DefaultRoute),s=n(344),a=n(347),l=n(348),c=n(343),u=n(342),p=n(346),h=(n(338),n(340)),d=n(339),f=n(336),m=n(335),g=n(333),y=n(334),v=t.createElement(r,{name:"root",path:"/light-cms/",handler:s},t.createElement(r,{name:"home",handler:c}),t.createElement(r,{name:"user-example",handler:a}),t.createElement(r,{name:"u/:userId",handler:l}),t.createElement(r,{name:"blogs",handler:h}),t.createElement(r,{name:"blogView",handler:d}),t.createElement(r,{name:"blogPostView",handler:f}),t.createElement(r,{name:"forum",handler:u}),t.createElement(r,{name:"news",handler:p}),t.createElement(r,{name:"signup",path:"/signup",handler:m}),t.createElement(r,{name:"login",path:"/login",handler:g}),t.createElement(r,{name:"logout",path:"/logout",handler:y}),t.createElement(i,{handler:c}));e.exports=v}.call(this),!function(){if(e.hot.dispose(function(t){t.makeHot=e.makeHot}),e.exports&&e.makeHot){var t=n(11),o=!1;t(e,n(1))&&(o=!0);var r=o;r&&e.hot.accept(function(e){e&&console.error("Cannot not apply hot update to routes.js: "+e.message)})}}()}).call(t,n(9)(e))},function(e,t){function n(e){var t=e.prototype;return t?"function"==typeof t.render:!1}function o(e,t){if(!t.Component)return!1;for(var n=Object.getPrototypeOf(e);n;){if(n===t.Component)return!0;n=Object.getPrototypeOf(n)}return!1}function r(e,t){return"function"!=typeof e?!1:n(e)||o(e,t)?!0:e.type&&n(e.type)?!0:!1}e.exports=r},,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,function(e,t,n){function o(e,t){return this instanceof o?(e&&"object"==typeof e&&(t=e,e=void 0),t=t||{},t.path=t.path||"/socket.io",this.nsps={},this.subs=[],this.opts=t,this.reconnection(t.reconnection!==!1),this.reconnectionAttempts(t.reconnectionAttempts||1/0),this.reconnectionDelay(t.reconnectionDelay||1e3),this.reconnectionDelayMax(t.reconnectionDelayMax||5e3),this.randomizationFactor(t.randomizationFactor||.5),this.backoff=new h({min:this.reconnectionDelay(),max:this.reconnectionDelayMax(),jitter:this.randomizationFactor()}),this.timeout(null==t.timeout?2e4:t.timeout),this.readyState="closed",this.uri=e,this.connected=[],this.encoding=!1,this.packetBuffer=[],this.encoder=new a.Encoder,this.decoder=new a.Decoder,this.autoConnect=t.autoConnect!==!1,void(this.autoConnect&&this.open())):new o(e,t)}var r=(n(225),n(475)),i=n(224),s=n(59),a=n(142),l=n(223),c=n(226),u=(n(498),n(77)("socket.io-client:manager")),p=n(229),h=n(474);e.exports=o,o.prototype.emitAll=function(){this.emit.apply(this,arguments);for(var e in this.nsps)this.nsps[e].emit.apply(this.nsps[e],arguments)},o.prototype.updateSocketIds=function(){for(var e in this.nsps)this.nsps[e].id=this.engine.id},s(o.prototype),o.prototype.reconnection=function(e){return arguments.length?(this._reconnection=!!e,this):this._reconnection},o.prototype.reconnectionAttempts=function(e){return arguments.length?(this._reconnectionAttempts=e,this):this._reconnectionAttempts},o.prototype.reconnectionDelay=function(e){return arguments.length?(this._reconnectionDelay=e,this.backoff&&this.backoff.setMin(e),this):this._reconnectionDelay;
-},o.prototype.randomizationFactor=function(e){return arguments.length?(this._randomizationFactor=e,this.backoff&&this.backoff.setJitter(e),this):this._randomizationFactor},o.prototype.reconnectionDelayMax=function(e){return arguments.length?(this._reconnectionDelayMax=e,this.backoff&&this.backoff.setMax(e),this):this._reconnectionDelayMax},o.prototype.timeout=function(e){return arguments.length?(this._timeout=e,this):this._timeout},o.prototype.maybeReconnectOnOpen=function(){!this.reconnecting&&this._reconnection&&0===this.backoff.attempts&&this.reconnect()},o.prototype.open=o.prototype.connect=function(e){if(u("readyState %s",this.readyState),~this.readyState.indexOf("open"))return this;u("opening %s",this.uri),this.engine=r(this.uri,this.opts);var t=this.engine,n=this;this.readyState="opening",this.skipReconnect=!1;var o=l(t,"open",function(){n.onopen(),e&&e()}),i=l(t,"error",function(t){if(u("connect_error"),n.cleanup(),n.readyState="closed",n.emitAll("connect_error",t),e){var o=new Error("Connection error");o.data=t,e(o)}else n.maybeReconnectOnOpen()});if(!1!==this._timeout){var s=this._timeout;u("connect attempt will timeout after %d",s);var a=setTimeout(function(){u("connect attempt timed out after %d",s),o.destroy(),t.close(),t.emit("error","timeout"),n.emitAll("connect_timeout",s)},s);this.subs.push({destroy:function(){clearTimeout(a)}})}return this.subs.push(o),this.subs.push(i),this},o.prototype.onopen=function(){u("open"),this.cleanup(),this.readyState="open",this.emit("open");var e=this.engine;this.subs.push(l(e,"data",c(this,"ondata"))),this.subs.push(l(this.decoder,"decoded",c(this,"ondecoded"))),this.subs.push(l(e,"error",c(this,"onerror"))),this.subs.push(l(e,"close",c(this,"onclose")))},o.prototype.ondata=function(e){this.decoder.add(e)},o.prototype.ondecoded=function(e){this.emit("packet",e)},o.prototype.onerror=function(e){u("error",e),this.emitAll("error",e)},o.prototype.socket=function(e){var t=this.nsps[e];if(!t){t=new i(this,e),this.nsps[e]=t;var n=this;t.on("connect",function(){t.id=n.engine.id,~p(n.connected,t)||n.connected.push(t)})}return t},o.prototype.destroy=function(e){var t=p(this.connected,e);~t&&this.connected.splice(t,1),this.connected.length||this.close()},o.prototype.packet=function(e){u("writing packet %j",e);var t=this;t.encoding?t.packetBuffer.push(e):(t.encoding=!0,this.encoder.encode(e,function(e){for(var n=0;n<e.length;n++)t.engine.write(e[n]);t.encoding=!1,t.processPacketQueue()}))},o.prototype.processPacketQueue=function(){if(this.packetBuffer.length>0&&!this.encoding){var e=this.packetBuffer.shift();this.packet(e)}},o.prototype.cleanup=function(){for(var e;e=this.subs.shift();)e.destroy();this.packetBuffer=[],this.encoding=!1,this.decoder.destroy()},o.prototype.close=o.prototype.disconnect=function(){this.skipReconnect=!0,this.backoff.reset(),this.readyState="closed",this.engine&&this.engine.close()},o.prototype.onclose=function(e){u("close"),this.cleanup(),this.backoff.reset(),this.readyState="closed",this.emit("close",e),this._reconnection&&!this.skipReconnect&&this.reconnect()},o.prototype.reconnect=function(){if(this.reconnecting||this.skipReconnect)return this;var e=this;if(this.backoff.attempts>=this._reconnectionAttempts)u("reconnect failed"),this.backoff.reset(),this.emitAll("reconnect_failed"),this.reconnecting=!1;else{var t=this.backoff.duration();u("will wait %dms before reconnect attempt",t),this.reconnecting=!0;var n=setTimeout(function(){e.skipReconnect||(u("attempting reconnect"),e.emitAll("reconnect_attempt",e.backoff.attempts),e.emitAll("reconnecting",e.backoff.attempts),e.skipReconnect||e.open(function(t){t?(u("reconnect attempt error"),e.reconnecting=!1,e.reconnect(),e.emitAll("reconnect_error",t.data)):(u("reconnect success"),e.onreconnect())}))},t);this.subs.push({destroy:function(){clearTimeout(n)}})}},o.prototype.onreconnect=function(){var e=this.backoff.attempts;this.reconnecting=!1,this.backoff.reset(),this.updateSocketIds(),this.emitAll("reconnect",e)}},function(e,t){function n(e,t,n){return e.on(t,n),{destroy:function(){e.removeListener(t,n)}}}e.exports=n},function(e,t,n){function o(e,t){this.io=e,this.nsp=t,this.json=this,this.ids=0,this.acks={},this.io.autoConnect&&this.open(),this.receiveBuffer=[],this.sendBuffer=[],this.connected=!1,this.disconnected=!0}var r=n(142),i=n(59),s=n(502),a=n(223),l=n(226),c=n(77)("socket.io-client:socket"),u=n(496);e.exports=t=o;var p={connect:1,connect_error:1,connect_timeout:1,disconnect:1,error:1,reconnect:1,reconnect_attempt:1,reconnect_failed:1,reconnect_error:1,reconnecting:1},h=i.prototype.emit;i(o.prototype),o.prototype.subEvents=function(){if(!this.subs){var e=this.io;this.subs=[a(e,"open",l(this,"onopen")),a(e,"packet",l(this,"onpacket")),a(e,"close",l(this,"onclose"))]}},o.prototype.open=o.prototype.connect=function(){return this.connected?this:(this.subEvents(),this.io.open(),"open"==this.io.readyState&&this.onopen(),this)},o.prototype.send=function(){var e=s(arguments);return e.unshift("message"),this.emit.apply(this,e),this},o.prototype.emit=function(e){if(p.hasOwnProperty(e))return h.apply(this,arguments),this;var t=s(arguments),n=r.EVENT;u(t)&&(n=r.BINARY_EVENT);var o={type:n,data:t};return"function"==typeof t[t.length-1]&&(c("emitting packet with ack id %d",this.ids),this.acks[this.ids]=t.pop(),o.id=this.ids++),this.connected?this.packet(o):this.sendBuffer.push(o),this},o.prototype.packet=function(e){e.nsp=this.nsp,this.io.packet(e)},o.prototype.onopen=function(){c("transport is open - connecting"),"/"!=this.nsp&&this.packet({type:r.CONNECT})},o.prototype.onclose=function(e){c("close (%s)",e),this.connected=!1,this.disconnected=!0,delete this.id,this.emit("disconnect",e)},o.prototype.onpacket=function(e){if(e.nsp==this.nsp)switch(e.type){case r.CONNECT:this.onconnect();break;case r.EVENT:this.onevent(e);break;case r.BINARY_EVENT:this.onevent(e);break;case r.ACK:this.onack(e);break;case r.BINARY_ACK:this.onack(e);break;case r.DISCONNECT:this.ondisconnect();break;case r.ERROR:this.emit("error",e.data)}},o.prototype.onevent=function(e){var t=e.data||[];c("emitting event %j",t),null!=e.id&&(c("attaching ack callback to event"),t.push(this.ack(e.id))),this.connected?h.apply(this,t):this.receiveBuffer.push(t)},o.prototype.ack=function(e){var t=this,n=!1;return function(){if(!n){n=!0;var o=s(arguments);c("sending ack %j",o);var i=u(o)?r.BINARY_ACK:r.ACK;t.packet({type:i,id:e,data:o})}}},o.prototype.onack=function(e){c("calling ack %s with %j",e.id,e.data);var t=this.acks[e.id];t.apply(this,e.data),delete this.acks[e.id]},o.prototype.onconnect=function(){this.connected=!0,this.disconnected=!1,this.emit("connect"),this.emitBuffered()},o.prototype.emitBuffered=function(){var e;for(e=0;e<this.receiveBuffer.length;e++)h.apply(this,this.receiveBuffer[e]);for(this.receiveBuffer=[],e=0;e<this.sendBuffer.length;e++)this.packet(this.sendBuffer[e]);this.sendBuffer=[]},o.prototype.ondisconnect=function(){c("server disconnect (%s)",this.nsp),this.destroy(),this.onclose("io server disconnect")},o.prototype.destroy=function(){if(this.subs){for(var e=0;e<this.subs.length;e++)this.subs[e].destroy();this.subs=null}this.io.destroy(this)},o.prototype.close=o.prototype.disconnect=function(){return this.connected&&(c("performing disconnect (%s)",this.nsp),this.packet({type:r.DISCONNECT})),this.destroy(),this.connected&&this.onclose("io client disconnect"),this}},function(e,t,n){(function(t){function o(e,n){var o=e,n=n||t.location;return null==e&&(e=n.protocol+"//"+n.host),"string"==typeof e&&("/"==e.charAt(0)&&(e="/"==e.charAt(1)?n.protocol+e:n.hostname+e),/^(https?|wss?):\/\//.test(e)||(i("protocol-less url %s",e),e="undefined"!=typeof n?n.protocol+"//"+e:"https://"+e),i("parse %s",e),o=r(e)),o.port||(/^(http|ws)$/.test(o.protocol)?o.port="80":/^(http|ws)s$/.test(o.protocol)&&(o.port="443")),o.path=o.path||"/",o.id=o.protocol+"://"+o.host+":"+o.port,o.href=o.protocol+"://"+o.host+(n&&n.port==o.port?"":":"+o.port),o}var r=n(499),i=n(77)("socket.io-client:url");e.exports=o}).call(t,function(){return this}())},function(e,t){var n=[].slice;e.exports=function(e,t){if("string"==typeof t&&(t=e[t]),"function"!=typeof t)throw new Error("bind() requires a function");var o=n.call(arguments,2);return function(){return t.apply(e,o.concat(n.call(arguments)))}}},function(e,t,n){(function(e){function o(t){var n,o=!1,a=!1,l=!1!==t.jsonp;if(e.location){var c="https:"==location.protocol,u=location.port;u||(u=c?443:80),o=t.hostname!=location.hostname||u!=t.port,a=t.secure!=c}if(t.xdomain=o,t.xscheme=a,n=new r(t),"open"in n&&!t.forceJSONP)return new i(t);if(!l)throw new Error("JSONP disabled");return new s(t)}var r=n(140),i=n(479),s=n(478),a=n(480);t.polling=o,t.websocket=a}).call(t,function(){return this}())},function(e,t,n){function o(e){var t=e&&e.forceBase64;(!c||t)&&(this.supportsBinary=!1),r.call(this,e)}var r=n(139),i=n(141),s=n(60),a=n(99),l=n(100)("engine.io-client:polling");e.exports=o;var c=function(){var e=n(140),t=new e({xdomain:!1});return null!=t.responseType}();a(o,r),o.prototype.name="polling",o.prototype.doOpen=function(){this.poll()},o.prototype.pause=function(e){function t(){l("paused"),n.readyState="paused",e()}var n=this;if(this.readyState="pausing",this.polling||!this.writable){var o=0;this.polling&&(l("we are currently polling - waiting to pause"),o++,this.once("pollComplete",function(){l("pre-pause polling complete"),--o||t()})),this.writable||(l("we are currently writing - waiting to pause"),o++,this.once("drain",function(){l("pre-pause writing complete"),--o||t()}))}else t()},o.prototype.poll=function(){l("polling"),this.polling=!0,this.doPoll(),this.emit("poll")},o.prototype.onData=function(e){var t=this;l("polling got data %s",e);var n=function(e,n,o){return"opening"==t.readyState&&t.onOpen(),"close"==e.type?(t.onClose(),!1):void t.onPacket(e)};s.decodePayload(e,this.socket.binaryType,n),"closed"!=this.readyState&&(this.polling=!1,this.emit("pollComplete"),"open"==this.readyState?this.poll():l('ignoring poll - transport state "%s"',this.readyState))},o.prototype.doClose=function(){function e(){l("writing close packet"),t.write([{type:"close"}])}var t=this;"open"==this.readyState?(l("transport open - closing"),e()):(l("transport not open - deferring close"),this.once("open",e))},o.prototype.write=function(e){var t=this;this.writable=!1;var n=function(){t.writable=!0,t.emit("drain")},t=this;s.encodePayload(e,this.supportsBinary,function(e){t.doWrite(e,n)})},o.prototype.uri=function(){var e=this.query||{},t=this.secure?"https":"http",n="";return!1!==this.timestampRequests&&(e[this.timestampParam]=+new Date+"-"+r.timestamps++),this.supportsBinary||e.sid||(e.b64=1),e=i.encode(e),this.port&&("https"==t&&443!=this.port||"http"==t&&80!=this.port)&&(n=":"+this.port),e.length&&(e="?"+e),t+"://"+this.hostname+n+this.path+e}},function(e,t){var n=[].indexOf;e.exports=function(e,t){if(n)return e.indexOf(t);for(var o=0;o<e.length;++o)if(e[o]===t)return o;return-1}},function(e,t){(function(t){function n(e){return t.Buffer&&t.Buffer.isBuffer(e)||t.ArrayBuffer&&e instanceof ArrayBuffer}e.exports=n}).call(t,function(){return this}())},function(e,t){e.exports=Array.isArray||function(e){return"[object Array]"==Object.prototype.toString.call(e)}},,,,function(e,t){e.exports=function(){var e=[];return e.toString=function(){for(var e=[],t=0;t<this.length;t++){var n=this[t];n[2]?e.push("@media "+n[2]+"{"+n[1]+"}"):e.push(n[1])}return e.join("")},e.i=function(t,n){"string"==typeof t&&(t=[[null,t,""]]);for(var o={},r=0;r<this.length;r++){var i=this[r][0];"number"==typeof i&&(o[i]=!0)}for(var r=0;r<t.length;r++){var s=t[r];"number"==typeof s[0]&&o[s[0]]||(n&&!s[2]?s[2]=n:n&&(s[2]="("+s[2]+") and ("+n+")"),e.push(s))}},e}},,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,function(e,t,n){"use strict";function o(e,t){var n={};for(var o in e)t.indexOf(o)>=0||Object.prototype.hasOwnProperty.call(e,o)&&(n[o]=e[o]);return n}var r=Object.assign||function(e){for(var t=1;t<arguments.length;t++){var n=arguments[t];for(var o in n)Object.prototype.hasOwnProperty.call(n,o)&&(e[o]=n[o])}return e},i=n(7),s=i.addons.PureRenderMixin,a=n(2),l=n(16),c=n(298),u=n(155),p=i.createClass({displayName:"MenuItem",mixins:[s,a],contextTypes:{muiTheme:i.PropTypes.object},propTypes:{checked:i.PropTypes.bool,desktop:i.PropTypes.bool,disabled:i.PropTypes.bool,innerDivStyle:i.PropTypes.object,insetChildren:i.PropTypes.bool,focusState:i.PropTypes.oneOf(["none","focused","keyboard-focused"]),leftIcon:i.PropTypes.element,rightIcon:i.PropTypes.element,secondaryText:i.PropTypes.node,value:i.PropTypes.string},getDefaultProps:function(){return{focusState:"none"}},componentDidMount:function(){this._applyFocusState()},componentDidUpdate:function(){this._applyFocusState()},render:function(){var e=this.props,t=e.checked,n=e.children,s=e.desktop,a=e.disabled,p=(e.focusState,e.innerDivStyle),h=e.insetChildren,d=e.leftIcon,f=e.rightIcon,m=e.secondaryText,g=e.style,y=(e.value,o(e,["checked","children","desktop","disabled","focusState","innerDivStyle","insetChildren","leftIcon","rightIcon","secondaryText","style","value"])),v=this.context.muiTheme.palette.disabledColor,b=this.context.muiTheme.palette.textColor,T=s?64:72,x=s?24:16,w={root:{color:a?v:b,lineHeight:s?"32px":"48px",fontSize:s?15:16,whiteSpace:"nowrap"},innerDivStyle:{paddingLeft:d||h||t?T:x,paddingRight:x,paddingBottom:0,paddingTop:0},secondaryText:{"float":"right"},leftIconDesktop:{padding:0,left:24,top:4},rightIconDesktop:{padding:0,right:24,top:4,fill:l.grey600}},E=this.mergeStyles(w.root,g),C=this.mergeStyles(w.innerDivStyle,p),_=d?d:t?i.createElement(c,null):null;if(_&&s){var S=this.mergeStyles(w.leftIconDesktop,_.props.style);_=i.cloneElement(_,{style:S})}var D=void 0;if(f){var k=s?this.mergeStyles(w.rightIconDesktop,f.props.style):null;D=i.cloneElement(f,{style:k})}var P=void 0;if(m){var O=i.isValidElement(m),N=O?this.mergeStyles(w.secondaryText,m.props.style):null;P=O?i.cloneElement(m,{style:N}):i.createElement("div",{style:w.secondaryText},m)}return i.createElement(u,r({},y,{disabled:a,innerDivStyle:C,insetChildren:h,leftIcon:_,ref:"listItem",rightIcon:D,style:E}),n,P)},_applyFocusState:function(){this.refs.listItem.applyFocusState(this.props.focusState)}});e.exports=p},,,,,,,,,,,,,,,,,,,,function(e,t,n){"use strict";var o=n(7),r=o.addons.PureRenderMixin,i=n(17),s=o.createClass({displayName:"NavigationCheck",mixins:[r],render:function(){return o.createElement(i,this.props,o.createElement("path",{d:"M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z"}))}});e.exports=s},,,,,,,,,,,,,,,,,,,,,,,,,,,,,,function(e,t,n){"use strict";var o=n(10);e.exports={RootInstanceProvider:o.injection}},function(e,t){"use strict";function n(e){return e._instancesByReactRootID||e._instancesByContainerID||[]}e.exports=n},function(e,t,n){(function(e){!function(){var t=n(12),o=n(10),r=n(5),i=n(1);e.makeHot=e.hot.data?e.hot.data.makeHot:t(function(){return o.getRootInstances(r)},i)}(),function(){"use strict";var t=n(38),o=n(31),r=n(62),i=o.ActionTypes;e.exports={getMenu:function(){r.ajax({type:"POST",url:"http://demo.networknt.com:8080/api/rs",data:JSON.stringify({category:"menu",name:"getMenu",readOnly:!0,data:{host:o.host}}),contentType:"application/json",dataType:"json",error:function(e,t,n){console.log("MenuActions.getMenu error",n)},success:function(e,n,o){console.log("MenuActions.getMenu success",e),t.handleAction({type:i.MENU_RESPONSE,json:e,error:null})}})}}}.call(this),!function(){if(e.hot.dispose(function(t){t.makeHot=e.makeHot}),e.exports&&e.makeHot){var t=n(11),o=!1;t(e,n(1))&&(o=!0);var r=o;r&&e.hot.accept(function(e){e&&console.error("Cannot not apply hot update to MenuActions.js: "+e.message)})}}()}).call(t,n(9)(e))},function(e,t,n){(function(e){!function(){var t=n(12),o=n(10),r=n(5),i=n(1);e.makeHot=e.hot.data?e.hot.data.makeHot:t(function(){return o.getRootInstances(r)},i)}(),function(){"use strict";var t=n(38),o=n(31),r=o.ActionTypes;e.exports={receiveLogin:function(e,n){t.dispatch({type:r.LOGIN_RESPONSE,json:e,error:n})},receiveBlogs:function(e,n){t.dispatch({type:r.RECEIVE_BLOGS,json:e,error:n})},receiveMenu:function(e,n){t.dispatch({type:r.RECEIVE_MENU,json:e,error:n})},receiveStory:function(e){t.dispatch({type:r.RECEIVE_STORY,json:e})},receiveCreatedStory:function(e,n){t.dispatch({type:r.RECEIVE_CREATED_STORY,json:e,errors:n})}}}.call(this),!function(){if(e.hot.dispose(function(t){t.makeHot=e.makeHot}),e.exports&&e.makeHot){var t=n(11),o=!1;t(e,n(1))&&(o=!0);var r=o;r&&e.hot.accept(function(e){e&&console.error("Cannot not apply hot update to ServerActionCreators.js: "+e.message)})}}()}).call(t,n(9)(e))},function(e,t,n){(function(e){!function(){var t=n(12),o=n(10),r=n(5),i=n(1);e.makeHot=e.hot.data?e.hot.data.makeHot:t(function(){return o.getRootInstances(r)},i)}(),function(){"use strict";var e=n(1),t=(n(27),n(381));n(179);window.React=e,t();var o,r=n(350).getRouter();r.run(function(t){o=e.render(e.createElement(t,null),document.getElementById("content"))}),n(328).RootInstanceProvider.injectProvider({getRootInstances:function(){return[o]}})}.call(this),!function(){if(e.hot.dispose(function(t){t.makeHot=e.makeHot}),e.exports&&e.makeHot){var t=n(11),o=!1;t(e,n(1))&&(o=!0);var r=o;r&&e.hot.accept(function(e){e&&console.error("Cannot not apply hot update to app.js: "+e.message)})}}()}).call(t,n(9)(e))},function(e,t,n){(function(e){!function(){var t=n(12),o=n(10),r=n(5),i=n(1);e.makeHot=e.hot.data?e.hot.data.makeHot:t(function(){return o.getRootInstances(r)},i)}(),function(){"use strict";var t=n(1),o=n(114),r=n(116),i=(n(176),n(19)),s=i.TextField,a=i.RaisedButton,l=(i.Paper,i.Styles),c=i.Checkbox,u=i.Dialog,p=n(22),h=l.Colors,d=(l.Spacing,l.Typography,t.createClass({displayName:"Login",contextTypes:{router:t.PropTypes.func},getInitialState:function(){return{error:"",loginSuccessful:!1}},componentDidMount:function(){r.addChangeListener(this._onChange)},componentWillUnmount:function(){r.removeChangeListener(this._onChange)},_onChange:function(){this.setState({error:r.getError(),loginSuccessful:r.isLoggedIn()}),this.state.loginSuccessful?this.refs.loginSuccessful.show():this.refs.loginFailed.show(),console.log("Login._onChange: error set to:",r.getError()),console.log("Login._onChange: ")},_onSubmit:function(e){e.preventDefault(),this.setState({errors:[]});var t=this.refs.userIdEmail.getValue(),n=this.refs.password.getValue(),r=this.refs.rememberMe.isChecked();o.login(t,n,r)},_dismissLoginSuccess:function(){this.context.router.transitionTo("/home")},render:function(){var e=this.getStyles(),n=[{text:"Thank you!",onTouchTap:this._onDialogAck,ref:"submit"}],o=[{text:"Try Again"},{text:"I forgot it..."}];return t.createElement(p,{style:e.root},t.createElement(u,{title:"Log in successful!",actions:n,ref:"loginSuccessful",modal:!1,openImmediately:!1,onDismiss:this._dismissLoginSuccess},"You are now logged in!"),t.createElement(u,{title:"Error occured during login",actions:o,ref:"loginFailed",modal:!1,openImmediately:!1},this.state.error),t.createElement("center",null,t.createElement("form",{onSubmit:this._onSubmit},t.createElement(s,{hintText:"User ID or Email",floatingLabelText:"User ID or Email",type:"text",ref:"userIdEmail",name:"userIdEmail"}),t.createElement("br",null),t.createElement(s,{hintText:"Password",floatingLabelText:"Password",type:"password",ref:"password",name:"password"}),t.createElement("br",null),t.createElement(c,{name:"rememberMe",value:"rememberMe",ref:"rememberMe",label:"Remember Me",style:e.rememberMe}),t.createElement("br",null),t.createElement(a,{label:"Signup",primary:!0,type:"submit",style:e.submitButton}))))},getStyles:function(){return{root:{display:"center",backgroundColor:h.white,padding:"0px",marginBottom:"0px"},div:{width:"70%",paddingTop:"2%",paddingBottom:"2%"},submitButton:{marginTop:"15px"},rememberMe:{marginLeft:"auto",marginRight:"auto",width:"170px",paddingTop:"15px"}}}}));e.exports=d}.call(this),!function(){if(e.hot.dispose(function(t){t.makeHot=e.makeHot}),e.exports&&e.makeHot){var t=n(11),o=!1;t(e,n(1))&&(o=!0);var r=o;r&&e.hot.accept(function(e){e&&console.error("Cannot not apply hot update to Login.js: "+e.message)})}}()}).call(t,n(9)(e))},function(e,t,n){(function(e){!function(){var t=n(12),o=n(10),r=n(5),i=n(1);e.makeHot=e.hot.data?e.hot.data.makeHot:t(function(){return o.getRootInstances(r)},i)}(),function(){"use strict";var t=n(1),o=n(19),r=o.Dialog,i=n(114),s=t.createClass({displayName:"Logout",contextTypes:{router:t.PropTypes.func},componentDidMount:function(){i.logout()},getInitialState:function(){return{}},render:function(){var e=[{text:"Thank you!",onTouchTap:this._onDialogAck,ref:"submit"}];return t.createElement(r,{title:"Log out successful",actions:e,actionFocus:"submit",ref:"logoutDialog",modal:!1,openImmediately:!0,onDismiss:this._onDialogAck},"You are now logged out.")},_onDialogAck:function(){this.context.router.transitionTo("/home")}});e.exports=s}.call(this),!function(){if(e.hot.dispose(function(t){t.makeHot=e.makeHot}),e.exports&&e.makeHot){var t=n(11),o=!1;t(e,n(1))&&(o=!0);var r=o;r&&e.hot.accept(function(e){e&&console.error("Cannot not apply hot update to Logout.js: "+e.message)})}}()}).call(t,n(9)(e))},function(e,t,n){(function(e){!function(){var t=n(12),o=n(10),r=n(5),i=n(1);e.makeHot=e.hot.data?e.hot.data.makeHot:t(function(){return o.getRootInstances(r)},i)}(),function(){"use strict";var t=n(1),o=n(114),r=n(116),i=(n(176),n(19)),s=i.TextField,a=i.RaisedButton,l=(i.Paper,i.Styles),c=i.Dialog,u=n(22),p=l.Colors,h=(l.Spacing,l.Typography,t.createClass({displayName:"Signup",contextTypes:{router:t.PropTypes.func},getInitialState:function(){return{error:"",signupSuccessful:!1}},componentDidMount:function(){r.addChangeListener(this._onChange)},componentWillUnmount:function(){r.removeChangeListener(this._onChange)},_onChange:function(){console.log("Signup._onChange"),this.setState({error:r.getError(),signupSuccessful:r.isLoggedIn()}),""===this.state.error?this.refs.signupSuccessful.show():this.refs.signupFailed.show()},_onSubmit:function(e){console.log("This.refs:",this.refs),e.preventDefault(),this.setState({errors:[]});var t=this.refs.email.getValue(),n=this.refs.username.getValue(),r=this.refs.password.getValue(),i=this.refs.passwordConfirmation.getValue();r!==i?this.setState({error:"Password and password confirmation should match"}):o.signup(t,n,r,i)},render:function(){var e=this.getStyles(),n=[{text:"Great!",onTouchTap:this._onDialogAck,ref:"submit"}],o=[{text:"Try Again"},{text:"Contact Us..."}];return t.createElement(u,{style:e.root},t.createElement(c,{title:"Welcome Aboard!",actions:n,ref:"signupSuccessful",modal:!1,openImmediately:!1,onDismiss:this._dismissSignupSuccess},"An email has been sent to activate the account."),t.createElement(c,{title:"Error occured during singup",actions:o,ref:"signupFailed",modal:!1,openImmediately:!1},this.state.error),t.createElement("div",{style:e.div},t.createElement("form",{onSubmit:this._onSubmit},t.createElement(s,{hintText:"Email",floatingLabelText:"Email",type:"email",ref:"email",name:"email",onChange:this._handleErrorInputChangeEmail,errorText:this.state.errorTextEmail}),t.createElement("br",null),t.createElement(s,{hintText:"Username",floatingLabelText:"Username",type:"text",ref:"username",name:"username",onChange:this._handleErrorInputChangeUsername,errorText:this.state.errorTextUsername}),t.createElement("br",null),t.createElement(s,{hintText:"Password",floatingLabelText:"Password",type:"password",ref:"password",name:"password",onChange:this._handleErrorInputChangePassword,errorText:this.state.errorTextPassword}),t.createElement("br",null),t.createElement(s,{hintText:"Password Confirmation",floatingLabelText:"Password Confirmation",type:"password",ref:"passwordConfirmation",name:"passwordConfirmation",onChange:this._handleErrorInputChangePasswordConfirmation,errorText:this.state.errorTextPasswordConfirmation}),t.createElement("br",null),t.createElement(a,{label:"Signup",primary:!0,type:"submit",style:e.submitButton}))))},getStyles:function(){return{root:{overflow:"hidden",width:"100%",textAlign:"center",display:"center",backgroundColor:p.white,padding:"0px",marginBottom:"0px"},div:{width:"70%",margin:"auto",paddingTop:"2%",paddingBottom:"2%"},submitButton:{marginTop:"15px"}}},_handleErrorInputChangeEmail:function(e){this.setState({emailErrorText:e.target.value?"":"This field is required."})},_handleErrorInputChangeUsername:function(e){this.setState({emailErrorUsername:e.target.value?"":"This field is required."})},_handleErrorInputChangePassword:function(e){this.setState({emailErrorPassword:e.target.value?"":"This field is required."})},_handleErrorInputChangePasswordConfirmation:function(e){this.setState({emailErrorPasswordConfirmation:e.target.value?"":"This field is required."})}}));e.exports=h}.call(this),!function(){if(e.hot.dispose(function(t){t.makeHot=e.makeHot}),e.exports&&e.makeHot){var t=n(11),o=!1;t(e,n(1))&&(o=!0);var r=o;r&&e.hot.accept(function(e){e&&console.error("Cannot not apply hot update to Signup.js: "+e.message)})}}()}).call(t,n(9)(e))},function(e,t,n){(function(e){!function(){var t=n(12),o=n(10),r=n(5),i=n(1);e.makeHot=e.hot.data?e.hot.data.makeHot:t(function(){return o.getRootInstances(r)},i)}(),function(){"use strict";var t=n(1),o=n(22),r=(n(88),n(71),t.createClass({displayName:"BlogPostView",render:function(){return t.createElement(o,null,"Blog Post View")}}));e.exports=r}.call(this),!function(){if(e.hot.dispose(function(t){t.makeHot=e.makeHot}),e.exports&&e.makeHot){var t=n(11),o=!1;t(e,n(1))&&(o=!0);var r=o;r&&e.hot.accept(function(e){e&&console.error("Cannot not apply hot update to BlogPostView.js: "+e.message)})}}()}).call(t,n(9)(e))},function(e,t,n){(function(e){!function(){var t=n(12),o=n(10),r=n(5),i=n(1);e.makeHot=e.hot.data?e.hot.data.makeHot:t(function(){return o.getRootInstances(r)},i)}(),function(){"use strict";var t=n(1),o=n(22),r=n(19),i=r.List,s=r.ListItem,a=r.Paper,l=(r.Avatar,r.Styles),c=(r.SvgIcon,l.Colors,l.Spacing,l.Typography,t.createClass({displayName:"BlogPostsView",getDefaultProps:function(){},render:function(){return t.createElement(o,null,t.createElement(a,{rounded:!0,transitionEnabled:!0},t.createElement(i,null,this.props.blogPosts.map(function(e){return t.createElement(s,{primaryText:e.title,secondaryText:e.content})}))))}}));e.exports=c}.call(this),!function(){if(e.hot.dispose(function(t){t.makeHot=e.makeHot}),e.exports&&e.makeHot){var t=n(11),o=!1;t(e,n(1))&&(o=!0);var r=o;r&&e.hot.accept(function(e){e&&console.error("Cannot not apply hot update to BlogPostsView.js: "+e.message)})}}()}).call(t,n(9)(e))},function(e,t,n){(function(e){!function(){var t=n(12),o=n(10),r=n(5),i=n(1);e.makeHot=e.hot.data?e.hot.data.makeHot:t(function(){return o.getRootInstances(r)},i)}(),function(){"use strict";var t=n(1),o=n(22),r=(n(115),n(19)),i=(r.List,r.ListItem,n(27)),s=i.RouteHandler,a=t.createClass({displayName:"BlogRoot",render:function(){return t.createElement(o,null,t.createElement(s,null))}});e.exports=a}.call(this),!function(){if(e.hot.dispose(function(t){t.makeHot=e.makeHot}),e.exports&&e.makeHot){var t=n(11),o=!1;t(e,n(1))&&(o=!0);var r=o;r&&e.hot.accept(function(e){e&&console.error("Cannot not apply hot update to BlogRoot.js: "+e.message)})}}()}).call(t,n(9)(e))},function(e,t,n){(function(e){!function(){var t=n(12),o=n(10),r=n(5),i=n(1);e.makeHot=e.hot.data?e.hot.data.makeHot:t(function(){return o.getRootInstances(r)},i)}(),function(){"use strict";var t=n(1),o=n(27),r=o.Link,i=n(22),s=n(88),a=n(71),l=(n(115),n(19)),c=(l.List,l.ListItem,l.Paper,l.RaisedButton),u=n(337),p=t.createClass({displayName:"BlogView",getInitialState:function(){return{blogPosts:[]}},getDefaultProps:function(){},componentDidMount:function(){s.addChangeListener(this._receivedBlog),a.receiveBlogPosts(this.props.blogId)},render:function(){return t.createElement(i,null,t.createElement(r,{to:"/blogs"},t.createElement(c,{label:"Back"})),t.createElement(u,{blogPosts:this.state.blogPosts}))},_receivedBlog:function(e){this.setState(s.getBlogPostsState())}});e.exports=p}.call(this),!function(){if(e.hot.dispose(function(t){t.makeHot=e.makeHot}),e.exports&&e.makeHot){var t=n(11),o=!1;t(e,n(1))&&(o=!0);var r=o;r&&e.hot.accept(function(e){e&&console.error("Cannot not apply hot update to BlogView.js: "+e.message)})}}()}).call(t,n(9)(e))},function(e,t,n){(function(e){!function(){var t=n(12),o=n(10),r=n(5),i=n(1);e.makeHot=e.hot.data?e.hot.data.makeHot:t(function(){return o.getRootInstances(r)},i)}(),function(){"use strict";var t=n(1),o=n(22),r=n(88),i=n(71),s=n(115),a=n(19),l=a.List,c=(a.ListItem,a.Paper,a.Styles),r=n(88),i=n(71),u=c.Colors,p=(c.Spacing,c.Typography),h=t.createClass({displayName:"Blogs",getInitialState:function(){return{blogs:[]}},componentDidMount:function(){r.addChangeListener(this._onChange),i.getBlogs()},_onChange:function(){this.setState({blogs:r.getBlogs()})},render:function(){var e=this.getStyles();return t.createElement("div",null,t.createElement(o,{style:e.root},t.createElement("div",null,t.createElement("h2",{style:e.h2},"Blog Component"))),t.createElement(o,{style:e.blogsSection},t.createElement(l,null,this.state.blogs.map(function(e){return t.createElement(s,{blog:e})}))))},componentWillUnmount:function(){r.removeChangeListener(this._onChange)},getStyles:function(){return{root:{backgroundColor:u.green400,overflow:"hidden",width:"100%",textAlign:"center"},blogsSection:{backgroundColor:u.white,textAlign:"center",display:"inline-block",width:"100%"},h2:{fontSize:"20px",lineHeight:"28px",paddingTop:"19px",marginBottom:"13px",letterSpacing:"0",color:u.darkWhite,fontWeight:p.fontWeightLight}}}});e.exports=h}.call(this),!function(){if(e.hot.dispose(function(t){t.makeHot=e.makeHot}),e.exports&&e.makeHot){var t=n(11),o=!1;t(e,n(1))&&(o=!0);var r=o;r&&e.hot.accept(function(e){e&&console.error("Cannot not apply hot update to Blogs.js: "+e.message)})}}()}).call(t,n(9)(e))},function(e,t,n){(function(e){!function(){var t=n(12),o=n(10),r=n(5),i=n(1);e.makeHot=e.hot.data?e.hot.data.makeHot:t(function(){return o.getRootInstances(r)},i)}(),function(){"use strict";e.exports={init:function(){return localStorage.clear(),localStorage.setItem("blogs",JSON.stringify([{"@rid":"#33:12",host:"example",description:"New and improved??",blogId:"The new blog ID",createDate:"2015-05-22T00:22:37.607",$$hashKey:"object:241"},{"@rid":"#33:1",host:"example",description:"sdgasdgag",blogId:"asdga",createDate:"2015-05-02T12:52:20.121",out_HasPost:["#36:9","#36:10","#36:11"],out_Own:[{"@rid":"#33:8",host:"example",description:"fgjdfgjdj",blogId:"hdfgjd",createDate:"2015-05-02T15:57:28.789",in_Own:["#33:1"],out_Own:[{"@rid":"#33:9",host:"example",description:"dfhsdfhsdf",blogId:"dgsdfhs",createDate:"2015-05-02T19:15:53.034",in_Own:["#33:8"],out_Own:[{"@rid":"#33:11",host:"example",description:"asdgasdg",blogId:"sdfhsdfhs",createDate:"2015-05-02T21:22:25.813",in_Own:["#33:9"]}]},{"@rid":"#33:10",host:"example",description:"dgasdgasdg",blogId:"asdsdfhgasdg",createDate:"2015-05-02T21:19:58.117",in_Own:["#33:8"]}],blog:{"@rid":"#33:1",host:"example",description:"sdgasdgag",blogId:"asdga",createDate:"2015-05-02T12:52:20.121",out_HasPost:["#36:9","#36:10","#36:11"]}}],$$hashKey:"object:242"},{"@rid":"#33:2",host:"example",description:"asdgasdg",blogId:"asdgasdg",createDate:"2015-05-02T12:52:23.067",$$hashKey:"object:243"},{"@rid":"#33:3",host:"example",description:"sdgasdga",blogId:"asdgasdga",createDate:"2015-05-02T12:52:25.675",$$hashKey:"object:244"},{"@rid":"#33:7",host:"example",description:"dfgjdfgjdj",blogId:"dfgjdfgjdfgj",createDate:"2015-05-02T12:52:43.251",$$hashKey:"object:245"},{"@rid":"#33:5",host:"example",description:"jfdgdfjhdfgjh",blogId:"dfgjdsdfsdfh",createDate:"2015-05-02T12:52:36.714",$$hashKey:"object:246"}])),localStorage.setItem("blogPosts",JSON.stringify([{createUserId:"stevehu",postId:"GT3ZmMIxTxiE8WzGudooQA",createRid:"#14:0",rid:"#36:11",title:"TEst",content:"This is the post - Edited -5/21/2015",parentId:"asdga",createDate:"2015-05-02T14:20:13.512"},{createUserId:"stevehu",postId:"uGRKOudDR4e3EGwrNYi6cQ",
-createRid:"#14:0",rid:"#36:10",title:"jdfgjdfgjd",content:"fgjdfgj",parentId:"asdga",createDate:"2015-05-02T12:57:12.315"},{createUserId:"stevehu",postId:"FY4pUJ1CSzSURhihDlLg5g",createRid:"#14:0",rid:"#36:9",title:"sdfhsdfhsdf",content:"hsdfhsdfhsdf",parentId:"asdga",createDate:"2015-05-02T12:55:51.351"}])),JSON.parse(localStorage.getItem("blogs"))}}}.call(this),!function(){if(e.hot.dispose(function(t){t.makeHot=e.makeHot}),e.exports&&e.makeHot){var t=n(11),o=!1;t(e,n(1))&&(o=!0);var r=o;r&&e.hot.accept(function(e){e&&console.error("Cannot not apply hot update to MockBlogData.js: "+e.message)})}}()}).call(t,n(9)(e))},function(e,t,n){(function(e){!function(){var t=n(12),o=n(10),r=n(5),i=n(1);e.makeHot=e.hot.data?e.hot.data.makeHot:t(function(){return o.getRootInstances(r)},i)}(),function(){"use strict";var t=n(1),o=n(22),r=t.createClass({displayName:"Forum",componentWillMount:function(){},getInitialState:function(){return{}},render:function(){return t.createElement(o,null,"Forum")}});e.exports=r}.call(this),!function(){if(e.hot.dispose(function(t){t.makeHot=e.makeHot}),e.exports&&e.makeHot){var t=n(11),o=!1;t(e,n(1))&&(o=!0);var r=o;r&&e.hot.accept(function(e){e&&console.error("Cannot not apply hot update to Forum.js: "+e.message)})}}()}).call(t,n(9)(e))},function(e,t,n){(function(e){!function(){var t=n(12),o=n(10),r=n(5),i=n(1);e.makeHot=e.hot.data?e.hot.data.makeHot:t(function(){return o.getRootInstances(r)},i)}(),function(){"use strict";var t=n(1),o=(n(27),n(19)),r=o.RaisedButton,i=o.Styles,s=n(22),a=i.Colors,l=(i.Spacing,i.Typography),c=t.createClass({displayName:"Home",render:function(){var e=this.getStyles();return t.createElement("div",null,t.createElement(s,{style:e.root},t.createElement("div",{style:e.tagline},t.createElement("h1",{style:e.h1},"NetworkNT - Components Example"),t.createElement("h2",{style:e.h2},"Please select any page from the menu in the top left corner to view the example."))),t.createElement(s,{style:e.githubSection},t.createElement("h2",{style:e.githubSectionh2},"To learn more about this project, Check out our repo!"),t.createElement(r,{label:"GitHub",primary:!0,linkButton:!0,href:"https://github.com/networknt"})))},getStyles:function(){return{root:{backgroundColor:a.green400,overflow:"hidden",width:"100%"},tagline:{margin:"16px auto 0 auto",textAlign:"center",maxWidth:"575px"},h1:{color:a.darkWhite,fontWeight:l.fontWeightLight,lineHeight:1.5},h2:{fontSize:"20px",lineHeight:"28px",paddingTop:"19px",marginBottom:"13px",letterSpacing:"0",color:a.darkWhite,fontWeight:l.fontWeightLight},githubSection:{backgroundColor:a.grey200,textAlign:"center"},githubSectionh2:{color:a.grey900,fontSize:"20px",lineHeight:"28px",paddingTop:"19px",marginBottom:"13px",letterSpacing:"0",fontWeight:l.fontWeightLight}}}});e.exports=c}.call(this),!function(){if(e.hot.dispose(function(t){t.makeHot=e.makeHot}),e.exports&&e.makeHot){var t=n(11),o=!1;t(e,n(1))&&(o=!0);var r=o;r&&e.hot.accept(function(e){e&&console.error("Cannot not apply hot update to Home.js: "+e.message)})}}()}).call(t,n(9)(e))},function(e,t,n){(function(e){!function(){var t=n(12),o=n(10),r=n(5),i=n(1);e.makeHot=e.hot.data?e.hot.data.makeHot:t(function(){return o.getRootInstances(r)},i)}(),function(){"use strict";var t=n(1),o=n(27),r=n(27),i=(r.Link,n(19)),s=i.Styles,a=(i.RaisedButton,i.AppBar),l=i.FlatButton,c=i.IconMenu,u=(i.IconButton,n(278)),p=new s.ThemeManager,h=s.Colors,d=s.Typography,f=o.RouteHandler,m=n(22),g=n(116);n(177);n(467);var y=n(345),v=t.createClass({displayName:"Main",contextTypes:{router:t.PropTypes.func},getChildContext:function(){return{muiTheme:p.getCurrentTheme()}},getInitialState:function(){return{isLoggedIn:g.isLoggedIn()}},componentDidMount:function(){g.addChangeListener(this._userLoginChange)},_userLoginChange:function(){console.log("Main._userLoginChange",g.isLoggedIn()),this.setState({isLoggedIn:g.isLoggedIn()})},_rightMenuChange:function(e,t){console.log("Main._rightMenuChange",t),this.context.router.transitionTo("/"+t._store.props.value)},render:function(){var e,n=this.getStyles(),o=t.createElement(l,{style:n.rightMenuButton},"User");return e=this.state.isLoggedIn?t.createElement(c,{iconButtonElement:o,openDirection:"bottom-left",onItemTouchTap:this._rightMenuChange},t.createElement(u,{value:"logout",primaryText:"Sign out"})):t.createElement(c,{iconButtonElement:o,openDirection:"bottom-left",onItemTouchTap:this._rightMenuChange},t.createElement(u,{value:"login",primaryText:"Log in"}),t.createElement(u,{value:"signup",primaryText:"Sign up"})),t.createElement("div",{style:n.parent},t.createElement(a,{title:"NetworkNT",onLeftIconButtonTouchTap:this.showSideBar,iconElementRight:e,zDepth:0,style:n.topMenu}),t.createElement(y,{ref:"leftNav"}),t.createElement(f,null),t.createElement(m,{style:n.footer},t.createElement("p",{style:n.p},"Copyright NetworkNT - 2015")))},getStyles:function(){return{parent:{position:"relative",margin:"64px 0 120px"},footer:{backgroundColor:h.grey800,textAlign:"center",position:"fixed",left:"0px",right:"0px",bottom:"0px",height:"120px",zIndex:"-10"},a:{color:h.red},p:{margin:"0 auto",padding:"0",color:h.lightWhite},rightMenuButton:{backgroundColor:h.transparent,color:d.textFullWhite,margin:0,paddingTop:6},topMenu:{backgroundColor:h.green300,position:"fixed",top:"0px",left:"0px",right:"0px",height:"64px"},subheaderMenuItem:{backgroundColor:h.green300}}},showSideBar:function(e){this.refs.leftNav.toggle()},componentWillMount:function(){p.setTheme(p.types.LIGHT)}});v.childContextTypes={muiTheme:t.PropTypes.object},e.exports=v}.call(this),!function(){if(e.hot.dispose(function(t){t.makeHot=e.makeHot}),e.exports&&e.makeHot){var t=n(11),o=!1;t(e,n(1))&&(o=!0);var r=o;r&&e.hot.accept(function(e){e&&console.error("Cannot not apply hot update to Main.js: "+e.message)})}}()}).call(t,n(9)(e))},function(e,t,n){(function(e){!function(){var t=n(12),o=n(10),r=n(5),i=n(1);e.makeHot=e.hot.data?e.hot.data.makeHot:t(function(){return o.getRootInstances(r)},i)}(),function(){"use strict";var t=n(1),o=(n(27),n(19)),r=o.MenuItem,i=o.LeftNav,s=o.Styles,a=s.ThemeManager(),l=s.Colors,c=s.Spacing,u=s.Typography,p=n(349),h=n(330),d=[{type:r.Types.SUBHEADER,text:"Component Examples"},{route:"blogs",text:"Blogs"},{route:"forum",text:"Forum"},{route:"news",text:"News"},{route:"user-example",text:"User Example"},{type:r.Types.SUBHEADER,text:"NetworkNT"},{type:r.Types.LINK,payload:"https://github.com/networknt",text:"GitHub"}],f=t.createClass({displayName:"LeftNavMenu",componentWillMount:function(){a.setComponentThemes({menuSubheader:{textColor:l.green300}})},componentDidMount:function(){p.addChangeListener(this._onMenuChange),h.getMenu()},_onMenuChange:function(){console.log("LeftNavMenu._onMenuChange")},getStyles:function(){return{root:{cursor:"pointer",fontSize:"24px",color:u.textFullWhite,lineHeight:c.desktopKeylineIncrement+"px",fontWeight:u.fontWeightLight,backgroundColor:l.green300,paddingLeft:c.desktopGutter,paddingTop:"0px",marginBottom:"0px"},leftNav:{".SubheaderMenuItem backgroundColor":l.green300}}},render:function(){var e=this.getStyles(),n=t.createElement("div",{style:e.root,onTouchTap:this.onHeaderClick},"NetworkNT");return t.createElement(i,{ref:"leftNav",style:e.leftNav,docked:!1,isInitiallyOpen:!1,header:n,menuItems:d,selectedIndex:this.getSelectedIndex(),onChange:this.onLeftNavChange})},toggle:function(){this.refs.leftNav.toggle()},getSelectedIndex:function(){for(var e,t=d.length-1;t>=0;t--)if(e=d[t],e.route&&this.context.router.isActive(e.route))return t},onLeftNavChange:function(e,t,n){this.context.router.transitionTo(n.route)},onHeaderClick:function(){this.context.router.transitionTo("root"),this.refs.leftNav.close()},getChildContext:function(){return{muiTheme:a.getCurrentTheme()}}});f.contextTypes={router:t.PropTypes.func},f.childContextTypes={muiTheme:t.PropTypes.object},e.exports=f}.call(this),!function(){if(e.hot.dispose(function(t){t.makeHot=e.makeHot}),e.exports&&e.makeHot){var t=n(11),o=!1;t(e,n(1))&&(o=!0);var r=o;r&&e.hot.accept(function(e){e&&console.error("Cannot not apply hot update to LeftNavMenu.js: "+e.message)})}}()}).call(t,n(9)(e))},function(e,t,n){(function(e){!function(){var t=n(12),o=n(10),r=n(5),i=n(1);e.makeHot=e.hot.data?e.hot.data.makeHot:t(function(){return o.getRootInstances(r)},i)}(),function(){"use strict";var t=n(1),o=n(22),r=t.createClass({displayName:"News",componentWillMount:function(){},getInitialState:function(){return{}},render:function(){return t.createElement(o,null,"News")}});e.exports=r}.call(this),!function(){if(e.hot.dispose(function(t){t.makeHot=e.makeHot}),e.exports&&e.makeHot){var t=n(11),o=!1;t(e,n(1))&&(o=!0);var r=o;r&&e.hot.accept(function(e){e&&console.error("Cannot not apply hot update to News.js: "+e.message)})}}()}).call(t,n(9)(e))},function(e,t,n){(function(e){!function(){var t=n(12),o=n(10),r=n(5),i=n(1);e.makeHot=e.hot.data?e.hot.data.makeHot:t(function(){return o.getRootInstances(r)},i)}(),function(){"use strict";var t=n(1),o=n(22),r=n(177),i=n(149),s=t.createClass({displayName:"UserExample",componentWillMount:function(){i.setOptions({renderer:new i.Renderer,gfm:!0,tables:!0,breaks:!0,pedantic:!1,sanitize:!0,smartLists:!0,smartypants:!1})},getInitialState:function(){return{markedText:"#NetworkNT - Inline User Example# \nThis is an example where we pass the userId of an example user as it would appear when referenced inline with some text.\nThis is the user <InlineUser id=\"nick\" /> who has id 'nick'. It's a work in progress... it should look like:"}},render:function(){return t.createElement(o,null,t.createElement("div",{dangerouslySetInnerHTML:{__html:this.processText(this.state.markedText)}}),t.createElement(r,{id:"nick"}))},processText:function(e){return i(e,{sanitize:!0})}});e.exports=s}.call(this),!function(){if(e.hot.dispose(function(t){t.makeHot=e.makeHot}),e.exports&&e.makeHot){var t=n(11),o=!1;t(e,n(1))&&(o=!0);var r=o;r&&e.hot.accept(function(e){e&&console.error("Cannot not apply hot update to UserExample.js: "+e.message)})}}()}).call(t,n(9)(e))},function(e,t,n){(function(e){!function(){var t=n(12),o=n(10),r=n(5),i=n(1);e.makeHot=e.hot.data?e.hot.data.makeHot:t(function(){return o.getRootInstances(r)},i)}(),function(){"use strict";var t=n(1),o=t.createClass({displayName:"UserProfile",getInitialState:function(){return{userId:null!=this.props.params.userId?this.props.params.userId:"Example"}},render:function(){return t.createElement("span",null,"User Profile - Hello ",this.state.userId,"!")}});e.exports=o}.call(this),!function(){if(e.hot.dispose(function(t){t.makeHot=e.makeHot}),e.exports&&e.makeHot){var t=n(11),o=!1;t(e,n(1))&&(o=!0);var r=o;r&&e.hot.accept(function(e){e&&console.error("Cannot not apply hot update to UserProfile.js: "+e.message)})}}()}).call(t,n(9)(e))},function(e,t,n){(function(e){!function(){var t=n(12),o=n(10),r=n(5),i=n(1);e.makeHot=e.hot.data?e.hot.data.makeHot:t(function(){return o.getRootInstances(r)},i)}(),function(){"use strict";var t=n(38),o=n(52).EventEmitter,r=n(31),i=n(138),s=[],a=i.extend({},o.prototype,{getMenu:function(){return s},emitChange:function(){this.emit(r.ChangeEvents.MENU_CHANGE_EVENT)},addChangeListener:function(e){this.on(r.ChangeEvents.MENU_CHANGE_EVENT,e)},removeChangeListener:function(e){this.removeListener(r.ChangeEvents.MENU_CHANGE_EVENT,e)}});t.register(function(e){var t=e.action;if(console.log("MenuStore received payload: ",e),null!=t){switch(t.type){case r.ActionTypes.MENU_RESPONSE:console.log("MenuStore received Menu:",t.json.out_Own),s=t.json.out_Own,a.emitChange();break;default:return!0}return!0}}),e.exports=a}.call(this),!function(){if(e.hot.dispose(function(t){t.makeHot=e.makeHot}),e.exports&&e.makeHot){var t=n(11),o=!1;t(e,n(1))&&(o=!0);var r=o;r&&e.hot.accept(function(e){e&&console.error("Cannot not apply hot update to MenuStore.js: "+e.message)})}}()}).call(t,n(9)(e))},function(e,t,n){(function(e){!function(){var t=n(12),o=n(10),r=n(5),i=n(1);e.makeHot=e.hot.data?e.hot.data.makeHot:t(function(){return o.getRootInstances(r)},i)}(),function(){"use strict";var t=n(38),o=n(31),r=n(52).EventEmitter,i=n(8),s=n(27),a=n(179),l=s.create({routes:a,location:s.HistoryLocation,scrollBehavior:s.ScrollToTopBehavior}),c=o.ActionTypes,u=i({},r.prototype,{emitChange:function(){this.emit(o.ChangeEvents.ROUTE_CHANGE_EVENT)},addChangeListener:function(e){this.on(o.ChangeEvents.ROUTE_CHANGE_EVENT,e)},removeChangeListener:function(){this.removeListener(o.ChangeEvents.ROUTE_CHANGE_EVENT,callback)},getRouter:function(){return l},redirectHome:function(){l.transitionTo("root")}});u.dispatchToken=t.register(function(e){console.log("RouteStore received payload:",e);var t=e.action;if(null!=t){var n=t.actionType,o=t.data;switch(n){case c.REDIRECT:console.log("Routing to...",t),l.transitionTo(t.route,o);break;default:return!0}return!0}}),e.exports=u}.call(this),!function(){if(e.hot.dispose(function(t){t.makeHot=e.makeHot}),e.exports&&e.makeHot){var t=n(11),o=!1;t(e,n(1))&&(o=!0);var r=o;r&&e.hot.accept(function(e){e&&console.error("Cannot not apply hot update to RouteStore.js: "+e.message)})}}()}).call(t,n(9)(e))},function(e,t,n){(function(e){!function(){var t=n(12),o=n(10),r=n(5),i=n(1);e.makeHot=e.hot.data?e.hot.data.makeHot:t(function(){return o.getRootInstances(r)},i)}(),function(){"use strict";function t(e){var t=["Something went wrong, please try again"],n=JSON.parse(e.text);return n&&(n.errors?t=n.errors:n.error&&(t=[n.error])),t}var o=n(331),r=n(31),i=n(62),s=r.APIEndpoints,a=(r.APIRoot,r.host,r.ClientId);e.exports={signup:function(e,t,n,r){i.ajax({type:"POST",url:"https://www.networknt.com/api/rs",data:JSON.stringify({user:{email:e,username:t,password:n,password_confirmation:r,clientId:a}}),contentType:"application/json",dataType:"json",error:function(e,t,n){console.log("signup error",n),o.receiveLogin(null,n)},success:function(e,t,n){console.log("signup success",e),o.receiveLogin(e,null)}})},login:function(e,t,n){console.log("login in WebAPIUtils is been called"),s.SIGNIN.data={userIdEmail:e,password:t,rememberMe:n,clientId:a},console.log("SIGNIN",s.SIGNIN),i.ajax({type:"POST",contentType:"application/json",url:"https://www.networknt.com/api/rs",data:JSON.stringify(s.SIGNIN),dataType:"json",error:function(e,t,n){console.log("login error",n),o.receiveLogin(null,n)},success:function(e,t,n){console.log("login success",e),o.receiveLogin(e,null)}})},loadMenu:function(){console.log("WebAPIUtils loadMenus is called"),i.ajax({type:"POST",url:"https://www.networknt.com/api/rs",data:JSON.stringify(s.GETMENU),contentType:"application/json",dataType:"json"}).done(function(e){console.log("done",e),o.receiveMenu(e,null)}).fail(function(e){console.log("error",e),o.receiveMenu(null,e)})},loadBlogs:function(){var e={category:"demo",name:"getDropdown",readOnly:!0};console.log("WebAPIUtils logBlogs is called"),i.ajax({type:"GET",url:"http://example:8080/api/rs",data:{cmd:encodeURIComponent(JSON.stringify(e))}}).done(function(e){console.log("done",e),o.receiveBlogs(e,null)}).fail(function(e){console.log("error",e),o.receiveBlogs(null,e)})},loadBlog:function(e){request.get(s.STORIES+"/"+storyId).set("Accept","application/json").end(function(e,t){if(t){var n=JSON.parse(t.text);o.receiveBlog(n)}})},createBlog:function(e,n){request.post(s.STORIES).set("Accept","application/json").send({blog:{title:e,body:n}}).end(function(e,n){if(n)if(n.error){var r=t(n);o.receiveCreatedBlog(null,r)}else{var i=JSON.parse(n.text);o.receiveCreatedBlog(i,null)}})}}}.call(this),!function(){if(e.hot.dispose(function(t){t.makeHot=e.makeHot}),e.exports&&e.makeHot){var t=n(11),o=!1;t(e,n(1))&&(o=!0);var r=o;r&&e.hot.accept(function(e){e&&console.error("Cannot not apply hot update to WebAPIUtils.js: "+e.message)})}}()}).call(t,n(9)(e))},function(e,t,n){function o(e,t){return e?"[object Object]"===Object.prototype.toString.call(e.props)&&r(e.type,t):!1}var r=n(180);e.exports=o},function(e,t){"use strict";function n(e,t){var n=t.bind(e);n.__reactBoundContext=e,n.__reactBoundMethod=t,n.__reactBoundArguments=null;var o=e.constructor.displayName,r=n.bind;return n.bind=function(i){var s=Array.prototype.slice.call(arguments,1);if(i!==e&&null!==i)console.warn("bind(): React component methods may only be bound to the component instance. See "+o);else if(!s.length)return console.warn("bind(): You are binding a component method to the component. React does this for you automatically in a high-performance way, so you can safely remove this call. See "+o),n;var a=r.apply(n,arguments);return a.__reactBoundContext=e,a.__reactBoundMethod=t,a.__reactBoundArguments=s,a},n}e.exports=function(e){var t="function"==typeof e.getPublicInstance?e.getPublicInstance():e;for(var o in t.__reactAutoBindMap)if(t.__reactAutoBindMap.hasOwnProperty(o)&&(!t.hasOwnProperty(o)||t[o].__reactBoundContext!==t)){var r=t.__reactAutoBindMap[o];t[o]=n(t,r)}}},function(e,t,n){"use strict";function o(e){e._pendingForceUpdate===!1&&(e._pendingForceUpdate=!0)}function r(e,t){if(e._pendingForceUpdate===!0){var n=e._instance||e;n.forceUpdate?n.forceUpdate():t&&t.Component&&t.Component.prototype.forceUpdate.call(n)}}function i(e,t){a(e,s),a(e,o),a(e,r,t)}var s=n(353),a=n(359);e.exports=i},function(e,t){"use strict";e.exports=function(){function e(e){return function(){return r[e]?r[e].apply(this,arguments):void 0}}function t(t,n){t[n]=r[n],"function"==typeof t[n]&&"type"!==n&&"constructor"!==n&&(t[n]=e(n),r[n].isReactClassApproved&&(t[n].isReactClassApproved=r[n].isReactClassApproved),t.__reactAutoBindMap&&t.__reactAutoBindMap[n]&&(t.__reactAutoBindMap[n]=t[n]))}function n(e){r={},Object.getOwnPropertyNames(e).forEach(function(t){r[t]=e[t]})}function o(e){i.push(e),i.forEach(function(e){Object.getOwnPropertyNames(r).forEach(function(n){t(e,n)})})}var r,i=[];return function(e){Object.prototype.hasOwnProperty.call(e,"__isAssimilatedByReactHotAPI")||(n(e),o(e),e.__isAssimilatedByReactHotAPI=!0)}}},function(e,t,n){"use strict";var o=n(357);e.exports=function(e,t){if("function"!=typeof e)throw new Error("Expected getRootInstances to be a function.");var n={};return function(r,i){if(i=i||r.displayName||r.name,!i)return console.error("Hot reload is disabled for one of your types. To enable it, pass a string uniquely identifying this class within this current module as a second parameter to makeHot."),r;n[i]||(n[i]=o(e,t));var s=n[i];return s(r)}}},function(e,t,n){"use strict";function o(e){if(!e.hasOwnProperty("type"))return!1;var t=Object.getOwnPropertyDescriptor(e,"type");return"function"==typeof t.get?!1:!0}function r(e){var t=e.prototype,n=t&&"function"==typeof t.render;return!n&&o(e)&&(t=e.type.prototype),t}var i=n(355),s=n(358);e.exports=function(e,t){var n=i(),o=null;return function(i){var a=r(i);return n(a),o&&s(e,t),o||(o=i)}}},function(e,t,n){var o=n(354),r=!1;e.exports=function(e,t){function n(){r=!1;var n,i=e();for(var s in i)i.hasOwnProperty(s)&&(n=i[s],n=n._reactInternalInstance||n,o(n,t))}r||setTimeout(n)}},function(e,t){"use strict";function n(e,t,o){if(t(e,o),e._renderedComponent)n(e._renderedComponent,t,o);else for(var r in e._renderedChildren)n(e._renderedChildren[r],t,o)}e.exports=n},,,,,,,,,,,,,,,,,,,function(e,t,n){"use strict";function o(e,t,n){var o=p(e)?b.startShouldSetResponder:h(e)?b.moveShouldSetResponder:b.scrollShouldSetResponder,r=y||t,i=l.getPooled(o,r,n);a.accumulateTwoPhaseDispatches(i);var s=g(i);if(i.isPersistent()||i.constructor.release(i),!s||s===y)return null;var u,d=l.getPooled(b.responderGrant,s,n);if(a.accumulateDirectDispatches(d),y){var v=l.getPooled(b.responderTerminationRequest,y,n);a.accumulateDirectDispatches(v);var T=!m(v)||f(v);if(v.isPersistent()||v.constructor.release(v),T){var x=b.responderTerminate,w=l.getPooled(x,y,n);a.accumulateDirectDispatches(w),u=c(u,[d,w]),y=s}else{var E=l.getPooled(b.responderReject,s,n);a.accumulateDirectDispatches(E),u=c(u,E)}}else u=c(u,d),y=s;return u}function r(e){return e===i.topLevelTypes.topScroll||p(e)||v&&h(e)}var i=n(18),s=n(74),a=n(39),l=n(36),c=n(97),u=n(25),p=s.isStartish,h=s.isMoveish,d=s.isEndish,f=s.executeDirectDispatch,m=s.hasDispatches,g=s.executeDispatchesInOrderStopAtTrue,y=null,v=!1,b={startShouldSetResponder:{phasedRegistrationNames:{bubbled:u({onStartShouldSetResponder:null}),captured:u({onStartShouldSetResponderCapture:null})}},scrollShouldSetResponder:{phasedRegistrationNames:{bubbled:u({onScrollShouldSetResponder:null}),captured:u({onScrollShouldSetResponderCapture:null})}},moveShouldSetResponder:{phasedRegistrationNames:{bubbled:u({onMoveShouldSetResponder:null}),captured:u({onMoveShouldSetResponderCapture:null})}},responderMove:{registrationName:u({onResponderMove:null})},responderRelease:{registrationName:u({onResponderRelease:null})},responderTerminationRequest:{registrationName:u({onResponderTerminationRequest:null})},responderGrant:{registrationName:u({onResponderGrant:null})},responderReject:{registrationName:u({onResponderReject:null})},responderTerminate:{registrationName:u({onResponderTerminate:null})}},T={getResponderID:function(){return y},eventTypes:b,extractEvents:function(e,t,n,i){var s;if(y&&p(e)&&(y=null),p(e)?v=!0:d(e)&&(v=!1),r(e)){var u=o(e,n,i);u&&(s=c(s,u))}var f=h(e)?b.responderMove:d(e)?b.responderRelease:p(e)?b.responderStart:null;if(f){var m=l.getPooled(f,y||"",i);a.accumulateDirectDispatches(m),s=c(s,m)}return f===b.responderRelease&&(y=null),s}};e.exports=T},function(e,t,n){"use strict";function o(e,t){var n=c.extractSingleTouch(t);return n?n[e.page]:e.page in t?t[e.page]:t[e.client]+u[e.envScroll]}function r(e,t){var n=o(T.x,t),r=o(T.y,t);return Math.pow(Math.pow(n-e.x,2)+Math.pow(r-e.y,2),.5)}var i=n(18),s=n(74),a=n(39),l=n(58),c=n(380),u=n(129),p=n(25),h=i.topLevelTypes,d=s.isStartish,f=s.isEndish,m=function(e){var t=[h.topTouchCancel,h.topTouchEnd,h.topTouchStart,h.topTouchMove];return t.indexOf(e)>=0},g=10,y=750,v={x:null,y:null},b=null,T={x:{page:"pageX",client:"clientX",envScroll:"currentPageScrollLeft"},y:{page:"pageY",client:"clientY",envScroll:"currentPageScrollTop"}},x=[h.topMouseDown,h.topMouseMove,h.topMouseUp];s.useTouchEvents&&x.push(h.topTouchEnd,h.topTouchStart,h.topTouchMove);var w={touchTap:{phasedRegistrationNames:{bubbled:p({onTouchTap:null}),captured:p({onTouchTapCapture:null})},dependencies:x}},E=function(){return Date.now?Date.now():+new Date},C={tapMoveThreshold:g,ignoreMouseThreshold:y,eventTypes:w,extractEvents:function(e,t,n,i){if(m(e))b=E();else if(b&&E()-b<y)return null;if(!d(e)&&!f(e))return null;var s=null,c=r(v,i);return f(e)&&g>c&&(s=l.getPooled(w.touchTap,n,i)),d(e)?(v.x=o(T.x,i),v.y=o(T.y,i)):f(e)&&(v.x=0,v.y=0),a.accumulateTwoPhaseDispatches(s),s}};e.exports=C},function(e,t){var n={extractSingleTouch:function(e){var t=e.touches,n=e.changedTouches,o=t&&t.length>0,r=n&&n.length>0;return!o&&r?n[0]:o?t[0]:e}};e.exports=n},function(e,t,n){e.exports=function(){var e=n(1);e.initializeTouchEvents(!0),n(46).injection.injectEventPluginsByName({ResponderEventPlugin:n(378),TapEventPlugin:n(379)})}},,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,,function(e,t,n){function o(e,t){for(var n=0;n<e.length;n++){var o=e[n],r=p[o.id];if(r){r.refs++;for(var i=0;i<r.parts.length;i++)r.parts[i](o.parts[i]);for(;i<o.parts.length;i++)r.parts.push(a(o.parts[i],t))}else{for(var s=[],i=0;i<o.parts.length;i++)s.push(a(o.parts[i],t));p[o.id]={id:o.id,refs:1,parts:s}}}}function r(e){for(var t=[],n={},o=0;o<e.length;o++){var r=e[o],i=r[0],s=r[1],a=r[2],l=r[3],c={css:s,media:a,sourceMap:l};n[i]?n[i].parts.push(c):t.push(n[i]={id:i,parts:[c]})}return t}function i(){var e=document.createElement("style"),t=f();return e.type="text/css",t.appendChild(e),e}function s(){var e=document.createElement("link"),t=f();return e.rel="stylesheet",t.appendChild(e),e}function a(e,t){var n,o,r;if(t.singleton){var a=g++;n=m||(m=i()),o=l.bind(null,n,a,!1),r=l.bind(null,n,a,!0)}else e.sourceMap&&"function"==typeof URL&&"function"==typeof URL.createObjectURL&&"function"==typeof URL.revokeObjectURL&&"function"==typeof Blob&&"function"==typeof btoa?(n=s(),o=u.bind(null,n),r=function(){n.parentNode.removeChild(n),n.href&&URL.revokeObjectURL(n.href)}):(n=i(),o=c.bind(null,n),r=function(){n.parentNode.removeChild(n)});return o(e),function(t){if(t){if(t.css===e.css&&t.media===e.media&&t.sourceMap===e.sourceMap)return;o(e=t)}else r()}}function l(e,t,n,o){var r=n?"":o.css;if(e.styleSheet)e.styleSheet.cssText=y(t,r);else{var i=document.createTextNode(r),s=e.childNodes;s[t]&&e.removeChild(s[t]),s.length?e.insertBefore(i,s[t]):e.appendChild(i)}}function c(e,t){var n=t.css,o=t.media;t.sourceMap;if(o&&e.setAttribute("media",o),e.styleSheet)e.styleSheet.cssText=n;else{for(;e.firstChild;)e.removeChild(e.firstChild);e.appendChild(document.createTextNode(n))}}function u(e,t){var n=t.css,o=(t.media,t.sourceMap);o&&(n+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(JSON.stringify(o))+" */");var r=new Blob([n],{type:"text/css"}),i=e.href;e.href=URL.createObjectURL(r),i&&URL.revokeObjectURL(i)}var p={},h=function(e){var t;return function(){return"undefined"==typeof t&&(t=e.apply(this,arguments)),t}},d=h(function(){return/msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase())}),f=h(function(){return document.head||document.getElementsByTagName("head")[0]}),m=null,g=0;e.exports=function(e,t){t=t||{},"undefined"==typeof t.singleton&&(t.singleton=d());var n=r(e);return o(n,t),function(e){for(var i=[],s=0;s<n.length;s++){var a=n[s],l=p[a.id];l.refs--,i.push(l)}if(e){var c=r(e);o(c,t)}for(var s=0;s<i.length;s++){var l=i[s];if(0===l.refs){for(var u=0;u<l.parts.length;u++)l.parts[u]();delete p[l.id]}}}};var y=function(){var e=[];return function(t,n){return e[t]=n,e.filter(Boolean).join("\n")}}()},function(e,t,n){var o=n(102);"string"==typeof o&&(o=[[e.id,o,""]]);var r=n(466)(o,{});e.hot.accept(102,function(){var t=n(102);"string"==typeof t&&(t=[[e.id,t,""]]),r(t)}),e.hot.dispose(function(){r()})},,,,function(e,t,n){(function(e){function t(){i?(console.log("[WDS] App hot update..."),window.postMessage("webpackHotUpdate"+a,"*")):(console.log("[WDS] App updated. Reloading..."),window.location.reload())}var o=n(472),r=n(503);document.getElementsByTagName("script");o=o.connect(e.substr(1));var i=!1,s=!0,a="";o.on("hot",function(){i=!0,console.log("[WDS] Hot Module Replacement enabled.")}),o.on("invalid",function(){console.log("[WDS] App updated. Recompiling...")}),o.on("hash",function(e){a=e}),o.on("still-ok",function(){console.log("[WDS] Nothing changed.")}),o.on("ok",function(){return s?s=!1:void t()}),o.on("warnings",function(e){console.log("[WDS] Warnings while compiling.");for(var n=0;n<e.length;n++)console.warn(r(e[n]));return s?s=!1:void t()}),o.on("errors",function(e){console.log("[WDS] Errors while compiling.");for(var n=0;n<e.length;n++)console.error(r(e[n]));return s?s=!1:void t()}),o.on("proxy-error",function(e){console.log("[WDS] Proxy error.");for(var n=0;n<e.length;n++)console.error(r(e[n]));return s?s=!1:void t()}),o.on("disconnect",function(){console.error("[WDS] Disconnected!")})}).call(t,"?http://localhost:8001")},function(e,t,n){e.exports=n(473)},function(e,t,n){function o(e,t){"object"==typeof e&&(t=e,e=void 0),t=t||{};var n,o=r(e),i=o.source,c=o.id;return t.forceNew||t["force new connection"]||!1===t.multiplex?(a("ignoring socket cache for %s",i),n=s(i,t)):(l[c]||(a("new io instance for %s",i),l[c]=s(i,t)),n=l[c]),n.socket(o.path)}var r=n(225),i=n(142),s=n(222),a=n(77)("socket.io-client");e.exports=t=o;var l=t.managers={};t.protocol=i.protocol,t.connect=o,t.Manager=n(222),t.Socket=n(224)},function(e,t){function n(e){e=e||{},this.ms=e.min||100,this.max=e.max||1e4,this.factor=e.factor||2,this.jitter=e.jitter>0&&e.jitter<=1?e.jitter:0,this.attempts=0}e.exports=n,n.prototype.duration=function(){var e=this.ms*Math.pow(this.factor,this.attempts++);if(this.jitter){var t=Math.random(),n=Math.floor(t*this.jitter*e);e=0==(1&Math.floor(10*t))?e-n:e+n}return 0|Math.min(e,this.max)},n.prototype.reset=function(){this.attempts=0},n.prototype.setMin=function(e){this.ms=e},n.prototype.setMax=function(e){this.max=e},n.prototype.setJitter=function(e){this.jitter=e}},function(e,t,n){e.exports=n(476)},function(e,t,n){e.exports=n(477),e.exports.parser=n(60)},function(e,t,n){(function(t){function o(e,n){if(!(this instanceof o))return new o(e,n);if(n=n||{},e&&"object"==typeof e&&(n=e,e=null),e&&(e=u(e),n.host=e.host,n.secure="https"==e.protocol||"wss"==e.protocol,n.port=e.port,e.query&&(n.query=e.query)),this.secure=null!=n.secure?n.secure:t.location&&"https:"==location.protocol,n.host){var r=n.host.split(":");n.hostname=r.shift(),r.length?n.port=r.pop():n.port||(n.port=this.secure?"443":"80")}this.agent=n.agent||!1,this.hostname=n.hostname||(t.location?location.hostname:"localhost"),this.port=n.port||(t.location&&location.port?location.port:this.secure?443:80),this.query=n.query||{},"string"==typeof this.query&&(this.query=h.decode(this.query)),this.upgrade=!1!==n.upgrade,this.path=(n.path||"/engine.io").replace(/\/$/,"")+"/",this.forceJSONP=!!n.forceJSONP,this.jsonp=!1!==n.jsonp,this.forceBase64=!!n.forceBase64,this.enablesXDR=!!n.enablesXDR,this.timestampParam=n.timestampParam||"t",this.timestampRequests=n.timestampRequests,this.transports=n.transports||["polling","websocket"],this.readyState="",this.writeBuffer=[],this.callbackBuffer=[],this.policyPort=n.policyPort||843,this.rememberUpgrade=n.rememberUpgrade||!1,this.binaryType=null,this.onlyBinaryUpgrades=n.onlyBinaryUpgrades,this.pfx=n.pfx||null,this.key=n.key||null,this.passphrase=n.passphrase||null,this.cert=n.cert||null,this.ca=n.ca||null,this.ciphers=n.ciphers||null,this.rejectUnauthorized=n.rejectUnauthorized||null,this.open()}function r(e){var t={};for(var n in e)e.hasOwnProperty(n)&&(t[n]=e[n]);return t}var i=n(227),s=n(59),a=n(100)("engine.io-client:socket"),l=n(229),c=n(60),u=n(494),p=n(493),h=n(141);e.exports=o,o.priorWebsocketSuccess=!1,s(o.prototype),o.protocol=c.protocol,o.Socket=o,o.Transport=n(139),o.transports=n(227),o.parser=n(60),o.prototype.createTransport=function(e){a('creating transport "%s"',e);var t=r(this.query);t.EIO=c.protocol,t.transport=e,this.id&&(t.sid=this.id);var n=new i[e]({agent:this.agent,hostname:this.hostname,port:this.port,secure:this.secure,path:this.path,query:t,forceJSONP:this.forceJSONP,jsonp:this.jsonp,forceBase64:this.forceBase64,enablesXDR:this.enablesXDR,timestampRequests:this.timestampRequests,timestampParam:this.timestampParam,policyPort:this.policyPort,socket:this,pfx:this.pfx,key:this.key,passphrase:this.passphrase,cert:this.cert,ca:this.ca,ciphers:this.ciphers,rejectUnauthorized:this.rejectUnauthorized});return n},o.prototype.open=function(){var e;if(this.rememberUpgrade&&o.priorWebsocketSuccess&&-1!=this.transports.indexOf("websocket"))e="websocket";else{if(0==this.transports.length){var t=this;return void setTimeout(function(){t.emit("error","No transports available")},0)}e=this.transports[0]}this.readyState="opening";var e;try{e=this.createTransport(e)}catch(n){return this.transports.shift(),void this.open()}e.open(),this.setTransport(e)},o.prototype.setTransport=function(e){a("setting transport %s",e.name);var t=this;this.transport&&(a("clearing existing transport %s",this.transport.name),this.transport.removeAllListeners()),this.transport=e,e.on("drain",function(){t.onDrain()}).on("packet",function(e){t.onPacket(e)}).on("error",function(e){t.onError(e)}).on("close",function(){t.onClose("transport close")})},o.prototype.probe=function(e){function t(){if(h.onlyBinaryUpgrades){var t=!this.supportsBinary&&h.transport.supportsBinary;p=p||t}p||(a('probe transport "%s" opened',e),u.send([{type:"ping",data:"probe"}]),u.once("packet",function(t){if(!p)if("pong"==t.type&&"probe"==t.data){if(a('probe transport "%s" pong',e),h.upgrading=!0,h.emit("upgrading",u),!u)return;o.priorWebsocketSuccess="websocket"==u.name,a('pausing current transport "%s"',h.transport.name),h.transport.pause(function(){p||"closed"!=h.readyState&&(a("changing transport and sending upgrade packet"),c(),h.setTransport(u),u.send([{type:"upgrade"}]),h.emit("upgrade",u),u=null,
-h.upgrading=!1,h.flush())})}else{a('probe transport "%s" failed',e);var n=new Error("probe error");n.transport=u.name,h.emit("upgradeError",n)}}))}function n(){p||(p=!0,c(),u.close(),u=null)}function r(t){var o=new Error("probe error: "+t);o.transport=u.name,n(),a('probe transport "%s" failed because of error: %s',e,t),h.emit("upgradeError",o)}function i(){r("transport closed")}function s(){r("socket closed")}function l(e){u&&e.name!=u.name&&(a('"%s" works - aborting "%s"',e.name,u.name),n())}function c(){u.removeListener("open",t),u.removeListener("error",r),u.removeListener("close",i),h.removeListener("close",s),h.removeListener("upgrading",l)}a('probing transport "%s"',e);var u=this.createTransport(e,{probe:1}),p=!1,h=this;o.priorWebsocketSuccess=!1,u.once("open",t),u.once("error",r),u.once("close",i),this.once("close",s),this.once("upgrading",l),u.open()},o.prototype.onOpen=function(){if(a("socket open"),this.readyState="open",o.priorWebsocketSuccess="websocket"==this.transport.name,this.emit("open"),this.flush(),"open"==this.readyState&&this.upgrade&&this.transport.pause){a("starting upgrade probes");for(var e=0,t=this.upgrades.length;t>e;e++)this.probe(this.upgrades[e])}},o.prototype.onPacket=function(e){if("opening"==this.readyState||"open"==this.readyState)switch(a('socket receive: type "%s", data "%s"',e.type,e.data),this.emit("packet",e),this.emit("heartbeat"),e.type){case"open":this.onHandshake(p(e.data));break;case"pong":this.setPing();break;case"error":var t=new Error("server error");t.code=e.data,this.emit("error",t);break;case"message":this.emit("data",e.data),this.emit("message",e.data)}else a('packet received with socket readyState "%s"',this.readyState)},o.prototype.onHandshake=function(e){this.emit("handshake",e),this.id=e.sid,this.transport.query.sid=e.sid,this.upgrades=this.filterUpgrades(e.upgrades),this.pingInterval=e.pingInterval,this.pingTimeout=e.pingTimeout,this.onOpen(),"closed"!=this.readyState&&(this.setPing(),this.removeListener("heartbeat",this.onHeartbeat),this.on("heartbeat",this.onHeartbeat))},o.prototype.onHeartbeat=function(e){clearTimeout(this.pingTimeoutTimer);var t=this;t.pingTimeoutTimer=setTimeout(function(){"closed"!=t.readyState&&t.onClose("ping timeout")},e||t.pingInterval+t.pingTimeout)},o.prototype.setPing=function(){var e=this;clearTimeout(e.pingIntervalTimer),e.pingIntervalTimer=setTimeout(function(){a("writing ping packet - expecting pong within %sms",e.pingTimeout),e.ping(),e.onHeartbeat(e.pingTimeout)},e.pingInterval)},o.prototype.ping=function(){this.sendPacket("ping")},o.prototype.onDrain=function(){for(var e=0;e<this.prevBufferLen;e++)this.callbackBuffer[e]&&this.callbackBuffer[e]();this.writeBuffer.splice(0,this.prevBufferLen),this.callbackBuffer.splice(0,this.prevBufferLen),this.prevBufferLen=0,0==this.writeBuffer.length?this.emit("drain"):this.flush()},o.prototype.flush=function(){"closed"!=this.readyState&&this.transport.writable&&!this.upgrading&&this.writeBuffer.length&&(a("flushing %d packets in socket",this.writeBuffer.length),this.transport.send(this.writeBuffer),this.prevBufferLen=this.writeBuffer.length,this.emit("flush"))},o.prototype.write=o.prototype.send=function(e,t){return this.sendPacket("message",e,t),this},o.prototype.sendPacket=function(e,t,n){if("closing"!=this.readyState&&"closed"!=this.readyState){var o={type:e,data:t};this.emit("packetCreate",o),this.writeBuffer.push(o),this.callbackBuffer.push(n),this.flush()}},o.prototype.close=function(){function e(){o.onClose("forced close"),a("socket closing - telling transport to close"),o.transport.close()}function t(){o.removeListener("upgrade",t),o.removeListener("upgradeError",t),e()}function n(){o.once("upgrade",t),o.once("upgradeError",t)}if("opening"==this.readyState||"open"==this.readyState){this.readyState="closing";var o=this;this.writeBuffer.length?this.once("drain",function(){this.upgrading?n():e()}):this.upgrading?n():e()}return this},o.prototype.onError=function(e){a("socket error %j",e),o.priorWebsocketSuccess=!1,this.emit("error",e),this.onClose("transport error",e)},o.prototype.onClose=function(e,t){if("opening"==this.readyState||"open"==this.readyState||"closing"==this.readyState){a('socket close with reason: "%s"',e);var n=this;clearTimeout(this.pingIntervalTimer),clearTimeout(this.pingTimeoutTimer),setTimeout(function(){n.writeBuffer=[],n.callbackBuffer=[],n.prevBufferLen=0},0),this.transport.removeAllListeners("close"),this.transport.close(),this.transport.removeAllListeners(),this.readyState="closed",this.id=null,this.emit("close",e,t)}},o.prototype.filterUpgrades=function(e){for(var t=[],n=0,o=e.length;o>n;n++)~l(this.transports,e[n])&&t.push(e[n]);return t}}).call(t,function(){return this}())},function(e,t,n){(function(t){function o(){}function r(e){i.call(this,e),this.query=this.query||{},a||(t.___eio||(t.___eio=[]),a=t.___eio),this.index=a.length;var n=this;a.push(function(e){n.onData(e)}),this.query.j=this.index,t.document&&t.addEventListener&&t.addEventListener("beforeunload",function(){n.script&&(n.script.onerror=o)},!1)}var i=n(228),s=n(99);e.exports=r;var a,l=/\n/g,c=/\\n/g;s(r,i),r.prototype.supportsBinary=!1,r.prototype.doClose=function(){this.script&&(this.script.parentNode.removeChild(this.script),this.script=null),this.form&&(this.form.parentNode.removeChild(this.form),this.form=null,this.iframe=null),i.prototype.doClose.call(this)},r.prototype.doPoll=function(){var e=this,t=document.createElement("script");this.script&&(this.script.parentNode.removeChild(this.script),this.script=null),t.async=!0,t.src=this.uri(),t.onerror=function(t){e.onError("jsonp poll error",t)};var n=document.getElementsByTagName("script")[0];n.parentNode.insertBefore(t,n),this.script=t;var o="undefined"!=typeof navigator&&/gecko/i.test(navigator.userAgent);o&&setTimeout(function(){var e=document.createElement("iframe");document.body.appendChild(e),document.body.removeChild(e)},100)},r.prototype.doWrite=function(e,t){function n(){o(),t()}function o(){if(r.iframe)try{r.form.removeChild(r.iframe)}catch(e){r.onError("jsonp polling iframe removal error",e)}try{var t='<iframe src="javascript:0" name="'+r.iframeId+'">';i=document.createElement(t)}catch(e){i=document.createElement("iframe"),i.name=r.iframeId,i.src="javascript:0"}i.id=r.iframeId,r.form.appendChild(i),r.iframe=i}var r=this;if(!this.form){var i,s=document.createElement("form"),a=document.createElement("textarea"),u=this.iframeId="eio_iframe_"+this.index;s.className="socketio",s.style.position="absolute",s.style.top="-1000px",s.style.left="-1000px",s.target=u,s.method="POST",s.setAttribute("accept-charset","utf-8"),a.name="d",s.appendChild(a),document.body.appendChild(s),this.form=s,this.area=a}this.form.action=this.uri(),o(),e=e.replace(c,"\\\n"),this.area.value=e.replace(l,"\\n");try{this.form.submit()}catch(p){}this.iframe.attachEvent?this.iframe.onreadystatechange=function(){"complete"==r.iframe.readyState&&n()}:this.iframe.onload=n}}).call(t,function(){return this}())},function(e,t,n){(function(t){function o(){}function r(e){if(l.call(this,e),t.location){var n="https:"==location.protocol,o=location.port;o||(o=n?443:80),this.xd=e.hostname!=t.location.hostname||o!=e.port,this.xs=e.secure!=n}}function i(e){this.method=e.method||"GET",this.uri=e.uri,this.xd=!!e.xd,this.xs=!!e.xs,this.async=!1!==e.async,this.data=void 0!=e.data?e.data:null,this.agent=e.agent,this.isBinary=e.isBinary,this.supportsBinary=e.supportsBinary,this.enablesXDR=e.enablesXDR,this.pfx=e.pfx,this.key=e.key,this.passphrase=e.passphrase,this.cert=e.cert,this.ca=e.ca,this.ciphers=e.ciphers,this.rejectUnauthorized=e.rejectUnauthorized,this.create()}function s(){for(var e in i.requests)i.requests.hasOwnProperty(e)&&i.requests[e].abort()}var a=n(140),l=n(228),c=n(59),u=n(99),p=n(100)("engine.io-client:polling-xhr");e.exports=r,e.exports.Request=i,u(r,l),r.prototype.supportsBinary=!0,r.prototype.request=function(e){return e=e||{},e.uri=this.uri(),e.xd=this.xd,e.xs=this.xs,e.agent=this.agent||!1,e.supportsBinary=this.supportsBinary,e.enablesXDR=this.enablesXDR,e.pfx=this.pfx,e.key=this.key,e.passphrase=this.passphrase,e.cert=this.cert,e.ca=this.ca,e.ciphers=this.ciphers,e.rejectUnauthorized=this.rejectUnauthorized,new i(e)},r.prototype.doWrite=function(e,t){var n="string"!=typeof e&&void 0!==e,o=this.request({method:"POST",data:e,isBinary:n}),r=this;o.on("success",t),o.on("error",function(e){r.onError("xhr post error",e)}),this.sendXhr=o},r.prototype.doPoll=function(){p("xhr poll");var e=this.request(),t=this;e.on("data",function(e){t.onData(e)}),e.on("error",function(e){t.onError("xhr poll error",e)}),this.pollXhr=e},c(i.prototype),i.prototype.create=function(){var e={agent:this.agent,xdomain:this.xd,xscheme:this.xs,enablesXDR:this.enablesXDR};e.pfx=this.pfx,e.key=this.key,e.passphrase=this.passphrase,e.cert=this.cert,e.ca=this.ca,e.ciphers=this.ciphers,e.rejectUnauthorized=this.rejectUnauthorized;var n=this.xhr=new a(e),o=this;try{if(p("xhr open %s: %s",this.method,this.uri),n.open(this.method,this.uri,this.async),this.supportsBinary&&(n.responseType="arraybuffer"),"POST"==this.method)try{this.isBinary?n.setRequestHeader("Content-type","application/octet-stream"):n.setRequestHeader("Content-type","text/plain;charset=UTF-8")}catch(r){}"withCredentials"in n&&(n.withCredentials=!0),this.hasXDR()?(n.onload=function(){o.onLoad()},n.onerror=function(){o.onError(n.responseText)}):n.onreadystatechange=function(){4==n.readyState&&(200==n.status||1223==n.status?o.onLoad():setTimeout(function(){o.onError(n.status)},0))},p("xhr data %s",this.data),n.send(this.data)}catch(r){return void setTimeout(function(){o.onError(r)},0)}t.document&&(this.index=i.requestsCount++,i.requests[this.index]=this)},i.prototype.onSuccess=function(){this.emit("success"),this.cleanup()},i.prototype.onData=function(e){this.emit("data",e),this.onSuccess()},i.prototype.onError=function(e){this.emit("error",e),this.cleanup(!0)},i.prototype.cleanup=function(e){if("undefined"!=typeof this.xhr&&null!==this.xhr){if(this.hasXDR()?this.xhr.onload=this.xhr.onerror=o:this.xhr.onreadystatechange=o,e)try{this.xhr.abort()}catch(n){}t.document&&delete i.requests[this.index],this.xhr=null}},i.prototype.onLoad=function(){var e;try{var t;try{t=this.xhr.getResponseHeader("Content-Type").split(";")[0]}catch(n){}e="application/octet-stream"===t?this.xhr.response:this.supportsBinary?"ok":this.xhr.responseText}catch(n){this.onError(n)}null!=e&&this.onData(e)},i.prototype.hasXDR=function(){return"undefined"!=typeof t.XDomainRequest&&!this.xs&&this.enablesXDR},i.prototype.abort=function(){this.cleanup()},t.document&&(i.requestsCount=0,i.requests={},t.attachEvent?t.attachEvent("onunload",s):t.addEventListener&&t.addEventListener("beforeunload",s,!1))}).call(t,function(){return this}())},function(e,t,n){function o(e){var t=e&&e.forceBase64;t&&(this.supportsBinary=!1),r.call(this,e)}var r=n(139),i=n(60),s=n(141),a=n(99),l=n(100)("engine.io-client:websocket"),c=n(495);e.exports=o,a(o,r),o.prototype.name="websocket",o.prototype.supportsBinary=!0,o.prototype.doOpen=function(){if(this.check()){var e=this.uri(),t=void 0,n={agent:this.agent};n.pfx=this.pfx,n.key=this.key,n.passphrase=this.passphrase,n.cert=this.cert,n.ca=this.ca,n.ciphers=this.ciphers,n.rejectUnauthorized=this.rejectUnauthorized,this.ws=new c(e,t,n),void 0===this.ws.binaryType&&(this.supportsBinary=!1),this.ws.binaryType="arraybuffer",this.addEventListeners()}},o.prototype.addEventListeners=function(){var e=this;this.ws.onopen=function(){e.onOpen()},this.ws.onclose=function(){e.onClose()},this.ws.onmessage=function(t){e.onData(t.data)},this.ws.onerror=function(t){e.onError("websocket error",t)}},"undefined"!=typeof navigator&&/iPad|iPhone|iPod/i.test(navigator.userAgent)&&(o.prototype.onData=function(e){var t=this;setTimeout(function(){r.prototype.onData.call(t,e)},0)}),o.prototype.write=function(e){function t(){n.writable=!0,n.emit("drain")}var n=this;this.writable=!1;for(var o=0,r=e.length;r>o;o++)i.encodePacket(e[o],this.supportsBinary,function(e){try{n.ws.send(e)}catch(t){l("websocket closed before onclose event")}});setTimeout(t,0)},o.prototype.onClose=function(){r.prototype.onClose.call(this)},o.prototype.doClose=function(){"undefined"!=typeof this.ws&&this.ws.close()},o.prototype.uri=function(){var e=this.query||{},t=this.secure?"wss":"ws",n="";return this.port&&("wss"==t&&443!=this.port||"ws"==t&&80!=this.port)&&(n=":"+this.port),this.timestampRequests&&(e[this.timestampParam]=+new Date),this.supportsBinary||(e.b64=1),e=s.encode(e),e.length&&(e="?"+e),t+"://"+this.hostname+n+this.path+e},o.prototype.check=function(){return!(!c||"__initialize"in c&&this.name===o.prototype.name)}},function(e,t,n){function o(){return t.colors[u++%t.colors.length]}function r(e){function n(){}function r(){var e=r,n=+new Date,i=n-(c||n);e.diff=i,e.prev=c,e.curr=n,c=n,null==e.useColors&&(e.useColors=t.useColors()),null==e.color&&e.useColors&&(e.color=o());var s=Array.prototype.slice.call(arguments);s[0]=t.coerce(s[0]),"string"!=typeof s[0]&&(s=["%o"].concat(s));var a=0;s[0]=s[0].replace(/%([a-z%])/g,function(n,o){if("%%"===n)return n;a++;var r=t.formatters[o];if("function"==typeof r){var i=s[a];n=r.call(e,i),s.splice(a,1),a--}return n}),"function"==typeof t.formatArgs&&(s=t.formatArgs.apply(e,s));var l=r.log||t.log||console.log.bind(console);l.apply(e,s)}n.enabled=!1,r.enabled=!0;var i=t.enabled(e)?r:n;return i.namespace=e,i}function i(e){t.save(e);for(var n=(e||"").split(/[\s,]+/),o=n.length,r=0;o>r;r++)n[r]&&(e=n[r].replace(/\*/g,".*?"),"-"===e[0]?t.skips.push(new RegExp("^"+e.substr(1)+"$")):t.names.push(new RegExp("^"+e+"$")))}function s(){t.enable("")}function a(e){var n,o;for(n=0,o=t.skips.length;o>n;n++)if(t.skips[n].test(e))return!1;for(n=0,o=t.names.length;o>n;n++)if(t.names[n].test(e))return!0;return!1}function l(e){return e instanceof Error?e.stack||e.message:e}t=e.exports=r,t.coerce=l,t.disable=s,t.enable=i,t.enabled=a,t.humanize=n(482),t.names=[],t.skips=[],t.formatters={};var c,u=0},function(e,t){function n(e){var t=/^((?:\d+)?\.?\d+) *(ms|seconds?|s|minutes?|m|hours?|h|days?|d|years?|y)?$/i.exec(e);if(t){var n=parseFloat(t[1]),o=(t[2]||"ms").toLowerCase();switch(o){case"years":case"year":case"y":return n*u;case"days":case"day":case"d":return n*c;case"hours":case"hour":case"h":return n*l;case"minutes":case"minute":case"m":return n*a;case"seconds":case"second":case"s":return n*s;case"ms":return n}}}function o(e){return e>=c?Math.round(e/c)+"d":e>=l?Math.round(e/l)+"h":e>=a?Math.round(e/a)+"m":e>=s?Math.round(e/s)+"s":e+"ms"}function r(e){return i(e,c,"day")||i(e,l,"hour")||i(e,a,"minute")||i(e,s,"second")||e+" ms"}function i(e,t,n){return t>e?void 0:1.5*t>e?Math.floor(e/t)+" "+n:Math.ceil(e/t)+" "+n+"s"}var s=1e3,a=60*s,l=60*a,c=24*l,u=365.25*c;e.exports=function(e,t){return t=t||{},"string"==typeof e?n(e):t["long"]?r(e):o(e)}},function(e,t){e.exports=Object.keys||function(e){var t=[],n=Object.prototype.hasOwnProperty;for(var o in e)n.call(e,o)&&t.push(o);return t}},function(e,t){function n(e,t,n){function r(e,o){if(r.count<=0)throw new Error("after called too many times");--r.count,e?(i=!0,t(e),t=n):0!==r.count||i||t(null,o)}var i=!1;return n=n||o,r.count=e,0===e?t():r}function o(){}e.exports=n},function(e,t){e.exports=function(e,t,n){var o=e.byteLength;if(t=t||0,n=n||o,e.slice)return e.slice(t,n);if(0>t&&(t+=o),0>n&&(n+=o),n>o&&(n=o),t>=o||t>=n||0===o)return new ArrayBuffer(0);for(var r=new Uint8Array(e),i=new Uint8Array(n-t),s=t,a=0;n>s;s++,a++)i[a]=r[s];return i.buffer}},function(e,t){!function(e){"use strict";t.encode=function(t){var n,o=new Uint8Array(t),r=o.length,i="";for(n=0;r>n;n+=3)i+=e[o[n]>>2],i+=e[(3&o[n])<<4|o[n+1]>>4],i+=e[(15&o[n+1])<<2|o[n+2]>>6],i+=e[63&o[n+2]];return r%3===2?i=i.substring(0,i.length-1)+"=":r%3===1&&(i=i.substring(0,i.length-2)+"=="),i},t.decode=function(t){var n,o,r,i,s,a=.75*t.length,l=t.length,c=0;"="===t[t.length-1]&&(a--,"="===t[t.length-2]&&a--);var u=new ArrayBuffer(a),p=new Uint8Array(u);for(n=0;l>n;n+=4)o=e.indexOf(t[n]),r=e.indexOf(t[n+1]),i=e.indexOf(t[n+2]),s=e.indexOf(t[n+3]),p[c++]=o<<2|r>>4,p[c++]=(15&r)<<4|i>>2,p[c++]=(3&i)<<6|63&s;return u}}("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/")},function(e,t){(function(t){function n(e,t){t=t||{};for(var n=new o,r=0;r<e.length;r++)n.append(e[r]);return t.type?n.getBlob(t.type):n.getBlob()}var o=t.BlobBuilder||t.WebKitBlobBuilder||t.MSBlobBuilder||t.MozBlobBuilder,r=function(){try{var e=new Blob(["hi"]);return 2==e.size}catch(t){return!1}}(),i=o&&o.prototype.append&&o.prototype.getBlob;e.exports=function(){return r?t.Blob:i?n:void 0}()}).call(t,function(){return this}())},function(e,t,n){(function(t){function o(e){function n(e){if(!e)return!1;if(t.Buffer&&t.Buffer.isBuffer(e)||t.ArrayBuffer&&e instanceof ArrayBuffer||t.Blob&&e instanceof Blob||t.File&&e instanceof File)return!0;if(r(e)){for(var o=0;o<e.length;o++)if(n(e[o]))return!0}else if(e&&"object"==typeof e){e.toJSON&&(e=e.toJSON());for(var i in e)if(e.hasOwnProperty(i)&&n(e[i]))return!0}return!1}return n(e)}var r=n(489);e.exports=o}).call(t,function(){return this}())},function(e,t){e.exports=Array.isArray||function(e){return"[object Array]"==Object.prototype.toString.call(e)}},function(e,t,n){var o;(function(e,r){!function(i){function s(e){for(var t,n,o=[],r=0,i=e.length;i>r;)t=e.charCodeAt(r++),t>=55296&&56319>=t&&i>r?(n=e.charCodeAt(r++),56320==(64512&n)?o.push(((1023&t)<<10)+(1023&n)+65536):(o.push(t),r--)):o.push(t);return o}function a(e){for(var t,n=e.length,o=-1,r="";++o<n;)t=e[o],t>65535&&(t-=65536,r+=b(t>>>10&1023|55296),t=56320|1023&t),r+=b(t);return r}function l(e,t){return b(e>>t&63|128)}function c(e){if(0==(4294967168&e))return b(e);var t="";return 0==(4294965248&e)?t=b(e>>6&31|192):0==(4294901760&e)?(t=b(e>>12&15|224),t+=l(e,6)):0==(4292870144&e)&&(t=b(e>>18&7|240),t+=l(e,12),t+=l(e,6)),t+=b(63&e|128)}function u(e){for(var t,n=s(e),o=n.length,r=-1,i="";++r<o;)t=n[r],i+=c(t);return i}function p(){if(v>=y)throw Error("Invalid byte index");var e=255&g[v];if(v++,128==(192&e))return 63&e;throw Error("Invalid continuation byte")}function h(){var e,t,n,o,r;if(v>y)throw Error("Invalid byte index");if(v==y)return!1;if(e=255&g[v],v++,0==(128&e))return e;if(192==(224&e)){var t=p();if(r=(31&e)<<6|t,r>=128)return r;throw Error("Invalid continuation byte")}if(224==(240&e)){if(t=p(),n=p(),r=(15&e)<<12|t<<6|n,r>=2048)return r;throw Error("Invalid continuation byte")}if(240==(248&e)&&(t=p(),n=p(),o=p(),r=(15&e)<<18|t<<12|n<<6|o,r>=65536&&1114111>=r))return r;throw Error("Invalid UTF-8 detected")}function d(e){g=s(e),y=g.length,v=0;for(var t,n=[];(t=h())!==!1;)n.push(t);return a(n)}var f="object"==typeof t&&t,m=("object"==typeof e&&e&&e.exports==f&&e,"object"==typeof r&&r);(m.global===m||m.window===m)&&(i=m);var g,y,v,b=String.fromCharCode,T={version:"2.0.0",encode:u,decode:d};o=function(){return T}.call(t,n,t,e),!(void 0!==o&&(e.exports=o))}(this)}).call(t,n(9)(e),function(){return this}())},function(e,t,n){var o=n(492);try{e.exports="XMLHttpRequest"in o&&"withCredentials"in new o.XMLHttpRequest}catch(r){e.exports=!1}},function(e,t){e.exports=function(){return this}()},function(e,t){(function(t){var n=/^[\],:{}\s]*$/,o=/\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g,r=/"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g,i=/(?:^|:|,)(?:\s*\[)+/g,s=/^\s+/,a=/\s+$/;e.exports=function(e){return"string"==typeof e&&e?(e=e.replace(s,"").replace(a,""),t.JSON&&JSON.parse?JSON.parse(e):n.test(e.replace(o,"@").replace(r,"]").replace(i,""))?new Function("return "+e)():void 0):null}}).call(t,function(){return this}())},function(e,t){var n=/^(?:(?![^:@]+:[^:@\/]*@)(http|https|ws|wss):\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?((?:[a-f0-9]{0,4}:){2,7}[a-f0-9]{0,4}|[^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/,o=["source","protocol","authority","userInfo","user","password","host","port","relative","path","directory","file","query","anchor"];e.exports=function(e){var t=e,r=e.indexOf("["),i=e.indexOf("]");-1!=r&&-1!=i&&(e=e.substring(0,r)+e.substring(r,i).replace(/:/g,";")+e.substring(i,e.length));for(var s=n.exec(e||""),a={},l=14;l--;)a[o[l]]=s[l]||"";return-1!=r&&-1!=i&&(a.source=t,a.host=a.host.substring(1,a.host.length-1).replace(/;/g,":"),a.authority=a.authority.replace("[","").replace("]","").replace(/;/g,":"),a.ipv6uri=!0),a}},function(e,t){function n(e,t,n){var o;return o=t?new r(e,t):new r(e)}var o=function(){return this}(),r=o.WebSocket||o.MozWebSocket;e.exports=r?n:null,r&&(n.prototype=r.prototype)},function(e,t,n){(function(t){function o(e){function n(e){if(!e)return!1;if(t.Buffer&&t.Buffer.isBuffer(e)||t.ArrayBuffer&&e instanceof ArrayBuffer||t.Blob&&e instanceof Blob||t.File&&e instanceof File)return!0;if(r(e)){for(var o=0;o<e.length;o++)if(n(e[o]))return!0}else if(e&&"object"==typeof e){e.toJSON&&(e=e.toJSON());for(var i in e)if(Object.prototype.hasOwnProperty.call(e,i)&&n(e[i]))return!0}return!1}return n(e)}var r=n(497);e.exports=o}).call(t,function(){return this}())},function(e,t){e.exports=Array.isArray||function(e){return"[object Array]"==Object.prototype.toString.call(e)}},function(e,t){var n=Object.prototype.hasOwnProperty;t.keys=Object.keys||function(e){var t=[];for(var o in e)n.call(e,o)&&t.push(o);return t},t.values=function(e){var t=[];for(var o in e)n.call(e,o)&&t.push(e[o]);return t},t.merge=function(e,t){for(var o in t)n.call(t,o)&&(e[o]=t[o]);return e},t.length=function(e){return t.keys(e).length},t.isEmpty=function(e){return 0==t.length(e)}},function(e,t){var n=/^(?:(?![^:@]+:[^:@\/]*@)(http|https|ws|wss):\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?((?:[a-f0-9]{0,4}:){2,7}[a-f0-9]{0,4}|[^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/,o=["source","protocol","authority","userInfo","user","password","host","port","relative","path","directory","file","query","anchor"];e.exports=function(e){for(var t=n.exec(e||""),r={},i=14;i--;)r[o[i]]=t[i]||"";return r}},function(e,t,n){(function(e){var o=n(231),r=n(230);t.deconstructPacket=function(e){function t(e){if(!e)return e;if(r(e)){var i={_placeholder:!0,num:n.length};return n.push(e),i}if(o(e)){for(var s=new Array(e.length),a=0;a<e.length;a++)s[a]=t(e[a]);return s}if("object"==typeof e&&!(e instanceof Date)){var s={};for(var l in e)s[l]=t(e[l]);return s}return e}var n=[],i=e.data,s=e;return s.data=t(i),s.attachments=n.length,{packet:s,buffers:n}},t.reconstructPacket=function(e,t){function n(e){if(e&&e._placeholder){var r=t[e.num];return r}if(o(e)){for(var i=0;i<e.length;i++)e[i]=n(e[i]);return e}if(e&&"object"==typeof e){for(var s in e)e[s]=n(e[s]);return e}return e}return e.data=n(e.data),e.attachments=void 0,e},t.removeBlobs=function(t,n){function i(t,l,c){if(!t)return t;if(e.Blob&&t instanceof Blob||e.File&&t instanceof File){s++;var u=new FileReader;u.onload=function(){c?c[l]=this.result:a=this.result,--s||n(a)},u.readAsArrayBuffer(t)}else if(o(t))for(var p=0;p<t.length;p++)i(t[p],p,t);else if(t&&"object"==typeof t&&!r(t))for(var h in t)i(t[h],h,t)}var s=0,a=t;i(a),s||n(a)}}).call(t,function(){return this}())},function(e,t,n){var o;!function(r){function i(e){if(i[e]!==l)return i[e];var t;if("bug-string-char-index"==e)t="a"!="a"[0];else if("json"==e)t=i("json-stringify")&&i("json-parse");else{var n,o='{"a":[1,true,false,null,"\\u0000\\b\\n\\f\\r\\t"]}';if("json-stringify"==e){var r=h.stringify,s="function"==typeof r&&d;if(s){(n=function(){return 1}).toJSON=n;try{s="0"===r(0)&&"0"===r(new Number)&&'""'==r(new String)&&r(c)===l&&r(l)===l&&r()===l&&"1"===r(n)&&"[1]"==r([n])&&"[null]"==r([l])&&"null"==r(null)&&"[null,null,null]"==r([l,c,null])&&r({a:[n,!0,!1,null,"\x00\b\n\f\r	"]})==o&&"1"===r(null,n)&&"[\n 1,\n 2\n]"==r([1,2],null,1)&&'"-271821-04-20T00:00:00.000Z"'==r(new Date(-864e13))&&'"+275760-09-13T00:00:00.000Z"'==r(new Date(864e13))&&'"-000001-01-01T00:00:00.000Z"'==r(new Date(-621987552e5))&&'"1969-12-31T23:59:59.999Z"'==r(new Date(-1))}catch(a){s=!1}}t=s}if("json-parse"==e){var u=h.parse;if("function"==typeof u)try{if(0===u("0")&&!u(!1)){n=u(o);var p=5==n.a.length&&1===n.a[0];if(p){try{p=!u('"	"')}catch(a){}if(p)try{p=1!==u("01")}catch(a){}if(p)try{p=1!==u("1.")}catch(a){}}}}catch(a){p=!1}t=p}}return i[e]=!!t}var s,a,l,c={}.toString,u=n(505),p="object"==typeof JSON&&JSON,h="object"==typeof t&&t&&!t.nodeType&&t;h&&p?(h.stringify=p.stringify,h.parse=p.parse):h=r.JSON=p||{};var d=new Date(-0xc782b5b800cec);try{d=-109252==d.getUTCFullYear()&&0===d.getUTCMonth()&&1===d.getUTCDate()&&10==d.getUTCHours()&&37==d.getUTCMinutes()&&6==d.getUTCSeconds()&&708==d.getUTCMilliseconds()}catch(f){}if(!i("json")){var m="[object Function]",g="[object Date]",y="[object Number]",v="[object String]",b="[object Array]",T="[object Boolean]",x=i("bug-string-char-index");if(!d)var w=Math.floor,E=[0,31,59,90,120,151,181,212,243,273,304,334],C=function(e,t){return E[t]+365*(e-1970)+w((e-1969+(t=+(t>1)))/4)-w((e-1901+t)/100)+w((e-1601+t)/400)};(s={}.hasOwnProperty)||(s=function(e){var t,n={};return(n.__proto__=null,n.__proto__={toString:1},n).toString!=c?s=function(e){var t=this.__proto__,n=e in(this.__proto__=null,this);return this.__proto__=t,n}:(t=n.constructor,s=function(e){var n=(this.constructor||t).prototype;return e in this&&!(e in n&&this[e]===n[e])}),n=null,s.call(this,e)});var _={"boolean":1,number:1,string:1,undefined:1},S=function(e,t){var n=typeof e[t];return"object"==n?!!e[t]:!_[n]};if(a=function(e,t){var n,o,r,i=0;(n=function(){this.valueOf=0}).prototype.valueOf=0,o=new n;for(r in o)s.call(o,r)&&i++;return n=o=null,i?a=2==i?function(e,t){var n,o={},r=c.call(e)==m;for(n in e)r&&"prototype"==n||s.call(o,n)||!(o[n]=1)||!s.call(e,n)||t(n)}:function(e,t){var n,o,r=c.call(e)==m;for(n in e)r&&"prototype"==n||!s.call(e,n)||(o="constructor"===n)||t(n);(o||s.call(e,n="constructor"))&&t(n)}:(o=["valueOf","toString","toLocaleString","propertyIsEnumerable","isPrototypeOf","hasOwnProperty","constructor"],a=function(e,t){var n,r,i=c.call(e)==m,a=!i&&"function"!=typeof e.constructor&&S(e,"hasOwnProperty")?e.hasOwnProperty:s;for(n in e)i&&"prototype"==n||!a.call(e,n)||t(n);for(r=o.length;n=o[--r];a.call(e,n)&&t(n));}),a(e,t)},!i("json-stringify")){var D={92:"\\\\",34:'\\"',8:"\\b",12:"\\f",10:"\\n",13:"\\r",9:"\\t"},k="000000",P=function(e,t){return(k+(t||0)).slice(-e)},O="\\u00",N=function(e){var t,n='"',o=0,r=e.length,i=r>10&&x;for(i&&(t=e.split(""));r>o;o++){var s=e.charCodeAt(o);switch(s){case 8:case 9:case 10:case 12:case 13:case 34:case 92:n+=D[s];break;default:if(32>s){n+=O+P(2,s.toString(16));break}n+=i?t[o]:x?e.charAt(o):e[o]}}return n+'"'},M=function(e,t,n,o,r,i,u){var p,h,d,f,m,x,E,_,S,D,k,O,R,A,I,L;try{p=t[e]}catch(j){}if("object"==typeof p&&p)if(h=c.call(p),h!=g||s.call(p,"toJSON"))"function"==typeof p.toJSON&&(h!=y&&h!=v&&h!=b||s.call(p,"toJSON"))&&(p=p.toJSON(e));else if(p>-1/0&&1/0>p){if(C){for(m=w(p/864e5),d=w(m/365.2425)+1970-1;C(d+1,0)<=m;d++);for(f=w((m-C(d,0))/30.42);C(d,f+1)<=m;f++);m=1+m-C(d,f),x=(p%864e5+864e5)%864e5,E=w(x/36e5)%24,_=w(x/6e4)%60,S=w(x/1e3)%60,D=x%1e3}else d=p.getUTCFullYear(),f=p.getUTCMonth(),m=p.getUTCDate(),E=p.getUTCHours(),_=p.getUTCMinutes(),S=p.getUTCSeconds(),D=p.getUTCMilliseconds();p=(0>=d||d>=1e4?(0>d?"-":"+")+P(6,0>d?-d:d):P(4,d))+"-"+P(2,f+1)+"-"+P(2,m)+"T"+P(2,E)+":"+P(2,_)+":"+P(2,S)+"."+P(3,D)+"Z"}else p=null;if(n&&(p=n.call(t,e,p)),null===p)return"null";if(h=c.call(p),h==T)return""+p;if(h==y)return p>-1/0&&1/0>p?""+p:"null";if(h==v)return N(""+p);if("object"==typeof p){for(A=u.length;A--;)if(u[A]===p)throw TypeError();if(u.push(p),k=[],I=i,i+=r,h==b){for(R=0,A=p.length;A>R;R++)O=M(R,p,n,o,r,i,u),k.push(O===l?"null":O);L=k.length?r?"[\n"+i+k.join(",\n"+i)+"\n"+I+"]":"["+k.join(",")+"]":"[]"}else a(o||p,function(e){var t=M(e,p,n,o,r,i,u);t!==l&&k.push(N(e)+":"+(r?" ":"")+t)}),L=k.length?r?"{\n"+i+k.join(",\n"+i)+"\n"+I+"}":"{"+k.join(",")+"}":"{}";return u.pop(),L}};h.stringify=function(e,t,n){var o,r,i,s;if("function"==typeof t||"object"==typeof t&&t)if((s=c.call(t))==m)r=t;else if(s==b){i={};for(var a,l=0,u=t.length;u>l;a=t[l++],s=c.call(a),(s==v||s==y)&&(i[a]=1));}if(n)if((s=c.call(n))==y){if((n-=n%1)>0)for(o="",n>10&&(n=10);o.length<n;o+=" ");}else s==v&&(o=n.length<=10?n:n.slice(0,10));return M("",(a={},a[""]=e,a),r,i,o,"",[])}}if(!i("json-parse")){var R,A,I=String.fromCharCode,L={92:"\\",34:'"',47:"/",98:"\b",116:"	",110:"\n",102:"\f",114:"\r"},j=function(){throw R=A=null,SyntaxError()},B=function(){for(var e,t,n,o,r,i=A,s=i.length;s>R;)switch(r=i.charCodeAt(R)){case 9:case 10:case 13:case 32:R++;break;case 123:case 125:case 91:case 93:case 58:case 44:return e=x?i.charAt(R):i[R],R++,e;case 34:for(e="@",R++;s>R;)if(r=i.charCodeAt(R),32>r)j();else if(92==r)switch(r=i.charCodeAt(++R)){case 92:case 34:case 47:case 98:case 116:case 110:case 102:case 114:e+=L[r],R++;break;case 117:for(t=++R,n=R+4;n>R;R++)r=i.charCodeAt(R),r>=48&&57>=r||r>=97&&102>=r||r>=65&&70>=r||j();e+=I("0x"+i.slice(t,R));break;default:j()}else{if(34==r)break;for(r=i.charCodeAt(R),t=R;r>=32&&92!=r&&34!=r;)r=i.charCodeAt(++R);e+=i.slice(t,R)}if(34==i.charCodeAt(R))return R++,e;j();default:if(t=R,45==r&&(o=!0,r=i.charCodeAt(++R)),r>=48&&57>=r){for(48==r&&(r=i.charCodeAt(R+1),r>=48&&57>=r)&&j(),o=!1;s>R&&(r=i.charCodeAt(R),r>=48&&57>=r);R++);if(46==i.charCodeAt(R)){for(n=++R;s>n&&(r=i.charCodeAt(n),r>=48&&57>=r);n++);n==R&&j(),R=n}if(r=i.charCodeAt(R),101==r||69==r){for(r=i.charCodeAt(++R),(43==r||45==r)&&R++,n=R;s>n&&(r=i.charCodeAt(n),r>=48&&57>=r);n++);n==R&&j(),R=n}return+i.slice(t,R)}if(o&&j(),"true"==i.slice(R,R+4))return R+=4,!0;if("false"==i.slice(R,R+5))return R+=5,!1;if("null"==i.slice(R,R+4))return R+=4,null;j()}return"$"},H=function(e){var t,n;if("$"==e&&j(),"string"==typeof e){if("@"==(x?e.charAt(0):e[0]))return e.slice(1);if("["==e){for(t=[];e=B(),"]"!=e;n||(n=!0))n&&(","==e?(e=B(),"]"==e&&j()):j()),","==e&&j(),t.push(H(e));return t}if("{"==e){for(t={};e=B(),"}"!=e;n||(n=!0))n&&(","==e?(e=B(),"}"==e&&j()):j()),(","==e||"string"!=typeof e||"@"!=(x?e.charAt(0):e[0])||":"!=B())&&j(),t[e.slice(1)]=H(B());return t}j()}return e},F=function(e,t,n){var o=U(e,t,n);o===l?delete e[t]:e[t]=o},U=function(e,t,n){var o,r=e[t];if("object"==typeof r&&r)if(c.call(r)==b)for(o=r.length;o--;)F(r,o,n);else a(r,function(e){F(r,e,n)});return n.call(e,t,r)};h.parse=function(e,t){var n,o;return R=0,A=""+e,n=H(B()),"$"!=B()&&j(),R=A=null,t&&c.call(t)==m?U((o={},o[""]=n,o),"",t):n}}}u&&(o=function(){return h}.call(t,n,t,e),!(void 0!==o&&(e.exports=o)))}(this)},function(e,t){function n(e,t){var n=[];t=t||0;for(var o=t||0;o<e.length;o++)n[o-t]=e[o];return n}e.exports=n},function(e,t,n){"use strict";var o=n(504)();e.exports=function(e){return"string"==typeof e?e.replace(o,""):e}},function(e,t){"use strict";e.exports=function(){return/(?:(?:\u001b\[)|\u009b)(?:(?:[0-9]{1,3})?(?:(?:;[0-9]{0,3})*)?[A-M|f-m])|\u001b[A-M]/g}},function(e,t){(function(t){e.exports=t}).call(t,{})},function(e,t,n){var o,r=function(){return o.indexOf(n.h())>=0},i=function a(){e.hot.check(!0,function(t,o){return t?void(e.hot.status()in{abort:1,fail:1}?(console.warn("[HMR] Cannot apply update. Need to do a full reload!"),console.warn("[HMR] "+t.stack||t.message),window.location.reload()):console.warn("[HMR] Update failed: "+t.stack||t.message)):o?(r()||a(),n(507)(o,o),void(r()&&console.log("[HMR] App is up to date."))):(console.warn("[HMR] Cannot find update. Need to do a full reload!"),console.warn("[HMR] (Probably because of restarting the webpack-dev-server)"),void window.location.reload())})},s=window.addEventListener?function(e,t){window.addEventListener(e,t,!1)}:function(e,t){window.attachEvent("on"+e,t)};s("message",function(t){"string"==typeof t.data&&0===t.data.indexOf("webpackHotUpdate")&&(o=t.data,r()||"idle"!==e.hot.status()||(console.log("[HMR] Checking for updates on the server..."),i()))}),console.log("[HMR] Waiting for update signal from WDS...")},function(e,t){e.exports=function(e,t){var n=e.filter(function(e){return t&&t.indexOf(e)<0;
-});n.length>0&&(console.warn("[HMR] The following modules couldn't be hot updated: (They would need a full reload!)"),n.forEach(function(e){console.warn("[HMR]  - "+e)})),t&&0!==t.length?(console.log("[HMR] Updated modules:"),t.forEach(function(e){console.log("[HMR]  - "+e)})):console.log("[HMR] Nothing hot updated.")}}]);
+webpackJsonp([0],[
+/* 0 */
+/***/ function(module, exports, __webpack_require__) {
+
+	__webpack_require__(1);
+	__webpack_require__(56);
+	module.exports = __webpack_require__(58);
+
+
+/***/ },
+/* 1 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(__resourceQuery) {var io = __webpack_require__(2);
+	var stripAnsi = __webpack_require__(54);
+	var scriptElements = document.getElementsByTagName("script");
+	io = io.connect( true ?
+		__resourceQuery.substr(1) :
+		scriptElements[scriptElements.length-1].getAttribute("src").replace(/\/[^\/]+$/, "")
+	);
+
+	var hot = false;
+	var initial = true;
+	var currentHash = "";
+
+	io.on("hot", function() {
+		hot = true;
+		console.log("[WDS] Hot Module Replacement enabled.");
+	});
+
+	io.on("invalid", function() {
+		console.log("[WDS] App updated. Recompiling...");
+	});
+
+	io.on("hash", function(hash) {
+		currentHash = hash;
+	});
+
+	io.on("still-ok", function() {
+		console.log("[WDS] Nothing changed.")
+	});
+
+	io.on("ok", function() {
+		if(initial) return initial = false;
+		reloadApp();
+	});
+
+	io.on("warnings", function(warnings) {
+		console.log("[WDS] Warnings while compiling.");
+		for(var i = 0; i < warnings.length; i++)
+			console.warn(stripAnsi(warnings[i]));
+		if(initial) return initial = false;
+		reloadApp();
+	});
+
+	io.on("errors", function(errors) {
+		console.log("[WDS] Errors while compiling.");
+		for(var i = 0; i < errors.length; i++)
+			console.error(stripAnsi(errors[i]));
+		if(initial) return initial = false;
+		reloadApp();
+	});
+
+	io.on("proxy-error", function(errors) {
+		console.log("[WDS] Proxy error.");
+		for(var i = 0; i < errors.length; i++)
+			console.error(stripAnsi(errors[i]));
+		if(initial) return initial = false;
+		reloadApp();
+	});
+
+	io.on("disconnect", function() {
+		console.error("[WDS] Disconnected!");
+	});
+
+	function reloadApp() {
+		if(hot) {
+			console.log("[WDS] App hot update...");
+			window.postMessage("webpackHotUpdate" + currentHash, "*");
+		} else {
+			console.log("[WDS] App updated. Reloading...");
+			window.location.reload();
+		}
+	}
+
+	/* WEBPACK VAR INJECTION */}.call(exports, "?http://localhost:8001"))
+
+/***/ },
+/* 2 */
+/***/ function(module, exports, __webpack_require__) {
+
+	
+	module.exports = __webpack_require__(3);
+
+
+/***/ },
+/* 3 */
+/***/ function(module, exports, __webpack_require__) {
+
+	
+	/**
+	 * Module dependencies.
+	 */
+
+	var url = __webpack_require__(4);
+	var parser = __webpack_require__(7);
+	var Manager = __webpack_require__(14);
+	var debug = __webpack_require__(6)('socket.io-client');
+
+	/**
+	 * Module exports.
+	 */
+
+	module.exports = exports = lookup;
+
+	/**
+	 * Managers cache.
+	 */
+
+	var cache = exports.managers = {};
+
+	/**
+	 * Looks up an existing `Manager` for multiplexing.
+	 * If the user summons:
+	 *
+	 *   `io('http://localhost/a');`
+	 *   `io('http://localhost/b');`
+	 *
+	 * We reuse the existing instance based on same scheme/port/host,
+	 * and we initialize sockets for each namespace.
+	 *
+	 * @api public
+	 */
+
+	function lookup(uri, opts) {
+	  if (typeof uri == 'object') {
+	    opts = uri;
+	    uri = undefined;
+	  }
+
+	  opts = opts || {};
+
+	  var parsed = url(uri);
+	  var source = parsed.source;
+	  var id = parsed.id;
+	  var io;
+
+	  if (opts.forceNew || opts['force new connection'] || false === opts.multiplex) {
+	    debug('ignoring socket cache for %s', source);
+	    io = Manager(source, opts);
+	  } else {
+	    if (!cache[id]) {
+	      debug('new io instance for %s', source);
+	      cache[id] = Manager(source, opts);
+	    }
+	    io = cache[id];
+	  }
+
+	  return io.socket(parsed.path);
+	}
+
+	/**
+	 * Protocol version.
+	 *
+	 * @api public
+	 */
+
+	exports.protocol = parser.protocol;
+
+	/**
+	 * `connect`.
+	 *
+	 * @param {String} uri
+	 * @api public
+	 */
+
+	exports.connect = lookup;
+
+	/**
+	 * Expose constructors for standalone build.
+	 *
+	 * @api public
+	 */
+
+	exports.Manager = __webpack_require__(14);
+	exports.Socket = __webpack_require__(46);
+
+
+/***/ },
+/* 4 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {
+	/**
+	 * Module dependencies.
+	 */
+
+	var parseuri = __webpack_require__(5);
+	var debug = __webpack_require__(6)('socket.io-client:url');
+
+	/**
+	 * Module exports.
+	 */
+
+	module.exports = url;
+
+	/**
+	 * URL parser.
+	 *
+	 * @param {String} url
+	 * @param {Object} An object meant to mimic window.location.
+	 *                 Defaults to window.location.
+	 * @api public
+	 */
+
+	function url(uri, loc){
+	  var obj = uri;
+
+	  // default to window.location
+	  var loc = loc || global.location;
+	  if (null == uri) uri = loc.protocol + '//' + loc.host;
+
+	  // relative path support
+	  if ('string' == typeof uri) {
+	    if ('/' == uri.charAt(0)) {
+	      if ('/' == uri.charAt(1)) {
+	        uri = loc.protocol + uri;
+	      } else {
+	        uri = loc.hostname + uri;
+	      }
+	    }
+
+	    if (!/^(https?|wss?):\/\//.test(uri)) {
+	      debug('protocol-less url %s', uri);
+	      if ('undefined' != typeof loc) {
+	        uri = loc.protocol + '//' + uri;
+	      } else {
+	        uri = 'https://' + uri;
+	      }
+	    }
+
+	    // parse
+	    debug('parse %s', uri);
+	    obj = parseuri(uri);
+	  }
+
+	  // make sure we treat `localhost:80` and `localhost` equally
+	  if (!obj.port) {
+	    if (/^(http|ws)$/.test(obj.protocol)) {
+	      obj.port = '80';
+	    }
+	    else if (/^(http|ws)s$/.test(obj.protocol)) {
+	      obj.port = '443';
+	    }
+	  }
+
+	  obj.path = obj.path || '/';
+
+	  // define unique id
+	  obj.id = obj.protocol + '://' + obj.host + ':' + obj.port;
+	  // define href
+	  obj.href = obj.protocol + '://' + obj.host + (loc && loc.port == obj.port ? '' : (':' + obj.port));
+
+	  return obj;
+	}
+
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ },
+/* 5 */
+/***/ function(module, exports) {
+
+	/**
+	 * Parses an URI
+	 *
+	 * @author Steven Levithan <stevenlevithan.com> (MIT license)
+	 * @api private
+	 */
+
+	var re = /^(?:(?![^:@]+:[^:@\/]*@)(http|https|ws|wss):\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?((?:[a-f0-9]{0,4}:){2,7}[a-f0-9]{0,4}|[^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/;
+
+	var parts = [
+	    'source', 'protocol', 'authority', 'userInfo', 'user', 'password', 'host'
+	  , 'port', 'relative', 'path', 'directory', 'file', 'query', 'anchor'
+	];
+
+	module.exports = function parseuri(str) {
+	  var m = re.exec(str || '')
+	    , uri = {}
+	    , i = 14;
+
+	  while (i--) {
+	    uri[parts[i]] = m[i] || '';
+	  }
+
+	  return uri;
+	};
+
+
+/***/ },
+/* 6 */
+/***/ function(module, exports) {
+
+	
+	/**
+	 * Expose `debug()` as the module.
+	 */
+
+	module.exports = debug;
+
+	/**
+	 * Create a debugger with the given `name`.
+	 *
+	 * @param {String} name
+	 * @return {Type}
+	 * @api public
+	 */
+
+	function debug(name) {
+	  if (!debug.enabled(name)) return function(){};
+
+	  return function(fmt){
+	    fmt = coerce(fmt);
+
+	    var curr = new Date;
+	    var ms = curr - (debug[name] || curr);
+	    debug[name] = curr;
+
+	    fmt = name
+	      + ' '
+	      + fmt
+	      + ' +' + debug.humanize(ms);
+
+	    // This hackery is required for IE8
+	    // where `console.log` doesn't have 'apply'
+	    window.console
+	      && console.log
+	      && Function.prototype.apply.call(console.log, console, arguments);
+	  }
+	}
+
+	/**
+	 * The currently active debug mode names.
+	 */
+
+	debug.names = [];
+	debug.skips = [];
+
+	/**
+	 * Enables a debug mode by name. This can include modes
+	 * separated by a colon and wildcards.
+	 *
+	 * @param {String} name
+	 * @api public
+	 */
+
+	debug.enable = function(name) {
+	  try {
+	    localStorage.debug = name;
+	  } catch(e){}
+
+	  var split = (name || '').split(/[\s,]+/)
+	    , len = split.length;
+
+	  for (var i = 0; i < len; i++) {
+	    name = split[i].replace('*', '.*?');
+	    if (name[0] === '-') {
+	      debug.skips.push(new RegExp('^' + name.substr(1) + '$'));
+	    }
+	    else {
+	      debug.names.push(new RegExp('^' + name + '$'));
+	    }
+	  }
+	};
+
+	/**
+	 * Disable debug output.
+	 *
+	 * @api public
+	 */
+
+	debug.disable = function(){
+	  debug.enable('');
+	};
+
+	/**
+	 * Humanize the given `ms`.
+	 *
+	 * @param {Number} m
+	 * @return {String}
+	 * @api private
+	 */
+
+	debug.humanize = function(ms) {
+	  var sec = 1000
+	    , min = 60 * 1000
+	    , hour = 60 * min;
+
+	  if (ms >= hour) return (ms / hour).toFixed(1) + 'h';
+	  if (ms >= min) return (ms / min).toFixed(1) + 'm';
+	  if (ms >= sec) return (ms / sec | 0) + 's';
+	  return ms + 'ms';
+	};
+
+	/**
+	 * Returns true if the given mode name is enabled, false otherwise.
+	 *
+	 * @param {String} name
+	 * @return {Boolean}
+	 * @api public
+	 */
+
+	debug.enabled = function(name) {
+	  for (var i = 0, len = debug.skips.length; i < len; i++) {
+	    if (debug.skips[i].test(name)) {
+	      return false;
+	    }
+	  }
+	  for (var i = 0, len = debug.names.length; i < len; i++) {
+	    if (debug.names[i].test(name)) {
+	      return true;
+	    }
+	  }
+	  return false;
+	};
+
+	/**
+	 * Coerce `val`.
+	 */
+
+	function coerce(val) {
+	  if (val instanceof Error) return val.stack || val.message;
+	  return val;
+	}
+
+	// persist
+
+	try {
+	  if (window.localStorage) debug.enable(localStorage.debug);
+	} catch(e){}
+
+
+/***/ },
+/* 7 */
+/***/ function(module, exports, __webpack_require__) {
+
+	
+	/**
+	 * Module dependencies.
+	 */
+
+	var debug = __webpack_require__(6)('socket.io-parser');
+	var json = __webpack_require__(8);
+	var isArray = __webpack_require__(10);
+	var Emitter = __webpack_require__(11);
+	var binary = __webpack_require__(12);
+	var isBuf = __webpack_require__(13);
+
+	/**
+	 * Protocol version.
+	 *
+	 * @api public
+	 */
+
+	exports.protocol = 4;
+
+	/**
+	 * Packet types.
+	 *
+	 * @api public
+	 */
+
+	exports.types = [
+	  'CONNECT',
+	  'DISCONNECT',
+	  'EVENT',
+	  'BINARY_EVENT',
+	  'ACK',
+	  'BINARY_ACK',
+	  'ERROR'
+	];
+
+	/**
+	 * Packet type `connect`.
+	 *
+	 * @api public
+	 */
+
+	exports.CONNECT = 0;
+
+	/**
+	 * Packet type `disconnect`.
+	 *
+	 * @api public
+	 */
+
+	exports.DISCONNECT = 1;
+
+	/**
+	 * Packet type `event`.
+	 *
+	 * @api public
+	 */
+
+	exports.EVENT = 2;
+
+	/**
+	 * Packet type `ack`.
+	 *
+	 * @api public
+	 */
+
+	exports.ACK = 3;
+
+	/**
+	 * Packet type `error`.
+	 *
+	 * @api public
+	 */
+
+	exports.ERROR = 4;
+
+	/**
+	 * Packet type 'binary event'
+	 *
+	 * @api public
+	 */
+
+	exports.BINARY_EVENT = 5;
+
+	/**
+	 * Packet type `binary ack`. For acks with binary arguments.
+	 *
+	 * @api public
+	 */
+
+	exports.BINARY_ACK = 6;
+
+	/**
+	 * Encoder constructor.
+	 *
+	 * @api public
+	 */
+
+	exports.Encoder = Encoder;
+
+	/**
+	 * Decoder constructor.
+	 *
+	 * @api public
+	 */
+
+	exports.Decoder = Decoder;
+
+	/**
+	 * A socket.io Encoder instance
+	 *
+	 * @api public
+	 */
+
+	function Encoder() {}
+
+	/**
+	 * Encode a packet as a single string if non-binary, or as a
+	 * buffer sequence, depending on packet type.
+	 *
+	 * @param {Object} obj - packet object
+	 * @param {Function} callback - function to handle encodings (likely engine.write)
+	 * @return Calls callback with Array of encodings
+	 * @api public
+	 */
+
+	Encoder.prototype.encode = function(obj, callback){
+	  debug('encoding packet %j', obj);
+
+	  if (exports.BINARY_EVENT == obj.type || exports.BINARY_ACK == obj.type) {
+	    encodeAsBinary(obj, callback);
+	  }
+	  else {
+	    var encoding = encodeAsString(obj);
+	    callback([encoding]);
+	  }
+	};
+
+	/**
+	 * Encode packet as string.
+	 *
+	 * @param {Object} packet
+	 * @return {String} encoded
+	 * @api private
+	 */
+
+	function encodeAsString(obj) {
+	  var str = '';
+	  var nsp = false;
+
+	  // first is type
+	  str += obj.type;
+
+	  // attachments if we have them
+	  if (exports.BINARY_EVENT == obj.type || exports.BINARY_ACK == obj.type) {
+	    str += obj.attachments;
+	    str += '-';
+	  }
+
+	  // if we have a namespace other than `/`
+	  // we append it followed by a comma `,`
+	  if (obj.nsp && '/' != obj.nsp) {
+	    nsp = true;
+	    str += obj.nsp;
+	  }
+
+	  // immediately followed by the id
+	  if (null != obj.id) {
+	    if (nsp) {
+	      str += ',';
+	      nsp = false;
+	    }
+	    str += obj.id;
+	  }
+
+	  // json data
+	  if (null != obj.data) {
+	    if (nsp) str += ',';
+	    str += json.stringify(obj.data);
+	  }
+
+	  debug('encoded %j as %s', obj, str);
+	  return str;
+	}
+
+	/**
+	 * Encode packet as 'buffer sequence' by removing blobs, and
+	 * deconstructing packet into object with placeholders and
+	 * a list of buffers.
+	 *
+	 * @param {Object} packet
+	 * @return {Buffer} encoded
+	 * @api private
+	 */
+
+	function encodeAsBinary(obj, callback) {
+
+	  function writeEncoding(bloblessData) {
+	    var deconstruction = binary.deconstructPacket(bloblessData);
+	    var pack = encodeAsString(deconstruction.packet);
+	    var buffers = deconstruction.buffers;
+
+	    buffers.unshift(pack); // add packet info to beginning of data list
+	    callback(buffers); // write all the buffers
+	  }
+
+	  binary.removeBlobs(obj, writeEncoding);
+	}
+
+	/**
+	 * A socket.io Decoder instance
+	 *
+	 * @return {Object} decoder
+	 * @api public
+	 */
+
+	function Decoder() {
+	  this.reconstructor = null;
+	}
+
+	/**
+	 * Mix in `Emitter` with Decoder.
+	 */
+
+	Emitter(Decoder.prototype);
+
+	/**
+	 * Decodes an ecoded packet string into packet JSON.
+	 *
+	 * @param {String} obj - encoded packet
+	 * @return {Object} packet
+	 * @api public
+	 */
+
+	Decoder.prototype.add = function(obj) {
+	  var packet;
+	  if ('string' == typeof obj) {
+	    packet = decodeString(obj);
+	    if (exports.BINARY_EVENT == packet.type || exports.BINARY_ACK == packet.type) { // binary packet's json
+	      this.reconstructor = new BinaryReconstructor(packet);
+
+	      // no attachments, labeled binary but no binary data to follow
+	      if (this.reconstructor.reconPack.attachments === 0) {
+	        this.emit('decoded', packet);
+	      }
+	    } else { // non-binary full packet
+	      this.emit('decoded', packet);
+	    }
+	  }
+	  else if (isBuf(obj) || obj.base64) { // raw binary data
+	    if (!this.reconstructor) {
+	      throw new Error('got binary data when not reconstructing a packet');
+	    } else {
+	      packet = this.reconstructor.takeBinaryData(obj);
+	      if (packet) { // received final buffer
+	        this.reconstructor = null;
+	        this.emit('decoded', packet);
+	      }
+	    }
+	  }
+	  else {
+	    throw new Error('Unknown type: ' + obj);
+	  }
+	};
+
+	/**
+	 * Decode a packet String (JSON data)
+	 *
+	 * @param {String} str
+	 * @return {Object} packet
+	 * @api private
+	 */
+
+	function decodeString(str) {
+	  var p = {};
+	  var i = 0;
+
+	  // look up type
+	  p.type = Number(str.charAt(0));
+	  if (null == exports.types[p.type]) return error();
+
+	  // look up attachments if type binary
+	  if (exports.BINARY_EVENT == p.type || exports.BINARY_ACK == p.type) {
+	    var buf = '';
+	    while (str.charAt(++i) != '-') {
+	      buf += str.charAt(i);
+	      if (i == str.length) break;
+	    }
+	    if (buf != Number(buf) || str.charAt(i) != '-') {
+	      throw new Error('Illegal attachments');
+	    }
+	    p.attachments = Number(buf);
+	  }
+
+	  // look up namespace (if any)
+	  if ('/' == str.charAt(i + 1)) {
+	    p.nsp = '';
+	    while (++i) {
+	      var c = str.charAt(i);
+	      if (',' == c) break;
+	      p.nsp += c;
+	      if (i == str.length) break;
+	    }
+	  } else {
+	    p.nsp = '/';
+	  }
+
+	  // look up id
+	  var next = str.charAt(i + 1);
+	  if ('' !== next && Number(next) == next) {
+	    p.id = '';
+	    while (++i) {
+	      var c = str.charAt(i);
+	      if (null == c || Number(c) != c) {
+	        --i;
+	        break;
+	      }
+	      p.id += str.charAt(i);
+	      if (i == str.length) break;
+	    }
+	    p.id = Number(p.id);
+	  }
+
+	  // look up json data
+	  if (str.charAt(++i)) {
+	    try {
+	      p.data = json.parse(str.substr(i));
+	    } catch(e){
+	      return error();
+	    }
+	  }
+
+	  debug('decoded %s as %j', str, p);
+	  return p;
+	}
+
+	/**
+	 * Deallocates a parser's resources
+	 *
+	 * @api public
+	 */
+
+	Decoder.prototype.destroy = function() {
+	  if (this.reconstructor) {
+	    this.reconstructor.finishedReconstruction();
+	  }
+	};
+
+	/**
+	 * A manager of a binary event's 'buffer sequence'. Should
+	 * be constructed whenever a packet of type BINARY_EVENT is
+	 * decoded.
+	 *
+	 * @param {Object} packet
+	 * @return {BinaryReconstructor} initialized reconstructor
+	 * @api private
+	 */
+
+	function BinaryReconstructor(packet) {
+	  this.reconPack = packet;
+	  this.buffers = [];
+	}
+
+	/**
+	 * Method to be called when binary data received from connection
+	 * after a BINARY_EVENT packet.
+	 *
+	 * @param {Buffer | ArrayBuffer} binData - the raw binary data received
+	 * @return {null | Object} returns null if more binary data is expected or
+	 *   a reconstructed packet object if all buffers have been received.
+	 * @api private
+	 */
+
+	BinaryReconstructor.prototype.takeBinaryData = function(binData) {
+	  this.buffers.push(binData);
+	  if (this.buffers.length == this.reconPack.attachments) { // done with buffer list
+	    var packet = binary.reconstructPacket(this.reconPack, this.buffers);
+	    this.finishedReconstruction();
+	    return packet;
+	  }
+	  return null;
+	};
+
+	/**
+	 * Cleans up binary packet reconstruction variables.
+	 *
+	 * @api private
+	 */
+
+	BinaryReconstructor.prototype.finishedReconstruction = function() {
+	  this.reconPack = null;
+	  this.buffers = [];
+	};
+
+	function error(data){
+	  return {
+	    type: exports.ERROR,
+	    data: 'parser error'
+	  };
+	}
+
+
+/***/ },
+/* 8 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_RESULT__;/*! JSON v3.2.6 | http://bestiejs.github.io/json3 | Copyright 2012-2013, Kit Cambridge | http://kit.mit-license.org */
+	;(function (window) {
+	  // Convenience aliases.
+	  var getClass = {}.toString, isProperty, forEach, undef;
+
+	  // Detect the `define` function exposed by asynchronous module loaders. The
+	  // strict `define` check is necessary for compatibility with `r.js`.
+	  var isLoader = "function" === "function" && __webpack_require__(9);
+
+	  // Detect native implementations.
+	  var nativeJSON = typeof JSON == "object" && JSON;
+
+	  // Set up the JSON 3 namespace, preferring the CommonJS `exports` object if
+	  // available.
+	  var JSON3 = typeof exports == "object" && exports && !exports.nodeType && exports;
+
+	  if (JSON3 && nativeJSON) {
+	    // Explicitly delegate to the native `stringify` and `parse`
+	    // implementations in CommonJS environments.
+	    JSON3.stringify = nativeJSON.stringify;
+	    JSON3.parse = nativeJSON.parse;
+	  } else {
+	    // Export for web browsers, JavaScript engines, and asynchronous module
+	    // loaders, using the global `JSON` object if available.
+	    JSON3 = window.JSON = nativeJSON || {};
+	  }
+
+	  // Test the `Date#getUTC*` methods. Based on work by @Yaffle.
+	  var isExtended = new Date(-3509827334573292);
+	  try {
+	    // The `getUTCFullYear`, `Month`, and `Date` methods return nonsensical
+	    // results for certain dates in Opera >= 10.53.
+	    isExtended = isExtended.getUTCFullYear() == -109252 && isExtended.getUTCMonth() === 0 && isExtended.getUTCDate() === 1 &&
+	      // Safari < 2.0.2 stores the internal millisecond time value correctly,
+	      // but clips the values returned by the date methods to the range of
+	      // signed 32-bit integers ([-2 ** 31, 2 ** 31 - 1]).
+	      isExtended.getUTCHours() == 10 && isExtended.getUTCMinutes() == 37 && isExtended.getUTCSeconds() == 6 && isExtended.getUTCMilliseconds() == 708;
+	  } catch (exception) {}
+
+	  // Internal: Determines whether the native `JSON.stringify` and `parse`
+	  // implementations are spec-compliant. Based on work by Ken Snyder.
+	  function has(name) {
+	    if (has[name] !== undef) {
+	      // Return cached feature test result.
+	      return has[name];
+	    }
+
+	    var isSupported;
+	    if (name == "bug-string-char-index") {
+	      // IE <= 7 doesn't support accessing string characters using square
+	      // bracket notation. IE 8 only supports this for primitives.
+	      isSupported = "a"[0] != "a";
+	    } else if (name == "json") {
+	      // Indicates whether both `JSON.stringify` and `JSON.parse` are
+	      // supported.
+	      isSupported = has("json-stringify") && has("json-parse");
+	    } else {
+	      var value, serialized = '{"a":[1,true,false,null,"\\u0000\\b\\n\\f\\r\\t"]}';
+	      // Test `JSON.stringify`.
+	      if (name == "json-stringify") {
+	        var stringify = JSON3.stringify, stringifySupported = typeof stringify == "function" && isExtended;
+	        if (stringifySupported) {
+	          // A test function object with a custom `toJSON` method.
+	          (value = function () {
+	            return 1;
+	          }).toJSON = value;
+	          try {
+	            stringifySupported =
+	              // Firefox 3.1b1 and b2 serialize string, number, and boolean
+	              // primitives as object literals.
+	              stringify(0) === "0" &&
+	              // FF 3.1b1, b2, and JSON 2 serialize wrapped primitives as object
+	              // literals.
+	              stringify(new Number()) === "0" &&
+	              stringify(new String()) == '""' &&
+	              // FF 3.1b1, 2 throw an error if the value is `null`, `undefined`, or
+	              // does not define a canonical JSON representation (this applies to
+	              // objects with `toJSON` properties as well, *unless* they are nested
+	              // within an object or array).
+	              stringify(getClass) === undef &&
+	              // IE 8 serializes `undefined` as `"undefined"`. Safari <= 5.1.7 and
+	              // FF 3.1b3 pass this test.
+	              stringify(undef) === undef &&
+	              // Safari <= 5.1.7 and FF 3.1b3 throw `Error`s and `TypeError`s,
+	              // respectively, if the value is omitted entirely.
+	              stringify() === undef &&
+	              // FF 3.1b1, 2 throw an error if the given value is not a number,
+	              // string, array, object, Boolean, or `null` literal. This applies to
+	              // objects with custom `toJSON` methods as well, unless they are nested
+	              // inside object or array literals. YUI 3.0.0b1 ignores custom `toJSON`
+	              // methods entirely.
+	              stringify(value) === "1" &&
+	              stringify([value]) == "[1]" &&
+	              // Prototype <= 1.6.1 serializes `[undefined]` as `"[]"` instead of
+	              // `"[null]"`.
+	              stringify([undef]) == "[null]" &&
+	              // YUI 3.0.0b1 fails to serialize `null` literals.
+	              stringify(null) == "null" &&
+	              // FF 3.1b1, 2 halts serialization if an array contains a function:
+	              // `[1, true, getClass, 1]` serializes as "[1,true,],". FF 3.1b3
+	              // elides non-JSON values from objects and arrays, unless they
+	              // define custom `toJSON` methods.
+	              stringify([undef, getClass, null]) == "[null,null,null]" &&
+	              // Simple serialization test. FF 3.1b1 uses Unicode escape sequences
+	              // where character escape codes are expected (e.g., `\b` => `\u0008`).
+	              stringify({ "a": [value, true, false, null, "\x00\b\n\f\r\t"] }) == serialized &&
+	              // FF 3.1b1 and b2 ignore the `filter` and `width` arguments.
+	              stringify(null, value) === "1" &&
+	              stringify([1, 2], null, 1) == "[\n 1,\n 2\n]" &&
+	              // JSON 2, Prototype <= 1.7, and older WebKit builds incorrectly
+	              // serialize extended years.
+	              stringify(new Date(-8.64e15)) == '"-271821-04-20T00:00:00.000Z"' &&
+	              // The milliseconds are optional in ES 5, but required in 5.1.
+	              stringify(new Date(8.64e15)) == '"+275760-09-13T00:00:00.000Z"' &&
+	              // Firefox <= 11.0 incorrectly serializes years prior to 0 as negative
+	              // four-digit years instead of six-digit years. Credits: @Yaffle.
+	              stringify(new Date(-621987552e5)) == '"-000001-01-01T00:00:00.000Z"' &&
+	              // Safari <= 5.1.5 and Opera >= 10.53 incorrectly serialize millisecond
+	              // values less than 1000. Credits: @Yaffle.
+	              stringify(new Date(-1)) == '"1969-12-31T23:59:59.999Z"';
+	          } catch (exception) {
+	            stringifySupported = false;
+	          }
+	        }
+	        isSupported = stringifySupported;
+	      }
+	      // Test `JSON.parse`.
+	      if (name == "json-parse") {
+	        var parse = JSON3.parse;
+	        if (typeof parse == "function") {
+	          try {
+	            // FF 3.1b1, b2 will throw an exception if a bare literal is provided.
+	            // Conforming implementations should also coerce the initial argument to
+	            // a string prior to parsing.
+	            if (parse("0") === 0 && !parse(false)) {
+	              // Simple parsing test.
+	              value = parse(serialized);
+	              var parseSupported = value["a"].length == 5 && value["a"][0] === 1;
+	              if (parseSupported) {
+	                try {
+	                  // Safari <= 5.1.2 and FF 3.1b1 allow unescaped tabs in strings.
+	                  parseSupported = !parse('"\t"');
+	                } catch (exception) {}
+	                if (parseSupported) {
+	                  try {
+	                    // FF 4.0 and 4.0.1 allow leading `+` signs and leading
+	                    // decimal points. FF 4.0, 4.0.1, and IE 9-10 also allow
+	                    // certain octal literals.
+	                    parseSupported = parse("01") !== 1;
+	                  } catch (exception) {}
+	                }
+	                if (parseSupported) {
+	                  try {
+	                    // FF 4.0, 4.0.1, and Rhino 1.7R3-R4 allow trailing decimal
+	                    // points. These environments, along with FF 3.1b1 and 2,
+	                    // also allow trailing commas in JSON objects and arrays.
+	                    parseSupported = parse("1.") !== 1;
+	                  } catch (exception) {}
+	                }
+	              }
+	            }
+	          } catch (exception) {
+	            parseSupported = false;
+	          }
+	        }
+	        isSupported = parseSupported;
+	      }
+	    }
+	    return has[name] = !!isSupported;
+	  }
+
+	  if (!has("json")) {
+	    // Common `[[Class]]` name aliases.
+	    var functionClass = "[object Function]";
+	    var dateClass = "[object Date]";
+	    var numberClass = "[object Number]";
+	    var stringClass = "[object String]";
+	    var arrayClass = "[object Array]";
+	    var booleanClass = "[object Boolean]";
+
+	    // Detect incomplete support for accessing string characters by index.
+	    var charIndexBuggy = has("bug-string-char-index");
+
+	    // Define additional utility methods if the `Date` methods are buggy.
+	    if (!isExtended) {
+	      var floor = Math.floor;
+	      // A mapping between the months of the year and the number of days between
+	      // January 1st and the first of the respective month.
+	      var Months = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
+	      // Internal: Calculates the number of days between the Unix epoch and the
+	      // first day of the given month.
+	      var getDay = function (year, month) {
+	        return Months[month] + 365 * (year - 1970) + floor((year - 1969 + (month = +(month > 1))) / 4) - floor((year - 1901 + month) / 100) + floor((year - 1601 + month) / 400);
+	      };
+	    }
+
+	    // Internal: Determines if a property is a direct property of the given
+	    // object. Delegates to the native `Object#hasOwnProperty` method.
+	    if (!(isProperty = {}.hasOwnProperty)) {
+	      isProperty = function (property) {
+	        var members = {}, constructor;
+	        if ((members.__proto__ = null, members.__proto__ = {
+	          // The *proto* property cannot be set multiple times in recent
+	          // versions of Firefox and SeaMonkey.
+	          "toString": 1
+	        }, members).toString != getClass) {
+	          // Safari <= 2.0.3 doesn't implement `Object#hasOwnProperty`, but
+	          // supports the mutable *proto* property.
+	          isProperty = function (property) {
+	            // Capture and break the object's prototype chain (see section 8.6.2
+	            // of the ES 5.1 spec). The parenthesized expression prevents an
+	            // unsafe transformation by the Closure Compiler.
+	            var original = this.__proto__, result = property in (this.__proto__ = null, this);
+	            // Restore the original prototype chain.
+	            this.__proto__ = original;
+	            return result;
+	          };
+	        } else {
+	          // Capture a reference to the top-level `Object` constructor.
+	          constructor = members.constructor;
+	          // Use the `constructor` property to simulate `Object#hasOwnProperty` in
+	          // other environments.
+	          isProperty = function (property) {
+	            var parent = (this.constructor || constructor).prototype;
+	            return property in this && !(property in parent && this[property] === parent[property]);
+	          };
+	        }
+	        members = null;
+	        return isProperty.call(this, property);
+	      };
+	    }
+
+	    // Internal: A set of primitive types used by `isHostType`.
+	    var PrimitiveTypes = {
+	      'boolean': 1,
+	      'number': 1,
+	      'string': 1,
+	      'undefined': 1
+	    };
+
+	    // Internal: Determines if the given object `property` value is a
+	    // non-primitive.
+	    var isHostType = function (object, property) {
+	      var type = typeof object[property];
+	      return type == 'object' ? !!object[property] : !PrimitiveTypes[type];
+	    };
+
+	    // Internal: Normalizes the `for...in` iteration algorithm across
+	    // environments. Each enumerated key is yielded to a `callback` function.
+	    forEach = function (object, callback) {
+	      var size = 0, Properties, members, property;
+
+	      // Tests for bugs in the current environment's `for...in` algorithm. The
+	      // `valueOf` property inherits the non-enumerable flag from
+	      // `Object.prototype` in older versions of IE, Netscape, and Mozilla.
+	      (Properties = function () {
+	        this.valueOf = 0;
+	      }).prototype.valueOf = 0;
+
+	      // Iterate over a new instance of the `Properties` class.
+	      members = new Properties();
+	      for (property in members) {
+	        // Ignore all properties inherited from `Object.prototype`.
+	        if (isProperty.call(members, property)) {
+	          size++;
+	        }
+	      }
+	      Properties = members = null;
+
+	      // Normalize the iteration algorithm.
+	      if (!size) {
+	        // A list of non-enumerable properties inherited from `Object.prototype`.
+	        members = ["valueOf", "toString", "toLocaleString", "propertyIsEnumerable", "isPrototypeOf", "hasOwnProperty", "constructor"];
+	        // IE <= 8, Mozilla 1.0, and Netscape 6.2 ignore shadowed non-enumerable
+	        // properties.
+	        forEach = function (object, callback) {
+	          var isFunction = getClass.call(object) == functionClass, property, length;
+	          var hasProperty = !isFunction && typeof object.constructor != 'function' && isHostType(object, 'hasOwnProperty') ? object.hasOwnProperty : isProperty;
+	          for (property in object) {
+	            // Gecko <= 1.0 enumerates the `prototype` property of functions under
+	            // certain conditions; IE does not.
+	            if (!(isFunction && property == "prototype") && hasProperty.call(object, property)) {
+	              callback(property);
+	            }
+	          }
+	          // Manually invoke the callback for each non-enumerable property.
+	          for (length = members.length; property = members[--length]; hasProperty.call(object, property) && callback(property));
+	        };
+	      } else if (size == 2) {
+	        // Safari <= 2.0.4 enumerates shadowed properties twice.
+	        forEach = function (object, callback) {
+	          // Create a set of iterated properties.
+	          var members = {}, isFunction = getClass.call(object) == functionClass, property;
+	          for (property in object) {
+	            // Store each property name to prevent double enumeration. The
+	            // `prototype` property of functions is not enumerated due to cross-
+	            // environment inconsistencies.
+	            if (!(isFunction && property == "prototype") && !isProperty.call(members, property) && (members[property] = 1) && isProperty.call(object, property)) {
+	              callback(property);
+	            }
+	          }
+	        };
+	      } else {
+	        // No bugs detected; use the standard `for...in` algorithm.
+	        forEach = function (object, callback) {
+	          var isFunction = getClass.call(object) == functionClass, property, isConstructor;
+	          for (property in object) {
+	            if (!(isFunction && property == "prototype") && isProperty.call(object, property) && !(isConstructor = property === "constructor")) {
+	              callback(property);
+	            }
+	          }
+	          // Manually invoke the callback for the `constructor` property due to
+	          // cross-environment inconsistencies.
+	          if (isConstructor || isProperty.call(object, (property = "constructor"))) {
+	            callback(property);
+	          }
+	        };
+	      }
+	      return forEach(object, callback);
+	    };
+
+	    // Public: Serializes a JavaScript `value` as a JSON string. The optional
+	    // `filter` argument may specify either a function that alters how object and
+	    // array members are serialized, or an array of strings and numbers that
+	    // indicates which properties should be serialized. The optional `width`
+	    // argument may be either a string or number that specifies the indentation
+	    // level of the output.
+	    if (!has("json-stringify")) {
+	      // Internal: A map of control characters and their escaped equivalents.
+	      var Escapes = {
+	        92: "\\\\",
+	        34: '\\"',
+	        8: "\\b",
+	        12: "\\f",
+	        10: "\\n",
+	        13: "\\r",
+	        9: "\\t"
+	      };
+
+	      // Internal: Converts `value` into a zero-padded string such that its
+	      // length is at least equal to `width`. The `width` must be <= 6.
+	      var leadingZeroes = "000000";
+	      var toPaddedString = function (width, value) {
+	        // The `|| 0` expression is necessary to work around a bug in
+	        // Opera <= 7.54u2 where `0 == -0`, but `String(-0) !== "0"`.
+	        return (leadingZeroes + (value || 0)).slice(-width);
+	      };
+
+	      // Internal: Double-quotes a string `value`, replacing all ASCII control
+	      // characters (characters with code unit values between 0 and 31) with
+	      // their escaped equivalents. This is an implementation of the
+	      // `Quote(value)` operation defined in ES 5.1 section 15.12.3.
+	      var unicodePrefix = "\\u00";
+	      var quote = function (value) {
+	        var result = '"', index = 0, length = value.length, isLarge = length > 10 && charIndexBuggy, symbols;
+	        if (isLarge) {
+	          symbols = value.split("");
+	        }
+	        for (; index < length; index++) {
+	          var charCode = value.charCodeAt(index);
+	          // If the character is a control character, append its Unicode or
+	          // shorthand escape sequence; otherwise, append the character as-is.
+	          switch (charCode) {
+	            case 8: case 9: case 10: case 12: case 13: case 34: case 92:
+	              result += Escapes[charCode];
+	              break;
+	            default:
+	              if (charCode < 32) {
+	                result += unicodePrefix + toPaddedString(2, charCode.toString(16));
+	                break;
+	              }
+	              result += isLarge ? symbols[index] : charIndexBuggy ? value.charAt(index) : value[index];
+	          }
+	        }
+	        return result + '"';
+	      };
+
+	      // Internal: Recursively serializes an object. Implements the
+	      // `Str(key, holder)`, `JO(value)`, and `JA(value)` operations.
+	      var serialize = function (property, object, callback, properties, whitespace, indentation, stack) {
+	        var value, className, year, month, date, time, hours, minutes, seconds, milliseconds, results, element, index, length, prefix, result;
+	        try {
+	          // Necessary for host object support.
+	          value = object[property];
+	        } catch (exception) {}
+	        if (typeof value == "object" && value) {
+	          className = getClass.call(value);
+	          if (className == dateClass && !isProperty.call(value, "toJSON")) {
+	            if (value > -1 / 0 && value < 1 / 0) {
+	              // Dates are serialized according to the `Date#toJSON` method
+	              // specified in ES 5.1 section 15.9.5.44. See section 15.9.1.15
+	              // for the ISO 8601 date time string format.
+	              if (getDay) {
+	                // Manually compute the year, month, date, hours, minutes,
+	                // seconds, and milliseconds if the `getUTC*` methods are
+	                // buggy. Adapted from @Yaffle's `date-shim` project.
+	                date = floor(value / 864e5);
+	                for (year = floor(date / 365.2425) + 1970 - 1; getDay(year + 1, 0) <= date; year++);
+	                for (month = floor((date - getDay(year, 0)) / 30.42); getDay(year, month + 1) <= date; month++);
+	                date = 1 + date - getDay(year, month);
+	                // The `time` value specifies the time within the day (see ES
+	                // 5.1 section 15.9.1.2). The formula `(A % B + B) % B` is used
+	                // to compute `A modulo B`, as the `%` operator does not
+	                // correspond to the `modulo` operation for negative numbers.
+	                time = (value % 864e5 + 864e5) % 864e5;
+	                // The hours, minutes, seconds, and milliseconds are obtained by
+	                // decomposing the time within the day. See section 15.9.1.10.
+	                hours = floor(time / 36e5) % 24;
+	                minutes = floor(time / 6e4) % 60;
+	                seconds = floor(time / 1e3) % 60;
+	                milliseconds = time % 1e3;
+	              } else {
+	                year = value.getUTCFullYear();
+	                month = value.getUTCMonth();
+	                date = value.getUTCDate();
+	                hours = value.getUTCHours();
+	                minutes = value.getUTCMinutes();
+	                seconds = value.getUTCSeconds();
+	                milliseconds = value.getUTCMilliseconds();
+	              }
+	              // Serialize extended years correctly.
+	              value = (year <= 0 || year >= 1e4 ? (year < 0 ? "-" : "+") + toPaddedString(6, year < 0 ? -year : year) : toPaddedString(4, year)) +
+	                "-" + toPaddedString(2, month + 1) + "-" + toPaddedString(2, date) +
+	                // Months, dates, hours, minutes, and seconds should have two
+	                // digits; milliseconds should have three.
+	                "T" + toPaddedString(2, hours) + ":" + toPaddedString(2, minutes) + ":" + toPaddedString(2, seconds) +
+	                // Milliseconds are optional in ES 5.0, but required in 5.1.
+	                "." + toPaddedString(3, milliseconds) + "Z";
+	            } else {
+	              value = null;
+	            }
+	          } else if (typeof value.toJSON == "function" && ((className != numberClass && className != stringClass && className != arrayClass) || isProperty.call(value, "toJSON"))) {
+	            // Prototype <= 1.6.1 adds non-standard `toJSON` methods to the
+	            // `Number`, `String`, `Date`, and `Array` prototypes. JSON 3
+	            // ignores all `toJSON` methods on these objects unless they are
+	            // defined directly on an instance.
+	            value = value.toJSON(property);
+	          }
+	        }
+	        if (callback) {
+	          // If a replacement function was provided, call it to obtain the value
+	          // for serialization.
+	          value = callback.call(object, property, value);
+	        }
+	        if (value === null) {
+	          return "null";
+	        }
+	        className = getClass.call(value);
+	        if (className == booleanClass) {
+	          // Booleans are represented literally.
+	          return "" + value;
+	        } else if (className == numberClass) {
+	          // JSON numbers must be finite. `Infinity` and `NaN` are serialized as
+	          // `"null"`.
+	          return value > -1 / 0 && value < 1 / 0 ? "" + value : "null";
+	        } else if (className == stringClass) {
+	          // Strings are double-quoted and escaped.
+	          return quote("" + value);
+	        }
+	        // Recursively serialize objects and arrays.
+	        if (typeof value == "object") {
+	          // Check for cyclic structures. This is a linear search; performance
+	          // is inversely proportional to the number of unique nested objects.
+	          for (length = stack.length; length--;) {
+	            if (stack[length] === value) {
+	              // Cyclic structures cannot be serialized by `JSON.stringify`.
+	              throw TypeError();
+	            }
+	          }
+	          // Add the object to the stack of traversed objects.
+	          stack.push(value);
+	          results = [];
+	          // Save the current indentation level and indent one additional level.
+	          prefix = indentation;
+	          indentation += whitespace;
+	          if (className == arrayClass) {
+	            // Recursively serialize array elements.
+	            for (index = 0, length = value.length; index < length; index++) {
+	              element = serialize(index, value, callback, properties, whitespace, indentation, stack);
+	              results.push(element === undef ? "null" : element);
+	            }
+	            result = results.length ? (whitespace ? "[\n" + indentation + results.join(",\n" + indentation) + "\n" + prefix + "]" : ("[" + results.join(",") + "]")) : "[]";
+	          } else {
+	            // Recursively serialize object members. Members are selected from
+	            // either a user-specified list of property names, or the object
+	            // itself.
+	            forEach(properties || value, function (property) {
+	              var element = serialize(property, value, callback, properties, whitespace, indentation, stack);
+	              if (element !== undef) {
+	                // According to ES 5.1 section 15.12.3: "If `gap` {whitespace}
+	                // is not the empty string, let `member` {quote(property) + ":"}
+	                // be the concatenation of `member` and the `space` character."
+	                // The "`space` character" refers to the literal space
+	                // character, not the `space` {width} argument provided to
+	                // `JSON.stringify`.
+	                results.push(quote(property) + ":" + (whitespace ? " " : "") + element);
+	              }
+	            });
+	            result = results.length ? (whitespace ? "{\n" + indentation + results.join(",\n" + indentation) + "\n" + prefix + "}" : ("{" + results.join(",") + "}")) : "{}";
+	          }
+	          // Remove the object from the traversed object stack.
+	          stack.pop();
+	          return result;
+	        }
+	      };
+
+	      // Public: `JSON.stringify`. See ES 5.1 section 15.12.3.
+	      JSON3.stringify = function (source, filter, width) {
+	        var whitespace, callback, properties, className;
+	        if (typeof filter == "function" || typeof filter == "object" && filter) {
+	          if ((className = getClass.call(filter)) == functionClass) {
+	            callback = filter;
+	          } else if (className == arrayClass) {
+	            // Convert the property names array into a makeshift set.
+	            properties = {};
+	            for (var index = 0, length = filter.length, value; index < length; value = filter[index++], ((className = getClass.call(value)), className == stringClass || className == numberClass) && (properties[value] = 1));
+	          }
+	        }
+	        if (width) {
+	          if ((className = getClass.call(width)) == numberClass) {
+	            // Convert the `width` to an integer and create a string containing
+	            // `width` number of space characters.
+	            if ((width -= width % 1) > 0) {
+	              for (whitespace = "", width > 10 && (width = 10); whitespace.length < width; whitespace += " ");
+	            }
+	          } else if (className == stringClass) {
+	            whitespace = width.length <= 10 ? width : width.slice(0, 10);
+	          }
+	        }
+	        // Opera <= 7.54u2 discards the values associated with empty string keys
+	        // (`""`) only if they are used directly within an object member list
+	        // (e.g., `!("" in { "": 1})`).
+	        return serialize("", (value = {}, value[""] = source, value), callback, properties, whitespace, "", []);
+	      };
+	    }
+
+	    // Public: Parses a JSON source string.
+	    if (!has("json-parse")) {
+	      var fromCharCode = String.fromCharCode;
+
+	      // Internal: A map of escaped control characters and their unescaped
+	      // equivalents.
+	      var Unescapes = {
+	        92: "\\",
+	        34: '"',
+	        47: "/",
+	        98: "\b",
+	        116: "\t",
+	        110: "\n",
+	        102: "\f",
+	        114: "\r"
+	      };
+
+	      // Internal: Stores the parser state.
+	      var Index, Source;
+
+	      // Internal: Resets the parser state and throws a `SyntaxError`.
+	      var abort = function() {
+	        Index = Source = null;
+	        throw SyntaxError();
+	      };
+
+	      // Internal: Returns the next token, or `"$"` if the parser has reached
+	      // the end of the source string. A token may be a string, number, `null`
+	      // literal, or Boolean literal.
+	      var lex = function () {
+	        var source = Source, length = source.length, value, begin, position, isSigned, charCode;
+	        while (Index < length) {
+	          charCode = source.charCodeAt(Index);
+	          switch (charCode) {
+	            case 9: case 10: case 13: case 32:
+	              // Skip whitespace tokens, including tabs, carriage returns, line
+	              // feeds, and space characters.
+	              Index++;
+	              break;
+	            case 123: case 125: case 91: case 93: case 58: case 44:
+	              // Parse a punctuator token (`{`, `}`, `[`, `]`, `:`, or `,`) at
+	              // the current position.
+	              value = charIndexBuggy ? source.charAt(Index) : source[Index];
+	              Index++;
+	              return value;
+	            case 34:
+	              // `"` delimits a JSON string; advance to the next character and
+	              // begin parsing the string. String tokens are prefixed with the
+	              // sentinel `@` character to distinguish them from punctuators and
+	              // end-of-string tokens.
+	              for (value = "@", Index++; Index < length;) {
+	                charCode = source.charCodeAt(Index);
+	                if (charCode < 32) {
+	                  // Unescaped ASCII control characters (those with a code unit
+	                  // less than the space character) are not permitted.
+	                  abort();
+	                } else if (charCode == 92) {
+	                  // A reverse solidus (`\`) marks the beginning of an escaped
+	                  // control character (including `"`, `\`, and `/`) or Unicode
+	                  // escape sequence.
+	                  charCode = source.charCodeAt(++Index);
+	                  switch (charCode) {
+	                    case 92: case 34: case 47: case 98: case 116: case 110: case 102: case 114:
+	                      // Revive escaped control characters.
+	                      value += Unescapes[charCode];
+	                      Index++;
+	                      break;
+	                    case 117:
+	                      // `\u` marks the beginning of a Unicode escape sequence.
+	                      // Advance to the first character and validate the
+	                      // four-digit code point.
+	                      begin = ++Index;
+	                      for (position = Index + 4; Index < position; Index++) {
+	                        charCode = source.charCodeAt(Index);
+	                        // A valid sequence comprises four hexdigits (case-
+	                        // insensitive) that form a single hexadecimal value.
+	                        if (!(charCode >= 48 && charCode <= 57 || charCode >= 97 && charCode <= 102 || charCode >= 65 && charCode <= 70)) {
+	                          // Invalid Unicode escape sequence.
+	                          abort();
+	                        }
+	                      }
+	                      // Revive the escaped character.
+	                      value += fromCharCode("0x" + source.slice(begin, Index));
+	                      break;
+	                    default:
+	                      // Invalid escape sequence.
+	                      abort();
+	                  }
+	                } else {
+	                  if (charCode == 34) {
+	                    // An unescaped double-quote character marks the end of the
+	                    // string.
+	                    break;
+	                  }
+	                  charCode = source.charCodeAt(Index);
+	                  begin = Index;
+	                  // Optimize for the common case where a string is valid.
+	                  while (charCode >= 32 && charCode != 92 && charCode != 34) {
+	                    charCode = source.charCodeAt(++Index);
+	                  }
+	                  // Append the string as-is.
+	                  value += source.slice(begin, Index);
+	                }
+	              }
+	              if (source.charCodeAt(Index) == 34) {
+	                // Advance to the next character and return the revived string.
+	                Index++;
+	                return value;
+	              }
+	              // Unterminated string.
+	              abort();
+	            default:
+	              // Parse numbers and literals.
+	              begin = Index;
+	              // Advance past the negative sign, if one is specified.
+	              if (charCode == 45) {
+	                isSigned = true;
+	                charCode = source.charCodeAt(++Index);
+	              }
+	              // Parse an integer or floating-point value.
+	              if (charCode >= 48 && charCode <= 57) {
+	                // Leading zeroes are interpreted as octal literals.
+	                if (charCode == 48 && ((charCode = source.charCodeAt(Index + 1)), charCode >= 48 && charCode <= 57)) {
+	                  // Illegal octal literal.
+	                  abort();
+	                }
+	                isSigned = false;
+	                // Parse the integer component.
+	                for (; Index < length && ((charCode = source.charCodeAt(Index)), charCode >= 48 && charCode <= 57); Index++);
+	                // Floats cannot contain a leading decimal point; however, this
+	                // case is already accounted for by the parser.
+	                if (source.charCodeAt(Index) == 46) {
+	                  position = ++Index;
+	                  // Parse the decimal component.
+	                  for (; position < length && ((charCode = source.charCodeAt(position)), charCode >= 48 && charCode <= 57); position++);
+	                  if (position == Index) {
+	                    // Illegal trailing decimal.
+	                    abort();
+	                  }
+	                  Index = position;
+	                }
+	                // Parse exponents. The `e` denoting the exponent is
+	                // case-insensitive.
+	                charCode = source.charCodeAt(Index);
+	                if (charCode == 101 || charCode == 69) {
+	                  charCode = source.charCodeAt(++Index);
+	                  // Skip past the sign following the exponent, if one is
+	                  // specified.
+	                  if (charCode == 43 || charCode == 45) {
+	                    Index++;
+	                  }
+	                  // Parse the exponential component.
+	                  for (position = Index; position < length && ((charCode = source.charCodeAt(position)), charCode >= 48 && charCode <= 57); position++);
+	                  if (position == Index) {
+	                    // Illegal empty exponent.
+	                    abort();
+	                  }
+	                  Index = position;
+	                }
+	                // Coerce the parsed value to a JavaScript number.
+	                return +source.slice(begin, Index);
+	              }
+	              // A negative sign may only precede numbers.
+	              if (isSigned) {
+	                abort();
+	              }
+	              // `true`, `false`, and `null` literals.
+	              if (source.slice(Index, Index + 4) == "true") {
+	                Index += 4;
+	                return true;
+	              } else if (source.slice(Index, Index + 5) == "false") {
+	                Index += 5;
+	                return false;
+	              } else if (source.slice(Index, Index + 4) == "null") {
+	                Index += 4;
+	                return null;
+	              }
+	              // Unrecognized token.
+	              abort();
+	          }
+	        }
+	        // Return the sentinel `$` character if the parser has reached the end
+	        // of the source string.
+	        return "$";
+	      };
+
+	      // Internal: Parses a JSON `value` token.
+	      var get = function (value) {
+	        var results, hasMembers;
+	        if (value == "$") {
+	          // Unexpected end of input.
+	          abort();
+	        }
+	        if (typeof value == "string") {
+	          if ((charIndexBuggy ? value.charAt(0) : value[0]) == "@") {
+	            // Remove the sentinel `@` character.
+	            return value.slice(1);
+	          }
+	          // Parse object and array literals.
+	          if (value == "[") {
+	            // Parses a JSON array, returning a new JavaScript array.
+	            results = [];
+	            for (;; hasMembers || (hasMembers = true)) {
+	              value = lex();
+	              // A closing square bracket marks the end of the array literal.
+	              if (value == "]") {
+	                break;
+	              }
+	              // If the array literal contains elements, the current token
+	              // should be a comma separating the previous element from the
+	              // next.
+	              if (hasMembers) {
+	                if (value == ",") {
+	                  value = lex();
+	                  if (value == "]") {
+	                    // Unexpected trailing `,` in array literal.
+	                    abort();
+	                  }
+	                } else {
+	                  // A `,` must separate each array element.
+	                  abort();
+	                }
+	              }
+	              // Elisions and leading commas are not permitted.
+	              if (value == ",") {
+	                abort();
+	              }
+	              results.push(get(value));
+	            }
+	            return results;
+	          } else if (value == "{") {
+	            // Parses a JSON object, returning a new JavaScript object.
+	            results = {};
+	            for (;; hasMembers || (hasMembers = true)) {
+	              value = lex();
+	              // A closing curly brace marks the end of the object literal.
+	              if (value == "}") {
+	                break;
+	              }
+	              // If the object literal contains members, the current token
+	              // should be a comma separator.
+	              if (hasMembers) {
+	                if (value == ",") {
+	                  value = lex();
+	                  if (value == "}") {
+	                    // Unexpected trailing `,` in object literal.
+	                    abort();
+	                  }
+	                } else {
+	                  // A `,` must separate each object member.
+	                  abort();
+	                }
+	              }
+	              // Leading commas are not permitted, object property names must be
+	              // double-quoted strings, and a `:` must separate each property
+	              // name and value.
+	              if (value == "," || typeof value != "string" || (charIndexBuggy ? value.charAt(0) : value[0]) != "@" || lex() != ":") {
+	                abort();
+	              }
+	              results[value.slice(1)] = get(lex());
+	            }
+	            return results;
+	          }
+	          // Unexpected token encountered.
+	          abort();
+	        }
+	        return value;
+	      };
+
+	      // Internal: Updates a traversed object member.
+	      var update = function(source, property, callback) {
+	        var element = walk(source, property, callback);
+	        if (element === undef) {
+	          delete source[property];
+	        } else {
+	          source[property] = element;
+	        }
+	      };
+
+	      // Internal: Recursively traverses a parsed JSON object, invoking the
+	      // `callback` function for each value. This is an implementation of the
+	      // `Walk(holder, name)` operation defined in ES 5.1 section 15.12.2.
+	      var walk = function (source, property, callback) {
+	        var value = source[property], length;
+	        if (typeof value == "object" && value) {
+	          // `forEach` can't be used to traverse an array in Opera <= 8.54
+	          // because its `Object#hasOwnProperty` implementation returns `false`
+	          // for array indices (e.g., `![1, 2, 3].hasOwnProperty("0")`).
+	          if (getClass.call(value) == arrayClass) {
+	            for (length = value.length; length--;) {
+	              update(value, length, callback);
+	            }
+	          } else {
+	            forEach(value, function (property) {
+	              update(value, property, callback);
+	            });
+	          }
+	        }
+	        return callback.call(source, property, value);
+	      };
+
+	      // Public: `JSON.parse`. See ES 5.1 section 15.12.2.
+	      JSON3.parse = function (source, callback) {
+	        var result, value;
+	        Index = 0;
+	        Source = "" + source;
+	        result = get(lex());
+	        // If a JSON string contains multiple tokens, it is invalid.
+	        if (lex() != "$") {
+	          abort();
+	        }
+	        // Reset the parser state.
+	        Index = Source = null;
+	        return callback && getClass.call(callback) == functionClass ? walk((value = {}, value[""] = result, value), "", callback) : result;
+	      };
+	    }
+	  }
+
+	  // Export for asynchronous module loaders.
+	  if (isLoader) {
+	    !(__WEBPACK_AMD_DEFINE_RESULT__ = function () {
+	      return JSON3;
+	    }.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+	  }
+	}(this));
+
+
+/***/ },
+/* 9 */
+/***/ function(module, exports) {
+
+	/* WEBPACK VAR INJECTION */(function(__webpack_amd_options__) {module.exports = __webpack_amd_options__;
+
+	/* WEBPACK VAR INJECTION */}.call(exports, {}))
+
+/***/ },
+/* 10 */
+/***/ function(module, exports) {
+
+	module.exports = Array.isArray || function (arr) {
+	  return Object.prototype.toString.call(arr) == '[object Array]';
+	};
+
+
+/***/ },
+/* 11 */
+/***/ function(module, exports) {
+
+	
+	/**
+	 * Expose `Emitter`.
+	 */
+
+	module.exports = Emitter;
+
+	/**
+	 * Initialize a new `Emitter`.
+	 *
+	 * @api public
+	 */
+
+	function Emitter(obj) {
+	  if (obj) return mixin(obj);
+	};
+
+	/**
+	 * Mixin the emitter properties.
+	 *
+	 * @param {Object} obj
+	 * @return {Object}
+	 * @api private
+	 */
+
+	function mixin(obj) {
+	  for (var key in Emitter.prototype) {
+	    obj[key] = Emitter.prototype[key];
+	  }
+	  return obj;
+	}
+
+	/**
+	 * Listen on the given `event` with `fn`.
+	 *
+	 * @param {String} event
+	 * @param {Function} fn
+	 * @return {Emitter}
+	 * @api public
+	 */
+
+	Emitter.prototype.on =
+	Emitter.prototype.addEventListener = function(event, fn){
+	  this._callbacks = this._callbacks || {};
+	  (this._callbacks[event] = this._callbacks[event] || [])
+	    .push(fn);
+	  return this;
+	};
+
+	/**
+	 * Adds an `event` listener that will be invoked a single
+	 * time then automatically removed.
+	 *
+	 * @param {String} event
+	 * @param {Function} fn
+	 * @return {Emitter}
+	 * @api public
+	 */
+
+	Emitter.prototype.once = function(event, fn){
+	  var self = this;
+	  this._callbacks = this._callbacks || {};
+
+	  function on() {
+	    self.off(event, on);
+	    fn.apply(this, arguments);
+	  }
+
+	  on.fn = fn;
+	  this.on(event, on);
+	  return this;
+	};
+
+	/**
+	 * Remove the given callback for `event` or all
+	 * registered callbacks.
+	 *
+	 * @param {String} event
+	 * @param {Function} fn
+	 * @return {Emitter}
+	 * @api public
+	 */
+
+	Emitter.prototype.off =
+	Emitter.prototype.removeListener =
+	Emitter.prototype.removeAllListeners =
+	Emitter.prototype.removeEventListener = function(event, fn){
+	  this._callbacks = this._callbacks || {};
+
+	  // all
+	  if (0 == arguments.length) {
+	    this._callbacks = {};
+	    return this;
+	  }
+
+	  // specific event
+	  var callbacks = this._callbacks[event];
+	  if (!callbacks) return this;
+
+	  // remove all handlers
+	  if (1 == arguments.length) {
+	    delete this._callbacks[event];
+	    return this;
+	  }
+
+	  // remove specific handler
+	  var cb;
+	  for (var i = 0; i < callbacks.length; i++) {
+	    cb = callbacks[i];
+	    if (cb === fn || cb.fn === fn) {
+	      callbacks.splice(i, 1);
+	      break;
+	    }
+	  }
+	  return this;
+	};
+
+	/**
+	 * Emit `event` with the given args.
+	 *
+	 * @param {String} event
+	 * @param {Mixed} ...
+	 * @return {Emitter}
+	 */
+
+	Emitter.prototype.emit = function(event){
+	  this._callbacks = this._callbacks || {};
+	  var args = [].slice.call(arguments, 1)
+	    , callbacks = this._callbacks[event];
+
+	  if (callbacks) {
+	    callbacks = callbacks.slice(0);
+	    for (var i = 0, len = callbacks.length; i < len; ++i) {
+	      callbacks[i].apply(this, args);
+	    }
+	  }
+
+	  return this;
+	};
+
+	/**
+	 * Return array of callbacks for `event`.
+	 *
+	 * @param {String} event
+	 * @return {Array}
+	 * @api public
+	 */
+
+	Emitter.prototype.listeners = function(event){
+	  this._callbacks = this._callbacks || {};
+	  return this._callbacks[event] || [];
+	};
+
+	/**
+	 * Check if this emitter has `event` handlers.
+	 *
+	 * @param {String} event
+	 * @return {Boolean}
+	 * @api public
+	 */
+
+	Emitter.prototype.hasListeners = function(event){
+	  return !! this.listeners(event).length;
+	};
+
+
+/***/ },
+/* 12 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {/*global Blob,File*/
+
+	/**
+	 * Module requirements
+	 */
+
+	var isArray = __webpack_require__(10);
+	var isBuf = __webpack_require__(13);
+
+	/**
+	 * Replaces every Buffer | ArrayBuffer in packet with a numbered placeholder.
+	 * Anything with blobs or files should be fed through removeBlobs before coming
+	 * here.
+	 *
+	 * @param {Object} packet - socket.io event packet
+	 * @return {Object} with deconstructed packet and list of buffers
+	 * @api public
+	 */
+
+	exports.deconstructPacket = function(packet){
+	  var buffers = [];
+	  var packetData = packet.data;
+
+	  function _deconstructPacket(data) {
+	    if (!data) return data;
+
+	    if (isBuf(data)) {
+	      var placeholder = { _placeholder: true, num: buffers.length };
+	      buffers.push(data);
+	      return placeholder;
+	    } else if (isArray(data)) {
+	      var newData = new Array(data.length);
+	      for (var i = 0; i < data.length; i++) {
+	        newData[i] = _deconstructPacket(data[i]);
+	      }
+	      return newData;
+	    } else if ('object' == typeof data && !(data instanceof Date)) {
+	      var newData = {};
+	      for (var key in data) {
+	        newData[key] = _deconstructPacket(data[key]);
+	      }
+	      return newData;
+	    }
+	    return data;
+	  }
+
+	  var pack = packet;
+	  pack.data = _deconstructPacket(packetData);
+	  pack.attachments = buffers.length; // number of binary 'attachments'
+	  return {packet: pack, buffers: buffers};
+	};
+
+	/**
+	 * Reconstructs a binary packet from its placeholder packet and buffers
+	 *
+	 * @param {Object} packet - event packet with placeholders
+	 * @param {Array} buffers - binary buffers to put in placeholder positions
+	 * @return {Object} reconstructed packet
+	 * @api public
+	 */
+
+	exports.reconstructPacket = function(packet, buffers) {
+	  var curPlaceHolder = 0;
+
+	  function _reconstructPacket(data) {
+	    if (data && data._placeholder) {
+	      var buf = buffers[data.num]; // appropriate buffer (should be natural order anyway)
+	      return buf;
+	    } else if (isArray(data)) {
+	      for (var i = 0; i < data.length; i++) {
+	        data[i] = _reconstructPacket(data[i]);
+	      }
+	      return data;
+	    } else if (data && 'object' == typeof data) {
+	      for (var key in data) {
+	        data[key] = _reconstructPacket(data[key]);
+	      }
+	      return data;
+	    }
+	    return data;
+	  }
+
+	  packet.data = _reconstructPacket(packet.data);
+	  packet.attachments = undefined; // no longer useful
+	  return packet;
+	};
+
+	/**
+	 * Asynchronously removes Blobs or Files from data via
+	 * FileReader's readAsArrayBuffer method. Used before encoding
+	 * data as msgpack. Calls callback with the blobless data.
+	 *
+	 * @param {Object} data
+	 * @param {Function} callback
+	 * @api private
+	 */
+
+	exports.removeBlobs = function(data, callback) {
+	  function _removeBlobs(obj, curKey, containingObject) {
+	    if (!obj) return obj;
+
+	    // convert any blob
+	    if ((global.Blob && obj instanceof Blob) ||
+	        (global.File && obj instanceof File)) {
+	      pendingBlobs++;
+
+	      // async filereader
+	      var fileReader = new FileReader();
+	      fileReader.onload = function() { // this.result == arraybuffer
+	        if (containingObject) {
+	          containingObject[curKey] = this.result;
+	        }
+	        else {
+	          bloblessData = this.result;
+	        }
+
+	        // if nothing pending its callback time
+	        if(! --pendingBlobs) {
+	          callback(bloblessData);
+	        }
+	      };
+
+	      fileReader.readAsArrayBuffer(obj); // blob -> arraybuffer
+	    } else if (isArray(obj)) { // handle array
+	      for (var i = 0; i < obj.length; i++) {
+	        _removeBlobs(obj[i], i, obj);
+	      }
+	    } else if (obj && 'object' == typeof obj && !isBuf(obj)) { // and object
+	      for (var key in obj) {
+	        _removeBlobs(obj[key], key, obj);
+	      }
+	    }
+	  }
+
+	  var pendingBlobs = 0;
+	  var bloblessData = data;
+	  _removeBlobs(bloblessData);
+	  if (!pendingBlobs) {
+	    callback(bloblessData);
+	  }
+	};
+
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ },
+/* 13 */
+/***/ function(module, exports) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {
+	module.exports = isBuf;
+
+	/**
+	 * Returns true if obj is a buffer or an arraybuffer.
+	 *
+	 * @api private
+	 */
+
+	function isBuf(obj) {
+	  return (global.Buffer && global.Buffer.isBuffer(obj)) ||
+	         (global.ArrayBuffer && obj instanceof ArrayBuffer);
+	}
+
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ },
+/* 14 */
+/***/ function(module, exports, __webpack_require__) {
+
+	
+	/**
+	 * Module dependencies.
+	 */
+
+	var url = __webpack_require__(4);
+	var eio = __webpack_require__(15);
+	var Socket = __webpack_require__(46);
+	var Emitter = __webpack_require__(11);
+	var parser = __webpack_require__(7);
+	var on = __webpack_require__(48);
+	var bind = __webpack_require__(49);
+	var object = __webpack_require__(52);
+	var debug = __webpack_require__(6)('socket.io-client:manager');
+	var indexOf = __webpack_require__(43);
+	var Backoff = __webpack_require__(53);
+
+	/**
+	 * Module exports
+	 */
+
+	module.exports = Manager;
+
+	/**
+	 * `Manager` constructor.
+	 *
+	 * @param {String} engine instance or engine uri/opts
+	 * @param {Object} options
+	 * @api public
+	 */
+
+	function Manager(uri, opts){
+	  if (!(this instanceof Manager)) return new Manager(uri, opts);
+	  if (uri && ('object' == typeof uri)) {
+	    opts = uri;
+	    uri = undefined;
+	  }
+	  opts = opts || {};
+
+	  opts.path = opts.path || '/socket.io';
+	  this.nsps = {};
+	  this.subs = [];
+	  this.opts = opts;
+	  this.reconnection(opts.reconnection !== false);
+	  this.reconnectionAttempts(opts.reconnectionAttempts || Infinity);
+	  this.reconnectionDelay(opts.reconnectionDelay || 1000);
+	  this.reconnectionDelayMax(opts.reconnectionDelayMax || 5000);
+	  this.randomizationFactor(opts.randomizationFactor || 0.5);
+	  this.backoff = new Backoff({
+	    min: this.reconnectionDelay(),
+	    max: this.reconnectionDelayMax(),
+	    jitter: this.randomizationFactor()
+	  });
+	  this.timeout(null == opts.timeout ? 20000 : opts.timeout);
+	  this.readyState = 'closed';
+	  this.uri = uri;
+	  this.connected = [];
+	  this.encoding = false;
+	  this.packetBuffer = [];
+	  this.encoder = new parser.Encoder();
+	  this.decoder = new parser.Decoder();
+	  this.autoConnect = opts.autoConnect !== false;
+	  if (this.autoConnect) this.open();
+	}
+
+	/**
+	 * Propagate given event to sockets and emit on `this`
+	 *
+	 * @api private
+	 */
+
+	Manager.prototype.emitAll = function() {
+	  this.emit.apply(this, arguments);
+	  for (var nsp in this.nsps) {
+	    this.nsps[nsp].emit.apply(this.nsps[nsp], arguments);
+	  }
+	};
+
+	/**
+	 * Update `socket.id` of all sockets
+	 *
+	 * @api private
+	 */
+
+	Manager.prototype.updateSocketIds = function(){
+	  for (var nsp in this.nsps) {
+	    this.nsps[nsp].id = this.engine.id;
+	  }
+	};
+
+	/**
+	 * Mix in `Emitter`.
+	 */
+
+	Emitter(Manager.prototype);
+
+	/**
+	 * Sets the `reconnection` config.
+	 *
+	 * @param {Boolean} true/false if it should automatically reconnect
+	 * @return {Manager} self or value
+	 * @api public
+	 */
+
+	Manager.prototype.reconnection = function(v){
+	  if (!arguments.length) return this._reconnection;
+	  this._reconnection = !!v;
+	  return this;
+	};
+
+	/**
+	 * Sets the reconnection attempts config.
+	 *
+	 * @param {Number} max reconnection attempts before giving up
+	 * @return {Manager} self or value
+	 * @api public
+	 */
+
+	Manager.prototype.reconnectionAttempts = function(v){
+	  if (!arguments.length) return this._reconnectionAttempts;
+	  this._reconnectionAttempts = v;
+	  return this;
+	};
+
+	/**
+	 * Sets the delay between reconnections.
+	 *
+	 * @param {Number} delay
+	 * @return {Manager} self or value
+	 * @api public
+	 */
+
+	Manager.prototype.reconnectionDelay = function(v){
+	  if (!arguments.length) return this._reconnectionDelay;
+	  this._reconnectionDelay = v;
+	  this.backoff && this.backoff.setMin(v);
+	  return this;
+	};
+
+	Manager.prototype.randomizationFactor = function(v){
+	  if (!arguments.length) return this._randomizationFactor;
+	  this._randomizationFactor = v;
+	  this.backoff && this.backoff.setJitter(v);
+	  return this;
+	};
+
+	/**
+	 * Sets the maximum delay between reconnections.
+	 *
+	 * @param {Number} delay
+	 * @return {Manager} self or value
+	 * @api public
+	 */
+
+	Manager.prototype.reconnectionDelayMax = function(v){
+	  if (!arguments.length) return this._reconnectionDelayMax;
+	  this._reconnectionDelayMax = v;
+	  this.backoff && this.backoff.setMax(v);
+	  return this;
+	};
+
+	/**
+	 * Sets the connection timeout. `false` to disable
+	 *
+	 * @return {Manager} self or value
+	 * @api public
+	 */
+
+	Manager.prototype.timeout = function(v){
+	  if (!arguments.length) return this._timeout;
+	  this._timeout = v;
+	  return this;
+	};
+
+	/**
+	 * Starts trying to reconnect if reconnection is enabled and we have not
+	 * started reconnecting yet
+	 *
+	 * @api private
+	 */
+
+	Manager.prototype.maybeReconnectOnOpen = function() {
+	  // Only try to reconnect if it's the first time we're connecting
+	  if (!this.reconnecting && this._reconnection && this.backoff.attempts === 0) {
+	    // keeps reconnection from firing twice for the same reconnection loop
+	    this.reconnect();
+	  }
+	};
+
+
+	/**
+	 * Sets the current transport `socket`.
+	 *
+	 * @param {Function} optional, callback
+	 * @return {Manager} self
+	 * @api public
+	 */
+
+	Manager.prototype.open =
+	Manager.prototype.connect = function(fn){
+	  debug('readyState %s', this.readyState);
+	  if (~this.readyState.indexOf('open')) return this;
+
+	  debug('opening %s', this.uri);
+	  this.engine = eio(this.uri, this.opts);
+	  var socket = this.engine;
+	  var self = this;
+	  this.readyState = 'opening';
+	  this.skipReconnect = false;
+
+	  // emit `open`
+	  var openSub = on(socket, 'open', function() {
+	    self.onopen();
+	    fn && fn();
+	  });
+
+	  // emit `connect_error`
+	  var errorSub = on(socket, 'error', function(data){
+	    debug('connect_error');
+	    self.cleanup();
+	    self.readyState = 'closed';
+	    self.emitAll('connect_error', data);
+	    if (fn) {
+	      var err = new Error('Connection error');
+	      err.data = data;
+	      fn(err);
+	    } else {
+	      // Only do this if there is no fn to handle the error
+	      self.maybeReconnectOnOpen();
+	    }
+	  });
+
+	  // emit `connect_timeout`
+	  if (false !== this._timeout) {
+	    var timeout = this._timeout;
+	    debug('connect attempt will timeout after %d', timeout);
+
+	    // set timer
+	    var timer = setTimeout(function(){
+	      debug('connect attempt timed out after %d', timeout);
+	      openSub.destroy();
+	      socket.close();
+	      socket.emit('error', 'timeout');
+	      self.emitAll('connect_timeout', timeout);
+	    }, timeout);
+
+	    this.subs.push({
+	      destroy: function(){
+	        clearTimeout(timer);
+	      }
+	    });
+	  }
+
+	  this.subs.push(openSub);
+	  this.subs.push(errorSub);
+
+	  return this;
+	};
+
+	/**
+	 * Called upon transport open.
+	 *
+	 * @api private
+	 */
+
+	Manager.prototype.onopen = function(){
+	  debug('open');
+
+	  // clear old subs
+	  this.cleanup();
+
+	  // mark as open
+	  this.readyState = 'open';
+	  this.emit('open');
+
+	  // add new subs
+	  var socket = this.engine;
+	  this.subs.push(on(socket, 'data', bind(this, 'ondata')));
+	  this.subs.push(on(this.decoder, 'decoded', bind(this, 'ondecoded')));
+	  this.subs.push(on(socket, 'error', bind(this, 'onerror')));
+	  this.subs.push(on(socket, 'close', bind(this, 'onclose')));
+	};
+
+	/**
+	 * Called with data.
+	 *
+	 * @api private
+	 */
+
+	Manager.prototype.ondata = function(data){
+	  this.decoder.add(data);
+	};
+
+	/**
+	 * Called when parser fully decodes a packet.
+	 *
+	 * @api private
+	 */
+
+	Manager.prototype.ondecoded = function(packet) {
+	  this.emit('packet', packet);
+	};
+
+	/**
+	 * Called upon socket error.
+	 *
+	 * @api private
+	 */
+
+	Manager.prototype.onerror = function(err){
+	  debug('error', err);
+	  this.emitAll('error', err);
+	};
+
+	/**
+	 * Creates a new socket for the given `nsp`.
+	 *
+	 * @return {Socket}
+	 * @api public
+	 */
+
+	Manager.prototype.socket = function(nsp){
+	  var socket = this.nsps[nsp];
+	  if (!socket) {
+	    socket = new Socket(this, nsp);
+	    this.nsps[nsp] = socket;
+	    var self = this;
+	    socket.on('connect', function(){
+	      socket.id = self.engine.id;
+	      if (!~indexOf(self.connected, socket)) {
+	        self.connected.push(socket);
+	      }
+	    });
+	  }
+	  return socket;
+	};
+
+	/**
+	 * Called upon a socket close.
+	 *
+	 * @param {Socket} socket
+	 */
+
+	Manager.prototype.destroy = function(socket){
+	  var index = indexOf(this.connected, socket);
+	  if (~index) this.connected.splice(index, 1);
+	  if (this.connected.length) return;
+
+	  this.close();
+	};
+
+	/**
+	 * Writes a packet.
+	 *
+	 * @param {Object} packet
+	 * @api private
+	 */
+
+	Manager.prototype.packet = function(packet){
+	  debug('writing packet %j', packet);
+	  var self = this;
+
+	  if (!self.encoding) {
+	    // encode, then write to engine with result
+	    self.encoding = true;
+	    this.encoder.encode(packet, function(encodedPackets) {
+	      for (var i = 0; i < encodedPackets.length; i++) {
+	        self.engine.write(encodedPackets[i]);
+	      }
+	      self.encoding = false;
+	      self.processPacketQueue();
+	    });
+	  } else { // add packet to the queue
+	    self.packetBuffer.push(packet);
+	  }
+	};
+
+	/**
+	 * If packet buffer is non-empty, begins encoding the
+	 * next packet in line.
+	 *
+	 * @api private
+	 */
+
+	Manager.prototype.processPacketQueue = function() {
+	  if (this.packetBuffer.length > 0 && !this.encoding) {
+	    var pack = this.packetBuffer.shift();
+	    this.packet(pack);
+	  }
+	};
+
+	/**
+	 * Clean up transport subscriptions and packet buffer.
+	 *
+	 * @api private
+	 */
+
+	Manager.prototype.cleanup = function(){
+	  var sub;
+	  while (sub = this.subs.shift()) sub.destroy();
+
+	  this.packetBuffer = [];
+	  this.encoding = false;
+
+	  this.decoder.destroy();
+	};
+
+	/**
+	 * Close the current socket.
+	 *
+	 * @api private
+	 */
+
+	Manager.prototype.close =
+	Manager.prototype.disconnect = function(){
+	  this.skipReconnect = true;
+	  this.backoff.reset();
+	  this.readyState = 'closed';
+	  this.engine && this.engine.close();
+	};
+
+	/**
+	 * Called upon engine close.
+	 *
+	 * @api private
+	 */
+
+	Manager.prototype.onclose = function(reason){
+	  debug('close');
+	  this.cleanup();
+	  this.backoff.reset();
+	  this.readyState = 'closed';
+	  this.emit('close', reason);
+	  if (this._reconnection && !this.skipReconnect) {
+	    this.reconnect();
+	  }
+	};
+
+	/**
+	 * Attempt a reconnection.
+	 *
+	 * @api private
+	 */
+
+	Manager.prototype.reconnect = function(){
+	  if (this.reconnecting || this.skipReconnect) return this;
+
+	  var self = this;
+
+	  if (this.backoff.attempts >= this._reconnectionAttempts) {
+	    debug('reconnect failed');
+	    this.backoff.reset();
+	    this.emitAll('reconnect_failed');
+	    this.reconnecting = false;
+	  } else {
+	    var delay = this.backoff.duration();
+	    debug('will wait %dms before reconnect attempt', delay);
+
+	    this.reconnecting = true;
+	    var timer = setTimeout(function(){
+	      if (self.skipReconnect) return;
+
+	      debug('attempting reconnect');
+	      self.emitAll('reconnect_attempt', self.backoff.attempts);
+	      self.emitAll('reconnecting', self.backoff.attempts);
+
+	      // check again for the case socket closed in above events
+	      if (self.skipReconnect) return;
+
+	      self.open(function(err){
+	        if (err) {
+	          debug('reconnect attempt error');
+	          self.reconnecting = false;
+	          self.reconnect();
+	          self.emitAll('reconnect_error', err.data);
+	        } else {
+	          debug('reconnect success');
+	          self.onreconnect();
+	        }
+	      });
+	    }, delay);
+
+	    this.subs.push({
+	      destroy: function(){
+	        clearTimeout(timer);
+	      }
+	    });
+	  }
+	};
+
+	/**
+	 * Called upon successful reconnect.
+	 *
+	 * @api private
+	 */
+
+	Manager.prototype.onreconnect = function(){
+	  var attempt = this.backoff.attempts;
+	  this.reconnecting = false;
+	  this.backoff.reset();
+	  this.updateSocketIds();
+	  this.emitAll('reconnect', attempt);
+	};
+
+
+/***/ },
+/* 15 */
+/***/ function(module, exports, __webpack_require__) {
+
+	
+	module.exports =  __webpack_require__(16);
+
+
+/***/ },
+/* 16 */
+/***/ function(module, exports, __webpack_require__) {
+
+	
+	module.exports = __webpack_require__(17);
+
+	/**
+	 * Exports parser
+	 *
+	 * @api public
+	 *
+	 */
+	module.exports.parser = __webpack_require__(25);
+
+
+/***/ },
+/* 17 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {/**
+	 * Module dependencies.
+	 */
+
+	var transports = __webpack_require__(18);
+	var Emitter = __webpack_require__(11);
+	var debug = __webpack_require__(37)('engine.io-client:socket');
+	var index = __webpack_require__(43);
+	var parser = __webpack_require__(25);
+	var parseuri = __webpack_require__(44);
+	var parsejson = __webpack_require__(45);
+	var parseqs = __webpack_require__(35);
+
+	/**
+	 * Module exports.
+	 */
+
+	module.exports = Socket;
+
+	/**
+	 * Noop function.
+	 *
+	 * @api private
+	 */
+
+	function noop(){}
+
+	/**
+	 * Socket constructor.
+	 *
+	 * @param {String|Object} uri or options
+	 * @param {Object} options
+	 * @api public
+	 */
+
+	function Socket(uri, opts){
+	  if (!(this instanceof Socket)) return new Socket(uri, opts);
+
+	  opts = opts || {};
+
+	  if (uri && 'object' == typeof uri) {
+	    opts = uri;
+	    uri = null;
+	  }
+
+	  if (uri) {
+	    uri = parseuri(uri);
+	    opts.host = uri.host;
+	    opts.secure = uri.protocol == 'https' || uri.protocol == 'wss';
+	    opts.port = uri.port;
+	    if (uri.query) opts.query = uri.query;
+	  }
+
+	  this.secure = null != opts.secure ? opts.secure :
+	    (global.location && 'https:' == location.protocol);
+
+	  if (opts.host) {
+	    var pieces = opts.host.split(':');
+	    opts.hostname = pieces.shift();
+	    if (pieces.length) {
+	      opts.port = pieces.pop();
+	    } else if (!opts.port) {
+	      // if no port is specified manually, use the protocol default
+	      opts.port = this.secure ? '443' : '80';
+	    }
+	  }
+
+	  this.agent = opts.agent || false;
+	  this.hostname = opts.hostname ||
+	    (global.location ? location.hostname : 'localhost');
+	  this.port = opts.port || (global.location && location.port ?
+	       location.port :
+	       (this.secure ? 443 : 80));
+	  this.query = opts.query || {};
+	  if ('string' == typeof this.query) this.query = parseqs.decode(this.query);
+	  this.upgrade = false !== opts.upgrade;
+	  this.path = (opts.path || '/engine.io').replace(/\/$/, '') + '/';
+	  this.forceJSONP = !!opts.forceJSONP;
+	  this.jsonp = false !== opts.jsonp;
+	  this.forceBase64 = !!opts.forceBase64;
+	  this.enablesXDR = !!opts.enablesXDR;
+	  this.timestampParam = opts.timestampParam || 't';
+	  this.timestampRequests = opts.timestampRequests;
+	  this.transports = opts.transports || ['polling', 'websocket'];
+	  this.readyState = '';
+	  this.writeBuffer = [];
+	  this.callbackBuffer = [];
+	  this.policyPort = opts.policyPort || 843;
+	  this.rememberUpgrade = opts.rememberUpgrade || false;
+	  this.binaryType = null;
+	  this.onlyBinaryUpgrades = opts.onlyBinaryUpgrades;
+
+	  // SSL options for Node.js client
+	  this.pfx = opts.pfx || null;
+	  this.key = opts.key || null;
+	  this.passphrase = opts.passphrase || null;
+	  this.cert = opts.cert || null;
+	  this.ca = opts.ca || null;
+	  this.ciphers = opts.ciphers || null;
+	  this.rejectUnauthorized = opts.rejectUnauthorized || null;
+
+	  this.open();
+	}
+
+	Socket.priorWebsocketSuccess = false;
+
+	/**
+	 * Mix in `Emitter`.
+	 */
+
+	Emitter(Socket.prototype);
+
+	/**
+	 * Protocol version.
+	 *
+	 * @api public
+	 */
+
+	Socket.protocol = parser.protocol; // this is an int
+
+	/**
+	 * Expose deps for legacy compatibility
+	 * and standalone browser access.
+	 */
+
+	Socket.Socket = Socket;
+	Socket.Transport = __webpack_require__(24);
+	Socket.transports = __webpack_require__(18);
+	Socket.parser = __webpack_require__(25);
+
+	/**
+	 * Creates transport of the given type.
+	 *
+	 * @param {String} transport name
+	 * @return {Transport}
+	 * @api private
+	 */
+
+	Socket.prototype.createTransport = function (name) {
+	  debug('creating transport "%s"', name);
+	  var query = clone(this.query);
+
+	  // append engine.io protocol identifier
+	  query.EIO = parser.protocol;
+
+	  // transport name
+	  query.transport = name;
+
+	  // session id if we already have one
+	  if (this.id) query.sid = this.id;
+
+	  var transport = new transports[name]({
+	    agent: this.agent,
+	    hostname: this.hostname,
+	    port: this.port,
+	    secure: this.secure,
+	    path: this.path,
+	    query: query,
+	    forceJSONP: this.forceJSONP,
+	    jsonp: this.jsonp,
+	    forceBase64: this.forceBase64,
+	    enablesXDR: this.enablesXDR,
+	    timestampRequests: this.timestampRequests,
+	    timestampParam: this.timestampParam,
+	    policyPort: this.policyPort,
+	    socket: this,
+	    pfx: this.pfx,
+	    key: this.key,
+	    passphrase: this.passphrase,
+	    cert: this.cert,
+	    ca: this.ca,
+	    ciphers: this.ciphers,
+	    rejectUnauthorized: this.rejectUnauthorized
+	  });
+
+	  return transport;
+	};
+
+	function clone (obj) {
+	  var o = {};
+	  for (var i in obj) {
+	    if (obj.hasOwnProperty(i)) {
+	      o[i] = obj[i];
+	    }
+	  }
+	  return o;
+	}
+
+	/**
+	 * Initializes transport to use and starts probe.
+	 *
+	 * @api private
+	 */
+	Socket.prototype.open = function () {
+	  var transport;
+	  if (this.rememberUpgrade && Socket.priorWebsocketSuccess && this.transports.indexOf('websocket') != -1) {
+	    transport = 'websocket';
+	  } else if (0 == this.transports.length) {
+	    // Emit error on next tick so it can be listened to
+	    var self = this;
+	    setTimeout(function() {
+	      self.emit('error', 'No transports available');
+	    }, 0);
+	    return;
+	  } else {
+	    transport = this.transports[0];
+	  }
+	  this.readyState = 'opening';
+
+	  // Retry with the next transport if the transport is disabled (jsonp: false)
+	  var transport;
+	  try {
+	    transport = this.createTransport(transport);
+	  } catch (e) {
+	    this.transports.shift();
+	    this.open();
+	    return;
+	  }
+
+	  transport.open();
+	  this.setTransport(transport);
+	};
+
+	/**
+	 * Sets the current transport. Disables the existing one (if any).
+	 *
+	 * @api private
+	 */
+
+	Socket.prototype.setTransport = function(transport){
+	  debug('setting transport %s', transport.name);
+	  var self = this;
+
+	  if (this.transport) {
+	    debug('clearing existing transport %s', this.transport.name);
+	    this.transport.removeAllListeners();
+	  }
+
+	  // set up transport
+	  this.transport = transport;
+
+	  // set up transport listeners
+	  transport
+	  .on('drain', function(){
+	    self.onDrain();
+	  })
+	  .on('packet', function(packet){
+	    self.onPacket(packet);
+	  })
+	  .on('error', function(e){
+	    self.onError(e);
+	  })
+	  .on('close', function(){
+	    self.onClose('transport close');
+	  });
+	};
+
+	/**
+	 * Probes a transport.
+	 *
+	 * @param {String} transport name
+	 * @api private
+	 */
+
+	Socket.prototype.probe = function (name) {
+	  debug('probing transport "%s"', name);
+	  var transport = this.createTransport(name, { probe: 1 })
+	    , failed = false
+	    , self = this;
+
+	  Socket.priorWebsocketSuccess = false;
+
+	  function onTransportOpen(){
+	    if (self.onlyBinaryUpgrades) {
+	      var upgradeLosesBinary = !this.supportsBinary && self.transport.supportsBinary;
+	      failed = failed || upgradeLosesBinary;
+	    }
+	    if (failed) return;
+
+	    debug('probe transport "%s" opened', name);
+	    transport.send([{ type: 'ping', data: 'probe' }]);
+	    transport.once('packet', function (msg) {
+	      if (failed) return;
+	      if ('pong' == msg.type && 'probe' == msg.data) {
+	        debug('probe transport "%s" pong', name);
+	        self.upgrading = true;
+	        self.emit('upgrading', transport);
+	        if (!transport) return;
+	        Socket.priorWebsocketSuccess = 'websocket' == transport.name;
+
+	        debug('pausing current transport "%s"', self.transport.name);
+	        self.transport.pause(function () {
+	          if (failed) return;
+	          if ('closed' == self.readyState) return;
+	          debug('changing transport and sending upgrade packet');
+
+	          cleanup();
+
+	          self.setTransport(transport);
+	          transport.send([{ type: 'upgrade' }]);
+	          self.emit('upgrade', transport);
+	          transport = null;
+	          self.upgrading = false;
+	          self.flush();
+	        });
+	      } else {
+	        debug('probe transport "%s" failed', name);
+	        var err = new Error('probe error');
+	        err.transport = transport.name;
+	        self.emit('upgradeError', err);
+	      }
+	    });
+	  }
+
+	  function freezeTransport() {
+	    if (failed) return;
+
+	    // Any callback called by transport should be ignored since now
+	    failed = true;
+
+	    cleanup();
+
+	    transport.close();
+	    transport = null;
+	  }
+
+	  //Handle any error that happens while probing
+	  function onerror(err) {
+	    var error = new Error('probe error: ' + err);
+	    error.transport = transport.name;
+
+	    freezeTransport();
+
+	    debug('probe transport "%s" failed because of error: %s', name, err);
+
+	    self.emit('upgradeError', error);
+	  }
+
+	  function onTransportClose(){
+	    onerror("transport closed");
+	  }
+
+	  //When the socket is closed while we're probing
+	  function onclose(){
+	    onerror("socket closed");
+	  }
+
+	  //When the socket is upgraded while we're probing
+	  function onupgrade(to){
+	    if (transport && to.name != transport.name) {
+	      debug('"%s" works - aborting "%s"', to.name, transport.name);
+	      freezeTransport();
+	    }
+	  }
+
+	  //Remove all listeners on the transport and on self
+	  function cleanup(){
+	    transport.removeListener('open', onTransportOpen);
+	    transport.removeListener('error', onerror);
+	    transport.removeListener('close', onTransportClose);
+	    self.removeListener('close', onclose);
+	    self.removeListener('upgrading', onupgrade);
+	  }
+
+	  transport.once('open', onTransportOpen);
+	  transport.once('error', onerror);
+	  transport.once('close', onTransportClose);
+
+	  this.once('close', onclose);
+	  this.once('upgrading', onupgrade);
+
+	  transport.open();
+
+	};
+
+	/**
+	 * Called when connection is deemed open.
+	 *
+	 * @api public
+	 */
+
+	Socket.prototype.onOpen = function () {
+	  debug('socket open');
+	  this.readyState = 'open';
+	  Socket.priorWebsocketSuccess = 'websocket' == this.transport.name;
+	  this.emit('open');
+	  this.flush();
+
+	  // we check for `readyState` in case an `open`
+	  // listener already closed the socket
+	  if ('open' == this.readyState && this.upgrade && this.transport.pause) {
+	    debug('starting upgrade probes');
+	    for (var i = 0, l = this.upgrades.length; i < l; i++) {
+	      this.probe(this.upgrades[i]);
+	    }
+	  }
+	};
+
+	/**
+	 * Handles a packet.
+	 *
+	 * @api private
+	 */
+
+	Socket.prototype.onPacket = function (packet) {
+	  if ('opening' == this.readyState || 'open' == this.readyState) {
+	    debug('socket receive: type "%s", data "%s"', packet.type, packet.data);
+
+	    this.emit('packet', packet);
+
+	    // Socket is live - any packet counts
+	    this.emit('heartbeat');
+
+	    switch (packet.type) {
+	      case 'open':
+	        this.onHandshake(parsejson(packet.data));
+	        break;
+
+	      case 'pong':
+	        this.setPing();
+	        break;
+
+	      case 'error':
+	        var err = new Error('server error');
+	        err.code = packet.data;
+	        this.emit('error', err);
+	        break;
+
+	      case 'message':
+	        this.emit('data', packet.data);
+	        this.emit('message', packet.data);
+	        break;
+	    }
+	  } else {
+	    debug('packet received with socket readyState "%s"', this.readyState);
+	  }
+	};
+
+	/**
+	 * Called upon handshake completion.
+	 *
+	 * @param {Object} handshake obj
+	 * @api private
+	 */
+
+	Socket.prototype.onHandshake = function (data) {
+	  this.emit('handshake', data);
+	  this.id = data.sid;
+	  this.transport.query.sid = data.sid;
+	  this.upgrades = this.filterUpgrades(data.upgrades);
+	  this.pingInterval = data.pingInterval;
+	  this.pingTimeout = data.pingTimeout;
+	  this.onOpen();
+	  // In case open handler closes socket
+	  if  ('closed' == this.readyState) return;
+	  this.setPing();
+
+	  // Prolong liveness of socket on heartbeat
+	  this.removeListener('heartbeat', this.onHeartbeat);
+	  this.on('heartbeat', this.onHeartbeat);
+	};
+
+	/**
+	 * Resets ping timeout.
+	 *
+	 * @api private
+	 */
+
+	Socket.prototype.onHeartbeat = function (timeout) {
+	  clearTimeout(this.pingTimeoutTimer);
+	  var self = this;
+	  self.pingTimeoutTimer = setTimeout(function () {
+	    if ('closed' == self.readyState) return;
+	    self.onClose('ping timeout');
+	  }, timeout || (self.pingInterval + self.pingTimeout));
+	};
+
+	/**
+	 * Pings server every `this.pingInterval` and expects response
+	 * within `this.pingTimeout` or closes connection.
+	 *
+	 * @api private
+	 */
+
+	Socket.prototype.setPing = function () {
+	  var self = this;
+	  clearTimeout(self.pingIntervalTimer);
+	  self.pingIntervalTimer = setTimeout(function () {
+	    debug('writing ping packet - expecting pong within %sms', self.pingTimeout);
+	    self.ping();
+	    self.onHeartbeat(self.pingTimeout);
+	  }, self.pingInterval);
+	};
+
+	/**
+	* Sends a ping packet.
+	*
+	* @api public
+	*/
+
+	Socket.prototype.ping = function () {
+	  this.sendPacket('ping');
+	};
+
+	/**
+	 * Called on `drain` event
+	 *
+	 * @api private
+	 */
+
+	Socket.prototype.onDrain = function() {
+	  for (var i = 0; i < this.prevBufferLen; i++) {
+	    if (this.callbackBuffer[i]) {
+	      this.callbackBuffer[i]();
+	    }
+	  }
+
+	  this.writeBuffer.splice(0, this.prevBufferLen);
+	  this.callbackBuffer.splice(0, this.prevBufferLen);
+
+	  // setting prevBufferLen = 0 is very important
+	  // for example, when upgrading, upgrade packet is sent over,
+	  // and a nonzero prevBufferLen could cause problems on `drain`
+	  this.prevBufferLen = 0;
+
+	  if (this.writeBuffer.length == 0) {
+	    this.emit('drain');
+	  } else {
+	    this.flush();
+	  }
+	};
+
+	/**
+	 * Flush write buffers.
+	 *
+	 * @api private
+	 */
+
+	Socket.prototype.flush = function () {
+	  if ('closed' != this.readyState && this.transport.writable &&
+	    !this.upgrading && this.writeBuffer.length) {
+	    debug('flushing %d packets in socket', this.writeBuffer.length);
+	    this.transport.send(this.writeBuffer);
+	    // keep track of current length of writeBuffer
+	    // splice writeBuffer and callbackBuffer on `drain`
+	    this.prevBufferLen = this.writeBuffer.length;
+	    this.emit('flush');
+	  }
+	};
+
+	/**
+	 * Sends a message.
+	 *
+	 * @param {String} message.
+	 * @param {Function} callback function.
+	 * @return {Socket} for chaining.
+	 * @api public
+	 */
+
+	Socket.prototype.write =
+	Socket.prototype.send = function (msg, fn) {
+	  this.sendPacket('message', msg, fn);
+	  return this;
+	};
+
+	/**
+	 * Sends a packet.
+	 *
+	 * @param {String} packet type.
+	 * @param {String} data.
+	 * @param {Function} callback function.
+	 * @api private
+	 */
+
+	Socket.prototype.sendPacket = function (type, data, fn) {
+	  if ('closing' == this.readyState || 'closed' == this.readyState) {
+	    return;
+	  }
+
+	  var packet = { type: type, data: data };
+	  this.emit('packetCreate', packet);
+	  this.writeBuffer.push(packet);
+	  this.callbackBuffer.push(fn);
+	  this.flush();
+	};
+
+	/**
+	 * Closes the connection.
+	 *
+	 * @api private
+	 */
+
+	Socket.prototype.close = function () {
+	  if ('opening' == this.readyState || 'open' == this.readyState) {
+	    this.readyState = 'closing';
+
+	    var self = this;
+
+	    function close() {
+	      self.onClose('forced close');
+	      debug('socket closing - telling transport to close');
+	      self.transport.close();
+	    }
+
+	    function cleanupAndClose() {
+	      self.removeListener('upgrade', cleanupAndClose);
+	      self.removeListener('upgradeError', cleanupAndClose);
+	      close();
+	    }
+
+	    function waitForUpgrade() {
+	      // wait for upgrade to finish since we can't send packets while pausing a transport
+	      self.once('upgrade', cleanupAndClose);
+	      self.once('upgradeError', cleanupAndClose);
+	    }
+
+	    if (this.writeBuffer.length) {
+	      this.once('drain', function() {
+	        if (this.upgrading) {
+	          waitForUpgrade();
+	        } else {
+	          close();
+	        }
+	      });
+	    } else if (this.upgrading) {
+	      waitForUpgrade();
+	    } else {
+	      close();
+	    }
+	  }
+
+	  return this;
+	};
+
+	/**
+	 * Called upon transport error
+	 *
+	 * @api private
+	 */
+
+	Socket.prototype.onError = function (err) {
+	  debug('socket error %j', err);
+	  Socket.priorWebsocketSuccess = false;
+	  this.emit('error', err);
+	  this.onClose('transport error', err);
+	};
+
+	/**
+	 * Called upon transport close.
+	 *
+	 * @api private
+	 */
+
+	Socket.prototype.onClose = function (reason, desc) {
+	  if ('opening' == this.readyState || 'open' == this.readyState || 'closing' == this.readyState) {
+	    debug('socket close with reason: "%s"', reason);
+	    var self = this;
+
+	    // clear timers
+	    clearTimeout(this.pingIntervalTimer);
+	    clearTimeout(this.pingTimeoutTimer);
+
+	    // clean buffers in next tick, so developers can still
+	    // grab the buffers on `close` event
+	    setTimeout(function() {
+	      self.writeBuffer = [];
+	      self.callbackBuffer = [];
+	      self.prevBufferLen = 0;
+	    }, 0);
+
+	    // stop event from firing again for transport
+	    this.transport.removeAllListeners('close');
+
+	    // ensure transport won't stay open
+	    this.transport.close();
+
+	    // ignore further transport communication
+	    this.transport.removeAllListeners();
+
+	    // set ready state
+	    this.readyState = 'closed';
+
+	    // clear session id
+	    this.id = null;
+
+	    // emit close event
+	    this.emit('close', reason, desc);
+	  }
+	};
+
+	/**
+	 * Filters upgrades, returning only those matching client transports.
+	 *
+	 * @param {Array} server upgrades
+	 * @api private
+	 *
+	 */
+
+	Socket.prototype.filterUpgrades = function (upgrades) {
+	  var filteredUpgrades = [];
+	  for (var i = 0, j = upgrades.length; i<j; i++) {
+	    if (~index(this.transports, upgrades[i])) filteredUpgrades.push(upgrades[i]);
+	  }
+	  return filteredUpgrades;
+	};
+
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ },
+/* 18 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {/**
+	 * Module dependencies
+	 */
+
+	var XMLHttpRequest = __webpack_require__(19);
+	var XHR = __webpack_require__(22);
+	var JSONP = __webpack_require__(40);
+	var websocket = __webpack_require__(41);
+
+	/**
+	 * Export transports.
+	 */
+
+	exports.polling = polling;
+	exports.websocket = websocket;
+
+	/**
+	 * Polling transport polymorphic constructor.
+	 * Decides on xhr vs jsonp based on feature detection.
+	 *
+	 * @api private
+	 */
+
+	function polling(opts){
+	  var xhr;
+	  var xd = false;
+	  var xs = false;
+	  var jsonp = false !== opts.jsonp;
+
+	  if (global.location) {
+	    var isSSL = 'https:' == location.protocol;
+	    var port = location.port;
+
+	    // some user agents have empty `location.port`
+	    if (!port) {
+	      port = isSSL ? 443 : 80;
+	    }
+
+	    xd = opts.hostname != location.hostname || port != opts.port;
+	    xs = opts.secure != isSSL;
+	  }
+
+	  opts.xdomain = xd;
+	  opts.xscheme = xs;
+	  xhr = new XMLHttpRequest(opts);
+
+	  if ('open' in xhr && !opts.forceJSONP) {
+	    return new XHR(opts);
+	  } else {
+	    if (!jsonp) throw new Error('JSONP disabled');
+	    return new JSONP(opts);
+	  }
+	}
+
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ },
+/* 19 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// browser shim for xmlhttprequest module
+	var hasCORS = __webpack_require__(20);
+
+	module.exports = function(opts) {
+	  var xdomain = opts.xdomain;
+
+	  // scheme must be same when usign XDomainRequest
+	  // http://blogs.msdn.com/b/ieinternals/archive/2010/05/13/xdomainrequest-restrictions-limitations-and-workarounds.aspx
+	  var xscheme = opts.xscheme;
+
+	  // XDomainRequest has a flow of not sending cookie, therefore it should be disabled as a default.
+	  // https://github.com/Automattic/engine.io-client/pull/217
+	  var enablesXDR = opts.enablesXDR;
+
+	  // XMLHttpRequest can be disabled on IE
+	  try {
+	    if ('undefined' != typeof XMLHttpRequest && (!xdomain || hasCORS)) {
+	      return new XMLHttpRequest();
+	    }
+	  } catch (e) { }
+
+	  // Use XDomainRequest for IE8 if enablesXDR is true
+	  // because loading bar keeps flashing when using jsonp-polling
+	  // https://github.com/yujiosaka/socke.io-ie8-loading-example
+	  try {
+	    if ('undefined' != typeof XDomainRequest && !xscheme && enablesXDR) {
+	      return new XDomainRequest();
+	    }
+	  } catch (e) { }
+
+	  if (!xdomain) {
+	    try {
+	      return new ActiveXObject('Microsoft.XMLHTTP');
+	    } catch(e) { }
+	  }
+	}
+
+
+/***/ },
+/* 20 */
+/***/ function(module, exports, __webpack_require__) {
+
+	
+	/**
+	 * Module dependencies.
+	 */
+
+	var global = __webpack_require__(21);
+
+	/**
+	 * Module exports.
+	 *
+	 * Logic borrowed from Modernizr:
+	 *
+	 *   - https://github.com/Modernizr/Modernizr/blob/master/feature-detects/cors.js
+	 */
+
+	try {
+	  module.exports = 'XMLHttpRequest' in global &&
+	    'withCredentials' in new global.XMLHttpRequest();
+	} catch (err) {
+	  // if XMLHttp support is disabled in IE then it will throw
+	  // when trying to create
+	  module.exports = false;
+	}
+
+
+/***/ },
+/* 21 */
+/***/ function(module, exports) {
+
+	
+	/**
+	 * Returns `this`. Execute this without a "context" (i.e. without it being
+	 * attached to an object of the left-hand side), and `this` points to the
+	 * "global" scope of the current JS execution.
+	 */
+
+	module.exports = (function () { return this; })();
+
+
+/***/ },
+/* 22 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {/**
+	 * Module requirements.
+	 */
+
+	var XMLHttpRequest = __webpack_require__(19);
+	var Polling = __webpack_require__(23);
+	var Emitter = __webpack_require__(11);
+	var inherit = __webpack_require__(36);
+	var debug = __webpack_require__(37)('engine.io-client:polling-xhr');
+
+	/**
+	 * Module exports.
+	 */
+
+	module.exports = XHR;
+	module.exports.Request = Request;
+
+	/**
+	 * Empty function
+	 */
+
+	function empty(){}
+
+	/**
+	 * XHR Polling constructor.
+	 *
+	 * @param {Object} opts
+	 * @api public
+	 */
+
+	function XHR(opts){
+	  Polling.call(this, opts);
+
+	  if (global.location) {
+	    var isSSL = 'https:' == location.protocol;
+	    var port = location.port;
+
+	    // some user agents have empty `location.port`
+	    if (!port) {
+	      port = isSSL ? 443 : 80;
+	    }
+
+	    this.xd = opts.hostname != global.location.hostname ||
+	      port != opts.port;
+	    this.xs = opts.secure != isSSL;
+	  }
+	}
+
+	/**
+	 * Inherits from Polling.
+	 */
+
+	inherit(XHR, Polling);
+
+	/**
+	 * XHR supports binary
+	 */
+
+	XHR.prototype.supportsBinary = true;
+
+	/**
+	 * Creates a request.
+	 *
+	 * @param {String} method
+	 * @api private
+	 */
+
+	XHR.prototype.request = function(opts){
+	  opts = opts || {};
+	  opts.uri = this.uri();
+	  opts.xd = this.xd;
+	  opts.xs = this.xs;
+	  opts.agent = this.agent || false;
+	  opts.supportsBinary = this.supportsBinary;
+	  opts.enablesXDR = this.enablesXDR;
+
+	  // SSL options for Node.js client
+	  opts.pfx = this.pfx;
+	  opts.key = this.key;
+	  opts.passphrase = this.passphrase;
+	  opts.cert = this.cert;
+	  opts.ca = this.ca;
+	  opts.ciphers = this.ciphers;
+	  opts.rejectUnauthorized = this.rejectUnauthorized;
+
+	  return new Request(opts);
+	};
+
+	/**
+	 * Sends data.
+	 *
+	 * @param {String} data to send.
+	 * @param {Function} called upon flush.
+	 * @api private
+	 */
+
+	XHR.prototype.doWrite = function(data, fn){
+	  var isBinary = typeof data !== 'string' && data !== undefined;
+	  var req = this.request({ method: 'POST', data: data, isBinary: isBinary });
+	  var self = this;
+	  req.on('success', fn);
+	  req.on('error', function(err){
+	    self.onError('xhr post error', err);
+	  });
+	  this.sendXhr = req;
+	};
+
+	/**
+	 * Starts a poll cycle.
+	 *
+	 * @api private
+	 */
+
+	XHR.prototype.doPoll = function(){
+	  debug('xhr poll');
+	  var req = this.request();
+	  var self = this;
+	  req.on('data', function(data){
+	    self.onData(data);
+	  });
+	  req.on('error', function(err){
+	    self.onError('xhr poll error', err);
+	  });
+	  this.pollXhr = req;
+	};
+
+	/**
+	 * Request constructor
+	 *
+	 * @param {Object} options
+	 * @api public
+	 */
+
+	function Request(opts){
+	  this.method = opts.method || 'GET';
+	  this.uri = opts.uri;
+	  this.xd = !!opts.xd;
+	  this.xs = !!opts.xs;
+	  this.async = false !== opts.async;
+	  this.data = undefined != opts.data ? opts.data : null;
+	  this.agent = opts.agent;
+	  this.isBinary = opts.isBinary;
+	  this.supportsBinary = opts.supportsBinary;
+	  this.enablesXDR = opts.enablesXDR;
+
+	  // SSL options for Node.js client
+	  this.pfx = opts.pfx;
+	  this.key = opts.key;
+	  this.passphrase = opts.passphrase;
+	  this.cert = opts.cert;
+	  this.ca = opts.ca;
+	  this.ciphers = opts.ciphers;
+	  this.rejectUnauthorized = opts.rejectUnauthorized;
+
+	  this.create();
+	}
+
+	/**
+	 * Mix in `Emitter`.
+	 */
+
+	Emitter(Request.prototype);
+
+	/**
+	 * Creates the XHR object and sends the request.
+	 *
+	 * @api private
+	 */
+
+	Request.prototype.create = function(){
+	  var opts = { agent: this.agent, xdomain: this.xd, xscheme: this.xs, enablesXDR: this.enablesXDR };
+
+	  // SSL options for Node.js client
+	  opts.pfx = this.pfx;
+	  opts.key = this.key;
+	  opts.passphrase = this.passphrase;
+	  opts.cert = this.cert;
+	  opts.ca = this.ca;
+	  opts.ciphers = this.ciphers;
+	  opts.rejectUnauthorized = this.rejectUnauthorized;
+
+	  var xhr = this.xhr = new XMLHttpRequest(opts);
+	  var self = this;
+
+	  try {
+	    debug('xhr open %s: %s', this.method, this.uri);
+	    xhr.open(this.method, this.uri, this.async);
+	    if (this.supportsBinary) {
+	      // This has to be done after open because Firefox is stupid
+	      // http://stackoverflow.com/questions/13216903/get-binary-data-with-xmlhttprequest-in-a-firefox-extension
+	      xhr.responseType = 'arraybuffer';
+	    }
+
+	    if ('POST' == this.method) {
+	      try {
+	        if (this.isBinary) {
+	          xhr.setRequestHeader('Content-type', 'application/octet-stream');
+	        } else {
+	          xhr.setRequestHeader('Content-type', 'text/plain;charset=UTF-8');
+	        }
+	      } catch (e) {}
+	    }
+
+	    // ie6 check
+	    if ('withCredentials' in xhr) {
+	      xhr.withCredentials = true;
+	    }
+
+	    if (this.hasXDR()) {
+	      xhr.onload = function(){
+	        self.onLoad();
+	      };
+	      xhr.onerror = function(){
+	        self.onError(xhr.responseText);
+	      };
+	    } else {
+	      xhr.onreadystatechange = function(){
+	        if (4 != xhr.readyState) return;
+	        if (200 == xhr.status || 1223 == xhr.status) {
+	          self.onLoad();
+	        } else {
+	          // make sure the `error` event handler that's user-set
+	          // does not throw in the same tick and gets caught here
+	          setTimeout(function(){
+	            self.onError(xhr.status);
+	          }, 0);
+	        }
+	      };
+	    }
+
+	    debug('xhr data %s', this.data);
+	    xhr.send(this.data);
+	  } catch (e) {
+	    // Need to defer since .create() is called directly fhrom the constructor
+	    // and thus the 'error' event can only be only bound *after* this exception
+	    // occurs.  Therefore, also, we cannot throw here at all.
+	    setTimeout(function() {
+	      self.onError(e);
+	    }, 0);
+	    return;
+	  }
+
+	  if (global.document) {
+	    this.index = Request.requestsCount++;
+	    Request.requests[this.index] = this;
+	  }
+	};
+
+	/**
+	 * Called upon successful response.
+	 *
+	 * @api private
+	 */
+
+	Request.prototype.onSuccess = function(){
+	  this.emit('success');
+	  this.cleanup();
+	};
+
+	/**
+	 * Called if we have data.
+	 *
+	 * @api private
+	 */
+
+	Request.prototype.onData = function(data){
+	  this.emit('data', data);
+	  this.onSuccess();
+	};
+
+	/**
+	 * Called upon error.
+	 *
+	 * @api private
+	 */
+
+	Request.prototype.onError = function(err){
+	  this.emit('error', err);
+	  this.cleanup(true);
+	};
+
+	/**
+	 * Cleans up house.
+	 *
+	 * @api private
+	 */
+
+	Request.prototype.cleanup = function(fromError){
+	  if ('undefined' == typeof this.xhr || null === this.xhr) {
+	    return;
+	  }
+	  // xmlhttprequest
+	  if (this.hasXDR()) {
+	    this.xhr.onload = this.xhr.onerror = empty;
+	  } else {
+	    this.xhr.onreadystatechange = empty;
+	  }
+
+	  if (fromError) {
+	    try {
+	      this.xhr.abort();
+	    } catch(e) {}
+	  }
+
+	  if (global.document) {
+	    delete Request.requests[this.index];
+	  }
+
+	  this.xhr = null;
+	};
+
+	/**
+	 * Called upon load.
+	 *
+	 * @api private
+	 */
+
+	Request.prototype.onLoad = function(){
+	  var data;
+	  try {
+	    var contentType;
+	    try {
+	      contentType = this.xhr.getResponseHeader('Content-Type').split(';')[0];
+	    } catch (e) {}
+	    if (contentType === 'application/octet-stream') {
+	      data = this.xhr.response;
+	    } else {
+	      if (!this.supportsBinary) {
+	        data = this.xhr.responseText;
+	      } else {
+	        data = 'ok';
+	      }
+	    }
+	  } catch (e) {
+	    this.onError(e);
+	  }
+	  if (null != data) {
+	    this.onData(data);
+	  }
+	};
+
+	/**
+	 * Check if it has XDomainRequest.
+	 *
+	 * @api private
+	 */
+
+	Request.prototype.hasXDR = function(){
+	  return 'undefined' !== typeof global.XDomainRequest && !this.xs && this.enablesXDR;
+	};
+
+	/**
+	 * Aborts the request.
+	 *
+	 * @api public
+	 */
+
+	Request.prototype.abort = function(){
+	  this.cleanup();
+	};
+
+	/**
+	 * Aborts pending requests when unloading the window. This is needed to prevent
+	 * memory leaks (e.g. when using IE) and to ensure that no spurious error is
+	 * emitted.
+	 */
+
+	if (global.document) {
+	  Request.requestsCount = 0;
+	  Request.requests = {};
+	  if (global.attachEvent) {
+	    global.attachEvent('onunload', unloadHandler);
+	  } else if (global.addEventListener) {
+	    global.addEventListener('beforeunload', unloadHandler, false);
+	  }
+	}
+
+	function unloadHandler() {
+	  for (var i in Request.requests) {
+	    if (Request.requests.hasOwnProperty(i)) {
+	      Request.requests[i].abort();
+	    }
+	  }
+	}
+
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ },
+/* 23 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Module dependencies.
+	 */
+
+	var Transport = __webpack_require__(24);
+	var parseqs = __webpack_require__(35);
+	var parser = __webpack_require__(25);
+	var inherit = __webpack_require__(36);
+	var debug = __webpack_require__(37)('engine.io-client:polling');
+
+	/**
+	 * Module exports.
+	 */
+
+	module.exports = Polling;
+
+	/**
+	 * Is XHR2 supported?
+	 */
+
+	var hasXHR2 = (function() {
+	  var XMLHttpRequest = __webpack_require__(19);
+	  var xhr = new XMLHttpRequest({ xdomain: false });
+	  return null != xhr.responseType;
+	})();
+
+	/**
+	 * Polling interface.
+	 *
+	 * @param {Object} opts
+	 * @api private
+	 */
+
+	function Polling(opts){
+	  var forceBase64 = (opts && opts.forceBase64);
+	  if (!hasXHR2 || forceBase64) {
+	    this.supportsBinary = false;
+	  }
+	  Transport.call(this, opts);
+	}
+
+	/**
+	 * Inherits from Transport.
+	 */
+
+	inherit(Polling, Transport);
+
+	/**
+	 * Transport name.
+	 */
+
+	Polling.prototype.name = 'polling';
+
+	/**
+	 * Opens the socket (triggers polling). We write a PING message to determine
+	 * when the transport is open.
+	 *
+	 * @api private
+	 */
+
+	Polling.prototype.doOpen = function(){
+	  this.poll();
+	};
+
+	/**
+	 * Pauses polling.
+	 *
+	 * @param {Function} callback upon buffers are flushed and transport is paused
+	 * @api private
+	 */
+
+	Polling.prototype.pause = function(onPause){
+	  var pending = 0;
+	  var self = this;
+
+	  this.readyState = 'pausing';
+
+	  function pause(){
+	    debug('paused');
+	    self.readyState = 'paused';
+	    onPause();
+	  }
+
+	  if (this.polling || !this.writable) {
+	    var total = 0;
+
+	    if (this.polling) {
+	      debug('we are currently polling - waiting to pause');
+	      total++;
+	      this.once('pollComplete', function(){
+	        debug('pre-pause polling complete');
+	        --total || pause();
+	      });
+	    }
+
+	    if (!this.writable) {
+	      debug('we are currently writing - waiting to pause');
+	      total++;
+	      this.once('drain', function(){
+	        debug('pre-pause writing complete');
+	        --total || pause();
+	      });
+	    }
+	  } else {
+	    pause();
+	  }
+	};
+
+	/**
+	 * Starts polling cycle.
+	 *
+	 * @api public
+	 */
+
+	Polling.prototype.poll = function(){
+	  debug('polling');
+	  this.polling = true;
+	  this.doPoll();
+	  this.emit('poll');
+	};
+
+	/**
+	 * Overloads onData to detect payloads.
+	 *
+	 * @api private
+	 */
+
+	Polling.prototype.onData = function(data){
+	  var self = this;
+	  debug('polling got data %s', data);
+	  var callback = function(packet, index, total) {
+	    // if its the first message we consider the transport open
+	    if ('opening' == self.readyState) {
+	      self.onOpen();
+	    }
+
+	    // if its a close packet, we close the ongoing requests
+	    if ('close' == packet.type) {
+	      self.onClose();
+	      return false;
+	    }
+
+	    // otherwise bypass onData and handle the message
+	    self.onPacket(packet);
+	  };
+
+	  // decode payload
+	  parser.decodePayload(data, this.socket.binaryType, callback);
+
+	  // if an event did not trigger closing
+	  if ('closed' != this.readyState) {
+	    // if we got data we're not polling
+	    this.polling = false;
+	    this.emit('pollComplete');
+
+	    if ('open' == this.readyState) {
+	      this.poll();
+	    } else {
+	      debug('ignoring poll - transport state "%s"', this.readyState);
+	    }
+	  }
+	};
+
+	/**
+	 * For polling, send a close packet.
+	 *
+	 * @api private
+	 */
+
+	Polling.prototype.doClose = function(){
+	  var self = this;
+
+	  function close(){
+	    debug('writing close packet');
+	    self.write([{ type: 'close' }]);
+	  }
+
+	  if ('open' == this.readyState) {
+	    debug('transport open - closing');
+	    close();
+	  } else {
+	    // in case we're trying to close while
+	    // handshaking is in progress (GH-164)
+	    debug('transport not open - deferring close');
+	    this.once('open', close);
+	  }
+	};
+
+	/**
+	 * Writes a packets payload.
+	 *
+	 * @param {Array} data packets
+	 * @param {Function} drain callback
+	 * @api private
+	 */
+
+	Polling.prototype.write = function(packets){
+	  var self = this;
+	  this.writable = false;
+	  var callbackfn = function() {
+	    self.writable = true;
+	    self.emit('drain');
+	  };
+
+	  var self = this;
+	  parser.encodePayload(packets, this.supportsBinary, function(data) {
+	    self.doWrite(data, callbackfn);
+	  });
+	};
+
+	/**
+	 * Generates uri for connection.
+	 *
+	 * @api private
+	 */
+
+	Polling.prototype.uri = function(){
+	  var query = this.query || {};
+	  var schema = this.secure ? 'https' : 'http';
+	  var port = '';
+
+	  // cache busting is forced
+	  if (false !== this.timestampRequests) {
+	    query[this.timestampParam] = +new Date + '-' + Transport.timestamps++;
+	  }
+
+	  if (!this.supportsBinary && !query.sid) {
+	    query.b64 = 1;
+	  }
+
+	  query = parseqs.encode(query);
+
+	  // avoid port if default for schema
+	  if (this.port && (('https' == schema && this.port != 443) ||
+	     ('http' == schema && this.port != 80))) {
+	    port = ':' + this.port;
+	  }
+
+	  // prepend ? to query
+	  if (query.length) {
+	    query = '?' + query;
+	  }
+
+	  return schema + '://' + this.hostname + port + this.path + query;
+	};
+
+
+/***/ },
+/* 24 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Module dependencies.
+	 */
+
+	var parser = __webpack_require__(25);
+	var Emitter = __webpack_require__(11);
+
+	/**
+	 * Module exports.
+	 */
+
+	module.exports = Transport;
+
+	/**
+	 * Transport abstract constructor.
+	 *
+	 * @param {Object} options.
+	 * @api private
+	 */
+
+	function Transport (opts) {
+	  this.path = opts.path;
+	  this.hostname = opts.hostname;
+	  this.port = opts.port;
+	  this.secure = opts.secure;
+	  this.query = opts.query;
+	  this.timestampParam = opts.timestampParam;
+	  this.timestampRequests = opts.timestampRequests;
+	  this.readyState = '';
+	  this.agent = opts.agent || false;
+	  this.socket = opts.socket;
+	  this.enablesXDR = opts.enablesXDR;
+
+	  // SSL options for Node.js client
+	  this.pfx = opts.pfx;
+	  this.key = opts.key;
+	  this.passphrase = opts.passphrase;
+	  this.cert = opts.cert;
+	  this.ca = opts.ca;
+	  this.ciphers = opts.ciphers;
+	  this.rejectUnauthorized = opts.rejectUnauthorized;
+	}
+
+	/**
+	 * Mix in `Emitter`.
+	 */
+
+	Emitter(Transport.prototype);
+
+	/**
+	 * A counter used to prevent collisions in the timestamps used
+	 * for cache busting.
+	 */
+
+	Transport.timestamps = 0;
+
+	/**
+	 * Emits an error.
+	 *
+	 * @param {String} str
+	 * @return {Transport} for chaining
+	 * @api public
+	 */
+
+	Transport.prototype.onError = function (msg, desc) {
+	  var err = new Error(msg);
+	  err.type = 'TransportError';
+	  err.description = desc;
+	  this.emit('error', err);
+	  return this;
+	};
+
+	/**
+	 * Opens the transport.
+	 *
+	 * @api public
+	 */
+
+	Transport.prototype.open = function () {
+	  if ('closed' == this.readyState || '' == this.readyState) {
+	    this.readyState = 'opening';
+	    this.doOpen();
+	  }
+
+	  return this;
+	};
+
+	/**
+	 * Closes the transport.
+	 *
+	 * @api private
+	 */
+
+	Transport.prototype.close = function () {
+	  if ('opening' == this.readyState || 'open' == this.readyState) {
+	    this.doClose();
+	    this.onClose();
+	  }
+
+	  return this;
+	};
+
+	/**
+	 * Sends multiple packets.
+	 *
+	 * @param {Array} packets
+	 * @api private
+	 */
+
+	Transport.prototype.send = function(packets){
+	  if ('open' == this.readyState) {
+	    this.write(packets);
+	  } else {
+	    throw new Error('Transport not open');
+	  }
+	};
+
+	/**
+	 * Called upon open
+	 *
+	 * @api private
+	 */
+
+	Transport.prototype.onOpen = function () {
+	  this.readyState = 'open';
+	  this.writable = true;
+	  this.emit('open');
+	};
+
+	/**
+	 * Called with data.
+	 *
+	 * @param {String} data
+	 * @api private
+	 */
+
+	Transport.prototype.onData = function(data){
+	  var packet = parser.decodePacket(data, this.socket.binaryType);
+	  this.onPacket(packet);
+	};
+
+	/**
+	 * Called with a decoded packet.
+	 */
+
+	Transport.prototype.onPacket = function (packet) {
+	  this.emit('packet', packet);
+	};
+
+	/**
+	 * Called upon close.
+	 *
+	 * @api private
+	 */
+
+	Transport.prototype.onClose = function () {
+	  this.readyState = 'closed';
+	  this.emit('close');
+	};
+
+
+/***/ },
+/* 25 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {/**
+	 * Module dependencies.
+	 */
+
+	var keys = __webpack_require__(26);
+	var hasBinary = __webpack_require__(27);
+	var sliceBuffer = __webpack_require__(29);
+	var base64encoder = __webpack_require__(30);
+	var after = __webpack_require__(31);
+	var utf8 = __webpack_require__(32);
+
+	/**
+	 * Check if we are running an android browser. That requires us to use
+	 * ArrayBuffer with polling transports...
+	 *
+	 * http://ghinda.net/jpeg-blob-ajax-android/
+	 */
+
+	var isAndroid = navigator.userAgent.match(/Android/i);
+
+	/**
+	 * Check if we are running in PhantomJS.
+	 * Uploading a Blob with PhantomJS does not work correctly, as reported here:
+	 * https://github.com/ariya/phantomjs/issues/11395
+	 * @type boolean
+	 */
+	var isPhantomJS = /PhantomJS/i.test(navigator.userAgent);
+
+	/**
+	 * When true, avoids using Blobs to encode payloads.
+	 * @type boolean
+	 */
+	var dontSendBlobs = isAndroid || isPhantomJS;
+
+	/**
+	 * Current protocol version.
+	 */
+
+	exports.protocol = 3;
+
+	/**
+	 * Packet types.
+	 */
+
+	var packets = exports.packets = {
+	    open:     0    // non-ws
+	  , close:    1    // non-ws
+	  , ping:     2
+	  , pong:     3
+	  , message:  4
+	  , upgrade:  5
+	  , noop:     6
+	};
+
+	var packetslist = keys(packets);
+
+	/**
+	 * Premade error packet.
+	 */
+
+	var err = { type: 'error', data: 'parser error' };
+
+	/**
+	 * Create a blob api even for blob builder when vendor prefixes exist
+	 */
+
+	var Blob = __webpack_require__(34);
+
+	/**
+	 * Encodes a packet.
+	 *
+	 *     <packet type id> [ <data> ]
+	 *
+	 * Example:
+	 *
+	 *     5hello world
+	 *     3
+	 *     4
+	 *
+	 * Binary is encoded in an identical principle
+	 *
+	 * @api private
+	 */
+
+	exports.encodePacket = function (packet, supportsBinary, utf8encode, callback) {
+	  if ('function' == typeof supportsBinary) {
+	    callback = supportsBinary;
+	    supportsBinary = false;
+	  }
+
+	  if ('function' == typeof utf8encode) {
+	    callback = utf8encode;
+	    utf8encode = null;
+	  }
+
+	  var data = (packet.data === undefined)
+	    ? undefined
+	    : packet.data.buffer || packet.data;
+
+	  if (global.ArrayBuffer && data instanceof ArrayBuffer) {
+	    return encodeArrayBuffer(packet, supportsBinary, callback);
+	  } else if (Blob && data instanceof global.Blob) {
+	    return encodeBlob(packet, supportsBinary, callback);
+	  }
+
+	  // might be an object with { base64: true, data: dataAsBase64String }
+	  if (data && data.base64) {
+	    return encodeBase64Object(packet, callback);
+	  }
+
+	  // Sending data as a utf-8 string
+	  var encoded = packets[packet.type];
+
+	  // data fragment is optional
+	  if (undefined !== packet.data) {
+	    encoded += utf8encode ? utf8.encode(String(packet.data)) : String(packet.data);
+	  }
+
+	  return callback('' + encoded);
+
+	};
+
+	function encodeBase64Object(packet, callback) {
+	  // packet data is an object { base64: true, data: dataAsBase64String }
+	  var message = 'b' + exports.packets[packet.type] + packet.data.data;
+	  return callback(message);
+	}
+
+	/**
+	 * Encode packet helpers for binary types
+	 */
+
+	function encodeArrayBuffer(packet, supportsBinary, callback) {
+	  if (!supportsBinary) {
+	    return exports.encodeBase64Packet(packet, callback);
+	  }
+
+	  var data = packet.data;
+	  var contentArray = new Uint8Array(data);
+	  var resultBuffer = new Uint8Array(1 + data.byteLength);
+
+	  resultBuffer[0] = packets[packet.type];
+	  for (var i = 0; i < contentArray.length; i++) {
+	    resultBuffer[i+1] = contentArray[i];
+	  }
+
+	  return callback(resultBuffer.buffer);
+	}
+
+	function encodeBlobAsArrayBuffer(packet, supportsBinary, callback) {
+	  if (!supportsBinary) {
+	    return exports.encodeBase64Packet(packet, callback);
+	  }
+
+	  var fr = new FileReader();
+	  fr.onload = function() {
+	    packet.data = fr.result;
+	    exports.encodePacket(packet, supportsBinary, true, callback);
+	  };
+	  return fr.readAsArrayBuffer(packet.data);
+	}
+
+	function encodeBlob(packet, supportsBinary, callback) {
+	  if (!supportsBinary) {
+	    return exports.encodeBase64Packet(packet, callback);
+	  }
+
+	  if (dontSendBlobs) {
+	    return encodeBlobAsArrayBuffer(packet, supportsBinary, callback);
+	  }
+
+	  var length = new Uint8Array(1);
+	  length[0] = packets[packet.type];
+	  var blob = new Blob([length.buffer, packet.data]);
+
+	  return callback(blob);
+	}
+
+	/**
+	 * Encodes a packet with binary data in a base64 string
+	 *
+	 * @param {Object} packet, has `type` and `data`
+	 * @return {String} base64 encoded message
+	 */
+
+	exports.encodeBase64Packet = function(packet, callback) {
+	  var message = 'b' + exports.packets[packet.type];
+	  if (Blob && packet.data instanceof Blob) {
+	    var fr = new FileReader();
+	    fr.onload = function() {
+	      var b64 = fr.result.split(',')[1];
+	      callback(message + b64);
+	    };
+	    return fr.readAsDataURL(packet.data);
+	  }
+
+	  var b64data;
+	  try {
+	    b64data = String.fromCharCode.apply(null, new Uint8Array(packet.data));
+	  } catch (e) {
+	    // iPhone Safari doesn't let you apply with typed arrays
+	    var typed = new Uint8Array(packet.data);
+	    var basic = new Array(typed.length);
+	    for (var i = 0; i < typed.length; i++) {
+	      basic[i] = typed[i];
+	    }
+	    b64data = String.fromCharCode.apply(null, basic);
+	  }
+	  message += global.btoa(b64data);
+	  return callback(message);
+	};
+
+	/**
+	 * Decodes a packet. Changes format to Blob if requested.
+	 *
+	 * @return {Object} with `type` and `data` (if any)
+	 * @api private
+	 */
+
+	exports.decodePacket = function (data, binaryType, utf8decode) {
+	  // String data
+	  if (typeof data == 'string' || data === undefined) {
+	    if (data.charAt(0) == 'b') {
+	      return exports.decodeBase64Packet(data.substr(1), binaryType);
+	    }
+
+	    if (utf8decode) {
+	      try {
+	        data = utf8.decode(data);
+	      } catch (e) {
+	        return err;
+	      }
+	    }
+	    var type = data.charAt(0);
+
+	    if (Number(type) != type || !packetslist[type]) {
+	      return err;
+	    }
+
+	    if (data.length > 1) {
+	      return { type: packetslist[type], data: data.substring(1) };
+	    } else {
+	      return { type: packetslist[type] };
+	    }
+	  }
+
+	  var asArray = new Uint8Array(data);
+	  var type = asArray[0];
+	  var rest = sliceBuffer(data, 1);
+	  if (Blob && binaryType === 'blob') {
+	    rest = new Blob([rest]);
+	  }
+	  return { type: packetslist[type], data: rest };
+	};
+
+	/**
+	 * Decodes a packet encoded in a base64 string
+	 *
+	 * @param {String} base64 encoded message
+	 * @return {Object} with `type` and `data` (if any)
+	 */
+
+	exports.decodeBase64Packet = function(msg, binaryType) {
+	  var type = packetslist[msg.charAt(0)];
+	  if (!global.ArrayBuffer) {
+	    return { type: type, data: { base64: true, data: msg.substr(1) } };
+	  }
+
+	  var data = base64encoder.decode(msg.substr(1));
+
+	  if (binaryType === 'blob' && Blob) {
+	    data = new Blob([data]);
+	  }
+
+	  return { type: type, data: data };
+	};
+
+	/**
+	 * Encodes multiple messages (payload).
+	 *
+	 *     <length>:data
+	 *
+	 * Example:
+	 *
+	 *     11:hello world2:hi
+	 *
+	 * If any contents are binary, they will be encoded as base64 strings. Base64
+	 * encoded strings are marked with a b before the length specifier
+	 *
+	 * @param {Array} packets
+	 * @api private
+	 */
+
+	exports.encodePayload = function (packets, supportsBinary, callback) {
+	  if (typeof supportsBinary == 'function') {
+	    callback = supportsBinary;
+	    supportsBinary = null;
+	  }
+
+	  var isBinary = hasBinary(packets);
+
+	  if (supportsBinary && isBinary) {
+	    if (Blob && !dontSendBlobs) {
+	      return exports.encodePayloadAsBlob(packets, callback);
+	    }
+
+	    return exports.encodePayloadAsArrayBuffer(packets, callback);
+	  }
+
+	  if (!packets.length) {
+	    return callback('0:');
+	  }
+
+	  function setLengthHeader(message) {
+	    return message.length + ':' + message;
+	  }
+
+	  function encodeOne(packet, doneCallback) {
+	    exports.encodePacket(packet, !isBinary ? false : supportsBinary, true, function(message) {
+	      doneCallback(null, setLengthHeader(message));
+	    });
+	  }
+
+	  map(packets, encodeOne, function(err, results) {
+	    return callback(results.join(''));
+	  });
+	};
+
+	/**
+	 * Async array map using after
+	 */
+
+	function map(ary, each, done) {
+	  var result = new Array(ary.length);
+	  var next = after(ary.length, done);
+
+	  var eachWithIndex = function(i, el, cb) {
+	    each(el, function(error, msg) {
+	      result[i] = msg;
+	      cb(error, result);
+	    });
+	  };
+
+	  for (var i = 0; i < ary.length; i++) {
+	    eachWithIndex(i, ary[i], next);
+	  }
+	}
+
+	/*
+	 * Decodes data when a payload is maybe expected. Possible binary contents are
+	 * decoded from their base64 representation
+	 *
+	 * @param {String} data, callback method
+	 * @api public
+	 */
+
+	exports.decodePayload = function (data, binaryType, callback) {
+	  if (typeof data != 'string') {
+	    return exports.decodePayloadAsBinary(data, binaryType, callback);
+	  }
+
+	  if (typeof binaryType === 'function') {
+	    callback = binaryType;
+	    binaryType = null;
+	  }
+
+	  var packet;
+	  if (data == '') {
+	    // parser error - ignoring payload
+	    return callback(err, 0, 1);
+	  }
+
+	  var length = ''
+	    , n, msg;
+
+	  for (var i = 0, l = data.length; i < l; i++) {
+	    var chr = data.charAt(i);
+
+	    if (':' != chr) {
+	      length += chr;
+	    } else {
+	      if ('' == length || (length != (n = Number(length)))) {
+	        // parser error - ignoring payload
+	        return callback(err, 0, 1);
+	      }
+
+	      msg = data.substr(i + 1, n);
+
+	      if (length != msg.length) {
+	        // parser error - ignoring payload
+	        return callback(err, 0, 1);
+	      }
+
+	      if (msg.length) {
+	        packet = exports.decodePacket(msg, binaryType, true);
+
+	        if (err.type == packet.type && err.data == packet.data) {
+	          // parser error in individual packet - ignoring payload
+	          return callback(err, 0, 1);
+	        }
+
+	        var ret = callback(packet, i + n, l);
+	        if (false === ret) return;
+	      }
+
+	      // advance cursor
+	      i += n;
+	      length = '';
+	    }
+	  }
+
+	  if (length != '') {
+	    // parser error - ignoring payload
+	    return callback(err, 0, 1);
+	  }
+
+	};
+
+	/**
+	 * Encodes multiple messages (payload) as binary.
+	 *
+	 * <1 = binary, 0 = string><number from 0-9><number from 0-9>[...]<number
+	 * 255><data>
+	 *
+	 * Example:
+	 * 1 3 255 1 2 3, if the binary contents are interpreted as 8 bit integers
+	 *
+	 * @param {Array} packets
+	 * @return {ArrayBuffer} encoded payload
+	 * @api private
+	 */
+
+	exports.encodePayloadAsArrayBuffer = function(packets, callback) {
+	  if (!packets.length) {
+	    return callback(new ArrayBuffer(0));
+	  }
+
+	  function encodeOne(packet, doneCallback) {
+	    exports.encodePacket(packet, true, true, function(data) {
+	      return doneCallback(null, data);
+	    });
+	  }
+
+	  map(packets, encodeOne, function(err, encodedPackets) {
+	    var totalLength = encodedPackets.reduce(function(acc, p) {
+	      var len;
+	      if (typeof p === 'string'){
+	        len = p.length;
+	      } else {
+	        len = p.byteLength;
+	      }
+	      return acc + len.toString().length + len + 2; // string/binary identifier + separator = 2
+	    }, 0);
+
+	    var resultArray = new Uint8Array(totalLength);
+
+	    var bufferIndex = 0;
+	    encodedPackets.forEach(function(p) {
+	      var isString = typeof p === 'string';
+	      var ab = p;
+	      if (isString) {
+	        var view = new Uint8Array(p.length);
+	        for (var i = 0; i < p.length; i++) {
+	          view[i] = p.charCodeAt(i);
+	        }
+	        ab = view.buffer;
+	      }
+
+	      if (isString) { // not true binary
+	        resultArray[bufferIndex++] = 0;
+	      } else { // true binary
+	        resultArray[bufferIndex++] = 1;
+	      }
+
+	      var lenStr = ab.byteLength.toString();
+	      for (var i = 0; i < lenStr.length; i++) {
+	        resultArray[bufferIndex++] = parseInt(lenStr[i]);
+	      }
+	      resultArray[bufferIndex++] = 255;
+
+	      var view = new Uint8Array(ab);
+	      for (var i = 0; i < view.length; i++) {
+	        resultArray[bufferIndex++] = view[i];
+	      }
+	    });
+
+	    return callback(resultArray.buffer);
+	  });
+	};
+
+	/**
+	 * Encode as Blob
+	 */
+
+	exports.encodePayloadAsBlob = function(packets, callback) {
+	  function encodeOne(packet, doneCallback) {
+	    exports.encodePacket(packet, true, true, function(encoded) {
+	      var binaryIdentifier = new Uint8Array(1);
+	      binaryIdentifier[0] = 1;
+	      if (typeof encoded === 'string') {
+	        var view = new Uint8Array(encoded.length);
+	        for (var i = 0; i < encoded.length; i++) {
+	          view[i] = encoded.charCodeAt(i);
+	        }
+	        encoded = view.buffer;
+	        binaryIdentifier[0] = 0;
+	      }
+
+	      var len = (encoded instanceof ArrayBuffer)
+	        ? encoded.byteLength
+	        : encoded.size;
+
+	      var lenStr = len.toString();
+	      var lengthAry = new Uint8Array(lenStr.length + 1);
+	      for (var i = 0; i < lenStr.length; i++) {
+	        lengthAry[i] = parseInt(lenStr[i]);
+	      }
+	      lengthAry[lenStr.length] = 255;
+
+	      if (Blob) {
+	        var blob = new Blob([binaryIdentifier.buffer, lengthAry.buffer, encoded]);
+	        doneCallback(null, blob);
+	      }
+	    });
+	  }
+
+	  map(packets, encodeOne, function(err, results) {
+	    return callback(new Blob(results));
+	  });
+	};
+
+	/*
+	 * Decodes data when a payload is maybe expected. Strings are decoded by
+	 * interpreting each byte as a key code for entries marked to start with 0. See
+	 * description of encodePayloadAsBinary
+	 *
+	 * @param {ArrayBuffer} data, callback method
+	 * @api public
+	 */
+
+	exports.decodePayloadAsBinary = function (data, binaryType, callback) {
+	  if (typeof binaryType === 'function') {
+	    callback = binaryType;
+	    binaryType = null;
+	  }
+
+	  var bufferTail = data;
+	  var buffers = [];
+
+	  var numberTooLong = false;
+	  while (bufferTail.byteLength > 0) {
+	    var tailArray = new Uint8Array(bufferTail);
+	    var isString = tailArray[0] === 0;
+	    var msgLength = '';
+
+	    for (var i = 1; ; i++) {
+	      if (tailArray[i] == 255) break;
+
+	      if (msgLength.length > 310) {
+	        numberTooLong = true;
+	        break;
+	      }
+
+	      msgLength += tailArray[i];
+	    }
+
+	    if(numberTooLong) return callback(err, 0, 1);
+
+	    bufferTail = sliceBuffer(bufferTail, 2 + msgLength.length);
+	    msgLength = parseInt(msgLength);
+
+	    var msg = sliceBuffer(bufferTail, 0, msgLength);
+	    if (isString) {
+	      try {
+	        msg = String.fromCharCode.apply(null, new Uint8Array(msg));
+	      } catch (e) {
+	        // iPhone Safari doesn't let you apply to typed arrays
+	        var typed = new Uint8Array(msg);
+	        msg = '';
+	        for (var i = 0; i < typed.length; i++) {
+	          msg += String.fromCharCode(typed[i]);
+	        }
+	      }
+	    }
+
+	    buffers.push(msg);
+	    bufferTail = sliceBuffer(bufferTail, msgLength);
+	  }
+
+	  var total = buffers.length;
+	  buffers.forEach(function(buffer, i) {
+	    callback(exports.decodePacket(buffer, binaryType, true), i, total);
+	  });
+	};
+
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ },
+/* 26 */
+/***/ function(module, exports) {
+
+	
+	/**
+	 * Gets the keys for an object.
+	 *
+	 * @return {Array} keys
+	 * @api private
+	 */
+
+	module.exports = Object.keys || function keys (obj){
+	  var arr = [];
+	  var has = Object.prototype.hasOwnProperty;
+
+	  for (var i in obj) {
+	    if (has.call(obj, i)) {
+	      arr.push(i);
+	    }
+	  }
+	  return arr;
+	};
+
+
+/***/ },
+/* 27 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {
+	/*
+	 * Module requirements.
+	 */
+
+	var isArray = __webpack_require__(28);
+
+	/**
+	 * Module exports.
+	 */
+
+	module.exports = hasBinary;
+
+	/**
+	 * Checks for binary data.
+	 *
+	 * Right now only Buffer and ArrayBuffer are supported..
+	 *
+	 * @param {Object} anything
+	 * @api public
+	 */
+
+	function hasBinary(data) {
+
+	  function _hasBinary(obj) {
+	    if (!obj) return false;
+
+	    if ( (global.Buffer && global.Buffer.isBuffer(obj)) ||
+	         (global.ArrayBuffer && obj instanceof ArrayBuffer) ||
+	         (global.Blob && obj instanceof Blob) ||
+	         (global.File && obj instanceof File)
+	        ) {
+	      return true;
+	    }
+
+	    if (isArray(obj)) {
+	      for (var i = 0; i < obj.length; i++) {
+	          if (_hasBinary(obj[i])) {
+	              return true;
+	          }
+	      }
+	    } else if (obj && 'object' == typeof obj) {
+	      if (obj.toJSON) {
+	        obj = obj.toJSON();
+	      }
+
+	      for (var key in obj) {
+	        if (obj.hasOwnProperty(key) && _hasBinary(obj[key])) {
+	          return true;
+	        }
+	      }
+	    }
+
+	    return false;
+	  }
+
+	  return _hasBinary(data);
+	}
+
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ },
+/* 28 */
+/***/ function(module, exports) {
+
+	module.exports = Array.isArray || function (arr) {
+	  return Object.prototype.toString.call(arr) == '[object Array]';
+	};
+
+
+/***/ },
+/* 29 */
+/***/ function(module, exports) {
+
+	/**
+	 * An abstraction for slicing an arraybuffer even when
+	 * ArrayBuffer.prototype.slice is not supported
+	 *
+	 * @api public
+	 */
+
+	module.exports = function(arraybuffer, start, end) {
+	  var bytes = arraybuffer.byteLength;
+	  start = start || 0;
+	  end = end || bytes;
+
+	  if (arraybuffer.slice) { return arraybuffer.slice(start, end); }
+
+	  if (start < 0) { start += bytes; }
+	  if (end < 0) { end += bytes; }
+	  if (end > bytes) { end = bytes; }
+
+	  if (start >= bytes || start >= end || bytes === 0) {
+	    return new ArrayBuffer(0);
+	  }
+
+	  var abv = new Uint8Array(arraybuffer);
+	  var result = new Uint8Array(end - start);
+	  for (var i = start, ii = 0; i < end; i++, ii++) {
+	    result[ii] = abv[i];
+	  }
+	  return result.buffer;
+	};
+
+
+/***/ },
+/* 30 */
+/***/ function(module, exports) {
+
+	/*
+	 * base64-arraybuffer
+	 * https://github.com/niklasvh/base64-arraybuffer
+	 *
+	 * Copyright (c) 2012 Niklas von Hertzen
+	 * Licensed under the MIT license.
+	 */
+	(function(chars){
+	  "use strict";
+
+	  exports.encode = function(arraybuffer) {
+	    var bytes = new Uint8Array(arraybuffer),
+	    i, len = bytes.length, base64 = "";
+
+	    for (i = 0; i < len; i+=3) {
+	      base64 += chars[bytes[i] >> 2];
+	      base64 += chars[((bytes[i] & 3) << 4) | (bytes[i + 1] >> 4)];
+	      base64 += chars[((bytes[i + 1] & 15) << 2) | (bytes[i + 2] >> 6)];
+	      base64 += chars[bytes[i + 2] & 63];
+	    }
+
+	    if ((len % 3) === 2) {
+	      base64 = base64.substring(0, base64.length - 1) + "=";
+	    } else if (len % 3 === 1) {
+	      base64 = base64.substring(0, base64.length - 2) + "==";
+	    }
+
+	    return base64;
+	  };
+
+	  exports.decode =  function(base64) {
+	    var bufferLength = base64.length * 0.75,
+	    len = base64.length, i, p = 0,
+	    encoded1, encoded2, encoded3, encoded4;
+
+	    if (base64[base64.length - 1] === "=") {
+	      bufferLength--;
+	      if (base64[base64.length - 2] === "=") {
+	        bufferLength--;
+	      }
+	    }
+
+	    var arraybuffer = new ArrayBuffer(bufferLength),
+	    bytes = new Uint8Array(arraybuffer);
+
+	    for (i = 0; i < len; i+=4) {
+	      encoded1 = chars.indexOf(base64[i]);
+	      encoded2 = chars.indexOf(base64[i+1]);
+	      encoded3 = chars.indexOf(base64[i+2]);
+	      encoded4 = chars.indexOf(base64[i+3]);
+
+	      bytes[p++] = (encoded1 << 2) | (encoded2 >> 4);
+	      bytes[p++] = ((encoded2 & 15) << 4) | (encoded3 >> 2);
+	      bytes[p++] = ((encoded3 & 3) << 6) | (encoded4 & 63);
+	    }
+
+	    return arraybuffer;
+	  };
+	})("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/");
+
+
+/***/ },
+/* 31 */
+/***/ function(module, exports) {
+
+	module.exports = after
+
+	function after(count, callback, err_cb) {
+	    var bail = false
+	    err_cb = err_cb || noop
+	    proxy.count = count
+
+	    return (count === 0) ? callback() : proxy
+
+	    function proxy(err, result) {
+	        if (proxy.count <= 0) {
+	            throw new Error('after called too many times')
+	        }
+	        --proxy.count
+
+	        // after first error, rest are passed to err_cb
+	        if (err) {
+	            bail = true
+	            callback(err)
+	            // future error callbacks will go to error handler
+	            callback = err_cb
+	        } else if (proxy.count === 0 && !bail) {
+	            callback(null, result)
+	        }
+	    }
+	}
+
+	function noop() {}
+
+
+/***/ },
+/* 32 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var __WEBPACK_AMD_DEFINE_RESULT__;/* WEBPACK VAR INJECTION */(function(module, global) {/*! http://mths.be/utf8js v2.0.0 by @mathias */
+	;(function(root) {
+
+		// Detect free variables `exports`
+		var freeExports = typeof exports == 'object' && exports;
+
+		// Detect free variable `module`
+		var freeModule = typeof module == 'object' && module &&
+			module.exports == freeExports && module;
+
+		// Detect free variable `global`, from Node.js or Browserified code,
+		// and use it as `root`
+		var freeGlobal = typeof global == 'object' && global;
+		if (freeGlobal.global === freeGlobal || freeGlobal.window === freeGlobal) {
+			root = freeGlobal;
+		}
+
+		/*--------------------------------------------------------------------------*/
+
+		var stringFromCharCode = String.fromCharCode;
+
+		// Taken from http://mths.be/punycode
+		function ucs2decode(string) {
+			var output = [];
+			var counter = 0;
+			var length = string.length;
+			var value;
+			var extra;
+			while (counter < length) {
+				value = string.charCodeAt(counter++);
+				if (value >= 0xD800 && value <= 0xDBFF && counter < length) {
+					// high surrogate, and there is a next character
+					extra = string.charCodeAt(counter++);
+					if ((extra & 0xFC00) == 0xDC00) { // low surrogate
+						output.push(((value & 0x3FF) << 10) + (extra & 0x3FF) + 0x10000);
+					} else {
+						// unmatched surrogate; only append this code unit, in case the next
+						// code unit is the high surrogate of a surrogate pair
+						output.push(value);
+						counter--;
+					}
+				} else {
+					output.push(value);
+				}
+			}
+			return output;
+		}
+
+		// Taken from http://mths.be/punycode
+		function ucs2encode(array) {
+			var length = array.length;
+			var index = -1;
+			var value;
+			var output = '';
+			while (++index < length) {
+				value = array[index];
+				if (value > 0xFFFF) {
+					value -= 0x10000;
+					output += stringFromCharCode(value >>> 10 & 0x3FF | 0xD800);
+					value = 0xDC00 | value & 0x3FF;
+				}
+				output += stringFromCharCode(value);
+			}
+			return output;
+		}
+
+		/*--------------------------------------------------------------------------*/
+
+		function createByte(codePoint, shift) {
+			return stringFromCharCode(((codePoint >> shift) & 0x3F) | 0x80);
+		}
+
+		function encodeCodePoint(codePoint) {
+			if ((codePoint & 0xFFFFFF80) == 0) { // 1-byte sequence
+				return stringFromCharCode(codePoint);
+			}
+			var symbol = '';
+			if ((codePoint & 0xFFFFF800) == 0) { // 2-byte sequence
+				symbol = stringFromCharCode(((codePoint >> 6) & 0x1F) | 0xC0);
+			}
+			else if ((codePoint & 0xFFFF0000) == 0) { // 3-byte sequence
+				symbol = stringFromCharCode(((codePoint >> 12) & 0x0F) | 0xE0);
+				symbol += createByte(codePoint, 6);
+			}
+			else if ((codePoint & 0xFFE00000) == 0) { // 4-byte sequence
+				symbol = stringFromCharCode(((codePoint >> 18) & 0x07) | 0xF0);
+				symbol += createByte(codePoint, 12);
+				symbol += createByte(codePoint, 6);
+			}
+			symbol += stringFromCharCode((codePoint & 0x3F) | 0x80);
+			return symbol;
+		}
+
+		function utf8encode(string) {
+			var codePoints = ucs2decode(string);
+
+			// console.log(JSON.stringify(codePoints.map(function(x) {
+			// 	return 'U+' + x.toString(16).toUpperCase();
+			// })));
+
+			var length = codePoints.length;
+			var index = -1;
+			var codePoint;
+			var byteString = '';
+			while (++index < length) {
+				codePoint = codePoints[index];
+				byteString += encodeCodePoint(codePoint);
+			}
+			return byteString;
+		}
+
+		/*--------------------------------------------------------------------------*/
+
+		function readContinuationByte() {
+			if (byteIndex >= byteCount) {
+				throw Error('Invalid byte index');
+			}
+
+			var continuationByte = byteArray[byteIndex] & 0xFF;
+			byteIndex++;
+
+			if ((continuationByte & 0xC0) == 0x80) {
+				return continuationByte & 0x3F;
+			}
+
+			// If we end up here, it’s not a continuation byte
+			throw Error('Invalid continuation byte');
+		}
+
+		function decodeSymbol() {
+			var byte1;
+			var byte2;
+			var byte3;
+			var byte4;
+			var codePoint;
+
+			if (byteIndex > byteCount) {
+				throw Error('Invalid byte index');
+			}
+
+			if (byteIndex == byteCount) {
+				return false;
+			}
+
+			// Read first byte
+			byte1 = byteArray[byteIndex] & 0xFF;
+			byteIndex++;
+
+			// 1-byte sequence (no continuation bytes)
+			if ((byte1 & 0x80) == 0) {
+				return byte1;
+			}
+
+			// 2-byte sequence
+			if ((byte1 & 0xE0) == 0xC0) {
+				var byte2 = readContinuationByte();
+				codePoint = ((byte1 & 0x1F) << 6) | byte2;
+				if (codePoint >= 0x80) {
+					return codePoint;
+				} else {
+					throw Error('Invalid continuation byte');
+				}
+			}
+
+			// 3-byte sequence (may include unpaired surrogates)
+			if ((byte1 & 0xF0) == 0xE0) {
+				byte2 = readContinuationByte();
+				byte3 = readContinuationByte();
+				codePoint = ((byte1 & 0x0F) << 12) | (byte2 << 6) | byte3;
+				if (codePoint >= 0x0800) {
+					return codePoint;
+				} else {
+					throw Error('Invalid continuation byte');
+				}
+			}
+
+			// 4-byte sequence
+			if ((byte1 & 0xF8) == 0xF0) {
+				byte2 = readContinuationByte();
+				byte3 = readContinuationByte();
+				byte4 = readContinuationByte();
+				codePoint = ((byte1 & 0x0F) << 0x12) | (byte2 << 0x0C) |
+					(byte3 << 0x06) | byte4;
+				if (codePoint >= 0x010000 && codePoint <= 0x10FFFF) {
+					return codePoint;
+				}
+			}
+
+			throw Error('Invalid UTF-8 detected');
+		}
+
+		var byteArray;
+		var byteCount;
+		var byteIndex;
+		function utf8decode(byteString) {
+			byteArray = ucs2decode(byteString);
+			byteCount = byteArray.length;
+			byteIndex = 0;
+			var codePoints = [];
+			var tmp;
+			while ((tmp = decodeSymbol()) !== false) {
+				codePoints.push(tmp);
+			}
+			return ucs2encode(codePoints);
+		}
+
+		/*--------------------------------------------------------------------------*/
+
+		var utf8 = {
+			'version': '2.0.0',
+			'encode': utf8encode,
+			'decode': utf8decode
+		};
+
+		// Some AMD build optimizers, like r.js, check for specific condition patterns
+		// like the following:
+		if (
+			true
+		) {
+			!(__WEBPACK_AMD_DEFINE_RESULT__ = function() {
+				return utf8;
+			}.call(exports, __webpack_require__, exports, module), __WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__));
+		}	else if (freeExports && !freeExports.nodeType) {
+			if (freeModule) { // in Node.js or RingoJS v0.8.0+
+				freeModule.exports = utf8;
+			} else { // in Narwhal or RingoJS v0.7.0-
+				var object = {};
+				var hasOwnProperty = object.hasOwnProperty;
+				for (var key in utf8) {
+					hasOwnProperty.call(utf8, key) && (freeExports[key] = utf8[key]);
+				}
+			}
+		} else { // in Rhino or a web browser
+			root.utf8 = utf8;
+		}
+
+	}(this));
+
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33)(module), (function() { return this; }())))
+
+/***/ },
+/* 33 */,
+/* 34 */
+/***/ function(module, exports) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {/**
+	 * Create a blob builder even when vendor prefixes exist
+	 */
+
+	var BlobBuilder = global.BlobBuilder
+	  || global.WebKitBlobBuilder
+	  || global.MSBlobBuilder
+	  || global.MozBlobBuilder;
+
+	/**
+	 * Check if Blob constructor is supported
+	 */
+
+	var blobSupported = (function() {
+	  try {
+	    var b = new Blob(['hi']);
+	    return b.size == 2;
+	  } catch(e) {
+	    return false;
+	  }
+	})();
+
+	/**
+	 * Check if BlobBuilder is supported
+	 */
+
+	var blobBuilderSupported = BlobBuilder
+	  && BlobBuilder.prototype.append
+	  && BlobBuilder.prototype.getBlob;
+
+	function BlobBuilderConstructor(ary, options) {
+	  options = options || {};
+
+	  var bb = new BlobBuilder();
+	  for (var i = 0; i < ary.length; i++) {
+	    bb.append(ary[i]);
+	  }
+	  return (options.type) ? bb.getBlob(options.type) : bb.getBlob();
+	};
+
+	module.exports = (function() {
+	  if (blobSupported) {
+	    return global.Blob;
+	  } else if (blobBuilderSupported) {
+	    return BlobBuilderConstructor;
+	  } else {
+	    return undefined;
+	  }
+	})();
+
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ },
+/* 35 */
+/***/ function(module, exports) {
+
+	/**
+	 * Compiles a querystring
+	 * Returns string representation of the object
+	 *
+	 * @param {Object}
+	 * @api private
+	 */
+
+	exports.encode = function (obj) {
+	  var str = '';
+
+	  for (var i in obj) {
+	    if (obj.hasOwnProperty(i)) {
+	      if (str.length) str += '&';
+	      str += encodeURIComponent(i) + '=' + encodeURIComponent(obj[i]);
+	    }
+	  }
+
+	  return str;
+	};
+
+	/**
+	 * Parses a simple querystring into an object
+	 *
+	 * @param {String} qs
+	 * @api private
+	 */
+
+	exports.decode = function(qs){
+	  var qry = {};
+	  var pairs = qs.split('&');
+	  for (var i = 0, l = pairs.length; i < l; i++) {
+	    var pair = pairs[i].split('=');
+	    qry[decodeURIComponent(pair[0])] = decodeURIComponent(pair[1]);
+	  }
+	  return qry;
+	};
+
+
+/***/ },
+/* 36 */
+/***/ function(module, exports) {
+
+	
+	module.exports = function(a, b){
+	  var fn = function(){};
+	  fn.prototype = b.prototype;
+	  a.prototype = new fn;
+	  a.prototype.constructor = a;
+	};
+
+/***/ },
+/* 37 */
+/***/ function(module, exports, __webpack_require__) {
+
+	
+	/**
+	 * This is the web browser implementation of `debug()`.
+	 *
+	 * Expose `debug()` as the module.
+	 */
+
+	exports = module.exports = __webpack_require__(38);
+	exports.log = log;
+	exports.formatArgs = formatArgs;
+	exports.save = save;
+	exports.load = load;
+	exports.useColors = useColors;
+
+	/**
+	 * Colors.
+	 */
+
+	exports.colors = [
+	  'lightseagreen',
+	  'forestgreen',
+	  'goldenrod',
+	  'dodgerblue',
+	  'darkorchid',
+	  'crimson'
+	];
+
+	/**
+	 * Currently only WebKit-based Web Inspectors, Firefox >= v31,
+	 * and the Firebug extension (any Firefox version) are known
+	 * to support "%c" CSS customizations.
+	 *
+	 * TODO: add a `localStorage` variable to explicitly enable/disable colors
+	 */
+
+	function useColors() {
+	  // is webkit? http://stackoverflow.com/a/16459606/376773
+	  return ('WebkitAppearance' in document.documentElement.style) ||
+	    // is firebug? http://stackoverflow.com/a/398120/376773
+	    (window.console && (console.firebug || (console.exception && console.table))) ||
+	    // is firefox >= v31?
+	    // https://developer.mozilla.org/en-US/docs/Tools/Web_Console#Styling_messages
+	    (navigator.userAgent.toLowerCase().match(/firefox\/(\d+)/) && parseInt(RegExp.$1, 10) >= 31);
+	}
+
+	/**
+	 * Map %j to `JSON.stringify()`, since no Web Inspectors do that by default.
+	 */
+
+	exports.formatters.j = function(v) {
+	  return JSON.stringify(v);
+	};
+
+
+	/**
+	 * Colorize log arguments if enabled.
+	 *
+	 * @api public
+	 */
+
+	function formatArgs() {
+	  var args = arguments;
+	  var useColors = this.useColors;
+
+	  args[0] = (useColors ? '%c' : '')
+	    + this.namespace
+	    + (useColors ? ' %c' : ' ')
+	    + args[0]
+	    + (useColors ? '%c ' : ' ')
+	    + '+' + exports.humanize(this.diff);
+
+	  if (!useColors) return args;
+
+	  var c = 'color: ' + this.color;
+	  args = [args[0], c, 'color: inherit'].concat(Array.prototype.slice.call(args, 1));
+
+	  // the final "%c" is somewhat tricky, because there could be other
+	  // arguments passed either before or after the %c, so we need to
+	  // figure out the correct index to insert the CSS into
+	  var index = 0;
+	  var lastC = 0;
+	  args[0].replace(/%[a-z%]/g, function(match) {
+	    if ('%%' === match) return;
+	    index++;
+	    if ('%c' === match) {
+	      // we only are interested in the *last* %c
+	      // (the user may have provided their own)
+	      lastC = index;
+	    }
+	  });
+
+	  args.splice(lastC, 0, c);
+	  return args;
+	}
+
+	/**
+	 * Invokes `console.log()` when available.
+	 * No-op when `console.log` is not a "function".
+	 *
+	 * @api public
+	 */
+
+	function log() {
+	  // This hackery is required for IE8,
+	  // where the `console.log` function doesn't have 'apply'
+	  return 'object' == typeof console
+	    && 'function' == typeof console.log
+	    && Function.prototype.apply.call(console.log, console, arguments);
+	}
+
+	/**
+	 * Save `namespaces`.
+	 *
+	 * @param {String} namespaces
+	 * @api private
+	 */
+
+	function save(namespaces) {
+	  try {
+	    if (null == namespaces) {
+	      localStorage.removeItem('debug');
+	    } else {
+	      localStorage.debug = namespaces;
+	    }
+	  } catch(e) {}
+	}
+
+	/**
+	 * Load `namespaces`.
+	 *
+	 * @return {String} returns the previously persisted debug modes
+	 * @api private
+	 */
+
+	function load() {
+	  var r;
+	  try {
+	    r = localStorage.debug;
+	  } catch(e) {}
+	  return r;
+	}
+
+	/**
+	 * Enable namespaces listed in `localStorage.debug` initially.
+	 */
+
+	exports.enable(load());
+
+
+/***/ },
+/* 38 */
+/***/ function(module, exports, __webpack_require__) {
+
+	
+	/**
+	 * This is the common logic for both the Node.js and web browser
+	 * implementations of `debug()`.
+	 *
+	 * Expose `debug()` as the module.
+	 */
+
+	exports = module.exports = debug;
+	exports.coerce = coerce;
+	exports.disable = disable;
+	exports.enable = enable;
+	exports.enabled = enabled;
+	exports.humanize = __webpack_require__(39);
+
+	/**
+	 * The currently active debug mode names, and names to skip.
+	 */
+
+	exports.names = [];
+	exports.skips = [];
+
+	/**
+	 * Map of special "%n" handling functions, for the debug "format" argument.
+	 *
+	 * Valid key names are a single, lowercased letter, i.e. "n".
+	 */
+
+	exports.formatters = {};
+
+	/**
+	 * Previously assigned color.
+	 */
+
+	var prevColor = 0;
+
+	/**
+	 * Previous log timestamp.
+	 */
+
+	var prevTime;
+
+	/**
+	 * Select a color.
+	 *
+	 * @return {Number}
+	 * @api private
+	 */
+
+	function selectColor() {
+	  return exports.colors[prevColor++ % exports.colors.length];
+	}
+
+	/**
+	 * Create a debugger with the given `namespace`.
+	 *
+	 * @param {String} namespace
+	 * @return {Function}
+	 * @api public
+	 */
+
+	function debug(namespace) {
+
+	  // define the `disabled` version
+	  function disabled() {
+	  }
+	  disabled.enabled = false;
+
+	  // define the `enabled` version
+	  function enabled() {
+
+	    var self = enabled;
+
+	    // set `diff` timestamp
+	    var curr = +new Date();
+	    var ms = curr - (prevTime || curr);
+	    self.diff = ms;
+	    self.prev = prevTime;
+	    self.curr = curr;
+	    prevTime = curr;
+
+	    // add the `color` if not set
+	    if (null == self.useColors) self.useColors = exports.useColors();
+	    if (null == self.color && self.useColors) self.color = selectColor();
+
+	    var args = Array.prototype.slice.call(arguments);
+
+	    args[0] = exports.coerce(args[0]);
+
+	    if ('string' !== typeof args[0]) {
+	      // anything else let's inspect with %o
+	      args = ['%o'].concat(args);
+	    }
+
+	    // apply any `formatters` transformations
+	    var index = 0;
+	    args[0] = args[0].replace(/%([a-z%])/g, function(match, format) {
+	      // if we encounter an escaped % then don't increase the array index
+	      if (match === '%%') return match;
+	      index++;
+	      var formatter = exports.formatters[format];
+	      if ('function' === typeof formatter) {
+	        var val = args[index];
+	        match = formatter.call(self, val);
+
+	        // now we need to remove `args[index]` since it's inlined in the `format`
+	        args.splice(index, 1);
+	        index--;
+	      }
+	      return match;
+	    });
+
+	    if ('function' === typeof exports.formatArgs) {
+	      args = exports.formatArgs.apply(self, args);
+	    }
+	    var logFn = enabled.log || exports.log || console.log.bind(console);
+	    logFn.apply(self, args);
+	  }
+	  enabled.enabled = true;
+
+	  var fn = exports.enabled(namespace) ? enabled : disabled;
+
+	  fn.namespace = namespace;
+
+	  return fn;
+	}
+
+	/**
+	 * Enables a debug mode by namespaces. This can include modes
+	 * separated by a colon and wildcards.
+	 *
+	 * @param {String} namespaces
+	 * @api public
+	 */
+
+	function enable(namespaces) {
+	  exports.save(namespaces);
+
+	  var split = (namespaces || '').split(/[\s,]+/);
+	  var len = split.length;
+
+	  for (var i = 0; i < len; i++) {
+	    if (!split[i]) continue; // ignore empty strings
+	    namespaces = split[i].replace(/\*/g, '.*?');
+	    if (namespaces[0] === '-') {
+	      exports.skips.push(new RegExp('^' + namespaces.substr(1) + '$'));
+	    } else {
+	      exports.names.push(new RegExp('^' + namespaces + '$'));
+	    }
+	  }
+	}
+
+	/**
+	 * Disable debug output.
+	 *
+	 * @api public
+	 */
+
+	function disable() {
+	  exports.enable('');
+	}
+
+	/**
+	 * Returns true if the given mode name is enabled, false otherwise.
+	 *
+	 * @param {String} name
+	 * @return {Boolean}
+	 * @api public
+	 */
+
+	function enabled(name) {
+	  var i, len;
+	  for (i = 0, len = exports.skips.length; i < len; i++) {
+	    if (exports.skips[i].test(name)) {
+	      return false;
+	    }
+	  }
+	  for (i = 0, len = exports.names.length; i < len; i++) {
+	    if (exports.names[i].test(name)) {
+	      return true;
+	    }
+	  }
+	  return false;
+	}
+
+	/**
+	 * Coerce `val`.
+	 *
+	 * @param {Mixed} val
+	 * @return {Mixed}
+	 * @api private
+	 */
+
+	function coerce(val) {
+	  if (val instanceof Error) return val.stack || val.message;
+	  return val;
+	}
+
+
+/***/ },
+/* 39 */
+/***/ function(module, exports) {
+
+	/**
+	 * Helpers.
+	 */
+
+	var s = 1000;
+	var m = s * 60;
+	var h = m * 60;
+	var d = h * 24;
+	var y = d * 365.25;
+
+	/**
+	 * Parse or format the given `val`.
+	 *
+	 * Options:
+	 *
+	 *  - `long` verbose formatting [false]
+	 *
+	 * @param {String|Number} val
+	 * @param {Object} options
+	 * @return {String|Number}
+	 * @api public
+	 */
+
+	module.exports = function(val, options){
+	  options = options || {};
+	  if ('string' == typeof val) return parse(val);
+	  return options.long
+	    ? long(val)
+	    : short(val);
+	};
+
+	/**
+	 * Parse the given `str` and return milliseconds.
+	 *
+	 * @param {String} str
+	 * @return {Number}
+	 * @api private
+	 */
+
+	function parse(str) {
+	  var match = /^((?:\d+)?\.?\d+) *(ms|seconds?|s|minutes?|m|hours?|h|days?|d|years?|y)?$/i.exec(str);
+	  if (!match) return;
+	  var n = parseFloat(match[1]);
+	  var type = (match[2] || 'ms').toLowerCase();
+	  switch (type) {
+	    case 'years':
+	    case 'year':
+	    case 'y':
+	      return n * y;
+	    case 'days':
+	    case 'day':
+	    case 'd':
+	      return n * d;
+	    case 'hours':
+	    case 'hour':
+	    case 'h':
+	      return n * h;
+	    case 'minutes':
+	    case 'minute':
+	    case 'm':
+	      return n * m;
+	    case 'seconds':
+	    case 'second':
+	    case 's':
+	      return n * s;
+	    case 'ms':
+	      return n;
+	  }
+	}
+
+	/**
+	 * Short format for `ms`.
+	 *
+	 * @param {Number} ms
+	 * @return {String}
+	 * @api private
+	 */
+
+	function short(ms) {
+	  if (ms >= d) return Math.round(ms / d) + 'd';
+	  if (ms >= h) return Math.round(ms / h) + 'h';
+	  if (ms >= m) return Math.round(ms / m) + 'm';
+	  if (ms >= s) return Math.round(ms / s) + 's';
+	  return ms + 'ms';
+	}
+
+	/**
+	 * Long format for `ms`.
+	 *
+	 * @param {Number} ms
+	 * @return {String}
+	 * @api private
+	 */
+
+	function long(ms) {
+	  return plural(ms, d, 'day')
+	    || plural(ms, h, 'hour')
+	    || plural(ms, m, 'minute')
+	    || plural(ms, s, 'second')
+	    || ms + ' ms';
+	}
+
+	/**
+	 * Pluralization helper.
+	 */
+
+	function plural(ms, n, name) {
+	  if (ms < n) return;
+	  if (ms < n * 1.5) return Math.floor(ms / n) + ' ' + name;
+	  return Math.ceil(ms / n) + ' ' + name + 's';
+	}
+
+
+/***/ },
+/* 40 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {
+	/**
+	 * Module requirements.
+	 */
+
+	var Polling = __webpack_require__(23);
+	var inherit = __webpack_require__(36);
+
+	/**
+	 * Module exports.
+	 */
+
+	module.exports = JSONPPolling;
+
+	/**
+	 * Cached regular expressions.
+	 */
+
+	var rNewline = /\n/g;
+	var rEscapedNewline = /\\n/g;
+
+	/**
+	 * Global JSONP callbacks.
+	 */
+
+	var callbacks;
+
+	/**
+	 * Callbacks count.
+	 */
+
+	var index = 0;
+
+	/**
+	 * Noop.
+	 */
+
+	function empty () { }
+
+	/**
+	 * JSONP Polling constructor.
+	 *
+	 * @param {Object} opts.
+	 * @api public
+	 */
+
+	function JSONPPolling (opts) {
+	  Polling.call(this, opts);
+
+	  this.query = this.query || {};
+
+	  // define global callbacks array if not present
+	  // we do this here (lazily) to avoid unneeded global pollution
+	  if (!callbacks) {
+	    // we need to consider multiple engines in the same page
+	    if (!global.___eio) global.___eio = [];
+	    callbacks = global.___eio;
+	  }
+
+	  // callback identifier
+	  this.index = callbacks.length;
+
+	  // add callback to jsonp global
+	  var self = this;
+	  callbacks.push(function (msg) {
+	    self.onData(msg);
+	  });
+
+	  // append to query string
+	  this.query.j = this.index;
+
+	  // prevent spurious errors from being emitted when the window is unloaded
+	  if (global.document && global.addEventListener) {
+	    global.addEventListener('beforeunload', function () {
+	      if (self.script) self.script.onerror = empty;
+	    }, false);
+	  }
+	}
+
+	/**
+	 * Inherits from Polling.
+	 */
+
+	inherit(JSONPPolling, Polling);
+
+	/*
+	 * JSONP only supports binary as base64 encoded strings
+	 */
+
+	JSONPPolling.prototype.supportsBinary = false;
+
+	/**
+	 * Closes the socket.
+	 *
+	 * @api private
+	 */
+
+	JSONPPolling.prototype.doClose = function () {
+	  if (this.script) {
+	    this.script.parentNode.removeChild(this.script);
+	    this.script = null;
+	  }
+
+	  if (this.form) {
+	    this.form.parentNode.removeChild(this.form);
+	    this.form = null;
+	    this.iframe = null;
+	  }
+
+	  Polling.prototype.doClose.call(this);
+	};
+
+	/**
+	 * Starts a poll cycle.
+	 *
+	 * @api private
+	 */
+
+	JSONPPolling.prototype.doPoll = function () {
+	  var self = this;
+	  var script = document.createElement('script');
+
+	  if (this.script) {
+	    this.script.parentNode.removeChild(this.script);
+	    this.script = null;
+	  }
+
+	  script.async = true;
+	  script.src = this.uri();
+	  script.onerror = function(e){
+	    self.onError('jsonp poll error',e);
+	  };
+
+	  var insertAt = document.getElementsByTagName('script')[0];
+	  insertAt.parentNode.insertBefore(script, insertAt);
+	  this.script = script;
+
+	  var isUAgecko = 'undefined' != typeof navigator && /gecko/i.test(navigator.userAgent);
+	  
+	  if (isUAgecko) {
+	    setTimeout(function () {
+	      var iframe = document.createElement('iframe');
+	      document.body.appendChild(iframe);
+	      document.body.removeChild(iframe);
+	    }, 100);
+	  }
+	};
+
+	/**
+	 * Writes with a hidden iframe.
+	 *
+	 * @param {String} data to send
+	 * @param {Function} called upon flush.
+	 * @api private
+	 */
+
+	JSONPPolling.prototype.doWrite = function (data, fn) {
+	  var self = this;
+
+	  if (!this.form) {
+	    var form = document.createElement('form');
+	    var area = document.createElement('textarea');
+	    var id = this.iframeId = 'eio_iframe_' + this.index;
+	    var iframe;
+
+	    form.className = 'socketio';
+	    form.style.position = 'absolute';
+	    form.style.top = '-1000px';
+	    form.style.left = '-1000px';
+	    form.target = id;
+	    form.method = 'POST';
+	    form.setAttribute('accept-charset', 'utf-8');
+	    area.name = 'd';
+	    form.appendChild(area);
+	    document.body.appendChild(form);
+
+	    this.form = form;
+	    this.area = area;
+	  }
+
+	  this.form.action = this.uri();
+
+	  function complete () {
+	    initIframe();
+	    fn();
+	  }
+
+	  function initIframe () {
+	    if (self.iframe) {
+	      try {
+	        self.form.removeChild(self.iframe);
+	      } catch (e) {
+	        self.onError('jsonp polling iframe removal error', e);
+	      }
+	    }
+
+	    try {
+	      // ie6 dynamic iframes with target="" support (thanks Chris Lambacher)
+	      var html = '<iframe src="javascript:0" name="'+ self.iframeId +'">';
+	      iframe = document.createElement(html);
+	    } catch (e) {
+	      iframe = document.createElement('iframe');
+	      iframe.name = self.iframeId;
+	      iframe.src = 'javascript:0';
+	    }
+
+	    iframe.id = self.iframeId;
+
+	    self.form.appendChild(iframe);
+	    self.iframe = iframe;
+	  }
+
+	  initIframe();
+
+	  // escape \n to prevent it from being converted into \r\n by some UAs
+	  // double escaping is required for escaped new lines because unescaping of new lines can be done safely on server-side
+	  data = data.replace(rEscapedNewline, '\\\n');
+	  this.area.value = data.replace(rNewline, '\\n');
+
+	  try {
+	    this.form.submit();
+	  } catch(e) {}
+
+	  if (this.iframe.attachEvent) {
+	    this.iframe.onreadystatechange = function(){
+	      if (self.iframe.readyState == 'complete') {
+	        complete();
+	      }
+	    };
+	  } else {
+	    this.iframe.onload = complete;
+	  }
+	};
+
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ },
+/* 41 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Module dependencies.
+	 */
+
+	var Transport = __webpack_require__(24);
+	var parser = __webpack_require__(25);
+	var parseqs = __webpack_require__(35);
+	var inherit = __webpack_require__(36);
+	var debug = __webpack_require__(37)('engine.io-client:websocket');
+
+	/**
+	 * `ws` exposes a WebSocket-compatible interface in
+	 * Node, or the `WebSocket` or `MozWebSocket` globals
+	 * in the browser.
+	 */
+
+	var WebSocket = __webpack_require__(42);
+
+	/**
+	 * Module exports.
+	 */
+
+	module.exports = WS;
+
+	/**
+	 * WebSocket transport constructor.
+	 *
+	 * @api {Object} connection options
+	 * @api public
+	 */
+
+	function WS(opts){
+	  var forceBase64 = (opts && opts.forceBase64);
+	  if (forceBase64) {
+	    this.supportsBinary = false;
+	  }
+	  Transport.call(this, opts);
+	}
+
+	/**
+	 * Inherits from Transport.
+	 */
+
+	inherit(WS, Transport);
+
+	/**
+	 * Transport name.
+	 *
+	 * @api public
+	 */
+
+	WS.prototype.name = 'websocket';
+
+	/*
+	 * WebSockets support binary
+	 */
+
+	WS.prototype.supportsBinary = true;
+
+	/**
+	 * Opens socket.
+	 *
+	 * @api private
+	 */
+
+	WS.prototype.doOpen = function(){
+	  if (!this.check()) {
+	    // let probe timeout
+	    return;
+	  }
+
+	  var self = this;
+	  var uri = this.uri();
+	  var protocols = void(0);
+	  var opts = { agent: this.agent };
+
+	  // SSL options for Node.js client
+	  opts.pfx = this.pfx;
+	  opts.key = this.key;
+	  opts.passphrase = this.passphrase;
+	  opts.cert = this.cert;
+	  opts.ca = this.ca;
+	  opts.ciphers = this.ciphers;
+	  opts.rejectUnauthorized = this.rejectUnauthorized;
+
+	  this.ws = new WebSocket(uri, protocols, opts);
+
+	  if (this.ws.binaryType === undefined) {
+	    this.supportsBinary = false;
+	  }
+
+	  this.ws.binaryType = 'arraybuffer';
+	  this.addEventListeners();
+	};
+
+	/**
+	 * Adds event listeners to the socket
+	 *
+	 * @api private
+	 */
+
+	WS.prototype.addEventListeners = function(){
+	  var self = this;
+
+	  this.ws.onopen = function(){
+	    self.onOpen();
+	  };
+	  this.ws.onclose = function(){
+	    self.onClose();
+	  };
+	  this.ws.onmessage = function(ev){
+	    self.onData(ev.data);
+	  };
+	  this.ws.onerror = function(e){
+	    self.onError('websocket error', e);
+	  };
+	};
+
+	/**
+	 * Override `onData` to use a timer on iOS.
+	 * See: https://gist.github.com/mloughran/2052006
+	 *
+	 * @api private
+	 */
+
+	if ('undefined' != typeof navigator
+	  && /iPad|iPhone|iPod/i.test(navigator.userAgent)) {
+	  WS.prototype.onData = function(data){
+	    var self = this;
+	    setTimeout(function(){
+	      Transport.prototype.onData.call(self, data);
+	    }, 0);
+	  };
+	}
+
+	/**
+	 * Writes data to socket.
+	 *
+	 * @param {Array} array of packets.
+	 * @api private
+	 */
+
+	WS.prototype.write = function(packets){
+	  var self = this;
+	  this.writable = false;
+	  // encodePacket efficient as it uses WS framing
+	  // no need for encodePayload
+	  for (var i = 0, l = packets.length; i < l; i++) {
+	    parser.encodePacket(packets[i], this.supportsBinary, function(data) {
+	      //Sometimes the websocket has already been closed but the browser didn't
+	      //have a chance of informing us about it yet, in that case send will
+	      //throw an error
+	      try {
+	        self.ws.send(data);
+	      } catch (e){
+	        debug('websocket closed before onclose event');
+	      }
+	    });
+	  }
+
+	  function ondrain() {
+	    self.writable = true;
+	    self.emit('drain');
+	  }
+	  // fake drain
+	  // defer to next tick to allow Socket to clear writeBuffer
+	  setTimeout(ondrain, 0);
+	};
+
+	/**
+	 * Called upon close
+	 *
+	 * @api private
+	 */
+
+	WS.prototype.onClose = function(){
+	  Transport.prototype.onClose.call(this);
+	};
+
+	/**
+	 * Closes socket.
+	 *
+	 * @api private
+	 */
+
+	WS.prototype.doClose = function(){
+	  if (typeof this.ws !== 'undefined') {
+	    this.ws.close();
+	  }
+	};
+
+	/**
+	 * Generates uri for connection.
+	 *
+	 * @api private
+	 */
+
+	WS.prototype.uri = function(){
+	  var query = this.query || {};
+	  var schema = this.secure ? 'wss' : 'ws';
+	  var port = '';
+
+	  // avoid port if default for schema
+	  if (this.port && (('wss' == schema && this.port != 443)
+	    || ('ws' == schema && this.port != 80))) {
+	    port = ':' + this.port;
+	  }
+
+	  // append timestamp to URI
+	  if (this.timestampRequests) {
+	    query[this.timestampParam] = +new Date;
+	  }
+
+	  // communicate binary support capabilities
+	  if (!this.supportsBinary) {
+	    query.b64 = 1;
+	  }
+
+	  query = parseqs.encode(query);
+
+	  // prepend ? to query
+	  if (query.length) {
+	    query = '?' + query;
+	  }
+
+	  return schema + '://' + this.hostname + port + this.path + query;
+	};
+
+	/**
+	 * Feature detection for WebSocket.
+	 *
+	 * @return {Boolean} whether this transport is available.
+	 * @api public
+	 */
+
+	WS.prototype.check = function(){
+	  return !!WebSocket && !('__initialize' in WebSocket && this.name === WS.prototype.name);
+	};
+
+
+/***/ },
+/* 42 */
+/***/ function(module, exports) {
+
+	
+	/**
+	 * Module dependencies.
+	 */
+
+	var global = (function() { return this; })();
+
+	/**
+	 * WebSocket constructor.
+	 */
+
+	var WebSocket = global.WebSocket || global.MozWebSocket;
+
+	/**
+	 * Module exports.
+	 */
+
+	module.exports = WebSocket ? ws : null;
+
+	/**
+	 * WebSocket constructor.
+	 *
+	 * The third `opts` options object gets ignored in web browsers, since it's
+	 * non-standard, and throws a TypeError if passed to the constructor.
+	 * See: https://github.com/einaros/ws/issues/227
+	 *
+	 * @param {String} uri
+	 * @param {Array} protocols (optional)
+	 * @param {Object) opts (optional)
+	 * @api public
+	 */
+
+	function ws(uri, protocols, opts) {
+	  var instance;
+	  if (protocols) {
+	    instance = new WebSocket(uri, protocols);
+	  } else {
+	    instance = new WebSocket(uri);
+	  }
+	  return instance;
+	}
+
+	if (WebSocket) ws.prototype = WebSocket.prototype;
+
+
+/***/ },
+/* 43 */
+/***/ function(module, exports) {
+
+	
+	var indexOf = [].indexOf;
+
+	module.exports = function(arr, obj){
+	  if (indexOf) return arr.indexOf(obj);
+	  for (var i = 0; i < arr.length; ++i) {
+	    if (arr[i] === obj) return i;
+	  }
+	  return -1;
+	};
+
+/***/ },
+/* 44 */
+/***/ function(module, exports) {
+
+	/**
+	 * Parses an URI
+	 *
+	 * @author Steven Levithan <stevenlevithan.com> (MIT license)
+	 * @api private
+	 */
+
+	var re = /^(?:(?![^:@]+:[^:@\/]*@)(http|https|ws|wss):\/\/)?((?:(([^:@]*)(?::([^:@]*))?)?@)?((?:[a-f0-9]{0,4}:){2,7}[a-f0-9]{0,4}|[^:\/?#]*)(?::(\d*))?)(((\/(?:[^?#](?![^?#\/]*\.[^?#\/.]+(?:[?#]|$)))*\/?)?([^?#\/]*))(?:\?([^#]*))?(?:#(.*))?)/;
+
+	var parts = [
+	    'source', 'protocol', 'authority', 'userInfo', 'user', 'password', 'host', 'port', 'relative', 'path', 'directory', 'file', 'query', 'anchor'
+	];
+
+	module.exports = function parseuri(str) {
+	    var src = str,
+	        b = str.indexOf('['),
+	        e = str.indexOf(']');
+
+	    if (b != -1 && e != -1) {
+	        str = str.substring(0, b) + str.substring(b, e).replace(/:/g, ';') + str.substring(e, str.length);
+	    }
+
+	    var m = re.exec(str || ''),
+	        uri = {},
+	        i = 14;
+
+	    while (i--) {
+	        uri[parts[i]] = m[i] || '';
+	    }
+
+	    if (b != -1 && e != -1) {
+	        uri.source = src;
+	        uri.host = uri.host.substring(1, uri.host.length - 1).replace(/;/g, ':');
+	        uri.authority = uri.authority.replace('[', '').replace(']', '').replace(/;/g, ':');
+	        uri.ipv6uri = true;
+	    }
+
+	    return uri;
+	};
+
+
+/***/ },
+/* 45 */
+/***/ function(module, exports) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {/**
+	 * JSON parse.
+	 *
+	 * @see Based on jQuery#parseJSON (MIT) and JSON2
+	 * @api private
+	 */
+
+	var rvalidchars = /^[\],:{}\s]*$/;
+	var rvalidescape = /\\(?:["\\\/bfnrt]|u[0-9a-fA-F]{4})/g;
+	var rvalidtokens = /"[^"\\\n\r]*"|true|false|null|-?\d+(?:\.\d*)?(?:[eE][+\-]?\d+)?/g;
+	var rvalidbraces = /(?:^|:|,)(?:\s*\[)+/g;
+	var rtrimLeft = /^\s+/;
+	var rtrimRight = /\s+$/;
+
+	module.exports = function parsejson(data) {
+	  if ('string' != typeof data || !data) {
+	    return null;
+	  }
+
+	  data = data.replace(rtrimLeft, '').replace(rtrimRight, '');
+
+	  // Attempt to parse using the native JSON parser first
+	  if (global.JSON && JSON.parse) {
+	    return JSON.parse(data);
+	  }
+
+	  if (rvalidchars.test(data.replace(rvalidescape, '@')
+	      .replace(rvalidtokens, ']')
+	      .replace(rvalidbraces, ''))) {
+	    return (new Function('return ' + data))();
+	  }
+	};
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ },
+/* 46 */
+/***/ function(module, exports, __webpack_require__) {
+
+	
+	/**
+	 * Module dependencies.
+	 */
+
+	var parser = __webpack_require__(7);
+	var Emitter = __webpack_require__(11);
+	var toArray = __webpack_require__(47);
+	var on = __webpack_require__(48);
+	var bind = __webpack_require__(49);
+	var debug = __webpack_require__(6)('socket.io-client:socket');
+	var hasBin = __webpack_require__(50);
+
+	/**
+	 * Module exports.
+	 */
+
+	module.exports = exports = Socket;
+
+	/**
+	 * Internal events (blacklisted).
+	 * These events can't be emitted by the user.
+	 *
+	 * @api private
+	 */
+
+	var events = {
+	  connect: 1,
+	  connect_error: 1,
+	  connect_timeout: 1,
+	  disconnect: 1,
+	  error: 1,
+	  reconnect: 1,
+	  reconnect_attempt: 1,
+	  reconnect_failed: 1,
+	  reconnect_error: 1,
+	  reconnecting: 1
+	};
+
+	/**
+	 * Shortcut to `Emitter#emit`.
+	 */
+
+	var emit = Emitter.prototype.emit;
+
+	/**
+	 * `Socket` constructor.
+	 *
+	 * @api public
+	 */
+
+	function Socket(io, nsp){
+	  this.io = io;
+	  this.nsp = nsp;
+	  this.json = this; // compat
+	  this.ids = 0;
+	  this.acks = {};
+	  if (this.io.autoConnect) this.open();
+	  this.receiveBuffer = [];
+	  this.sendBuffer = [];
+	  this.connected = false;
+	  this.disconnected = true;
+	}
+
+	/**
+	 * Mix in `Emitter`.
+	 */
+
+	Emitter(Socket.prototype);
+
+	/**
+	 * Subscribe to open, close and packet events
+	 *
+	 * @api private
+	 */
+
+	Socket.prototype.subEvents = function() {
+	  if (this.subs) return;
+
+	  var io = this.io;
+	  this.subs = [
+	    on(io, 'open', bind(this, 'onopen')),
+	    on(io, 'packet', bind(this, 'onpacket')),
+	    on(io, 'close', bind(this, 'onclose'))
+	  ];
+	};
+
+	/**
+	 * "Opens" the socket.
+	 *
+	 * @api public
+	 */
+
+	Socket.prototype.open =
+	Socket.prototype.connect = function(){
+	  if (this.connected) return this;
+
+	  this.subEvents();
+	  this.io.open(); // ensure open
+	  if ('open' == this.io.readyState) this.onopen();
+	  return this;
+	};
+
+	/**
+	 * Sends a `message` event.
+	 *
+	 * @return {Socket} self
+	 * @api public
+	 */
+
+	Socket.prototype.send = function(){
+	  var args = toArray(arguments);
+	  args.unshift('message');
+	  this.emit.apply(this, args);
+	  return this;
+	};
+
+	/**
+	 * Override `emit`.
+	 * If the event is in `events`, it's emitted normally.
+	 *
+	 * @param {String} event name
+	 * @return {Socket} self
+	 * @api public
+	 */
+
+	Socket.prototype.emit = function(ev){
+	  if (events.hasOwnProperty(ev)) {
+	    emit.apply(this, arguments);
+	    return this;
+	  }
+
+	  var args = toArray(arguments);
+	  var parserType = parser.EVENT; // default
+	  if (hasBin(args)) { parserType = parser.BINARY_EVENT; } // binary
+	  var packet = { type: parserType, data: args };
+
+	  // event ack callback
+	  if ('function' == typeof args[args.length - 1]) {
+	    debug('emitting packet with ack id %d', this.ids);
+	    this.acks[this.ids] = args.pop();
+	    packet.id = this.ids++;
+	  }
+
+	  if (this.connected) {
+	    this.packet(packet);
+	  } else {
+	    this.sendBuffer.push(packet);
+	  }
+
+	  return this;
+	};
+
+	/**
+	 * Sends a packet.
+	 *
+	 * @param {Object} packet
+	 * @api private
+	 */
+
+	Socket.prototype.packet = function(packet){
+	  packet.nsp = this.nsp;
+	  this.io.packet(packet);
+	};
+
+	/**
+	 * Called upon engine `open`.
+	 *
+	 * @api private
+	 */
+
+	Socket.prototype.onopen = function(){
+	  debug('transport is open - connecting');
+
+	  // write connect packet if necessary
+	  if ('/' != this.nsp) {
+	    this.packet({ type: parser.CONNECT });
+	  }
+	};
+
+	/**
+	 * Called upon engine `close`.
+	 *
+	 * @param {String} reason
+	 * @api private
+	 */
+
+	Socket.prototype.onclose = function(reason){
+	  debug('close (%s)', reason);
+	  this.connected = false;
+	  this.disconnected = true;
+	  delete this.id;
+	  this.emit('disconnect', reason);
+	};
+
+	/**
+	 * Called with socket packet.
+	 *
+	 * @param {Object} packet
+	 * @api private
+	 */
+
+	Socket.prototype.onpacket = function(packet){
+	  if (packet.nsp != this.nsp) return;
+
+	  switch (packet.type) {
+	    case parser.CONNECT:
+	      this.onconnect();
+	      break;
+
+	    case parser.EVENT:
+	      this.onevent(packet);
+	      break;
+
+	    case parser.BINARY_EVENT:
+	      this.onevent(packet);
+	      break;
+
+	    case parser.ACK:
+	      this.onack(packet);
+	      break;
+
+	    case parser.BINARY_ACK:
+	      this.onack(packet);
+	      break;
+
+	    case parser.DISCONNECT:
+	      this.ondisconnect();
+	      break;
+
+	    case parser.ERROR:
+	      this.emit('error', packet.data);
+	      break;
+	  }
+	};
+
+	/**
+	 * Called upon a server event.
+	 *
+	 * @param {Object} packet
+	 * @api private
+	 */
+
+	Socket.prototype.onevent = function(packet){
+	  var args = packet.data || [];
+	  debug('emitting event %j', args);
+
+	  if (null != packet.id) {
+	    debug('attaching ack callback to event');
+	    args.push(this.ack(packet.id));
+	  }
+
+	  if (this.connected) {
+	    emit.apply(this, args);
+	  } else {
+	    this.receiveBuffer.push(args);
+	  }
+	};
+
+	/**
+	 * Produces an ack callback to emit with an event.
+	 *
+	 * @api private
+	 */
+
+	Socket.prototype.ack = function(id){
+	  var self = this;
+	  var sent = false;
+	  return function(){
+	    // prevent double callbacks
+	    if (sent) return;
+	    sent = true;
+	    var args = toArray(arguments);
+	    debug('sending ack %j', args);
+
+	    var type = hasBin(args) ? parser.BINARY_ACK : parser.ACK;
+	    self.packet({
+	      type: type,
+	      id: id,
+	      data: args
+	    });
+	  };
+	};
+
+	/**
+	 * Called upon a server acknowlegement.
+	 *
+	 * @param {Object} packet
+	 * @api private
+	 */
+
+	Socket.prototype.onack = function(packet){
+	  debug('calling ack %s with %j', packet.id, packet.data);
+	  var fn = this.acks[packet.id];
+	  fn.apply(this, packet.data);
+	  delete this.acks[packet.id];
+	};
+
+	/**
+	 * Called upon server connect.
+	 *
+	 * @api private
+	 */
+
+	Socket.prototype.onconnect = function(){
+	  this.connected = true;
+	  this.disconnected = false;
+	  this.emit('connect');
+	  this.emitBuffered();
+	};
+
+	/**
+	 * Emit buffered events (received and emitted).
+	 *
+	 * @api private
+	 */
+
+	Socket.prototype.emitBuffered = function(){
+	  var i;
+	  for (i = 0; i < this.receiveBuffer.length; i++) {
+	    emit.apply(this, this.receiveBuffer[i]);
+	  }
+	  this.receiveBuffer = [];
+
+	  for (i = 0; i < this.sendBuffer.length; i++) {
+	    this.packet(this.sendBuffer[i]);
+	  }
+	  this.sendBuffer = [];
+	};
+
+	/**
+	 * Called upon server disconnect.
+	 *
+	 * @api private
+	 */
+
+	Socket.prototype.ondisconnect = function(){
+	  debug('server disconnect (%s)', this.nsp);
+	  this.destroy();
+	  this.onclose('io server disconnect');
+	};
+
+	/**
+	 * Called upon forced client/server side disconnections,
+	 * this method ensures the manager stops tracking us and
+	 * that reconnections don't get triggered for this.
+	 *
+	 * @api private.
+	 */
+
+	Socket.prototype.destroy = function(){
+	  if (this.subs) {
+	    // clean subscriptions to avoid reconnections
+	    for (var i = 0; i < this.subs.length; i++) {
+	      this.subs[i].destroy();
+	    }
+	    this.subs = null;
+	  }
+
+	  this.io.destroy(this);
+	};
+
+	/**
+	 * Disconnects the socket manually.
+	 *
+	 * @return {Socket} self
+	 * @api public
+	 */
+
+	Socket.prototype.close =
+	Socket.prototype.disconnect = function(){
+	  if (this.connected) {
+	    debug('performing disconnect (%s)', this.nsp);
+	    this.packet({ type: parser.DISCONNECT });
+	  }
+
+	  // remove socket from pool
+	  this.destroy();
+
+	  if (this.connected) {
+	    // fire events
+	    this.onclose('io client disconnect');
+	  }
+	  return this;
+	};
+
+
+/***/ },
+/* 47 */
+/***/ function(module, exports) {
+
+	module.exports = toArray
+
+	function toArray(list, index) {
+	    var array = []
+
+	    index = index || 0
+
+	    for (var i = index || 0; i < list.length; i++) {
+	        array[i - index] = list[i]
+	    }
+
+	    return array
+	}
+
+
+/***/ },
+/* 48 */
+/***/ function(module, exports) {
+
+	
+	/**
+	 * Module exports.
+	 */
+
+	module.exports = on;
+
+	/**
+	 * Helper for subscriptions.
+	 *
+	 * @param {Object|EventEmitter} obj with `Emitter` mixin or `EventEmitter`
+	 * @param {String} event name
+	 * @param {Function} callback
+	 * @api public
+	 */
+
+	function on(obj, ev, fn) {
+	  obj.on(ev, fn);
+	  return {
+	    destroy: function(){
+	      obj.removeListener(ev, fn);
+	    }
+	  };
+	}
+
+
+/***/ },
+/* 49 */
+/***/ function(module, exports) {
+
+	/**
+	 * Slice reference.
+	 */
+
+	var slice = [].slice;
+
+	/**
+	 * Bind `obj` to `fn`.
+	 *
+	 * @param {Object} obj
+	 * @param {Function|String} fn or string
+	 * @return {Function}
+	 * @api public
+	 */
+
+	module.exports = function(obj, fn){
+	  if ('string' == typeof fn) fn = obj[fn];
+	  if ('function' != typeof fn) throw new Error('bind() requires a function');
+	  var args = slice.call(arguments, 2);
+	  return function(){
+	    return fn.apply(obj, args.concat(slice.call(arguments)));
+	  }
+	};
+
+
+/***/ },
+/* 50 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(global) {
+	/*
+	 * Module requirements.
+	 */
+
+	var isArray = __webpack_require__(51);
+
+	/**
+	 * Module exports.
+	 */
+
+	module.exports = hasBinary;
+
+	/**
+	 * Checks for binary data.
+	 *
+	 * Right now only Buffer and ArrayBuffer are supported..
+	 *
+	 * @param {Object} anything
+	 * @api public
+	 */
+
+	function hasBinary(data) {
+
+	  function _hasBinary(obj) {
+	    if (!obj) return false;
+
+	    if ( (global.Buffer && global.Buffer.isBuffer(obj)) ||
+	         (global.ArrayBuffer && obj instanceof ArrayBuffer) ||
+	         (global.Blob && obj instanceof Blob) ||
+	         (global.File && obj instanceof File)
+	        ) {
+	      return true;
+	    }
+
+	    if (isArray(obj)) {
+	      for (var i = 0; i < obj.length; i++) {
+	          if (_hasBinary(obj[i])) {
+	              return true;
+	          }
+	      }
+	    } else if (obj && 'object' == typeof obj) {
+	      if (obj.toJSON) {
+	        obj = obj.toJSON();
+	      }
+
+	      for (var key in obj) {
+	        if (Object.prototype.hasOwnProperty.call(obj, key) && _hasBinary(obj[key])) {
+	          return true;
+	        }
+	      }
+	    }
+
+	    return false;
+	  }
+
+	  return _hasBinary(data);
+	}
+
+	/* WEBPACK VAR INJECTION */}.call(exports, (function() { return this; }())))
+
+/***/ },
+/* 51 */
+/***/ function(module, exports) {
+
+	module.exports = Array.isArray || function (arr) {
+	  return Object.prototype.toString.call(arr) == '[object Array]';
+	};
+
+
+/***/ },
+/* 52 */
+/***/ function(module, exports) {
+
+	
+	/**
+	 * HOP ref.
+	 */
+
+	var has = Object.prototype.hasOwnProperty;
+
+	/**
+	 * Return own keys in `obj`.
+	 *
+	 * @param {Object} obj
+	 * @return {Array}
+	 * @api public
+	 */
+
+	exports.keys = Object.keys || function(obj){
+	  var keys = [];
+	  for (var key in obj) {
+	    if (has.call(obj, key)) {
+	      keys.push(key);
+	    }
+	  }
+	  return keys;
+	};
+
+	/**
+	 * Return own values in `obj`.
+	 *
+	 * @param {Object} obj
+	 * @return {Array}
+	 * @api public
+	 */
+
+	exports.values = function(obj){
+	  var vals = [];
+	  for (var key in obj) {
+	    if (has.call(obj, key)) {
+	      vals.push(obj[key]);
+	    }
+	  }
+	  return vals;
+	};
+
+	/**
+	 * Merge `b` into `a`.
+	 *
+	 * @param {Object} a
+	 * @param {Object} b
+	 * @return {Object} a
+	 * @api public
+	 */
+
+	exports.merge = function(a, b){
+	  for (var key in b) {
+	    if (has.call(b, key)) {
+	      a[key] = b[key];
+	    }
+	  }
+	  return a;
+	};
+
+	/**
+	 * Return length of `obj`.
+	 *
+	 * @param {Object} obj
+	 * @return {Number}
+	 * @api public
+	 */
+
+	exports.length = function(obj){
+	  return exports.keys(obj).length;
+	};
+
+	/**
+	 * Check if `obj` is empty.
+	 *
+	 * @param {Object} obj
+	 * @return {Boolean}
+	 * @api public
+	 */
+
+	exports.isEmpty = function(obj){
+	  return 0 == exports.length(obj);
+	};
+
+/***/ },
+/* 53 */
+/***/ function(module, exports) {
+
+	
+	/**
+	 * Expose `Backoff`.
+	 */
+
+	module.exports = Backoff;
+
+	/**
+	 * Initialize backoff timer with `opts`.
+	 *
+	 * - `min` initial timeout in milliseconds [100]
+	 * - `max` max timeout [10000]
+	 * - `jitter` [0]
+	 * - `factor` [2]
+	 *
+	 * @param {Object} opts
+	 * @api public
+	 */
+
+	function Backoff(opts) {
+	  opts = opts || {};
+	  this.ms = opts.min || 100;
+	  this.max = opts.max || 10000;
+	  this.factor = opts.factor || 2;
+	  this.jitter = opts.jitter > 0 && opts.jitter <= 1 ? opts.jitter : 0;
+	  this.attempts = 0;
+	}
+
+	/**
+	 * Return the backoff duration.
+	 *
+	 * @return {Number}
+	 * @api public
+	 */
+
+	Backoff.prototype.duration = function(){
+	  var ms = this.ms * Math.pow(this.factor, this.attempts++);
+	  if (this.jitter) {
+	    var rand =  Math.random();
+	    var deviation = Math.floor(rand * this.jitter * ms);
+	    ms = (Math.floor(rand * 10) & 1) == 0  ? ms - deviation : ms + deviation;
+	  }
+	  return Math.min(ms, this.max) | 0;
+	};
+
+	/**
+	 * Reset the number of attempts.
+	 *
+	 * @api public
+	 */
+
+	Backoff.prototype.reset = function(){
+	  this.attempts = 0;
+	};
+
+	/**
+	 * Set the minimum duration
+	 *
+	 * @api public
+	 */
+
+	Backoff.prototype.setMin = function(min){
+	  this.ms = min;
+	};
+
+	/**
+	 * Set the maximum duration
+	 *
+	 * @api public
+	 */
+
+	Backoff.prototype.setMax = function(max){
+	  this.max = max;
+	};
+
+	/**
+	 * Set the jitter
+	 *
+	 * @api public
+	 */
+
+	Backoff.prototype.setJitter = function(jitter){
+	  this.jitter = jitter;
+	};
+
+
+
+/***/ },
+/* 54 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+	var ansiRegex = __webpack_require__(55)();
+
+	module.exports = function (str) {
+		return typeof str === 'string' ? str.replace(ansiRegex, '') : str;
+	};
+
+
+/***/ },
+/* 55 */
+/***/ function(module, exports) {
+
+	'use strict';
+	module.exports = function () {
+		return /(?:(?:\u001b\[)|\u009b)(?:(?:[0-9]{1,3})?(?:(?:;[0-9]{0,3})*)?[A-M|f-m])|\u001b[A-M]/g;
+	};
+
+
+/***/ },
+/* 56 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/*
+		MIT License http://www.opensource.org/licenses/mit-license.php
+		Author Tobias Koppers @sokra
+	*/
+	/*globals window __webpack_hash__ */
+	if(true) {
+		var lastData;
+		var upToDate = function upToDate() {
+			return lastData.indexOf(__webpack_require__.h()) >= 0;
+		};
+		var check = function check() {
+			module.hot.check(true, function(err, updatedModules) {
+				if(err) {
+					if(module.hot.status() in {
+							abort: 1,
+							fail: 1
+						}) {
+						console.warn("[HMR] Cannot apply update. Need to do a full reload!");
+						console.warn("[HMR] " + err.stack || err.message);
+						window.location.reload();
+					} else {
+						console.warn("[HMR] Update failed: " + err.stack || err.message);
+					}
+					return;
+				}
+
+				if(!updatedModules) {
+					console.warn("[HMR] Cannot find update. Need to do a full reload!");
+					console.warn("[HMR] (Probably because of restarting the webpack-dev-server)");
+					window.location.reload();
+					return;
+				}
+
+				if(!upToDate()) {
+					check();
+				}
+
+				__webpack_require__(57)(updatedModules, updatedModules);
+
+				if(upToDate()) {
+					console.log("[HMR] App is up to date.");
+				}
+
+			});
+		};
+		var addEventListener = window.addEventListener ? function(eventName, listener) {
+			window.addEventListener(eventName, listener, false);
+		} : function(eventName, listener) {
+			window.attachEvent("on" + eventName, listener);
+		};
+		addEventListener("message", function(event) {
+			if(typeof event.data === "string" && event.data.indexOf("webpackHotUpdate") === 0) {
+				lastData = event.data;
+				if(!upToDate() && module.hot.status() === "idle") {
+					console.log("[HMR] Checking for updates on the server...");
+					check();
+				}
+			}
+		});
+		console.log("[HMR] Waiting for update signal from WDS...");
+	} else {
+		throw new Error("[HMR] Hot Module Replacement is disabled.");
+	}
+
+
+/***/ },
+/* 57 */
+/***/ function(module, exports) {
+
+	/*
+		MIT License http://www.opensource.org/licenses/mit-license.php
+		Author Tobias Koppers @sokra
+	*/
+	module.exports = function(updatedModules, renewedModules) {
+		var unacceptedModules = updatedModules.filter(function(moduleId) {
+			return renewedModules && renewedModules.indexOf(moduleId) < 0;
+		});
+
+		if(unacceptedModules.length > 0) {
+			console.warn("[HMR] The following modules couldn't be hot updated: (They would need a full reload!)");
+			unacceptedModules.forEach(function(moduleId) {
+				console.warn("[HMR]  - " + moduleId);
+			});
+		}
+
+		if(!renewedModules || renewedModules.length === 0) {
+			console.log("[HMR] Nothing hot updated.");
+		} else {
+			console.log("[HMR] Updated modules:");
+			renewedModules.forEach(function(moduleId) {
+				console.log("[HMR]  - " + moduleId);
+			});
+		}
+	};
+
+
+/***/ },
+/* 58 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(59), RootInstanceProvider = __webpack_require__(67), ReactMount = __webpack_require__(69), React = __webpack_require__(123); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
+
+	'use strict';
+
+	var React = __webpack_require__(123);
+	var Router = __webpack_require__(225);
+	var injectTapEventPlugin = __webpack_require__(264);
+	var AppRoutes = __webpack_require__(268);
+
+	__webpack_require__(476);
+
+	window.React = React;
+
+	//Needed for onTouchTap
+	//Can go away with the react 1.0 release.
+	injectTapEventPlugin();
+
+	var router = __webpack_require__(477).getRouter();
+	var rootComponentInstance;
+	router.run(function (Handler) {
+	    rootComponentInstance = React.render(React.createElement(Handler, null), document.getElementById('content'));
+	});
+
+	if (true) {
+	    __webpack_require__(478).RootInstanceProvider.injectProvider({
+	        getRootInstances: function getRootInstances() {
+	            // Help React Hot Loader figure out the root component instances on the page:
+	            return [rootComponentInstance];
+	        }
+	    });
+	}
+
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(430), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(123))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "app.js" + ": " + err.message); } }); } } })(); }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33)(module)))
+
+/***/ },
+/* 59 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	module.exports = __webpack_require__(60);
+
+/***/ },
+/* 60 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var makePatchReactClass = __webpack_require__(61);
+
+	/**
+	 * Returns a function that, when invoked, patches a React class with a new
+	 * version of itself. To patch different classes, pass different IDs.
+	 */
+	module.exports = function makeMakeHot(getRootInstances, React) {
+	  if (typeof getRootInstances !== 'function') {
+	    throw new Error('Expected getRootInstances to be a function.');
+	  }
+
+	  var patchers = {};
+
+	  return function makeHot(NextClass, persistentId) {
+	    persistentId = persistentId || NextClass.displayName || NextClass.name;
+
+	    if (!persistentId) {
+	      console.error(
+	        'Hot reload is disabled for one of your types. To enable it, pass a ' +
+	        'string uniquely identifying this class within this current module ' +
+	        'as a second parameter to makeHot.'
+	      );
+	      return NextClass;
+	    }
+
+	    if (!patchers[persistentId]) {
+	      patchers[persistentId] = makePatchReactClass(getRootInstances, React);
+	    }
+
+	    var patchReactClass = patchers[persistentId];
+	    return patchReactClass(NextClass);
+	  };
+	};
+
+/***/ },
+/* 61 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var makeAssimilatePrototype = __webpack_require__(62),
+	    requestForceUpdateAll = __webpack_require__(63);
+
+	function hasNonStubTypeProperty(ReactClass) {
+	  if (!ReactClass.hasOwnProperty('type')) {
+	    return false;
+	  }
+
+	  var descriptor = Object.getOwnPropertyDescriptor(ReactClass, 'type');
+	  if (typeof descriptor.get === 'function') {
+	    return false;
+	  }
+
+	  return true;
+	}
+
+	function getPrototype(ReactClass) {
+	  var prototype = ReactClass.prototype,
+	      seemsLegit = prototype && typeof prototype.render === 'function';
+
+	  if (!seemsLegit && hasNonStubTypeProperty(ReactClass)) {
+	    prototype = ReactClass.type.prototype;
+	  }
+
+	  return prototype;
+	}
+
+	/**
+	 * Returns a function that will patch React class with new versions of itself
+	 * on subsequent invocations. Both legacy and ES6 style classes are supported.
+	 */
+	module.exports = function makePatchReactClass(getRootInstances, React) {
+	  var assimilatePrototype = makeAssimilatePrototype(),
+	      FirstClass = null;
+
+	  return function patchReactClass(NextClass) {
+	    var nextPrototype = getPrototype(NextClass);
+	    assimilatePrototype(nextPrototype);
+
+	    if (FirstClass) {
+	      requestForceUpdateAll(getRootInstances, React);
+	    }
+
+	    return FirstClass || (FirstClass = NextClass);
+	  };
+	};
+
+/***/ },
+/* 62 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	/**
+	 * Returns a function that establishes the first prototype passed to it
+	 * as the "source of truth" and patches its methods on subsequent invocations,
+	 * also patching current and previous prototypes to forward calls to it.
+	 */
+	module.exports = function makeAssimilatePrototype() {
+	  var storedPrototype,
+	      knownPrototypes = [];
+
+	  function wrapMethod(key) {
+	    return function () {
+	      if (storedPrototype[key]) {
+	        return storedPrototype[key].apply(this, arguments);
+	      }
+	    };
+	  }
+
+	  function patchProperty(proto, key) {
+	    proto[key] = storedPrototype[key];
+
+	    if (typeof proto[key] !== 'function' ||
+	      key === 'type' ||
+	      key === 'constructor') {
+	      return;
+	    }
+
+	    proto[key] = wrapMethod(key);
+
+	    if (storedPrototype[key].isReactClassApproved) {
+	      proto[key].isReactClassApproved = storedPrototype[key].isReactClassApproved;
+	    }
+
+	    if (proto.__reactAutoBindMap && proto.__reactAutoBindMap[key]) {
+	      proto.__reactAutoBindMap[key] = proto[key];
+	    }
+	  }
+
+	  function updateStoredPrototype(freshPrototype) {
+	    storedPrototype = {};
+
+	    Object.getOwnPropertyNames(freshPrototype).forEach(function (key) {
+	      storedPrototype[key] = freshPrototype[key];
+	    });
+	  }
+
+	  function reconcileWithStoredPrototypes(freshPrototype) {
+	    knownPrototypes.push(freshPrototype);
+	    knownPrototypes.forEach(function (proto) {
+	      Object.getOwnPropertyNames(storedPrototype).forEach(function (key) {
+	        patchProperty(proto, key);
+	      });
+	    });
+	  }
+
+	  return function assimilatePrototype(freshPrototype) {
+	    if (Object.prototype.hasOwnProperty.call(freshPrototype, '__isAssimilatedByReactHotAPI')) {
+	      return;
+	    }
+
+	    updateStoredPrototype(freshPrototype);
+	    reconcileWithStoredPrototypes(freshPrototype);
+	    freshPrototype.__isAssimilatedByReactHotAPI = true;
+	  };
+	};
+
+/***/ },
+/* 63 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var deepForceUpdate = __webpack_require__(64);
+
+	var isRequestPending = false;
+
+	module.exports = function requestForceUpdateAll(getRootInstances, React) {
+	  if (isRequestPending) {
+	    return;
+	  }
+
+	  /**
+	   * Forces deep re-render of all mounted React components.
+	   * Hats off to Omar Skalli (@Chetane) for suggesting this approach:
+	   * https://gist.github.com/Chetane/9a230a9fdcdca21a4e29
+	   */
+	  function forceUpdateAll() {
+	    isRequestPending = false;
+
+	    var rootInstances = getRootInstances(),
+	        rootInstance;
+
+	    for (var key in rootInstances) {
+	      if (rootInstances.hasOwnProperty(key)) {
+	        rootInstance = rootInstances[key];
+
+	        // `|| rootInstance` for React 0.12 and earlier
+	        rootInstance = rootInstance._reactInternalInstance || rootInstance;
+	        deepForceUpdate(rootInstance, React);
+	      }
+	    }
+	  }
+
+	  setTimeout(forceUpdateAll);
+	};
+
+
+/***/ },
+/* 64 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var bindAutoBindMethods = __webpack_require__(65);
+	var traverseRenderedChildren = __webpack_require__(66);
+
+	function setPendingForceUpdate(internalInstance) {
+	  if (internalInstance._pendingForceUpdate === false) {
+	    internalInstance._pendingForceUpdate = true;
+	  }
+	}
+
+	function forceUpdateIfPending(internalInstance, React) {
+	  if (internalInstance._pendingForceUpdate === true) {
+	    // `|| internalInstance` for React 0.12 and earlier
+	    var instance = internalInstance._instance || internalInstance;
+
+	    if (instance.forceUpdate) {
+	      instance.forceUpdate();
+	    } else if (React && React.Component) {
+	      React.Component.prototype.forceUpdate.call(instance);
+	    }
+	  }
+	}
+
+	/**
+	 * Updates a React component recursively, so even if children define funky
+	 * `shouldComponentUpdate`, they are forced to re-render.
+	 * Makes sure that any newly added methods are properly auto-bound.
+	 */
+	function deepForceUpdate(internalInstance, React) {
+	  traverseRenderedChildren(internalInstance, bindAutoBindMethods);
+	  traverseRenderedChildren(internalInstance, setPendingForceUpdate);
+	  traverseRenderedChildren(internalInstance, forceUpdateIfPending, React);
+	}
+
+	module.exports = deepForceUpdate;
+
+
+/***/ },
+/* 65 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	function bindAutoBindMethod(component, method) {
+	  var boundMethod = method.bind(component);
+
+	  boundMethod.__reactBoundContext = component;
+	  boundMethod.__reactBoundMethod = method;
+	  boundMethod.__reactBoundArguments = null;
+
+	  var componentName = component.constructor.displayName,
+	      _bind = boundMethod.bind;
+
+	  boundMethod.bind = function (newThis) {
+	    var args = Array.prototype.slice.call(arguments, 1);
+	    if (newThis !== component && newThis !== null) {
+	      console.warn(
+	        'bind(): React component methods may only be bound to the ' +
+	        'component instance. See ' + componentName
+	      );
+	    } else if (!args.length) {
+	      console.warn(
+	        'bind(): You are binding a component method to the component. ' +
+	        'React does this for you automatically in a high-performance ' +
+	        'way, so you can safely remove this call. See ' + componentName
+	      );
+	      return boundMethod;
+	    }
+
+	    var reboundMethod = _bind.apply(boundMethod, arguments);
+	    reboundMethod.__reactBoundContext = component;
+	    reboundMethod.__reactBoundMethod = method;
+	    reboundMethod.__reactBoundArguments = args;
+
+	    return reboundMethod;
+	  };
+
+	  return boundMethod;
+	}
+
+	/**
+	 * Performs auto-binding similar to how React does it.
+	 * Skips already auto-bound methods.
+	 * Based on https://github.com/facebook/react/blob/b264372e2b3ad0b0c0c0cc95a2f383e4a1325c3d/src/classic/class/ReactClass.js#L639-L705
+	 */
+	module.exports = function bindAutoBindMethods(internalInstance) {
+	  var component = typeof internalInstance.getPublicInstance === 'function' ?
+	    internalInstance.getPublicInstance() :
+	    internalInstance;
+
+	  for (var autoBindKey in component.__reactAutoBindMap) {
+	    if (!component.__reactAutoBindMap.hasOwnProperty(autoBindKey)) {
+	      continue;
+	    }
+
+	    // Skip already bound methods
+	    if (component.hasOwnProperty(autoBindKey) &&
+	        component[autoBindKey].__reactBoundContext === component) {
+	      continue;
+	    }
+
+	    var method = component.__reactAutoBindMap[autoBindKey];
+	    component[autoBindKey] = bindAutoBindMethod(component, method);
+	  }
+	};
+
+/***/ },
+/* 66 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	function traverseRenderedChildren(internalInstance, callback, argument) {
+	  callback(internalInstance, argument);
+
+	  if (internalInstance._renderedComponent) {
+	    traverseRenderedChildren(
+	      internalInstance._renderedComponent,
+	      callback,
+	      argument
+	    );
+	  } else {
+	    for (var key in internalInstance._renderedChildren) {
+	      traverseRenderedChildren(
+	        internalInstance._renderedChildren[key],
+	        callback,
+	        argument
+	      );
+	    }
+	  }
+	}
+
+	module.exports = traverseRenderedChildren;
+
+
+/***/ },
+/* 67 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var getRootInstancesFromReactMount = __webpack_require__(68);
+
+	var injectedProvider = null,
+	    didWarn = false;
+
+	function warnOnce() {
+	  if (!didWarn) {
+	    console.warn(
+	      'It appears that React Hot Loader isn\'t configured correctly. ' +
+	      'If you\'re using NPM, make sure your dependencies don\'t drag duplicate React distributions into their node_modules and that require("react") corresponds to the React instance you render your app with.',
+	      'If you\'re using a precompiled version of React, see https://github.com/gaearon/react-hot-loader/tree/master/docs#usage-with-external-react for integration instructions.'
+	    );
+	  }
+
+	  didWarn = true;
+	}
+
+	var RootInstanceProvider = {
+	  injection: {
+	    injectProvider: function (provider) {
+	      injectedProvider = provider;
+	    }
+	  },
+
+	  getRootInstances: function (ReactMount) {
+	    if (injectedProvider) {
+	      return injectedProvider.getRootInstances();
+	    }
+
+	    var instances = ReactMount && getRootInstancesFromReactMount(ReactMount) || [];
+	    if (!Object.keys(instances).length) {
+	      warnOnce();
+	    }
+
+	    return instances;
+	  }
+	};
+
+	module.exports = RootInstanceProvider;
+
+/***/ },
+/* 68 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	function getRootInstancesFromReactMount(ReactMount) {
+	  return ReactMount._instancesByReactRootID || ReactMount._instancesByContainerID || [];
+	}
+
+	module.exports = getRootInstancesFromReactMount;
+
+/***/ },
+/* 69 */,
+/* 70 */,
+/* 71 */,
+/* 72 */,
+/* 73 */,
+/* 74 */,
+/* 75 */,
+/* 76 */,
+/* 77 */,
+/* 78 */,
+/* 79 */,
+/* 80 */,
+/* 81 */,
+/* 82 */,
+/* 83 */,
+/* 84 */,
+/* 85 */,
+/* 86 */,
+/* 87 */,
+/* 88 */,
+/* 89 */,
+/* 90 */,
+/* 91 */,
+/* 92 */,
+/* 93 */,
+/* 94 */,
+/* 95 */,
+/* 96 */,
+/* 97 */,
+/* 98 */,
+/* 99 */,
+/* 100 */,
+/* 101 */,
+/* 102 */,
+/* 103 */,
+/* 104 */,
+/* 105 */,
+/* 106 */,
+/* 107 */,
+/* 108 */,
+/* 109 */,
+/* 110 */,
+/* 111 */,
+/* 112 */,
+/* 113 */,
+/* 114 */,
+/* 115 */,
+/* 116 */,
+/* 117 */,
+/* 118 */,
+/* 119 */,
+/* 120 */,
+/* 121 */,
+/* 122 */,
+/* 123 */,
+/* 124 */,
+/* 125 */,
+/* 126 */,
+/* 127 */,
+/* 128 */,
+/* 129 */,
+/* 130 */,
+/* 131 */,
+/* 132 */,
+/* 133 */,
+/* 134 */,
+/* 135 */,
+/* 136 */,
+/* 137 */,
+/* 138 */,
+/* 139 */,
+/* 140 */,
+/* 141 */,
+/* 142 */,
+/* 143 */,
+/* 144 */,
+/* 145 */,
+/* 146 */,
+/* 147 */,
+/* 148 */,
+/* 149 */,
+/* 150 */,
+/* 151 */,
+/* 152 */,
+/* 153 */,
+/* 154 */,
+/* 155 */,
+/* 156 */,
+/* 157 */,
+/* 158 */,
+/* 159 */,
+/* 160 */,
+/* 161 */,
+/* 162 */,
+/* 163 */,
+/* 164 */,
+/* 165 */,
+/* 166 */,
+/* 167 */,
+/* 168 */,
+/* 169 */,
+/* 170 */,
+/* 171 */,
+/* 172 */,
+/* 173 */,
+/* 174 */,
+/* 175 */,
+/* 176 */,
+/* 177 */,
+/* 178 */,
+/* 179 */,
+/* 180 */,
+/* 181 */,
+/* 182 */,
+/* 183 */,
+/* 184 */,
+/* 185 */,
+/* 186 */,
+/* 187 */,
+/* 188 */,
+/* 189 */,
+/* 190 */,
+/* 191 */,
+/* 192 */,
+/* 193 */,
+/* 194 */,
+/* 195 */,
+/* 196 */,
+/* 197 */,
+/* 198 */,
+/* 199 */,
+/* 200 */,
+/* 201 */,
+/* 202 */,
+/* 203 */,
+/* 204 */,
+/* 205 */,
+/* 206 */,
+/* 207 */,
+/* 208 */,
+/* 209 */,
+/* 210 */,
+/* 211 */,
+/* 212 */,
+/* 213 */,
+/* 214 */,
+/* 215 */,
+/* 216 */,
+/* 217 */,
+/* 218 */,
+/* 219 */,
+/* 220 */,
+/* 221 */,
+/* 222 */,
+/* 223 */,
+/* 224 */,
+/* 225 */,
+/* 226 */,
+/* 227 */,
+/* 228 */,
+/* 229 */,
+/* 230 */,
+/* 231 */,
+/* 232 */,
+/* 233 */,
+/* 234 */,
+/* 235 */,
+/* 236 */,
+/* 237 */,
+/* 238 */,
+/* 239 */,
+/* 240 */,
+/* 241 */,
+/* 242 */,
+/* 243 */,
+/* 244 */,
+/* 245 */,
+/* 246 */,
+/* 247 */,
+/* 248 */,
+/* 249 */,
+/* 250 */,
+/* 251 */,
+/* 252 */,
+/* 253 */,
+/* 254 */,
+/* 255 */,
+/* 256 */,
+/* 257 */,
+/* 258 */,
+/* 259 */,
+/* 260 */,
+/* 261 */,
+/* 262 */,
+/* 263 */,
+/* 264 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = function injectTapEventPlugin () {
+	  var React = __webpack_require__(123);
+	  React.initializeTouchEvents(true);
+
+	  __webpack_require__(76).injection.injectEventPluginsByName({
+	    "ResponderEventPlugin": __webpack_require__(265),
+	    "TapEventPlugin":       __webpack_require__(266)
+	  });
+	};
+
+
+/***/ },
+/* 265 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright 2013-2014, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule ResponderEventPlugin
+	 */
+
+	"use strict";
+
+	var EventConstants = __webpack_require__(74);
+	var EventPluginUtils = __webpack_require__(78);
+	var EventPropagators = __webpack_require__(161);
+	var SyntheticEvent = __webpack_require__(165);
+
+	var accumulateInto = __webpack_require__(79);
+	var keyOf = __webpack_require__(130);
+
+	var isStartish = EventPluginUtils.isStartish;
+	var isMoveish = EventPluginUtils.isMoveish;
+	var isEndish = EventPluginUtils.isEndish;
+	var executeDirectDispatch = EventPluginUtils.executeDirectDispatch;
+	var hasDispatches = EventPluginUtils.hasDispatches;
+	var executeDispatchesInOrderStopAtTrue =
+	  EventPluginUtils.executeDispatchesInOrderStopAtTrue;
+
+	/**
+	 * ID of element that should respond to touch/move types of interactions, as
+	 * indicated explicitly by relevant callbacks.
+	 */
+	var responderID = null;
+	var isPressing = false;
+
+	var eventTypes = {
+	  /**
+	   * On a `touchStart`/`mouseDown`, is it desired that this element become the
+	   * responder?
+	   */
+	  startShouldSetResponder: {
+	    phasedRegistrationNames: {
+	      bubbled: keyOf({onStartShouldSetResponder: null}),
+	      captured: keyOf({onStartShouldSetResponderCapture: null})
+	    }
+	  },
+
+	  /**
+	   * On a `scroll`, is it desired that this element become the responder? This
+	   * is usually not needed, but should be used to retroactively infer that a
+	   * `touchStart` had occured during momentum scroll. During a momentum scroll,
+	   * a touch start will be immediately followed by a scroll event if the view is
+	   * currently scrolling.
+	   */
+	  scrollShouldSetResponder: {
+	    phasedRegistrationNames: {
+	      bubbled: keyOf({onScrollShouldSetResponder: null}),
+	      captured: keyOf({onScrollShouldSetResponderCapture: null})
+	    }
+	  },
+
+	  /**
+	   * On a `touchMove`/`mouseMove`, is it desired that this element become the
+	   * responder?
+	   */
+	  moveShouldSetResponder: {
+	    phasedRegistrationNames: {
+	      bubbled: keyOf({onMoveShouldSetResponder: null}),
+	      captured: keyOf({onMoveShouldSetResponderCapture: null})
+	    }
+	  },
+
+	  /**
+	   * Direct responder events dispatched directly to responder. Do not bubble.
+	   */
+	  responderMove: {registrationName: keyOf({onResponderMove: null})},
+	  responderRelease: {registrationName: keyOf({onResponderRelease: null})},
+	  responderTerminationRequest: {
+	    registrationName: keyOf({onResponderTerminationRequest: null})
+	  },
+	  responderGrant: {registrationName: keyOf({onResponderGrant: null})},
+	  responderReject: {registrationName: keyOf({onResponderReject: null})},
+	  responderTerminate: {registrationName: keyOf({onResponderTerminate: null})}
+	};
+
+	/**
+	 * Performs negotiation between any existing/current responder, checks to see if
+	 * any new entity is interested in becoming responder, performs that handshake
+	 * and returns any events that must be emitted to notify the relevant parties.
+	 *
+	 * A note about event ordering in the `EventPluginHub`.
+	 *
+	 * Suppose plugins are injected in the following order:
+	 *
+	 * `[R, S, C]`
+	 *
+	 * To help illustrate the example, assume `S` is `SimpleEventPlugin` (for
+	 * `onClick` etc) and `R` is `ResponderEventPlugin`.
+	 *
+	 * "Deferred-Dispatched Events":
+	 *
+	 * - The current event plugin system will traverse the list of injected plugins,
+	 *   in order, and extract events by collecting the plugin's return value of
+	 *   `extractEvents()`.
+	 * - These events that are returned from `extractEvents` are "deferred
+	 *   dispatched events".
+	 * - When returned from `extractEvents`, deferred-dispatched events contain an
+	 *   "accumulation" of deferred dispatches.
+	 * - These deferred dispatches are accumulated/collected before they are
+	 *   returned, but processed at a later time by the `EventPluginHub` (hence the
+	 *   name deferred).
+	 *
+	 * In the process of returning their deferred-dispatched events, event plugins
+	 * themselves can dispatch events on-demand without returning them from
+	 * `extractEvents`. Plugins might want to do this, so that they can use event
+	 * dispatching as a tool that helps them decide which events should be extracted
+	 * in the first place.
+	 *
+	 * "On-Demand-Dispatched Events":
+	 *
+	 * - On-demand-dispatched events are not returned from `extractEvents`.
+	 * - On-demand-dispatched events are dispatched during the process of returning
+	 *   the deferred-dispatched events.
+	 * - They should not have side effects.
+	 * - They should be avoided, and/or eventually be replaced with another
+	 *   abstraction that allows event plugins to perform multiple "rounds" of event
+	 *   extraction.
+	 *
+	 * Therefore, the sequence of event dispatches becomes:
+	 *
+	 * - `R`s on-demand events (if any)   (dispatched by `R` on-demand)
+	 * - `S`s on-demand events (if any)   (dispatched by `S` on-demand)
+	 * - `C`s on-demand events (if any)   (dispatched by `C` on-demand)
+	 * - `R`s extracted events (if any)   (dispatched by `EventPluginHub`)
+	 * - `S`s extracted events (if any)   (dispatched by `EventPluginHub`)
+	 * - `C`s extracted events (if any)   (dispatched by `EventPluginHub`)
+	 *
+	 * In the case of `ResponderEventPlugin`: If the `startShouldSetResponder`
+	 * on-demand dispatch returns `true` (and some other details are satisfied) the
+	 * `onResponderGrant` deferred dispatched event is returned from
+	 * `extractEvents`. The sequence of dispatch executions in this case
+	 * will appear as follows:
+	 *
+	 * - `startShouldSetResponder` (`ResponderEventPlugin` dispatches on-demand)
+	 * - `touchStartCapture`       (`EventPluginHub` dispatches as usual)
+	 * - `touchStart`              (`EventPluginHub` dispatches as usual)
+	 * - `responderGrant/Reject`   (`EventPluginHub` dispatches as usual)
+	 *
+	 * @param {string} topLevelType Record from `EventConstants`.
+	 * @param {string} topLevelTargetID ID of deepest React rendered element.
+	 * @param {object} nativeEvent Native browser event.
+	 * @return {*} An accumulation of synthetic events.
+	 */
+	function setResponderAndExtractTransfer(
+	    topLevelType,
+	    topLevelTargetID,
+	    nativeEvent) {
+	  var shouldSetEventType =
+	    isStartish(topLevelType) ? eventTypes.startShouldSetResponder :
+	    isMoveish(topLevelType) ? eventTypes.moveShouldSetResponder :
+	    eventTypes.scrollShouldSetResponder;
+
+	  var bubbleShouldSetFrom = responderID || topLevelTargetID;
+	  var shouldSetEvent = SyntheticEvent.getPooled(
+	    shouldSetEventType,
+	    bubbleShouldSetFrom,
+	    nativeEvent
+	  );
+	  EventPropagators.accumulateTwoPhaseDispatches(shouldSetEvent);
+	  var wantsResponderID = executeDispatchesInOrderStopAtTrue(shouldSetEvent);
+	  if (!shouldSetEvent.isPersistent()) {
+	    shouldSetEvent.constructor.release(shouldSetEvent);
+	  }
+
+	  if (!wantsResponderID || wantsResponderID === responderID) {
+	    return null;
+	  }
+	  var extracted;
+	  var grantEvent = SyntheticEvent.getPooled(
+	    eventTypes.responderGrant,
+	    wantsResponderID,
+	    nativeEvent
+	  );
+
+	  EventPropagators.accumulateDirectDispatches(grantEvent);
+	  if (responderID) {
+	    var terminationRequestEvent = SyntheticEvent.getPooled(
+	      eventTypes.responderTerminationRequest,
+	      responderID,
+	      nativeEvent
+	    );
+	    EventPropagators.accumulateDirectDispatches(terminationRequestEvent);
+	    var shouldSwitch = !hasDispatches(terminationRequestEvent) ||
+	      executeDirectDispatch(terminationRequestEvent);
+	    if (!terminationRequestEvent.isPersistent()) {
+	      terminationRequestEvent.constructor.release(terminationRequestEvent);
+	    }
+
+	    if (shouldSwitch) {
+	      var terminateType = eventTypes.responderTerminate;
+	      var terminateEvent = SyntheticEvent.getPooled(
+	        terminateType,
+	        responderID,
+	        nativeEvent
+	      );
+	      EventPropagators.accumulateDirectDispatches(terminateEvent);
+	      extracted = accumulateInto(extracted, [grantEvent, terminateEvent]);
+	      responderID = wantsResponderID;
+	    } else {
+	      var rejectEvent = SyntheticEvent.getPooled(
+	        eventTypes.responderReject,
+	        wantsResponderID,
+	        nativeEvent
+	      );
+	      EventPropagators.accumulateDirectDispatches(rejectEvent);
+	      extracted = accumulateInto(extracted, rejectEvent);
+	    }
+	  } else {
+	    extracted = accumulateInto(extracted, grantEvent);
+	    responderID = wantsResponderID;
+	  }
+	  return extracted;
+	}
+
+	/**
+	 * A transfer is a negotiation between a currently set responder and the next
+	 * element to claim responder status. Any start event could trigger a transfer
+	 * of responderID. Any move event could trigger a transfer, so long as there is
+	 * currently a responder set (in other words as long as the user is pressing
+	 * down).
+	 *
+	 * @param {string} topLevelType Record from `EventConstants`.
+	 * @return {boolean} True if a transfer of responder could possibly occur.
+	 */
+	function canTriggerTransfer(topLevelType) {
+	  return topLevelType === EventConstants.topLevelTypes.topScroll ||
+	         isStartish(topLevelType) ||
+	         (isPressing && isMoveish(topLevelType));
+	}
+
+	/**
+	 * Event plugin for formalizing the negotiation between claiming locks on
+	 * receiving touches.
+	 */
+	var ResponderEventPlugin = {
+
+	  getResponderID: function() {
+	    return responderID;
+	  },
+
+	  eventTypes: eventTypes,
+
+	  /**
+	   * @param {string} topLevelType Record from `EventConstants`.
+	   * @param {DOMEventTarget} topLevelTarget The listening component root node.
+	   * @param {string} topLevelTargetID ID of `topLevelTarget`.
+	   * @param {object} nativeEvent Native browser event.
+	   * @return {*} An accumulation of synthetic events.
+	   * @see {EventPluginHub.extractEvents}
+	   */
+	  extractEvents: function(
+	      topLevelType,
+	      topLevelTarget,
+	      topLevelTargetID,
+	      nativeEvent) {
+	    var extracted;
+	    // Must have missed an end event - reset the state here.
+	    if (responderID && isStartish(topLevelType)) {
+	      responderID = null;
+	    }
+	    if (isStartish(topLevelType)) {
+	      isPressing = true;
+	    } else if (isEndish(topLevelType)) {
+	      isPressing = false;
+	    }
+	    if (canTriggerTransfer(topLevelType)) {
+	      var transfer = setResponderAndExtractTransfer(
+	        topLevelType,
+	        topLevelTargetID,
+	        nativeEvent
+	      );
+	      if (transfer) {
+	        extracted = accumulateInto(extracted, transfer);
+	      }
+	    }
+	    // Now that we know the responder is set correctly, we can dispatch
+	    // responder type events (directly to the responder).
+	    var type = isMoveish(topLevelType) ? eventTypes.responderMove :
+	      isEndish(topLevelType) ? eventTypes.responderRelease :
+	      isStartish(topLevelType) ? eventTypes.responderStart : null;
+	    if (type) {
+	      var gesture = SyntheticEvent.getPooled(
+	        type,
+	        responderID || '',
+	        nativeEvent
+	      );
+	      EventPropagators.accumulateDirectDispatches(gesture);
+	      extracted = accumulateInto(extracted, gesture);
+	    }
+	    if (type === eventTypes.responderRelease) {
+	      responderID = null;
+	    }
+	    return extracted;
+	  }
+
+	};
+
+	module.exports = ResponderEventPlugin;
+
+
+/***/ },
+/* 266 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/**
+	 * Copyright 2013-2014 Facebook, Inc.
+	 *
+	 * Licensed under the Apache License, Version 2.0 (the "License");
+	 * you may not use this file except in compliance with the License.
+	 * You may obtain a copy of the License at
+	 *
+	 * http://www.apache.org/licenses/LICENSE-2.0
+	 *
+	 * Unless required by applicable law or agreed to in writing, software
+	 * distributed under the License is distributed on an "AS IS" BASIS,
+	 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	 * See the License for the specific language governing permissions and
+	 * limitations under the License.
+	 *
+	 * @providesModule TapEventPlugin
+	 * @typechecks static-only
+	 */
+
+	"use strict";
+
+	var EventConstants = __webpack_require__(74);
+	var EventPluginUtils = __webpack_require__(78);
+	var EventPropagators = __webpack_require__(161);
+	var SyntheticUIEvent = __webpack_require__(174);
+	var TouchEventUtils = __webpack_require__(267);
+	var ViewportMetrics = __webpack_require__(82);
+
+	var keyOf = __webpack_require__(130);
+	var topLevelTypes = EventConstants.topLevelTypes;
+
+	var isStartish = EventPluginUtils.isStartish;
+	var isEndish = EventPluginUtils.isEndish;
+
+	var isTouch = function(topLevelType) {
+	  var touchTypes = [
+	    topLevelTypes.topTouchCancel,
+	    topLevelTypes.topTouchEnd,
+	    topLevelTypes.topTouchStart,
+	    topLevelTypes.topTouchMove
+	  ];
+	  return touchTypes.indexOf(topLevelType) >= 0;
+	}
+
+	/**
+	 * Number of pixels that are tolerated in between a `touchStart` and `touchEnd`
+	 * in order to still be considered a 'tap' event.
+	 */
+	var tapMoveThreshold = 10;
+	var ignoreMouseThreshold = 750;
+	var startCoords = {x: null, y: null};
+	var lastTouchEvent = null;
+
+	var Axis = {
+	  x: {page: 'pageX', client: 'clientX', envScroll: 'currentPageScrollLeft'},
+	  y: {page: 'pageY', client: 'clientY', envScroll: 'currentPageScrollTop'}
+	};
+
+	function getAxisCoordOfEvent(axis, nativeEvent) {
+	  var singleTouch = TouchEventUtils.extractSingleTouch(nativeEvent);
+	  if (singleTouch) {
+	    return singleTouch[axis.page];
+	  }
+	  return axis.page in nativeEvent ?
+	    nativeEvent[axis.page] :
+	    nativeEvent[axis.client] + ViewportMetrics[axis.envScroll];
+	}
+
+	function getDistance(coords, nativeEvent) {
+	  var pageX = getAxisCoordOfEvent(Axis.x, nativeEvent);
+	  var pageY = getAxisCoordOfEvent(Axis.y, nativeEvent);
+	  return Math.pow(
+	    Math.pow(pageX - coords.x, 2) + Math.pow(pageY - coords.y, 2),
+	    0.5
+	  );
+	}
+
+	var dependencies = [
+	  topLevelTypes.topMouseDown,
+	  topLevelTypes.topMouseMove,
+	  topLevelTypes.topMouseUp
+	];
+
+	if (EventPluginUtils.useTouchEvents) {
+	  dependencies.push(
+	    topLevelTypes.topTouchEnd,
+	    topLevelTypes.topTouchStart,
+	    topLevelTypes.topTouchMove
+	  );
+	}
+
+	var eventTypes = {
+	  touchTap: {
+	    phasedRegistrationNames: {
+	      bubbled: keyOf({onTouchTap: null}),
+	      captured: keyOf({onTouchTapCapture: null})
+	    },
+	    dependencies: dependencies
+	  }
+	};
+
+	var now = function() {
+	  if (Date.now) {
+	    return Date.now();
+	  } else {
+	    // IE8 support: http://stackoverflow.com/questions/9430357/please-explain-why-and-how-new-date-works-as-workaround-for-date-now-in
+	    return +new Date;
+	  }
+	}
+
+	var TapEventPlugin = {
+
+	  tapMoveThreshold: tapMoveThreshold,
+
+	  ignoreMouseThreshold: ignoreMouseThreshold,
+
+	  eventTypes: eventTypes,
+
+	  /**
+	   * @param {string} topLevelType Record from `EventConstants`.
+	   * @param {DOMEventTarget} topLevelTarget The listening component root node.
+	   * @param {string} topLevelTargetID ID of `topLevelTarget`.
+	   * @param {object} nativeEvent Native browser event.
+	   * @return {*} An accumulation of synthetic events.
+	   * @see {EventPluginHub.extractEvents}
+	   */
+	  extractEvents: function(
+	      topLevelType,
+	      topLevelTarget,
+	      topLevelTargetID,
+	      nativeEvent) {
+
+	    if (isTouch(topLevelType)) {
+	      lastTouchEvent = now();
+	    } else {
+	      if (lastTouchEvent && (now() - lastTouchEvent) < ignoreMouseThreshold) {
+	        return null;
+	      }
+	    }
+
+	    if (!isStartish(topLevelType) && !isEndish(topLevelType)) {
+	      return null;
+	    }
+	    var event = null;
+	    var distance = getDistance(startCoords, nativeEvent);
+	    if (isEndish(topLevelType) && distance < tapMoveThreshold) {
+	      event = SyntheticUIEvent.getPooled(
+	        eventTypes.touchTap,
+	        topLevelTargetID,
+	        nativeEvent
+	      );
+	    }
+	    if (isStartish(topLevelType)) {
+	      startCoords.x = getAxisCoordOfEvent(Axis.x, nativeEvent);
+	      startCoords.y = getAxisCoordOfEvent(Axis.y, nativeEvent);
+	    } else if (isEndish(topLevelType)) {
+	      startCoords.x = 0;
+	      startCoords.y = 0;
+	    }
+	    EventPropagators.accumulateTwoPhaseDispatches(event);
+	    return event;
+	  }
+
+	};
+
+	module.exports = TapEventPlugin;
+
+
+/***/ },
+/* 267 */
+/***/ function(module, exports) {
+
+	/**
+	 * Copyright 2013-2014 Facebook, Inc.
+	 *
+	 * Licensed under the Apache License, Version 2.0 (the "License");
+	 * you may not use this file except in compliance with the License.
+	 * You may obtain a copy of the License at
+	 *
+	 * http://www.apache.org/licenses/LICENSE-2.0
+	 *
+	 * Unless required by applicable law or agreed to in writing, software
+	 * distributed under the License is distributed on an "AS IS" BASIS,
+	 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	 * See the License for the specific language governing permissions and
+	 * limitations under the License.
+	 *
+	 * @providesModule TouchEventUtils
+	 */
+
+	var TouchEventUtils = {
+	  /**
+	   * Utility function for common case of extracting out the primary touch from a
+	   * touch event.
+	   * - `touchEnd` events usually do not have the `touches` property.
+	   *   http://stackoverflow.com/questions/3666929/
+	   *   mobile-sarai-touchend-event-not-firing-when-last-touch-is-removed
+	   *
+	   * @param {Event} nativeEvent Native event that may or may not be a touch.
+	   * @return {TouchesObject?} an object with pageX and pageY or null.
+	   */
+	  extractSingleTouch: function(nativeEvent) {
+	    var touches = nativeEvent.touches;
+	    var changedTouches = nativeEvent.changedTouches;
+	    var hasTouches = touches && touches.length > 0;
+	    var hasChangedTouches = changedTouches && changedTouches.length > 0;
+
+	    return !hasTouches && hasChangedTouches ? changedTouches[0] :
+	           hasTouches ? touches[0] :
+	           nativeEvent;
+	  }
+	};
+
+	module.exports = TouchEventUtils;
+
+
+/***/ },
+/* 268 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(59), RootInstanceProvider = __webpack_require__(67), ReactMount = __webpack_require__(69), React = __webpack_require__(123); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
+
+	'use strict';
+
+	var React = __webpack_require__(123);
+	var Router = __webpack_require__(225);
+	var Route = Router.Route;
+	var Redirect = Router.Redirect;
+	var DefaultRoute = Router.DefaultRoute;
+
+	// Here we define all our component examples
+	var Main = __webpack_require__(269);
+	var UserExample = __webpack_require__(455);
+	var UserProfile = __webpack_require__(457);
+	var Home = __webpack_require__(458);
+	var Forum = __webpack_require__(459);
+	var News = __webpack_require__(460);
+
+	var Blogs = __webpack_require__(461);
+	var Blog = __webpack_require__(466);
+	var BlogPosts = __webpack_require__(467);
+	var BlogPost = __webpack_require__(468);
+
+	var SignUp = __webpack_require__(469);
+	var Login = __webpack_require__(474);
+	var Logout = __webpack_require__(475);
+
+	var AppRoutes = React.createElement(
+	    Route,
+	    { name: 'root', path: '/light-cms/', handler: Main },
+	    React.createElement(Route, { name: 'home', handler: Home }),
+	    React.createElement(Route, { name: 'user-example', handler: UserExample }),
+	    React.createElement(Route, { name: 'u/:userId', handler: UserProfile }),
+	    React.createElement(Route, { name: 'blogs', handler: Blogs }),
+	    React.createElement(Route, { name: 'blog', handler: Blog }),
+	    React.createElement(Route, { name: 'blogPosts', handler: BlogPosts }),
+	    React.createElement(Route, { name: 'blogPost', handler: BlogPost }),
+	    React.createElement(Route, { name: 'forum', handler: Forum }),
+	    React.createElement(Route, { name: 'news', handler: News }),
+	    React.createElement(Route, { name: 'signup', handler: SignUp }),
+	    React.createElement(Route, { name: 'login', handler: Login }),
+	    React.createElement(Route, { name: 'logout', handler: Logout }),
+	    React.createElement(DefaultRoute, { handler: Home })
+	);
+
+	module.exports = AppRoutes;
+
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(430), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(123))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "routes.js" + ": " + err.message); } }); } } })(); }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33)(module)))
+
+/***/ },
+/* 269 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(59), RootInstanceProvider = __webpack_require__(67), ReactMount = __webpack_require__(69), React = __webpack_require__(123); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
+
+	'use strict';
+
+	var React = __webpack_require__(123);
+	var Router = __webpack_require__(225);
+
+	var _require = __webpack_require__(225);
+
+	var Link = _require.Link;
+
+	var _require2 = __webpack_require__(270);
+
+	var Styles = _require2.Styles;
+	var RaisedButton = _require2.RaisedButton;
+	var AppBar = _require2.AppBar;
+	var FlatButton = _require2.FlatButton;
+	var IconMenu = _require2.IconMenu;
+	var IconButton = _require2.IconButton;
+
+	var MenuItem = __webpack_require__(427);
+	var ThemeManager = new Styles.ThemeManager();
+	var Colors = Styles.Colors;
+	var Typography = Styles.Typography;
+
+	var RouteHandler = Router.RouteHandler;
+	var FullWidthSection = __webpack_require__(429);
+	var AuthStore = __webpack_require__(433);
+
+	var InlineUser = __webpack_require__(445);
+
+	__webpack_require__(446);
+
+	var LeftNavMenu = __webpack_require__(450);
+
+	var Main = React.createClass({
+	    displayName: 'Main',
+
+	    contextTypes: {
+	        router: React.PropTypes.func
+	    },
+	    getChildContext: function getChildContext() {
+	        return {
+	            muiTheme: ThemeManager.getCurrentTheme()
+	        };
+	    },
+
+	    getInitialState: function getInitialState() {
+	        return {
+	            isLoggedIn: AuthStore.isLoggedIn()
+	        };
+	    },
+
+	    componentDidMount: function componentDidMount() {
+	        AuthStore.addChangeListener(this._userLoginChange);
+	    },
+
+	    _userLoginChange: function _userLoginChange() {
+	        console.log("Main._userLoginChange", AuthStore.isLoggedIn());
+	        this.setState({
+	            isLoggedIn: AuthStore.isLoggedIn()
+	        });
+	    },
+
+	    _rightMenuChange: function _rightMenuChange(e, value) {
+	        console.log("Main._rightMenuChange", value);
+	        this.context.router.transitionTo('/light-cms/' + value._store.props.value);
+	    },
+
+	    render: function render() {
+	        var styles = this.getStyles();
+	        var rightButton = React.createElement(
+	            FlatButton,
+	            { style: styles.rightMenuButton },
+	            'User'
+	        );
+
+	        var rightMenu;
+	        if (this.state.isLoggedIn) {
+	            rightMenu = React.createElement(
+	                IconMenu,
+	                { iconButtonElement: rightButton,
+	                    openDirection: 'bottom-left',
+	                    onItemTouchTap: this._rightMenuChange },
+	                React.createElement(MenuItem, { value: "logout", primaryText: 'Sign out' })
+	            );
+	        } else {
+	            rightMenu = React.createElement(
+	                IconMenu,
+	                { iconButtonElement: rightButton,
+	                    openDirection: 'bottom-left',
+	                    onItemTouchTap: this._rightMenuChange },
+	                React.createElement(MenuItem, { value: "login", primaryText: 'Log in' }),
+	                React.createElement(MenuItem, { value: "signup", primaryText: 'Sign up' })
+	            );
+	        }
+
+	        return React.createElement(
+	            'div',
+	            { style: styles.parent },
+	            React.createElement(AppBar, { title: 'NetworkNT', onLeftIconButtonTouchTap: this.showSideBar, iconElementRight: rightMenu, zDepth: 0, style: styles.topMenu }),
+	            React.createElement(LeftNavMenu, { ref: 'leftNav' }),
+	            React.createElement(RouteHandler, null),
+	            React.createElement(
+	                FullWidthSection,
+	                { style: styles.footer },
+	                React.createElement(
+	                    'p',
+	                    { style: styles.p },
+	                    'Copyright NetworkNT - 2015'
+	                )
+	            )
+	        );
+	    },
+	    getStyles: function getStyles() {
+	        return {
+	            parent: {
+	                position: 'relative',
+	                margin: '64px 0 120px 0',
+	                overflow: 'hidden'
+	            },
+	            footer: {
+	                backgroundColor: Colors.grey800,
+	                textAlign: 'center',
+	                position: 'fixed',
+	                left: '0px',
+	                right: '0px',
+	                bottom: '0px',
+	                height: '120px',
+	                zIndex: '-10'
+	            },
+	            a: {
+	                color: Colors.red
+	            },
+	            p: {
+	                margin: '0 auto',
+	                padding: '0',
+	                color: Colors.lightWhite
+	            },
+	            rightMenuButton: {
+	                backgroundColor: Colors.transparent,
+	                color: Typography.textFullWhite,
+	                margin: 0,
+	                paddingTop: 6
+	            },
+	            topMenu: {
+	                backgroundColor: Colors.green300,
+	                position: 'fixed',
+	                top: '0px',
+	                left: '0px',
+	                right: '0px',
+	                height: '64px'
+	            },
+	            subheaderMenuItem: {
+	                backgroundColor: Colors.green300
+	            }
+	        };
+	    },
+	    showSideBar: function showSideBar(e) {
+	        this.refs.leftNav.toggle();
+	    },
+	    componentWillMount: function componentWillMount() {
+	        ThemeManager.setTheme(ThemeManager.types.LIGHT);
+	    }
+	});
+
+	Main.childContextTypes = {
+	    muiTheme: React.PropTypes.object
+	};
+
+	module.exports = Main;
+
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(430), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(123))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Main.js" + ": " + err.message); } }); } } })(); }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33)(module)))
+
+/***/ },
+/* 270 */,
+/* 271 */,
+/* 272 */,
+/* 273 */,
+/* 274 */,
+/* 275 */,
+/* 276 */,
+/* 277 */,
+/* 278 */,
+/* 279 */,
+/* 280 */,
+/* 281 */,
+/* 282 */,
+/* 283 */,
+/* 284 */,
+/* 285 */,
+/* 286 */,
+/* 287 */,
+/* 288 */,
+/* 289 */,
+/* 290 */,
+/* 291 */,
+/* 292 */,
+/* 293 */,
+/* 294 */,
+/* 295 */,
+/* 296 */,
+/* 297 */,
+/* 298 */,
+/* 299 */,
+/* 300 */,
+/* 301 */,
+/* 302 */,
+/* 303 */,
+/* 304 */,
+/* 305 */,
+/* 306 */,
+/* 307 */,
+/* 308 */,
+/* 309 */,
+/* 310 */,
+/* 311 */,
+/* 312 */,
+/* 313 */,
+/* 314 */,
+/* 315 */,
+/* 316 */,
+/* 317 */,
+/* 318 */,
+/* 319 */,
+/* 320 */,
+/* 321 */,
+/* 322 */,
+/* 323 */,
+/* 324 */,
+/* 325 */,
+/* 326 */,
+/* 327 */,
+/* 328 */,
+/* 329 */,
+/* 330 */,
+/* 331 */,
+/* 332 */,
+/* 333 */,
+/* 334 */,
+/* 335 */,
+/* 336 */,
+/* 337 */,
+/* 338 */,
+/* 339 */,
+/* 340 */,
+/* 341 */,
+/* 342 */,
+/* 343 */,
+/* 344 */,
+/* 345 */,
+/* 346 */,
+/* 347 */,
+/* 348 */,
+/* 349 */,
+/* 350 */,
+/* 351 */,
+/* 352 */,
+/* 353 */,
+/* 354 */,
+/* 355 */,
+/* 356 */,
+/* 357 */,
+/* 358 */,
+/* 359 */,
+/* 360 */,
+/* 361 */,
+/* 362 */,
+/* 363 */,
+/* 364 */,
+/* 365 */,
+/* 366 */,
+/* 367 */,
+/* 368 */,
+/* 369 */,
+/* 370 */,
+/* 371 */,
+/* 372 */,
+/* 373 */,
+/* 374 */,
+/* 375 */,
+/* 376 */,
+/* 377 */,
+/* 378 */,
+/* 379 */,
+/* 380 */,
+/* 381 */,
+/* 382 */,
+/* 383 */,
+/* 384 */,
+/* 385 */,
+/* 386 */,
+/* 387 */,
+/* 388 */,
+/* 389 */,
+/* 390 */,
+/* 391 */,
+/* 392 */,
+/* 393 */,
+/* 394 */,
+/* 395 */,
+/* 396 */,
+/* 397 */,
+/* 398 */,
+/* 399 */,
+/* 400 */,
+/* 401 */,
+/* 402 */,
+/* 403 */,
+/* 404 */,
+/* 405 */,
+/* 406 */,
+/* 407 */,
+/* 408 */,
+/* 409 */,
+/* 410 */,
+/* 411 */,
+/* 412 */,
+/* 413 */,
+/* 414 */,
+/* 415 */,
+/* 416 */,
+/* 417 */,
+/* 418 */,
+/* 419 */,
+/* 420 */,
+/* 421 */,
+/* 422 */,
+/* 423 */,
+/* 424 */,
+/* 425 */,
+/* 426 */,
+/* 427 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+	function _objectWithoutProperties(obj, keys) { var target = {}; for (var i in obj) { if (keys.indexOf(i) >= 0) continue; if (!Object.prototype.hasOwnProperty.call(obj, i)) continue; target[i] = obj[i]; } return target; }
+
+	var React = __webpack_require__(274);
+	var PureRenderMixin = React.addons.PureRenderMixin;
+	var StylePropable = __webpack_require__(272);
+	var Colors = __webpack_require__(296);
+	var CheckIcon = __webpack_require__(428);
+	var ListItem = __webpack_require__(385);
+
+	var MenuItem = React.createClass({
+	  displayName: 'MenuItem',
+
+	  mixins: [PureRenderMixin, StylePropable],
+
+	  contextTypes: {
+	    muiTheme: React.PropTypes.object
+	  },
+
+	  propTypes: {
+	    checked: React.PropTypes.bool,
+	    desktop: React.PropTypes.bool,
+	    disabled: React.PropTypes.bool,
+	    innerDivStyle: React.PropTypes.object,
+	    insetChildren: React.PropTypes.bool,
+	    focusState: React.PropTypes.oneOf(['none', 'focused', 'keyboard-focused']),
+	    leftIcon: React.PropTypes.element,
+	    rightIcon: React.PropTypes.element,
+	    secondaryText: React.PropTypes.node,
+	    value: React.PropTypes.string
+	  },
+
+	  getDefaultProps: function getDefaultProps() {
+	    return {
+	      focusState: 'none'
+	    };
+	  },
+
+	  componentDidMount: function componentDidMount() {
+	    this._applyFocusState();
+	  },
+
+	  componentDidUpdate: function componentDidUpdate() {
+	    this._applyFocusState();
+	  },
+
+	  render: function render() {
+	    var _props = this.props;
+	    var checked = _props.checked;
+	    var children = _props.children;
+	    var desktop = _props.desktop;
+	    var disabled = _props.disabled;
+	    var focusState = _props.focusState;
+	    var innerDivStyle = _props.innerDivStyle;
+	    var insetChildren = _props.insetChildren;
+	    var leftIcon = _props.leftIcon;
+	    var rightIcon = _props.rightIcon;
+	    var secondaryText = _props.secondaryText;
+	    var style = _props.style;
+	    var value = _props.value;
+
+	    var other = _objectWithoutProperties(_props, ['checked', 'children', 'desktop', 'disabled', 'focusState', 'innerDivStyle', 'insetChildren', 'leftIcon', 'rightIcon', 'secondaryText', 'style', 'value']);
+
+	    var disabledColor = this.context.muiTheme.palette.disabledColor;
+	    var textColor = this.context.muiTheme.palette.textColor;
+	    var leftIndent = desktop ? 64 : 72;
+	    var sidePadding = desktop ? 24 : 16;
+
+	    var styles = {
+	      root: {
+	        color: disabled ? disabledColor : textColor,
+	        lineHeight: desktop ? '32px' : '48px',
+	        fontSize: desktop ? 15 : 16,
+	        whiteSpace: 'nowrap'
+	      },
+
+	      innerDivStyle: {
+	        paddingLeft: leftIcon || insetChildren || checked ? leftIndent : sidePadding,
+	        paddingRight: sidePadding,
+	        paddingBottom: 0,
+	        paddingTop: 0
+	      },
+
+	      secondaryText: {
+	        float: 'right'
+	      },
+
+	      leftIconDesktop: {
+	        padding: 0,
+	        left: 24,
+	        top: 4
+	      },
+
+	      rightIconDesktop: {
+	        padding: 0,
+	        right: 24,
+	        top: 4,
+	        fill: Colors.grey600
+	      }
+	    };
+
+	    var mergedRootStyles = this.mergeStyles(styles.root, style);
+	    var mergedInnerDivStyles = this.mergeStyles(styles.innerDivStyle, innerDivStyle);
+
+	    //Left Icon
+	    var leftIconElement = leftIcon ? leftIcon : checked ? React.createElement(CheckIcon, null) : null;
+	    if (leftIconElement && desktop) {
+	      var mergedLeftIconStyles = this.mergeStyles(styles.leftIconDesktop, leftIconElement.props.style);
+	      leftIconElement = React.cloneElement(leftIconElement, { style: mergedLeftIconStyles });
+	    }
+
+	    //Right Icon
+	    var rightIconElement = undefined;
+	    if (rightIcon) {
+	      var mergedRightIconStyles = desktop ? this.mergeStyles(styles.rightIconDesktop, rightIcon.props.style) : null;
+	      rightIconElement = React.cloneElement(rightIcon, { style: mergedRightIconStyles });
+	    }
+
+	    //Secondary Text
+	    var secondaryTextElement = undefined;
+	    if (secondaryText) {
+	      var secondaryTextIsAnElement = React.isValidElement(secondaryText);
+	      var mergedSecondaryTextStyles = secondaryTextIsAnElement ? this.mergeStyles(styles.secondaryText, secondaryText.props.style) : null;
+
+	      secondaryTextElement = secondaryTextIsAnElement ? React.cloneElement(secondaryText, { style: mergedSecondaryTextStyles }) : React.createElement(
+	        'div',
+	        { style: styles.secondaryText },
+	        secondaryText
+	      );
+	    }
+
+	    return React.createElement(
+	      ListItem,
+	      _extends({}, other, {
+	        disabled: disabled,
+	        innerDivStyle: mergedInnerDivStyles,
+	        insetChildren: insetChildren,
+	        leftIcon: leftIconElement,
+	        ref: 'listItem',
+	        rightIcon: rightIconElement,
+	        style: mergedRootStyles }),
+	      children,
+	      secondaryTextElement
+	    );
+	  },
+
+	  _applyFocusState: function _applyFocusState() {
+	    this.refs.listItem.applyFocusState(this.props.focusState);
+	  }
+	});
+
+	module.exports = MenuItem;
+
+/***/ },
+/* 428 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var React = __webpack_require__(274);
+	var PureRenderMixin = React.addons.PureRenderMixin;
+	var SvgIcon = __webpack_require__(312);
+
+	var NavigationCheck = React.createClass({
+	  displayName: 'NavigationCheck',
+
+	  mixins: [PureRenderMixin],
+
+	  render: function render() {
+	    return React.createElement(
+	      SvgIcon,
+	      this.props,
+	      React.createElement('path', { d: 'M9 16.17L4.83 12l-1.42 1.41L9 19 21 7l-1.41-1.41z' })
+	    );
+	  }
+
+	});
+
+	module.exports = NavigationCheck;
+
+/***/ },
+/* 429 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(59), RootInstanceProvider = __webpack_require__(67), ReactMount = __webpack_require__(69), React = __webpack_require__(123); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
+
+	'use strict';
+
+	var React = __webpack_require__(123);
+
+	var _require = __webpack_require__(270);
+
+	var ClearFix = _require.ClearFix;
+	var Mixins = _require.Mixins;
+	var Styles = _require.Styles;
+	var StylePropable = Mixins.StylePropable;
+	var StyleResizable = Mixins.StyleResizable;
+
+	var DesktopGutter = Styles.Spacing.desktopGutter;
+
+	var FullWidthSection = React.createClass({
+	    displayName: 'FullWidthSection',
+
+	    mixins: [StylePropable, StyleResizable],
+
+	    propTypes: {
+	        'useContent': React.PropTypes.bool,
+	        'contentType': React.PropTypes.string,
+	        'contentStyle': React.PropTypes.object
+	    },
+
+	    getDefaultProps: function getDefaultProps() {
+	        return {
+	            useContent: false,
+	            contentType: 'div'
+	        };
+	    },
+
+	    getStyles: function getStyles() {
+	        return {
+	            root: {
+	                padding: DesktopGutter + 'px',
+	                boxSizing: 'border-box'
+	            },
+	            content: {
+	                maxWidth: '1200px',
+	                margin: '0 auto'
+	            },
+	            rootWhenSmall: {
+	                paddingTop: DesktopGutter * 2 + 'px',
+	                paddingBottom: DesktopGutter * 2 + 'px'
+	            },
+	            rootWhenLarge: {
+	                paddingTop: DesktopGutter * 3 + 'px',
+	                paddingBottom: DesktopGutter * 3 + 'px'
+	            }
+	        };
+	    },
+
+	    render: function render() {
+	        var styles = this.getStyles();
+	        var _props = this.props;
+	        var style = _props.style;
+	        var useContent = _props.useContent;
+	        var contentType = _props.contentType;
+	        var contentStyle = _props.contentStyle;
+
+	        var content;
+
+	        if (useContent) {
+	            content = React.createElement(contentType, { style: this.mergeAndPrefix(styles.content, contentStyle) }, this.props.children);
+	        } else {
+	            content = this.props.children;
+	        }
+
+	        return React.createElement(
+	            ClearFix,
+	            { style: this.mergeAndPrefix(styles.root, style, this.isDeviceSize(StyleResizable.statics.Sizes.SMALL) && styles.rootWhenSmall, this.isDeviceSize(StyleResizable.statics.Sizes.LARGE) && styles.rootWhenLarge) },
+	            content
+	        );
+	    }
+	});
+
+	module.exports = FullWidthSection;
+
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(430), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(123))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "full-width-section.js" + ": " + err.message); } }); } } })(); }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33)(module)))
+
+/***/ },
+/* 430 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var isReactClassish = __webpack_require__(431),
+	    isReactElementish = __webpack_require__(432);
+
+	function makeExportsHot(m, React) {
+	  if (isReactElementish(m.exports, React)) {
+	    // React elements are never valid React classes
+	    return false;
+	  }
+
+	  var freshExports = m.exports,
+	      exportsReactClass = isReactClassish(m.exports, React),
+	      foundReactClasses = false;
+
+	  if (exportsReactClass) {
+	    m.exports = m.makeHot(m.exports, '__MODULE_EXPORTS');
+	    foundReactClasses = true;
+	  }
+
+	  for (var key in m.exports) {
+	    if (!Object.prototype.hasOwnProperty.call(freshExports, key)) {
+	      continue;
+	    }
+
+	    if (exportsReactClass && key === 'type') {
+	      // React 0.12 also puts classes under `type` property for compat.
+	      // Skip to avoid updating twice.
+	      continue;
+	    }
+
+	    var value;
+	    try {
+	      value = freshExports[key];
+	    } catch (err) {
+	      continue;
+	    }
+
+	    if (!isReactClassish(value, React)) {
+	      continue;
+	    }
+
+	    if (Object.getOwnPropertyDescriptor(m.exports, key).writable) {
+	      m.exports[key] = m.makeHot(value, '__MODULE_EXPORTS_' + key);
+	      foundReactClasses = true;
+	    } else {
+	      console.warn("Can't make class " + key + " hot reloadable due to being read-only. To fix this you can try two solutions. First, you can exclude files or directories (for example, /node_modules/) using 'exclude' option in loader configuration. Second, if you are using Babel, you can enable loose mode for `es6.modules` using the 'loose' option. See: http://babeljs.io/docs/advanced/loose/ and http://babeljs.io/docs/usage/options/");
+	    }
+	  }
+
+	  return foundReactClasses;
+	}
+
+	module.exports = makeExportsHot;
+
+
+/***/ },
+/* 431 */
+/***/ function(module, exports) {
+
+	function hasRender(Class) {
+	  var prototype = Class.prototype;
+	  if (!prototype) {
+	    return false;
+	  }
+
+	  return typeof prototype.render === 'function';
+	}
+
+	function descendsFromReactComponent(Class, React) {
+	  if (!React.Component) {
+	    return false;
+	  }
+
+	  var Base = Object.getPrototypeOf(Class);
+	  while (Base) {
+	    if (Base === React.Component) {
+	      return true;
+	    }
+
+	    Base = Object.getPrototypeOf(Base);
+	  }
+
+	  return false;
+	}
+
+	function isReactClassish(Class, React) {
+	  if (typeof Class !== 'function') {
+	    return false;
+	  }
+
+	  // React 0.13
+	  if (hasRender(Class) || descendsFromReactComponent(Class, React)) {
+	    return true;
+	  }
+
+	  // React 0.12 and earlier
+	  if (Class.type && hasRender(Class.type)) {
+	    return true;
+	  }
+
+	  return false;
+	}
+
+	module.exports = isReactClassish;
+
+/***/ },
+/* 432 */
+/***/ function(module, exports, __webpack_require__) {
+
+	var isReactClassish = __webpack_require__(431);
+
+	function isReactElementish(obj, React) {
+	  if (!obj) {
+	    return false;
+	  }
+
+	  return Object.prototype.toString.call(obj.props) === '[object Object]' &&
+	         isReactClassish(obj.type, React);
+	}
+
+	module.exports = isReactElementish;
+
+/***/ },
+/* 433 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(59), RootInstanceProvider = __webpack_require__(67), ReactMount = __webpack_require__(69), React = __webpack_require__(123); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
+
+	/**
+	 * Created by steve on 08/07/15.
+	 */
+	'use strict';
+
+	var AppDispatcher = __webpack_require__(434);
+	var AppConstants = __webpack_require__(438);
+	var EventEmitter = __webpack_require__(439).EventEmitter;
+	var assign = __webpack_require__(440);
+	var jwtDecode = __webpack_require__(441);
+
+	var ActionTypes = AppConstants.ActionTypes;
+	var CHANGE_EVENT = 'change';
+
+	// Load an access token from the auth storage, you might want to implement
+	// a 'remember me' using localStorage
+	var _isLoggedIn = false;
+	var _currentUser = { userId: '', roles: ['anonymous'] };
+	var _rememberMe = false;
+	var _accessToken = '';
+	var _refreshToken = '';
+	var _error = "";
+
+	var AuthStore = assign({}, EventEmitter.prototype, {
+
+	    emitChange: function emitChange() {
+	        this.emit(CHANGE_EVENT);
+	    },
+
+	    addChangeListener: function addChangeListener(callback) {
+	        this.on(CHANGE_EVENT, callback);
+	    },
+
+	    removeChangeListener: function removeChangeListener(callback) {
+	        this.removeListener(CHANGE_EVENT, callback);
+	    },
+
+	    isLoggedIn: function isLoggedIn() {
+	        return _isLoggedIn;
+	    },
+
+	    getAccessToken: function getAccessToken() {
+	        return _accessToken;
+	    },
+
+	    getRefreshToken: function getRefreshToken() {
+	        return _refreshToken;
+	    },
+
+	    getRoles: function getRoles() {
+	        return _currentUser.roles;
+	    },
+
+	    getUserId: function getUserId() {
+	        return _currentUser.userId;
+	    },
+
+	    getRememberMe: function getRememberMe() {
+	        return _rememberMe;
+	    },
+
+	    getError: function getError() {
+	        return _error;
+	    }
+
+	});
+
+	AuthStore.dispatchToken = AppDispatcher.register(function (payload) {
+	    var data = payload.action;
+
+	    switch (data.type) {
+	        case ActionTypes.SIGNUP_REQUEST:
+	        case ActionTypes.SIGNUP_RESPONSE:
+	            AuthStore.emitChange();
+	            break;
+	        case ActionTypes.LOGIN_REQUEST:
+	            console.log("Authstore received Login Request", payload);
+	            // This is an indicator if refresh token will be used to get another access token after access token is expired.
+	            _rememberMe = data.rememberMe;
+	            break;
+
+	        case ActionTypes.LOGIN_RESPONSE:
+	            console.log("Authstore received Login Response", payload);
+	            if (data.json) {
+	                // Successfully logged in and get access token back. If remember me is checked, then a refresh token is returned as well.
+	                _isLoggedIn = true;
+	                // Parse the Json Token and get uesr object which contains userId and roles.
+	                //_currentUser = JSON.parse(base64.base64Decode(payload.json.accessToken.split('.')[1])).user;
+	                // Save authorizationData object into local storage so it can last longer than the browser session. local storage will
+	                // fall back to Cookie if HTML5 is not supported by the browser.
+	                _accessToken = data.json.accessToken;
+	                localStorage.setItem('accessToken', _accessToken);
+	                console.log('_accessToken', _accessToken);
+	                var jwt = jwtDecode(_accessToken);
+	                console.log('jwt', jwt);
+	                _currentUser = jwt.user;
+
+	                if (_rememberMe) {
+	                    _refreshToken = data.json.refreshToken;
+	                    localStorage.setItem('refreshToken', _refreshToken);
+	                }
+	                // Redirect to the attempted url if the login page was redirected upon 401 and 403 error.
+	                // httpBuffer.redirectToAttemptedUrl();
+	            }
+	            if (data.error) {
+	                _error = data.error.error;
+	            }
+	            AuthStore.emitChange();
+	            break;
+	        case ActionTypes.REFRESH:
+	            console.log('refreshed access token is saved');
+	            _accessToken = data.accessToken;
+	            localStorage.setItem('accessToken', _accessToken);
+	            break;
+
+	        case ActionTypes.LOGOUT:
+	            console.log('logout  action type in AuthStore');
+	            _isLoggedIn = false;
+	            _accessToken = null;
+	            localStorage.removeItem('accessToken');
+	            _rememberMe = false;
+	            _refreshToken = null;
+	            localStorage.removeItem('refreshToken');
+	            AuthStore.emitChange();
+	            break;
+	        case ActionTypes.INIT:
+	            console.log('init is called');
+	            var accessToken = localStorage.getItem('accessToken');
+	            if (accessToken) {
+	                _isLoggedIn = true;
+	                _accessToken = accessToken;
+	                var jwt = jwtDecode(_accessToken);
+	                console.log('jwt', jwt);
+	                _currentUser = jwt.user;
+	            }
+	            var refreshToken = localStorage.getItem('refreshToken');
+	            if (refreshToken) {
+	                _rememberMe = true;
+	                _refreshToken = refreshToken;
+	            }
+	            AuthStore.emitChange();
+	            break;
+
+	        default:
+	    }
+
+	    return true;
+	});
+
+	module.exports = AuthStore;
+
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(430), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(123))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "AuthStore.js" + ": " + err.message); } }); } } })(); }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33)(module)))
+
+/***/ },
+/* 434 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(59), RootInstanceProvider = __webpack_require__(67), ReactMount = __webpack_require__(69), React = __webpack_require__(123); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
+
+	'use strict';
+
+	var Dispatcher = __webpack_require__(435).Dispatcher;
+	var assign = __webpack_require__(83);
+
+	var AppDispatcher = assign(new Dispatcher(), {
+	    handleAction: function handleAction(action) {
+	        this.dispatch({
+	            source: 'APP_ACTION', // not sure why this exists... flux documentation suggests a single dispatcher per application.
+	            action: action
+	        });
+	    }
+	});
+
+	module.exports = AppDispatcher;
+
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(430), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(123))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "AppDispatcher.js" + ": " + err.message); } }); } } })(); }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33)(module)))
+
+/***/ },
+/* 435 */,
+/* 436 */,
+/* 437 */,
+/* 438 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(59), RootInstanceProvider = __webpack_require__(67), ReactMount = __webpack_require__(69), React = __webpack_require__(123); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
+
+	/*
+	 * Copyright 2015 Network New Technologies Inc.
+	 *
+	 * Licensed under the Apache License, Version 2.0 (the "License");
+	 * you may not use this file except in compliance with the License.
+	 * You may obtain a copy of the License at
+	 *
+	 *     http://www.apache.org/licenses/LICENSE-2.0
+	 *
+	 * Unless required by applicable law or agreed to in writing, software
+	 * distributed under the License is distributed on an "AS IS" BASIS,
+	 * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+	 * See the License for the specific language governing permissions and
+	 * limitations under the License.
+	 */
+	'use strict';
+
+	var keyMirror = __webpack_require__(75);
+
+	var host = "example";
+
+	module.exports = {
+	    APIRoot: '/api/rs',
+	    ClientId: 'example@Browser',
+	    host: host,
+
+	    ChangeEvents: {
+	        ROUTE_CHANGE_EVENT: 'routeChange',
+	        BLOG_CHANGE_EVENT: 'blogChange',
+	        MENU_CHANGE_EVENT: 'menuChange'
+	    },
+
+	    ActionTypes: keyMirror({
+	        // Routes
+	        REDIRECT: null,
+	        SIGNUP_REQUEST: null,
+	        SIGNUP_RESPONSE: null,
+	        INIT: null,
+	        LOGIN_REQUEST: null,
+	        LOGIN_RESPONSE: null,
+	        LOGOUT: null,
+	        REFRESH: null,
+	        MENU_RESPONSE: null,
+	        BLOGS_RESPONSE: null,
+	        BLOG_POSTS_RESPONSE: null
+	    }),
+
+	    APIEndpoints: {
+	        SIGNIN: {
+	            category: 'user',
+	            name: 'signInUser',
+	            readOnly: false
+	        },
+	        REGISTRATION: {},
+	        GETMENU: {
+	            category: 'menu',
+	            name: 'getMenu',
+	            readOnly: true,
+	            data: {
+	                host: host
+	            }
+	        }
+	    }
+
+	};
+
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(430), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(123))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "AppConstants.js" + ": " + err.message); } }); } } })(); }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33)(module)))
+
+/***/ },
+/* 439 */,
+/* 440 */,
+/* 441 */,
+/* 442 */,
+/* 443 */,
+/* 444 */,
+/* 445 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(59), RootInstanceProvider = __webpack_require__(67), ReactMount = __webpack_require__(69), React = __webpack_require__(123); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
+
+	'use strict';
+
+	var React = __webpack_require__(123);
+
+	var _require = __webpack_require__(270);
+
+	var Styles = _require.Styles;
+	var FlatButton = _require.FlatButton;
+	var EnhancedButton = _require.EnhancedButton;
+	var IconButton = _require.IconButton;
+
+	var Colors = Styles.Colors;
+
+	var _require2 = __webpack_require__(225);
+
+	var Router = _require2.Router;
+	var Link = _require2.Link;
+
+	var InlineUser = React.createClass({
+	    displayName: 'InlineUser',
+
+	    render: function render() {
+	        var styles = this.getStyles();
+	        return React.createElement(
+	            Link,
+	            { to: "/u/" + this.props.id },
+	            React.createElement(FlatButton, { label: this.props.id, style: styles.inlineUser, labelStyle: styles.inlineUserLabel })
+	        );
+	    },
+	    getStyles: function getStyles() {
+	        var lightBlue = Colors.lightBlue300;
+	        return {
+	            inlineUser: {
+	                color: lightBlue,
+	                backgroundColor: Colors.transparent,
+	                padding: 0,
+	                margin: 0,
+	                border: 0,
+	                minWidth: 0
+	            },
+	            inlineUserLabel: {
+	                padding: 0,
+	                margin: 0,
+	                border: 0,
+	                minWidth: 0
+	            }
+	        };
+	    }
+	});
+
+	module.exports = InlineUser;
+
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(430), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(123))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "InlineUser.js" + ": " + err.message); } }); } } })(); }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33)(module)))
+
+/***/ },
+/* 446 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(447);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(449)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(true) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept(447, function() {
+				var newContent = __webpack_require__(447);
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 447 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(448)();
+	// imports
+
+
+	// module
+	exports.push([module.id, "/* Global CSS */\nhtml {\n    font-family: 'Roboto', sans-serif;\n    -ms-text-size-adjust: 100%;\n    -webkit-text-size-adjust: 100%\n}\n\nbody {\n    font-size: 15px;\n    line-height: 20px;\n    margin: 0\n}", ""]);
+
+	// exports
+
+
+/***/ },
+/* 448 */
+/***/ function(module, exports) {
+
+	/*
+		MIT License http://www.opensource.org/licenses/mit-license.php
+		Author Tobias Koppers @sokra
+	*/
+	// css base code, injected by the css-loader
+	module.exports = function() {
+		var list = [];
+
+		// return the list of modules as css string
+		list.toString = function toString() {
+			var result = [];
+			for(var i = 0; i < this.length; i++) {
+				var item = this[i];
+				if(item[2]) {
+					result.push("@media " + item[2] + "{" + item[1] + "}");
+				} else {
+					result.push(item[1]);
+				}
+			}
+			return result.join("");
+		};
+
+		// import a list of modules into the list
+		list.i = function(modules, mediaQuery) {
+			if(typeof modules === "string")
+				modules = [[null, modules, ""]];
+			var alreadyImportedModules = {};
+			for(var i = 0; i < this.length; i++) {
+				var id = this[i][0];
+				if(typeof id === "number")
+					alreadyImportedModules[id] = true;
+			}
+			for(i = 0; i < modules.length; i++) {
+				var item = modules[i];
+				// skip already imported module
+				// this implementation is not 100% perfect for weird media query combinations
+				//  when a module is imported multiple times with different media queries.
+				//  I hope this will never occur (Hey this way we have smaller bundles)
+				if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+					if(mediaQuery && !item[2]) {
+						item[2] = mediaQuery;
+					} else if(mediaQuery) {
+						item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+					}
+					list.push(item);
+				}
+			}
+		};
+		return list;
+	};
+
+
+/***/ },
+/* 449 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/*
+		MIT License http://www.opensource.org/licenses/mit-license.php
+		Author Tobias Koppers @sokra
+	*/
+	var stylesInDom = {},
+		memoize = function(fn) {
+			var memo;
+			return function () {
+				if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+				return memo;
+			};
+		},
+		isOldIE = memoize(function() {
+			return /msie [6-9]\b/.test(window.navigator.userAgent.toLowerCase());
+		}),
+		getHeadElement = memoize(function () {
+			return document.head || document.getElementsByTagName("head")[0];
+		}),
+		singletonElement = null,
+		singletonCounter = 0;
+
+	module.exports = function(list, options) {
+		if(false) {
+			if(typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+		}
+
+		options = options || {};
+		// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+		// tags it will allow on a page
+		if (typeof options.singleton === "undefined") options.singleton = isOldIE();
+
+		var styles = listToStyles(list);
+		addStylesToDom(styles, options);
+
+		return function update(newList) {
+			var mayRemove = [];
+			for(var i = 0; i < styles.length; i++) {
+				var item = styles[i];
+				var domStyle = stylesInDom[item.id];
+				domStyle.refs--;
+				mayRemove.push(domStyle);
+			}
+			if(newList) {
+				var newStyles = listToStyles(newList);
+				addStylesToDom(newStyles, options);
+			}
+			for(var i = 0; i < mayRemove.length; i++) {
+				var domStyle = mayRemove[i];
+				if(domStyle.refs === 0) {
+					for(var j = 0; j < domStyle.parts.length; j++)
+						domStyle.parts[j]();
+					delete stylesInDom[domStyle.id];
+				}
+			}
+		};
+	}
+
+	function addStylesToDom(styles, options) {
+		for(var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+			if(domStyle) {
+				domStyle.refs++;
+				for(var j = 0; j < domStyle.parts.length; j++) {
+					domStyle.parts[j](item.parts[j]);
+				}
+				for(; j < item.parts.length; j++) {
+					domStyle.parts.push(addStyle(item.parts[j], options));
+				}
+			} else {
+				var parts = [];
+				for(var j = 0; j < item.parts.length; j++) {
+					parts.push(addStyle(item.parts[j], options));
+				}
+				stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+			}
+		}
+	}
+
+	function listToStyles(list) {
+		var styles = [];
+		var newStyles = {};
+		for(var i = 0; i < list.length; i++) {
+			var item = list[i];
+			var id = item[0];
+			var css = item[1];
+			var media = item[2];
+			var sourceMap = item[3];
+			var part = {css: css, media: media, sourceMap: sourceMap};
+			if(!newStyles[id])
+				styles.push(newStyles[id] = {id: id, parts: [part]});
+			else
+				newStyles[id].parts.push(part);
+		}
+		return styles;
+	}
+
+	function createStyleElement() {
+		var styleElement = document.createElement("style");
+		var head = getHeadElement();
+		styleElement.type = "text/css";
+		head.appendChild(styleElement);
+		return styleElement;
+	}
+
+	function createLinkElement() {
+		var linkElement = document.createElement("link");
+		var head = getHeadElement();
+		linkElement.rel = "stylesheet";
+		head.appendChild(linkElement);
+		return linkElement;
+	}
+
+	function addStyle(obj, options) {
+		var styleElement, update, remove;
+
+		if (options.singleton) {
+			var styleIndex = singletonCounter++;
+			styleElement = singletonElement || (singletonElement = createStyleElement());
+			update = applyToSingletonTag.bind(null, styleElement, styleIndex, false);
+			remove = applyToSingletonTag.bind(null, styleElement, styleIndex, true);
+		} else if(obj.sourceMap &&
+			typeof URL === "function" &&
+			typeof URL.createObjectURL === "function" &&
+			typeof URL.revokeObjectURL === "function" &&
+			typeof Blob === "function" &&
+			typeof btoa === "function") {
+			styleElement = createLinkElement();
+			update = updateLink.bind(null, styleElement);
+			remove = function() {
+				styleElement.parentNode.removeChild(styleElement);
+				if(styleElement.href)
+					URL.revokeObjectURL(styleElement.href);
+			};
+		} else {
+			styleElement = createStyleElement();
+			update = applyToTag.bind(null, styleElement);
+			remove = function() {
+				styleElement.parentNode.removeChild(styleElement);
+			};
+		}
+
+		update(obj);
+
+		return function updateStyle(newObj) {
+			if(newObj) {
+				if(newObj.css === obj.css && newObj.media === obj.media && newObj.sourceMap === obj.sourceMap)
+					return;
+				update(obj = newObj);
+			} else {
+				remove();
+			}
+		};
+	}
+
+	var replaceText = (function () {
+		var textStore = [];
+
+		return function (index, replacement) {
+			textStore[index] = replacement;
+			return textStore.filter(Boolean).join('\n');
+		};
+	})();
+
+	function applyToSingletonTag(styleElement, index, remove, obj) {
+		var css = remove ? "" : obj.css;
+
+		if (styleElement.styleSheet) {
+			styleElement.styleSheet.cssText = replaceText(index, css);
+		} else {
+			var cssNode = document.createTextNode(css);
+			var childNodes = styleElement.childNodes;
+			if (childNodes[index]) styleElement.removeChild(childNodes[index]);
+			if (childNodes.length) {
+				styleElement.insertBefore(cssNode, childNodes[index]);
+			} else {
+				styleElement.appendChild(cssNode);
+			}
+		}
+	}
+
+	function applyToTag(styleElement, obj) {
+		var css = obj.css;
+		var media = obj.media;
+		var sourceMap = obj.sourceMap;
+
+		if(media) {
+			styleElement.setAttribute("media", media)
+		}
+
+		if(styleElement.styleSheet) {
+			styleElement.styleSheet.cssText = css;
+		} else {
+			while(styleElement.firstChild) {
+				styleElement.removeChild(styleElement.firstChild);
+			}
+			styleElement.appendChild(document.createTextNode(css));
+		}
+	}
+
+	function updateLink(linkElement, obj) {
+		var css = obj.css;
+		var media = obj.media;
+		var sourceMap = obj.sourceMap;
+
+		if(sourceMap) {
+			// http://stackoverflow.com/a/26603875
+			css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+		}
+
+		var blob = new Blob([css], { type: "text/css" });
+
+		var oldSrc = linkElement.href;
+
+		linkElement.href = URL.createObjectURL(blob);
+
+		if(oldSrc)
+			URL.revokeObjectURL(oldSrc);
+	}
+
+
+/***/ },
+/* 450 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(59), RootInstanceProvider = __webpack_require__(67), ReactMount = __webpack_require__(69), React = __webpack_require__(123); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
+
+	'use strict';
+
+	var React = __webpack_require__(123);
+	var Router = __webpack_require__(225);
+
+	var _require = __webpack_require__(270);
+
+	var MenuItem = _require.MenuItem;
+	var LeftNav = _require.LeftNav;
+	var Styles = _require.Styles;
+
+	var ThemeManager = Styles.ThemeManager();
+	var Colors = Styles.Colors;
+	var Spacing = Styles.Spacing;
+	var Typography = Styles.Typography;
+
+	var MenuStore = __webpack_require__(451);
+	var MenuActions = __webpack_require__(453);
+
+	var menu = [{ type: MenuItem.Types.SUBHEADER, text: 'Component Examples' }, { route: 'blogs', text: 'Blogs' }, { route: 'forum', text: 'Forum' }, { route: 'news', text: 'News' }, { route: 'user-example', text: 'User Example' },
+	/*
+	{ type: MenuItem.Types.SUBHEADER, text: 'User'},
+	{ route: 'login', text: 'Login'},
+	{ route: 'logout', text: 'Logout'},
+	{ route: 'signup', text: 'Sign up'},
+	*/
+	{ type: MenuItem.Types.SUBHEADER, text: 'NetworkNT' }, {
+	    type: MenuItem.Types.LINK,
+	    payload: 'https://github.com/networknt',
+	    text: 'GitHub'
+	}];
+
+	var LeftNavMenu = React.createClass({
+	    displayName: 'LeftNavMenu',
+
+	    componentWillMount: function componentWillMount() {
+	        ThemeManager.setComponentThemes({
+	            menuSubheader: {
+	                textColor: Colors.green300
+	            }
+	        });
+	    },
+
+	    componentDidMount: function componentDidMount() {
+	        MenuStore.addChangeListener(this._onMenuChange);
+	        MenuActions.getMenu();
+	    },
+
+	    _onMenuChange: function _onMenuChange() {
+	        console.log('LeftNavMenu._onMenuChange');
+	        // TODO. Menu items would now be set to MenuStore.getMenu(); however format is not currently conducive to this.
+	    },
+
+	    getStyles: function getStyles() {
+	        return {
+	            root: {
+	                cursor: 'pointer',
+	                //.mui-font-style-headline
+	                fontSize: '24px',
+	                color: Typography.textFullWhite,
+	                lineHeight: Spacing.desktopKeylineIncrement + 'px',
+	                fontWeight: Typography.fontWeightLight,
+	                backgroundColor: Colors.green300,
+	                paddingLeft: Spacing.desktopGutter,
+	                paddingTop: '0px',
+	                marginBottom: '0px'
+	            },
+	            leftNav: {
+	                ".SubheaderMenuItem backgroundColor": Colors.green300
+	            }
+
+	        };
+	    },
+
+	    render: function render() {
+	        var style = this.getStyles();
+	        var header = React.createElement(
+	            'div',
+	            { style: style.root, onTouchTap: this.onHeaderClick },
+	            'NetworkNT'
+	        );
+
+	        return React.createElement(LeftNav, {
+	            ref: 'leftNav',
+	            style: style.leftNav,
+	            docked: false,
+	            isInitiallyOpen: false,
+	            header: header,
+	            menuItems: menu,
+	            selectedIndex: this.getSelectedIndex(),
+	            onChange: this.onLeftNavChange });
+	    },
+
+	    toggle: function toggle() {
+	        this.refs.leftNav.toggle();
+	    },
+
+	    getSelectedIndex: function getSelectedIndex() {
+	        var currentItem;
+	        for (var i = menu.length - 1; i >= 0; i--) {
+	            currentItem = menu[i];
+	            if (currentItem.route && this.context.router.isActive(currentItem.route)) return i;
+	        }
+	    },
+
+	    onLeftNavChange: function onLeftNavChange(e, key, payload) {
+	        this.context.router.transitionTo(payload.route);
+	    },
+
+	    onHeaderClick: function onHeaderClick() {
+	        this.context.router.transitionTo('root');
+	        this.refs.leftNav.close();
+	    },
+
+	    getChildContext: function getChildContext() {
+	        return {
+	            muiTheme: ThemeManager.getCurrentTheme()
+	        };
+	    }
+
+	});
+
+	LeftNavMenu.contextTypes = {
+	    router: React.PropTypes.func
+	};
+
+	LeftNavMenu.childContextTypes = {
+	    muiTheme: React.PropTypes.object
+	};
+
+	module.exports = LeftNavMenu;
+
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(430), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(123))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "LeftNavMenu.js" + ": " + err.message); } }); } } })(); }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33)(module)))
+
+/***/ },
+/* 451 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(59), RootInstanceProvider = __webpack_require__(67), ReactMount = __webpack_require__(69), React = __webpack_require__(123); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
+
+	'use strict';
+
+	var AppDispatcher = __webpack_require__(434);
+	var EventEmitter = __webpack_require__(439).EventEmitter;
+	var AppConstants = __webpack_require__(438);
+	var _ = __webpack_require__(452);
+
+	var _menu = [];
+
+	var MenuStore = _.extend({}, EventEmitter.prototype, {
+	    getMenu: function getMenu() {
+	        return _menu;
+	    },
+
+	    emitChange: function emitChange() {
+	        this.emit(AppConstants.ChangeEvents.MENU_CHANGE_EVENT);
+	    },
+
+	    addChangeListener: function addChangeListener(callback) {
+	        this.on(AppConstants.ChangeEvents.MENU_CHANGE_EVENT, callback);
+	    },
+
+	    removeChangeListener: function removeChangeListener(callback) {
+	        this.removeListener(AppConstants.ChangeEvents.MENU_CHANGE_EVENT, callback);
+	    }
+
+	});
+
+	AppDispatcher.register(function (payload) {
+	    var action = payload.action;
+	    if (action == null) return;
+	    switch (action.type) {
+	        case AppConstants.ActionTypes.MENU_RESPONSE:
+	            _menu = action.json.out_Own;
+	            MenuStore.emitChange();
+	            break;
+	        default:
+	            return true;
+	    }
+	    return true;
+	});
+
+	module.exports = MenuStore;
+
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(430), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(123))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "MenuStore.js" + ": " + err.message); } }); } } })(); }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33)(module)))
+
+/***/ },
+/* 452 */,
+/* 453 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(59), RootInstanceProvider = __webpack_require__(67), ReactMount = __webpack_require__(69), React = __webpack_require__(123); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
+
+	/**
+	 * Created by steve on 08/07/15.
+	 */
+	'use strict';
+
+	var AppDispatcher = __webpack_require__(434);
+	var AppConstants = __webpack_require__(438);
+	var $ = __webpack_require__(454);
+
+	var ActionTypes = AppConstants.ActionTypes;
+
+	module.exports = {
+
+	    getMenu: function getMenu() {
+
+	        $.ajax({
+	            type: 'POST',
+	            url: 'http://example:8080/api/rs',
+	            data: JSON.stringify({
+	                category: 'menu',
+	                name: 'getMenu',
+	                readOnly: true,
+	                "data": {
+	                    host: AppConstants.host
+	                }
+	            }),
+	            contentType: 'application/json',
+	            dataType: 'json',
+	            error: function error(jqXHR, status, _error) {
+	                console.log('MenuActions.getMenu error', _error);
+	                /*
+	                var errorText = jqXHR.responseText;
+	                AppDispatcher.handleAction({
+	                    type: ActionTypes.SIGNUP_RESPONSE,
+	                    json: null,
+	                    error: errorText
+	                });
+	                */
+	            },
+	            success: function success(result, status, xhr) {
+	                console.log("MenuActions.getMenu success", result);
+	                AppDispatcher.handleAction({
+	                    type: ActionTypes.MENU_RESPONSE,
+	                    json: result,
+	                    error: null
+	                });
+	            }
+	        });
+	    }
+	};
+
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(430), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(123))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "MenuActions.js" + ": " + err.message); } }); } } })(); }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33)(module)))
+
+/***/ },
+/* 454 */,
+/* 455 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(59), RootInstanceProvider = __webpack_require__(67), ReactMount = __webpack_require__(69), React = __webpack_require__(123); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
+
+	'use strict';
+
+	var React = __webpack_require__(123);
+	var FullWidthSection = __webpack_require__(429);
+	var InlineUser = __webpack_require__(445);
+	var marked = __webpack_require__(456);
+
+	var UserExample = React.createClass({
+	    displayName: 'UserExample',
+
+	    componentWillMount: function componentWillMount() {
+	        marked.setOptions({
+	            renderer: new marked.Renderer(),
+	            gfm: true,
+	            tables: true,
+	            breaks: true,
+	            pedantic: false,
+	            sanitize: true,
+	            smartLists: true,
+	            smartypants: false
+	        });
+	    },
+	    getInitialState: function getInitialState() {
+	        return {
+	            markedText: "#NetworkNT - Inline User Example# \n" + "This is an example where we pass the userId of an " + "example user as it would appear when referenced inline with some text.\n" + "This is the user <InlineUser id=\"nick\" /> who has id 'nick'. It's a work in progress... it should look like:"
+	        };
+	    },
+	    render: function render() {
+	        return React.createElement(
+	            FullWidthSection,
+	            null,
+	            React.createElement('div', { dangerouslySetInnerHTML: {
+	                    __html: this.processText(this.state.markedText)
+	                } }),
+	            React.createElement(InlineUser, { id: 'nick' })
+	        );
+	    },
+	    processText: function processText(text) {
+	        return marked(text, { sanitize: true });
+	    }
+	});
+
+	module.exports = UserExample;
+
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(430), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(123))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "UserExample.js" + ": " + err.message); } }); } } })(); }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33)(module)))
+
+/***/ },
+/* 456 */,
+/* 457 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(59), RootInstanceProvider = __webpack_require__(67), ReactMount = __webpack_require__(69), React = __webpack_require__(123); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
+
+	"use strict";
+
+	var React = __webpack_require__(123);
+
+	var UserProfile = React.createClass({
+	    displayName: "UserProfile",
+
+	    getInitialState: function getInitialState() {
+	        return {
+	            userId: this.props.params.userId != null ? this.props.params.userId : "Example"
+	        };
+	    },
+	    render: function render() {
+	        return React.createElement(
+	            "span",
+	            null,
+	            "User Profile - Hello ",
+	            this.state.userId,
+	            "!"
+	        );
+	    }
+	});
+
+	module.exports = UserProfile;
+
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(430), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(123))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "UserProfile.js" + ": " + err.message); } }); } } })(); }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33)(module)))
+
+/***/ },
+/* 458 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(59), RootInstanceProvider = __webpack_require__(67), ReactMount = __webpack_require__(69), React = __webpack_require__(123); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
+
+	'use strict';
+
+	var React = __webpack_require__(123);
+	var Router = __webpack_require__(225);
+
+	var _require = __webpack_require__(270);
+
+	var RaisedButton = _require.RaisedButton;
+	var Styles = _require.Styles;
+
+	var FullWidthSection = __webpack_require__(429);
+	var Colors = Styles.Colors;
+	var Spacing = Styles.Spacing;
+	var Typography = Styles.Typography;
+
+	var Home = React.createClass({
+	    displayName: 'Home',
+
+	    render: function render() {
+	        var styles = this.getStyles();
+	        return React.createElement(
+	            'div',
+	            null,
+	            React.createElement(
+	                FullWidthSection,
+	                { style: styles.root },
+	                React.createElement(
+	                    'div',
+	                    { style: styles.tagline },
+	                    React.createElement(
+	                        'h1',
+	                        { style: styles.h1 },
+	                        'NetworkNT - Components Example'
+	                    ),
+	                    React.createElement(
+	                        'h2',
+	                        { style: styles.h2 },
+	                        'Please select any page from the menu in the top left corner to view the example.'
+	                    )
+	                )
+	            ),
+	            React.createElement(
+	                FullWidthSection,
+	                { style: styles.githubSection },
+	                React.createElement(
+	                    'h2',
+	                    { style: styles.githubSectionh2 },
+	                    'To learn more about this project, Check out our repo!'
+	                ),
+	                React.createElement(RaisedButton, { label: 'GitHub', primary: true, linkButton: true, href: 'https://github.com/networknt' })
+	            )
+	        );
+	    },
+	    getStyles: function getStyles() {
+	        return {
+	            root: {
+	                backgroundColor: Colors.green400,
+	                overflow: 'hidden',
+	                width: '100%'
+	            },
+	            tagline: {
+	                margin: '16px auto 0 auto',
+	                textAlign: 'center',
+	                maxWidth: '575px'
+	            },
+	            h1: {
+	                color: Colors.darkWhite,
+	                fontWeight: Typography.fontWeightLight,
+	                lineHeight: 1.5
+	            },
+	            h2: {
+	                //.mui-font-style-title
+	                fontSize: '20px',
+	                lineHeight: '28px',
+	                paddingTop: '19px',
+	                marginBottom: '13px',
+	                letterSpacing: '0',
+	                color: Colors.darkWhite,
+	                fontWeight: Typography.fontWeightLight
+	            },
+	            githubSection: {
+	                backgroundColor: Colors.grey200,
+	                textAlign: 'center'
+	            },
+	            githubSectionh2: {
+	                color: Colors.grey900,
+	                fontSize: '20px',
+	                lineHeight: '28px',
+	                paddingTop: '19px',
+	                marginBottom: '13px',
+	                letterSpacing: '0',
+	                fontWeight: Typography.fontWeightLight
+	            }
+	        };
+	    }
+	});
+
+	module.exports = Home;
+
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(430), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(123))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Home.js" + ": " + err.message); } }); } } })(); }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33)(module)))
+
+/***/ },
+/* 459 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(59), RootInstanceProvider = __webpack_require__(67), ReactMount = __webpack_require__(69), React = __webpack_require__(123); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
+
+	'use strict';
+
+	var React = __webpack_require__(123);
+	var FullWidthSection = __webpack_require__(429);
+
+	var Forum = React.createClass({
+	    displayName: 'Forum',
+
+	    componentWillMount: function componentWillMount() {},
+	    getInitialState: function getInitialState() {
+	        return {};
+	    },
+	    render: function render() {
+	        return React.createElement(
+	            FullWidthSection,
+	            null,
+	            'Forum'
+	        );
+	    }
+	});
+
+	module.exports = Forum;
+
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(430), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(123))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Forum.js" + ": " + err.message); } }); } } })(); }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33)(module)))
+
+/***/ },
+/* 460 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(59), RootInstanceProvider = __webpack_require__(67), ReactMount = __webpack_require__(69), React = __webpack_require__(123); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
+
+	'use strict';
+
+	var React = __webpack_require__(123);
+	var FullWidthSection = __webpack_require__(429);
+
+	var News = React.createClass({
+	    displayName: 'News',
+
+	    componentWillMount: function componentWillMount() {},
+	    getInitialState: function getInitialState() {
+	        return {};
+	    },
+	    render: function render() {
+	        return React.createElement(
+	            FullWidthSection,
+	            null,
+	            'News'
+	        );
+	    }
+	});
+
+	module.exports = News;
+
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(430), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(123))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "News.js" + ": " + err.message); } }); } } })(); }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33)(module)))
+
+/***/ },
+/* 461 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(59), RootInstanceProvider = __webpack_require__(67), ReactMount = __webpack_require__(69), React = __webpack_require__(123); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
+
+	'use strict';
+
+	var React = __webpack_require__(123);
+	var FullWidthSection = __webpack_require__(429);
+	var BlogStore = __webpack_require__(462);
+	var BlogAction = __webpack_require__(463);
+	var BlogRow = __webpack_require__(465);
+
+	var _require = __webpack_require__(270);
+
+	var List = _require.List;
+	var ListItem = _require.ListItem;
+	var Paper = _require.Paper;
+	var Styles = _require.Styles;
+
+	var BlogStore = __webpack_require__(462);
+	var BlogAction = __webpack_require__(463);
+	var Colors = Styles.Colors;
+	var Spacing = Styles.Spacing;
+	var Typography = Styles.Typography;
+
+	var Blogs = React.createClass({
+	    displayName: 'Blogs',
+
+	    getInitialState: function getInitialState() {
+	        return {
+	            blogs: []
+	        };
+	    },
+
+	    componentDidMount: function componentDidMount() {
+	        BlogStore.addChangeListener(this._onChange);
+	        BlogAction.getBlogs();
+	    },
+
+	    _onChange: function _onChange() {
+	        this.setState({
+	            blogs: BlogStore.getBlogs()
+	        });
+	    },
+
+	    render: function render() {
+	        return React.createElement(
+	            'div',
+	            null,
+	            React.createElement(
+	                'div',
+	                { className: 'blogHeader' },
+	                React.createElement(
+	                    'h2',
+	                    { className: 'mainBlogHeader' },
+	                    'NetworkNt Blogs'
+	                )
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'blogsSection' },
+	                React.createElement(
+	                    List,
+	                    { className: 'blogsList' },
+	                    this.state.blogs.map(function (blog) {
+	                        return React.createElement(BlogRow, { blog: blog });
+	                    })
+	                )
+	            )
+	        );
+	    },
+
+	    componentWillUnmount: function componentWillUnmount() {
+	        BlogStore.removeChangeListener(this._onChange);
+	    }
+
+	});
+
+	module.exports = Blogs;
+
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(430), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(123))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Blogs.js" + ": " + err.message); } }); } } })(); }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33)(module)))
+
+/***/ },
+/* 462 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(59), RootInstanceProvider = __webpack_require__(67), ReactMount = __webpack_require__(69), React = __webpack_require__(123); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
+
+	'use strict';
+
+	var AppDispatcher = __webpack_require__(434);
+	var EventEmitter = __webpack_require__(439).EventEmitter;
+	var AppConstants = __webpack_require__(438);
+	var _ = __webpack_require__(452);
+
+	var _blogs = [];
+	var _blogPosts = [];
+
+	var BlogStore = _.extend({}, EventEmitter.prototype, {
+	    getBlogs: function getBlogs() {
+	        return _blogs;
+	    },
+
+	    getBlogPosts: function getBlogPosts() {
+	        return _blogPosts;
+	    },
+
+	    emitChange: function emitChange() {
+	        this.emit(AppConstants.ChangeEvents.BLOG_CHANGE_EVENT);
+	    },
+
+	    addChangeListener: function addChangeListener(callback) {
+	        this.on(AppConstants.ChangeEvents.BLOG_CHANGE_EVENT, callback);
+	    },
+
+	    removeChangeListener: function removeChangeListener(callback) {
+	        this.removeListener(AppConstants.ChangeEvents.BLOG_CHANGE_EVENT, callback);
+	    }
+
+	});
+
+	AppDispatcher.register(function (payload) {
+	    console.log("BlogStore payload:", payload);
+	    var data = payload.action;
+	    if (data == null) return;
+	    if (data.type === AppConstants.ActionTypes.BLOGS_RESPONSE) {
+	        console.log("BlogStore received BLOGS:", data.json);
+	        _blogs = data.json;
+	        BlogStore.emitChange();
+	    } else if (data.type === AppConstants.ActionTypes.BLOG_POSTS_RESPONSE) {
+	        console.log("BlogStore received BLOG_POSTS:", data.json);
+	        _blogPosts = data.json;
+	        BlogStore.emitChange();
+	    }
+	    return true;
+	});
+
+	module.exports = BlogStore;
+
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(430), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(123))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "BlogStore.js" + ": " + err.message); } }); } } })(); }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33)(module)))
+
+/***/ },
+/* 463 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(59), RootInstanceProvider = __webpack_require__(67), ReactMount = __webpack_require__(69), React = __webpack_require__(123); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
+
+	'use strict';
+
+	var AppDispatcher = __webpack_require__(434);
+	var AppConstants = __webpack_require__(438);
+	var MockBlogData = __webpack_require__(464);
+	var $ = __webpack_require__(454);
+
+	var BlogActions = {
+
+	    getBlogs: function getBlogs() {
+	        $.ajax({
+	            type: 'POST',
+	            url: 'http://example:8080/api/rs',
+	            data: JSON.stringify({
+	                category: 'blog',
+	                name: 'getBlog',
+	                readOnly: true,
+	                "data": {
+	                    host: AppConstants.host
+	                }
+	            }),
+	            contentType: 'application/json',
+	            dataType: 'json',
+	            error: function error(jqXHR, status, _error) {
+	                console.log('Using mock data...');
+	                AppDispatcher.handleAction({
+	                    type: AppConstants.ActionTypes.BLOGS_RESPONSE,
+	                    json: MockBlogData.getBlogs(),
+	                    error: null
+	                });
+	            },
+	            success: function success(result, status, xhr) {
+	                AppDispatcher.handleAction({
+	                    type: AppConstants.ActionTypes.BLOGS_RESPONSE,
+	                    json: result,
+	                    error: null
+	                });
+	            }
+	        });
+	    },
+
+	    getBlogPosts: function getBlogPosts() {
+	        console.log("Sending for blogPosts");
+	        AppDispatcher.handleAction({
+	            type: AppConstants.ActionTypes.BLOG_POSTS_RESPONSE,
+	            json: MockBlogData.getBlogPosts(),
+	            error: null
+	        });
+	    }
+
+	};
+
+	module.exports = BlogActions;
+
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(430), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(123))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "BlogActions.js" + ": " + err.message); } }); } } })(); }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33)(module)))
+
+/***/ },
+/* 464 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(59), RootInstanceProvider = __webpack_require__(67), ReactMount = __webpack_require__(69), React = __webpack_require__(123); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
+
+	"use strict";
+
+	module.exports = {
+	    getBlogs: function getBlogs() {
+	        return [{
+	            "@rid": "#33:12",
+	            "host": "example",
+	            "description": "New and improved??",
+	            "blogId": "The new blog ID",
+	            "createDate": "2015-05-22T00:22:37.607",
+	            "$$hashKey": "object:241"
+	        }, {
+	            "@rid": "#33:1",
+	            "host": "example",
+	            "description": "sdgasdgag",
+	            "blogId": "asdga",
+	            "createDate": "2015-05-02T12:52:20.121",
+	            "out_HasPost": ["#36:9", "#36:10", "#36:11"],
+	            "out_Own": [{
+	                "@rid": "#33:8",
+	                "host": "example",
+	                "description": "fgjdfgjdj",
+	                "blogId": "hdfgjd",
+	                "createDate": "2015-05-02T15:57:28.789",
+	                "in_Own": ["#33:1"],
+	                "out_Own": [{
+	                    "@rid": "#33:9",
+	                    "host": "example",
+	                    "description": "dfhsdfhsdf",
+	                    "blogId": "dgsdfhs",
+	                    "createDate": "2015-05-02T19:15:53.034",
+	                    "in_Own": ["#33:8"],
+	                    "out_Own": [{
+	                        "@rid": "#33:11",
+	                        "host": "example",
+	                        "description": "asdgasdg",
+	                        "blogId": "sdfhsdfhs",
+	                        "createDate": "2015-05-02T21:22:25.813",
+	                        "in_Own": ["#33:9"]
+	                    }]
+	                }, {
+	                    "@rid": "#33:10",
+	                    "host": "example",
+	                    "description": "dgasdgasdg",
+	                    "blogId": "asdsdfhgasdg",
+	                    "createDate": "2015-05-02T21:19:58.117",
+	                    "in_Own": ["#33:8"]
+	                }],
+	                "blog": {
+	                    "@rid": "#33:1",
+	                    "host": "example",
+	                    "description": "sdgasdgag",
+	                    "blogId": "asdga",
+	                    "createDate": "2015-05-02T12:52:20.121",
+	                    "out_HasPost": ["#36:9", "#36:10", "#36:11"]
+	                }
+	            }],
+	            "$$hashKey": "object:242"
+	        }, {
+	            "@rid": "#33:2",
+	            "host": "example",
+	            "description": "asdgasdg",
+	            "blogId": "asdgasdg",
+	            "createDate": "2015-05-02T12:52:23.067",
+	            "$$hashKey": "object:243"
+	        }, {
+	            "@rid": "#33:3",
+	            "host": "example",
+	            "description": "sdgasdga",
+	            "blogId": "asdgasdga",
+	            "createDate": "2015-05-02T12:52:25.675",
+	            "$$hashKey": "object:244"
+	        }, {
+	            "@rid": "#33:7",
+	            "host": "example",
+	            "description": "dfgjdfgjdj",
+	            "blogId": "dfgjdfgjdfgj",
+	            "createDate": "2015-05-02T12:52:43.251",
+	            "$$hashKey": "object:245"
+	        }, {
+	            "@rid": "#33:5",
+	            "host": "example",
+	            "description": "jfdgdfjhdfgjh",
+	            "blogId": "dfgjdsdfsdfh",
+	            "createDate": "2015-05-02T12:52:36.714",
+	            "$$hashKey": "object:246"
+	        }];
+	    },
+
+	    getBlogPosts: function getBlogPosts() {
+	        return [{
+	            "createUserId": "stevehu",
+	            "postId": "GT3ZmMIxTxiE8WzGudooQA",
+	            "createRid": "#14:0",
+	            "rid": "#36:11",
+	            "title": "TEst",
+	            "content": "This is the post - Edited -5/21/2015",
+	            "parentId": "asdga",
+	            "createDate": "2015-05-02T14:20:13.512"
+	        }, {
+	            "createUserId": "stevehu",
+	            "postId": "uGRKOudDR4e3EGwrNYi6cQ",
+	            "createRid": "#14:0",
+	            "rid": "#36:10",
+	            "title": "jdfgjdfgjd",
+	            "content": "fgjdfgj",
+	            "parentId": "asdga",
+	            "createDate": "2015-05-02T12:57:12.315"
+	        }, {
+	            "createUserId": "stevehu",
+	            "postId": "FY4pUJ1CSzSURhihDlLg5g",
+	            "createRid": "#14:0",
+	            "rid": "#36:9",
+	            "title": "sdfhsdfhsdf",
+	            "content": "hsdfhsdfhsdf",
+	            "parentId": "asdga",
+	            "createDate": "2015-05-02T12:55:51.351"
+	        }];
+	    },
+	    init: function init() {
+	        localStorage.clear();
+	        localStorage.setItem('blogs', JSON.stringify([{
+	            "@rid": "#33:12",
+	            "host": "example",
+	            "description": "New and improved??",
+	            "blogId": "The new blog ID",
+	            "createDate": "2015-05-22T00:22:37.607",
+	            "$$hashKey": "object:241"
+	        }, {
+	            "@rid": "#33:1",
+	            "host": "example",
+	            "description": "sdgasdgag",
+	            "blogId": "asdga",
+	            "createDate": "2015-05-02T12:52:20.121",
+	            "out_HasPost": ["#36:9", "#36:10", "#36:11"],
+	            "out_Own": [{
+	                "@rid": "#33:8",
+	                "host": "example",
+	                "description": "fgjdfgjdj",
+	                "blogId": "hdfgjd",
+	                "createDate": "2015-05-02T15:57:28.789",
+	                "in_Own": ["#33:1"],
+	                "out_Own": [{
+	                    "@rid": "#33:9",
+	                    "host": "example",
+	                    "description": "dfhsdfhsdf",
+	                    "blogId": "dgsdfhs",
+	                    "createDate": "2015-05-02T19:15:53.034",
+	                    "in_Own": ["#33:8"],
+	                    "out_Own": [{
+	                        "@rid": "#33:11",
+	                        "host": "example",
+	                        "description": "asdgasdg",
+	                        "blogId": "sdfhsdfhs",
+	                        "createDate": "2015-05-02T21:22:25.813",
+	                        "in_Own": ["#33:9"]
+	                    }]
+	                }, {
+	                    "@rid": "#33:10",
+	                    "host": "example",
+	                    "description": "dgasdgasdg",
+	                    "blogId": "asdsdfhgasdg",
+	                    "createDate": "2015-05-02T21:19:58.117",
+	                    "in_Own": ["#33:8"]
+	                }],
+	                "blog": {
+	                    "@rid": "#33:1",
+	                    "host": "example",
+	                    "description": "sdgasdgag",
+	                    "blogId": "asdga",
+	                    "createDate": "2015-05-02T12:52:20.121",
+	                    "out_HasPost": ["#36:9", "#36:10", "#36:11"]
+	                }
+	            }],
+	            "$$hashKey": "object:242"
+	        }, {
+	            "@rid": "#33:2",
+	            "host": "example",
+	            "description": "asdgasdg",
+	            "blogId": "asdgasdg",
+	            "createDate": "2015-05-02T12:52:23.067",
+	            "$$hashKey": "object:243"
+	        }, {
+	            "@rid": "#33:3",
+	            "host": "example",
+	            "description": "sdgasdga",
+	            "blogId": "asdgasdga",
+	            "createDate": "2015-05-02T12:52:25.675",
+	            "$$hashKey": "object:244"
+	        }, {
+	            "@rid": "#33:7",
+	            "host": "example",
+	            "description": "dfgjdfgjdj",
+	            "blogId": "dfgjdfgjdfgj",
+	            "createDate": "2015-05-02T12:52:43.251",
+	            "$$hashKey": "object:245"
+	        }, {
+	            "@rid": "#33:5",
+	            "host": "example",
+	            "description": "jfdgdfjhdfgjh",
+	            "blogId": "dfgjdsdfsdfh",
+	            "createDate": "2015-05-02T12:52:36.714",
+	            "$$hashKey": "object:246"
+	        }]));
+	        localStorage.setItem('blogPosts', JSON.stringify([{
+	            "createUserId": "stevehu",
+	            "postId": "GT3ZmMIxTxiE8WzGudooQA",
+	            "createRid": "#14:0",
+	            "rid": "#36:11",
+	            "title": "TEst",
+	            "content": "This is the post - Edited -5/21/2015",
+	            "parentId": "asdga",
+	            "createDate": "2015-05-02T14:20:13.512"
+	        }, {
+	            "createUserId": "stevehu",
+	            "postId": "uGRKOudDR4e3EGwrNYi6cQ",
+	            "createRid": "#14:0",
+	            "rid": "#36:10",
+	            "title": "jdfgjdfgjd",
+	            "content": "fgjdfgj",
+	            "parentId": "asdga",
+	            "createDate": "2015-05-02T12:57:12.315"
+	        }, {
+	            "createUserId": "stevehu",
+	            "postId": "FY4pUJ1CSzSURhihDlLg5g",
+	            "createRid": "#14:0",
+	            "rid": "#36:9",
+	            "title": "sdfhsdfhsdf",
+	            "content": "hsdfhsdfhsdf",
+	            "parentId": "asdga",
+	            "createDate": "2015-05-02T12:55:51.351"
+	        }]));
+	        return JSON.parse(localStorage.getItem('blogs'));
+	    }
+	};
+
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(430), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(123))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "MockBlogData.js" + ": " + err.message); } }); } } })(); }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33)(module)))
+
+/***/ },
+/* 465 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(59), RootInstanceProvider = __webpack_require__(67), ReactMount = __webpack_require__(69), React = __webpack_require__(123); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
+
+	'use strict';
+
+	var React = __webpack_require__(123);
+
+	var _require = __webpack_require__(270);
+
+	var ListItem = _require.ListItem;
+	var Styles = _require.Styles;
+	var Avatar = _require.Avatar;
+
+	var BlogActions = __webpack_require__(463);
+	var Colors = Styles.Colors;
+	var Spacing = Styles.Spacing;
+	var Typography = Styles.Typography;
+
+	var BlogRow = React.createClass({
+	    displayName: 'BlogRow',
+
+	    contextTypes: {
+	        router: React.PropTypes.func
+	    },
+	    render: function render() {
+	        return this._createItems(this.props.blog);
+	    },
+
+	    _onTouchTap: function _onTouchTap() {
+	        this.context.router.transitionTo("/light-cms/blog");
+	    },
+
+	    _createItems: function _createItems(blogs) {
+	        var children;
+	        if (blogs.out_Own) {
+	            children = blogs.out_Own.map((function (child) {
+	                return this._createItems(child);
+	            }).bind(this));
+	        }
+	        return React.createElement(
+	            ListItem,
+	            {
+	                leftAvatar: this._getLeftAvatar(blogs),
+	                primaryText: this._getPrimaryText(blogs),
+	                secondaryText: blogs.description,
+	                onTouchTap: this._onTouchTap },
+	            children
+	        );
+	    },
+
+	    _getLeftAvatar: function _getLeftAvatar(blogs) {
+	        var count = "0";
+	        if (blogs.out_HasPost != null && blogs.out_HasPost.length > 0) {
+	            count = blogs.out_HasPost.length.toString();
+	        }
+	        return React.createElement(
+	            'div',
+	            { className: 'blogLeftAvatar' },
+	            count
+	        );
+	    },
+
+	    _getPrimaryText: function _getPrimaryText(blogs) {
+	        return React.createElement(
+	            'p',
+	            null,
+	            blogs.blogId
+	        );
+	    }
+
+	});
+
+	module.exports = BlogRow;
+
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(430), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(123))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "BlogRow.js" + ": " + err.message); } }); } } })(); }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33)(module)))
+
+/***/ },
+/* 466 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(59), RootInstanceProvider = __webpack_require__(67), ReactMount = __webpack_require__(69), React = __webpack_require__(123); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
+
+	'use strict';
+
+	var React = __webpack_require__(123);
+
+	var _require = __webpack_require__(225);
+
+	var Link = _require.Link;
+
+	var FullWidthSection = __webpack_require__(429);
+	var BlogStore = __webpack_require__(462);
+	var BlogActions = __webpack_require__(463);
+
+	var _require2 = __webpack_require__(270);
+
+	var List = _require2.List;
+	var ListItem = _require2.ListItem;
+	var Paper = _require2.Paper;
+	var RaisedButton = _require2.RaisedButton;
+
+	var BlogPosts = __webpack_require__(467);
+
+	var Blog = React.createClass({
+	    displayName: 'Blog',
+
+	    componentDidMount: function componentDidMount() {
+	        BlogStore.addChangeListener(this._receiveBlogPosts);
+	        BlogActions.getBlogPosts();
+	    },
+
+	    getInitialState: function getInitialState() {
+	        return {
+	            blogPosts: []
+	        };
+	    },
+
+	    _receiveBlogPosts: function _receiveBlogPosts() {
+	        console.log("Blog._receiveBlogPosts", BlogStore.getBlogPosts());
+	        this.setState({
+	            blogPosts: BlogStore.getBlogPosts()
+	        });
+	    },
+
+	    render: function render() {
+	        return React.createElement(
+	            'div',
+	            null,
+	            React.createElement(
+	                'div',
+	                { className: 'blogHeader' },
+	                React.createElement(
+	                    'h2',
+	                    { className: 'mainBlogHeader' },
+	                    'NetworkNt Blogs'
+	                )
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'blogRoot' },
+	                React.createElement(BlogPosts, { blogPosts: this.state.blogPosts }),
+	                React.createElement(
+	                    Link,
+	                    { to: '/light-cms/blogs' },
+	                    React.createElement(RaisedButton, { label: 'Back' })
+	                )
+	            )
+	        );
+	    }
+	});
+
+	module.exports = Blog;
+
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(430), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(123))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Blog.js" + ": " + err.message); } }); } } })(); }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33)(module)))
+
+/***/ },
+/* 467 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(59), RootInstanceProvider = __webpack_require__(67), ReactMount = __webpack_require__(69), React = __webpack_require__(123); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
+
+	'use strict';
+
+	var React = __webpack_require__(123);
+	var FullWidthSection = __webpack_require__(429);
+
+	var _require = __webpack_require__(270);
+
+	var List = _require.List;
+	var ListItem = _require.ListItem;
+	var Paper = _require.Paper;
+	var Avatar = _require.Avatar;
+	var Styles = _require.Styles;
+	var SvgIcon = _require.SvgIcon;
+	var Colors = Styles.Colors;
+	var Spacing = Styles.Spacing;
+	var Typography = Styles.Typography;
+
+	// var {ActionAssignment} = SvgIcon;
+	// using leftAvatar={<Avatar icon={<ActionAssignment />}/>} in ListItem causing an error... figure out why.
+	var BlogPostsView = React.createClass({
+	    displayName: 'BlogPostsView',
+
+	    componentDidMount: function componentDidMount() {
+	        //console.log("BlogPostsView.componentDidMount state", this.state);
+	        //console.log("BlogPostsView.componentDidMount props", this.props);
+	    },
+	    render: function render() {
+	        var styles = this._getStyles();
+	        return React.createElement(
+	            'div',
+	            { className: 'blogPostsRoot' },
+	            React.createElement(
+	                'div',
+	                { className: 'blogPostsleftColumn' },
+	                React.createElement(
+	                    Paper,
+	                    { className: 'blogPostsPaper' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'blogPost' },
+	                        React.createElement(
+	                            'h2',
+	                            null,
+	                            React.createElement(
+	                                'strong',
+	                                { className: 'strongDate' },
+	                                'August 24,'
+	                            ),
+	                            ' ',
+	                            React.createElement(
+	                                'span',
+	                                { className: 'year' },
+	                                '2015'
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'h1',
+	                            { className: 'title' },
+	                            React.createElement(
+	                                'a',
+	                                { href: '/light-cms/blogPost' },
+	                                'Title'
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'p',
+	                            { className: 'content' },
+	                            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. At doloremque ducimus ea eaque, illo impedit officiis perferendis quibusdam quidem, quod sed sequi similique sit sunt voluptatum. Aspernatur assumenda deserunt nobis.'
+	                        )
+	                    )
+	                ),
+	                React.createElement('hr', null),
+	                React.createElement(
+	                    Paper,
+	                    { className: 'blogPostsPaper' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'blogPost' },
+	                        React.createElement(
+	                            'h2',
+	                            null,
+	                            React.createElement(
+	                                'strong',
+	                                { className: 'strongDate' },
+	                                'August 24,'
+	                            ),
+	                            ' ',
+	                            React.createElement(
+	                                'span',
+	                                { className: 'year' },
+	                                '2015'
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'h1',
+	                            { className: 'title' },
+	                            React.createElement(
+	                                'a',
+	                                { href: '/light-cms/blogPost' },
+	                                'Title'
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'p',
+	                            { className: 'content' },
+	                            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. At doloremque ducimus ea eaque, illo impedit officiis perferendis quibusdam quidem, quod sed sequi similique sit sunt voluptatum. Aspernatur assumenda deserunt nobis.'
+	                        )
+	                    )
+	                ),
+	                React.createElement('hr', null),
+	                React.createElement(
+	                    Paper,
+	                    { className: 'blogPostsPaper' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'blogPost' },
+	                        React.createElement(
+	                            'h2',
+	                            null,
+	                            React.createElement(
+	                                'strong',
+	                                { className: 'strongDate' },
+	                                'August 24,'
+	                            ),
+	                            ' ',
+	                            React.createElement(
+	                                'span',
+	                                { className: 'year' },
+	                                '2015'
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'h1',
+	                            { className: 'title' },
+	                            React.createElement(
+	                                'a',
+	                                { href: '/light-cms/blogPost' },
+	                                'Title'
+	                            )
+	                        ),
+	                        React.createElement(
+	                            'p',
+	                            { className: 'content' },
+	                            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. At doloremque ducimus ea eaque, illo impedit officiis perferendis quibusdam quidem, quod sed sequi similique sit sunt voluptatum. Aspernatur assumenda deserunt nobis.'
+	                        )
+	                    )
+	                )
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'blogPostsRightColumn' },
+	                React.createElement(
+	                    'div',
+	                    { className: 'blogInfo' },
+	                    React.createElement(
+	                        'h1',
+	                        null,
+	                        'Blog Information'
+	                    ),
+	                    React.createElement(
+	                        'p',
+	                        null,
+	                        'In this section, you will see some information and references pertaining to the opened blog.'
+	                    ),
+	                    React.createElement(
+	                        'p',
+	                        null,
+	                        'Also, having the screen width be less then 64em will hide it, leaving reading room for mobile users only concerned with reading post content on the go.'
+	                    ),
+	                    React.createElement(
+	                        'p',
+	                        null,
+	                        'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ad adipisci alias cum, cumque cupiditate ea eum itaque, minus molestias necessitatibus nihil pariatur perspiciatis quam quas quod rem repellat, sint voluptate.'
+	                    )
+	                )
+	            )
+	        );
+	    },
+	    _getStyles: function _getStyles() {
+	        return {};
+	    }
+	});
+
+	module.exports = BlogPostsView;
+
+	//<Paper rounded={true} transitionEnabled={true}>
+	//    <List>
+	//        {
+	//            this.props.blogPosts.map(function (post) {
+	//                return (
+	//                    <ListItem primaryText={post.title} secondaryText={post.content}></ListItem>
+	//                );
+	//            })
+	//        }
+	//    </List>
+	//</Paper>
+
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(430), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(123))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "BlogPosts.js" + ": " + err.message); } }); } } })(); }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33)(module)))
+
+/***/ },
+/* 468 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(59), RootInstanceProvider = __webpack_require__(67), ReactMount = __webpack_require__(69), React = __webpack_require__(123); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
+
+	'use strict';
+
+	var React = __webpack_require__(123);
+	var FullWidthSection = __webpack_require__(429);
+	var BlogStore = __webpack_require__(462);
+	var BlogAction = __webpack_require__(463);
+
+	var _require = __webpack_require__(270);
+
+	var Paper = _require.Paper;
+
+	var BlogPostView = React.createClass({
+	    displayName: 'BlogPostView',
+
+	    render: function render() {
+	        return React.createElement(
+	            'div',
+	            null,
+	            React.createElement(
+	                'div',
+	                { className: 'blogHeader' },
+	                React.createElement(
+	                    'h2',
+	                    { className: 'mainBlogHeader' },
+	                    'NetworkNt Blogs'
+	                )
+	            ),
+	            React.createElement(
+	                'div',
+	                { className: 'blogPostRoot' },
+	                React.createElement(
+	                    Paper,
+	                    { className: 'blogPostPaper' },
+	                    React.createElement(
+	                        'div',
+	                        { className: 'title' },
+	                        'Title'
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'date' },
+	                        'August 27, 2015'
+	                    ),
+	                    React.createElement(
+	                        'div',
+	                        { className: 'content' },
+	                        React.createElement(
+	                            'p',
+	                            null,
+	                            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aperiam assumenda commodi exercitationem facilis fugiat hic, inventore iste itaque iure labore magni minima, mollitia natus neque quibusdam quos sint tenetur vel?'
+	                        ),
+	                        React.createElement(
+	                            'p',
+	                            null,
+	                            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium aliquid amet assumenda, atque aut, dolore ex fuga fugit laudantium necessitatibus non praesentium quaerat quam quo recusandae, rem repellat sit vel!'
+	                        ),
+	                        React.createElement(
+	                            'p',
+	                            null,
+	                            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. A exercitationem minima sequi? Ipsam ipsum iste quasi! Deserunt dolores perferendis placeat voluptates? Beatae corporis cum excepturi facilis molestiae quasi quis repudiandae?'
+	                        ),
+	                        React.createElement(
+	                            'p',
+	                            null,
+	                            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Alias blanditiis eligendi facilis nam nobis, omnis quidem rem repellat! Assumenda enim esse est nemo obcaecati repellendus sit tempore unde ut velit!'
+	                        ),
+	                        React.createElement(
+	                            'p',
+	                            null,
+	                            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquam asperiores aut blanditiis eius est expedita, hic iusto magnam minus neque nostrum nulla quam quas reiciendis saepe voluptas voluptatem voluptatibus!'
+	                        ),
+	                        React.createElement(
+	                            'p',
+	                            null,
+	                            'Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ab aliquid atque cumque dicta eius laudantium magnam modi molestias natus obcaecati omnis quam quibusdam repudiandae rerum, sint ullam vel voluptate voluptatibus.'
+	                        )
+	                    )
+	                ),
+	                React.createElement(
+	                    'div',
+	                    { className: 'aboutTheAuthor' },
+	                    React.createElement(
+	                        'h1',
+	                        null,
+	                        'This post was brought to you by ',
+	                        React.createElement(
+	                            'span',
+	                            { className: 'author' },
+	                            'Mr. Lorem'
+	                        )
+	                    ),
+	                    React.createElement(
+	                        'p',
+	                        null,
+	                        '(Info about the author): Lorem ipsum dolor sit amet, consectetur adipisicing elit. Accusantium alias aspernatur dignissimos dolorem, eos, eum iste iusto molestiae mollitia non quidem, quis quisquam sed sint vitae? Error hic necessitatibus nostrum!'
+	                    )
+	                )
+	            )
+	        );
+	    }
+
+	});
+
+	module.exports = BlogPostView;
+
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(430), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(123))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "BlogPost.js" + ": " + err.message); } }); } } })(); }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33)(module)))
+
+/***/ },
+/* 469 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(59), RootInstanceProvider = __webpack_require__(67), ReactMount = __webpack_require__(69), React = __webpack_require__(123); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
+
+	/**
+	 * Created by steve on 08/07/15.
+	 */
+	'use strict';
+
+	var React = __webpack_require__(123);
+	var AuthActions = __webpack_require__(470);
+	var AuthStore = __webpack_require__(433);
+	var ErrorNotice = __webpack_require__(473);
+
+	var _require = __webpack_require__(270);
+
+	var TextField = _require.TextField;
+	var RaisedButton = _require.RaisedButton;
+	var Paper = _require.Paper;
+	var Styles = _require.Styles;
+	var Dialog = _require.Dialog;
+
+	var FullWidthSection = __webpack_require__(429);
+	var Colors = Styles.Colors;
+	var Spacing = Styles.Spacing;
+	var Typography = Styles.Typography;
+
+	var Signup = React.createClass({
+	    displayName: 'Signup',
+
+	    contextTypes: {
+	        router: React.PropTypes.func
+	    },
+
+	    getInitialState: function getInitialState() {
+	        return {
+	            error: "",
+	            signupSuccessful: false
+	        };
+	    },
+
+	    componentDidMount: function componentDidMount() {
+	        AuthStore.addChangeListener(this._onChange);
+	    },
+
+	    componentWillUnmount: function componentWillUnmount() {
+	        AuthStore.removeChangeListener(this._onChange);
+	    },
+
+	    _onChange: function _onChange() {
+	        console.log("Signup._onChange");
+	        this.setState({
+	            error: AuthStore.getError(),
+	            signupSuccessful: AuthStore.isLoggedIn()
+	        });
+
+	        if (this.state.error === "") {
+	            this.refs.signupSuccessful.show();
+	        } else {
+	            this.refs.signupFailed.show();
+	        }
+	    },
+
+	    _onSubmit: function _onSubmit(e) {
+	        console.log("This.refs:", this.refs);
+	        e.preventDefault();
+	        this.setState({ errors: [] });
+	        var email = this.refs.email.getValue();
+	        var username = this.refs.username.getValue();
+	        var password = this.refs.password.getValue();
+	        var passwordConfirmation = this.refs.passwordConfirmation.getValue();
+	        if (password !== passwordConfirmation) {
+	            this.setState({
+	                error: "Password and password confirmation should match"
+	            });
+	        } else {
+	            AuthActions.signup(email, username, password, passwordConfirmation);
+	        }
+	    },
+
+	    render: function render() {
+	        var styles = this.getStyles();
+	        var signupSuccessActions = [{ text: 'Great!', onTouchTap: this._onDialogAck, ref: 'submit' }];
+	        var signupFailedActions = [{ text: 'Try Again' }, { text: 'Contact Us...' } // Todo....
+	        ];
+
+	        return React.createElement(
+	            FullWidthSection,
+	            { style: styles.root },
+	            React.createElement(
+	                Dialog,
+	                {
+	                    title: 'Welcome Aboard!',
+	                    actions: signupSuccessActions,
+	                    ref: 'signupSuccessful',
+	                    modal: false,
+	                    openImmediately: false,
+	                    onDismiss: this._dismissSignupSuccess },
+	                'An email has been sent to activate the account.'
+	            ),
+	            React.createElement(
+	                Dialog,
+	                {
+	                    title: 'Error occured during singup',
+	                    actions: signupFailedActions,
+	                    ref: 'signupFailed',
+	                    modal: false,
+	                    openImmediately: false },
+	                this.state.error
+	            ),
+	            React.createElement(
+	                'div',
+	                { style: styles.div },
+	                React.createElement(
+	                    'form',
+	                    { onSubmit: this._onSubmit },
+	                    React.createElement(TextField, {
+	                        hintText: 'Email',
+	                        floatingLabelText: 'Email',
+	                        type: 'email',
+	                        ref: 'email',
+	                        name: 'email',
+	                        onChange: this._handleErrorInputChangeEmail,
+	                        errorText: this.state.errorTextEmail }),
+	                    React.createElement('br', null),
+	                    React.createElement(TextField, {
+	                        hintText: 'Username',
+	                        floatingLabelText: 'Username',
+	                        type: 'text',
+	                        ref: 'username',
+	                        name: 'username',
+	                        onChange: this._handleErrorInputChangeUsername,
+	                        errorText: this.state.errorTextUsername }),
+	                    React.createElement('br', null),
+	                    React.createElement(TextField, {
+	                        hintText: 'Password',
+	                        floatingLabelText: 'Password',
+	                        type: 'password',
+	                        ref: 'password',
+	                        name: 'password',
+	                        onChange: this._handleErrorInputChangePassword,
+	                        errorText: this.state.errorTextPassword }),
+	                    React.createElement('br', null),
+	                    React.createElement(TextField, {
+	                        hintText: 'Password Confirmation',
+	                        floatingLabelText: 'Password Confirmation',
+	                        type: 'password',
+	                        ref: 'passwordConfirmation',
+	                        name: 'passwordConfirmation',
+	                        onChange: this._handleErrorInputChangePasswordConfirmation,
+	                        errorText: this.state.errorTextPasswordConfirmation }),
+	                    React.createElement('br', null),
+	                    React.createElement(RaisedButton, { label: 'Signup', primary: true, type: 'submit', style: styles.submitButton })
+	                )
+	            )
+	        );
+	    },
+
+	    getStyles: function getStyles() {
+	        return {
+	            root: {
+	                overflow: 'hidden',
+	                width: '100%',
+	                textAlign: 'center',
+	                display: 'center',
+	                backgroundColor: Colors.white,
+	                padding: '0px',
+	                marginBottom: '0px'
+	            },
+	            div: {
+	                width: '70%',
+	                margin: 'auto',
+	                paddingTop: '2%',
+	                paddingBottom: '2%'
+	            },
+	            submitButton: {
+	                marginTop: '15px'
+	            }
+	        };
+	    },
+
+	    _handleErrorInputChangeEmail: function _handleErrorInputChangeEmail(e) {
+	        this.setState({
+	            emailErrorText: e.target.value ? '' : 'This field is required.'
+	        });
+	    },
+	    _handleErrorInputChangeUsername: function _handleErrorInputChangeUsername(e) {
+	        this.setState({
+	            emailErrorUsername: e.target.value ? '' : 'This field is required.'
+	        });
+	    },
+	    _handleErrorInputChangePassword: function _handleErrorInputChangePassword(e) {
+	        this.setState({
+	            emailErrorPassword: e.target.value ? '' : 'This field is required.'
+	        });
+	    },
+	    _handleErrorInputChangePasswordConfirmation: function _handleErrorInputChangePasswordConfirmation(e) {
+	        this.setState({
+	            emailErrorPasswordConfirmation: e.target.value ? '' : 'This field is required.'
+	        });
+	    }
+	});
+
+	module.exports = Signup;
+
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(430), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(123))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Signup.js" + ": " + err.message); } }); } } })(); }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33)(module)))
+
+/***/ },
+/* 470 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(59), RootInstanceProvider = __webpack_require__(67), ReactMount = __webpack_require__(69), React = __webpack_require__(123); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
+
+	/**
+	 * Created by steve on 08/07/15.
+	 */
+	'use strict';
+
+	var AppDispatcher = __webpack_require__(434);
+	var AppConstants = __webpack_require__(438);
+	var WebAPIUtils = __webpack_require__(471);
+	var $ = __webpack_require__(454);
+
+	var ActionTypes = AppConstants.ActionTypes;
+
+	module.exports = {
+
+	    signup: function signup(email, username, password, passwordConfirmation) {
+	        AppDispatcher.handleAction({
+	            type: ActionTypes.SIGNUP_REQUEST,
+	            email: email,
+	            username: username,
+	            password: password,
+	            passwordConfirmation: passwordConfirmation
+	        });
+	        $.ajax({
+	            type: 'POST',
+	            url: 'http://example:8080/api/rs',
+	            data: JSON.stringify({
+	                category: 'user',
+	                name: 'signUpUser',
+	                readOnly: false,
+	                "data": {
+	                    email: email,
+	                    userId: username,
+	                    password: password,
+	                    passwordConfirm: passwordConfirmation,
+	                    clientId: AppConstants.ClientId
+	                }
+	            }),
+	            contentType: 'application/json',
+	            //dataType: 'json',
+	            error: function error(jqXHR, status, _error) {
+	                console.log('signup error', _error);
+	                var errorText = jqXHR.responseText;
+	                AppDispatcher.handleAction({
+	                    type: ActionTypes.SIGNUP_RESPONSE,
+	                    json: null,
+	                    error: errorText
+	                });
+	            },
+	            success: function success(result, status, xhr) {
+	                console.log('signup success', result);
+	                AppDispatcher.handleAction({
+	                    type: ActionTypes.SIGNUP_RESPONSE,
+	                    json: result,
+	                    error: null
+	                });
+	            }
+	        });
+	    },
+
+	    login: function login(userIdEmail, password, rememberMe) {
+	        AppDispatcher.handleAction({
+	            type: ActionTypes.LOGIN_REQUEST,
+	            userIdEmail: userIdEmail,
+	            password: password,
+	            rememberMe: rememberMe
+	        });
+
+	        $.ajax({
+	            type: 'POST',
+	            url: 'http://example:8080/api/rs',
+	            data: JSON.stringify({
+	                category: 'user',
+	                name: 'signInUser',
+	                readOnly: false,
+	                "data": {
+	                    userIdEmail: userIdEmail,
+	                    password: password,
+	                    rememberMe: rememberMe,
+	                    clientId: AppConstants.ClientId
+	                }
+	            }),
+	            contentType: 'application/json',
+	            dataType: 'json',
+	            error: function error(jqXHR, status, _error2) {
+	                console.log('Login error received', _error2, jqXHR, status);
+	                AppDispatcher.handleAction({
+	                    type: ActionTypes.LOGIN_RESPONSE,
+	                    json: null,
+	                    error: JSON.parse(jqXHR.responseText)
+	                });
+	            },
+	            success: function success(result, status, xhr) {
+	                console.log('Login success received', result);
+	                AppDispatcher.handleAction({
+	                    type: ActionTypes.LOGIN_RESPONSE,
+	                    json: result,
+	                    error: null
+	                });
+	            }
+	        });
+	    },
+
+	    logout: function logout() {
+	        AppDispatcher.handleAction({
+	            type: ActionTypes.LOGOUT
+	        });
+	    },
+
+	    init: function init() {
+	        console.log('the inti action is called', AppDispatcher);
+	        AppDispatcher.handleAction({
+	            type: ActionTypes.INIT
+	        });
+	    },
+
+	    refresh: function refresh(accessToken) {
+	        console.log('refresh in AuthActionCreators is called.');
+	        AppDispatcher.handleAction({
+	            type: ActionTypes.REFRESH,
+	            accessToken: accessToken
+	        });
+	    }
+	};
+
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(430), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(123))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "AuthActions.js" + ": " + err.message); } }); } } })(); }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33)(module)))
+
+/***/ },
+/* 471 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(59), RootInstanceProvider = __webpack_require__(67), ReactMount = __webpack_require__(69), React = __webpack_require__(123); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
+
+	/**
+	 * Created by steve on 08/07/15.
+	 */
+	'use strict';
+
+	var ServerActionCreators = __webpack_require__(472);
+	var AppConstants = __webpack_require__(438);
+	var $ = __webpack_require__(454);
+
+	function _getErrors(res) {
+	    var errorMsgs = ["Something went wrong, please try again"];
+	    var json = JSON.parse(res.text);
+	    if (json) {
+	        if (json['errors']) {
+	            errorMsgs = json['errors'];
+	        } else if (json['error']) {
+	            errorMsgs = [json['error']];
+	        }
+	    }
+	    return errorMsgs;
+	}
+
+	var APIEndpoints = AppConstants.APIEndpoints;
+	var APIRoot = AppConstants.APIRoot;
+	var host = AppConstants.host;
+	var ClientId = AppConstants.ClientId;
+
+	module.exports = {
+
+	    signup: function signup(email, username, password, passwordConfirmation) {
+	        $.ajax({
+	            type: 'POST',
+	            url: 'http://example:8080/api/rs',
+	            data: JSON.stringify({
+	                user: {
+	                    email: email,
+	                    username: username,
+	                    password: password,
+	                    password_confirmation: passwordConfirmation,
+	                    clientId: ClientId
+	                }
+	            }),
+	            contentType: 'application/json',
+	            dataType: 'json',
+	            error: function error(jqXHR, status, _error) {
+	                console.log('signup error', _error);
+	                ServerActionCreators.receiveLogin(null, _error);
+	            },
+	            success: function success(result, status, xhr) {
+	                console.log('signup success', result);
+	                ServerActionCreators.receiveLogin(result, null);
+	            }
+	        });
+	    },
+
+	    login: function login(userIdEmail, password, rememberMe) {
+	        console.log('login in WebAPIUtils is been called');
+
+	        APIEndpoints.SIGNIN.data = {
+	            userIdEmail: userIdEmail,
+	            password: password,
+	            rememberMe: rememberMe,
+	            clientId: ClientId
+	        };
+
+	        console.log('SIGNIN', APIEndpoints.SIGNIN);
+	        $.ajax({
+	            type: 'POST',
+	            contentType: 'application/json',
+	            url: 'http://example:8080/api/rs',
+	            data: JSON.stringify(APIEndpoints.SIGNIN),
+	            dataType: 'json',
+	            error: function error(jqXHR, status, _error2) {
+	                console.log('login error', _error2);
+	                ServerActionCreators.receiveLogin(null, _error2);
+	            },
+	            success: function success(result, status, xhr) {
+	                console.log('login success', result);
+	                ServerActionCreators.receiveLogin(result, null);
+	            }
+	        });
+	    },
+
+	    loadMenu: function loadMenu() {
+	        console.log('WebAPIUtils loadMenus is called');
+	        $.ajax({
+	            type: 'POST',
+	            url: 'http://example:8080/api/rs',
+	            data: JSON.stringify(APIEndpoints.GETMENU),
+	            contentType: 'application/json',
+	            dataType: 'json'
+	        }).done(function (data) {
+	            console.log('done', data);
+	            ServerActionCreators.receiveMenu(data, null);
+	        }).fail(function (error) {
+	            console.log('error', error);
+	            ServerActionCreators.receiveMenu(null, error);
+	        });
+	    },
+
+	    loadBlogs: function loadBlogs() {
+	        var getBlogs = {
+	            category: 'demo',
+	            name: 'getDropdown',
+	            readOnly: true
+	        };
+	        console.log('WebAPIUtils logBlogs is called');
+	        $.ajax({
+	            type: 'GET',
+	            url: 'http://example:8080/api/rs',
+	            data: { cmd: encodeURIComponent(JSON.stringify(getBlogs)) }
+	        }).done(function (data) {
+	            console.log('done', data);
+	            ServerActionCreators.receiveBlogs(data, null);
+	        }).fail(function (error) {
+	            console.log('error', error);
+	            ServerActionCreators.receiveBlogs(null, error);
+	        });
+	    },
+
+	    loadBlog: function loadBlog(blogId) {
+	        request.get(APIEndpoints.STORIES + '/' + storyId).set('Accept', 'application/json').end(function (error, res) {
+	            if (res) {
+	                var json = JSON.parse(res.text);
+	                ServerActionCreators.receiveBlog(json);
+	            }
+	        });
+	    },
+
+	    createBlog: function createBlog(title, body) {
+	        request.post(APIEndpoints.STORIES).set('Accept', 'application/json').send({ blog: { title: title, body: body } }).end(function (error, res) {
+	            if (res) {
+	                if (res.error) {
+	                    var errorMsgs = _getErrors(res);
+	                    ServerActionCreators.receiveCreatedBlog(null, errorMsgs);
+	                } else {
+	                    var json = JSON.parse(res.text);
+	                    ServerActionCreators.receiveCreatedBlog(json, null);
+	                }
+	            }
+	        });
+	    }
+
+	};
+
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(430), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(123))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "WebAPIUtils.js" + ": " + err.message); } }); } } })(); }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33)(module)))
+
+/***/ },
+/* 472 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(59), RootInstanceProvider = __webpack_require__(67), ReactMount = __webpack_require__(69), React = __webpack_require__(123); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
+
+	/**
+	 * Created by steve on 08/07/15.
+	 */
+	'use strict';
+
+	var AppDispatcher = __webpack_require__(434);
+	var AppConstants = __webpack_require__(438);
+
+	var ActionTypes = AppConstants.ActionTypes;
+
+	module.exports = {
+
+	    receiveLogin: function receiveLogin(json, error) {
+	        AppDispatcher.dispatch({
+	            type: ActionTypes.LOGIN_RESPONSE,
+	            json: json,
+	            error: error
+	        });
+	    },
+
+	    receiveBlogs: function receiveBlogs(json, error) {
+	        AppDispatcher.dispatch({
+	            type: ActionTypes.RECEIVE_BLOGS,
+	            json: json,
+	            error: error
+	        });
+	    },
+
+	    receiveMenu: function receiveMenu(json, error) {
+	        AppDispatcher.dispatch({
+	            type: ActionTypes.RECEIVE_MENU,
+	            json: json,
+	            error: error
+	        });
+	    },
+
+	    receiveStory: function receiveStory(json) {
+	        AppDispatcher.dispatch({
+	            type: ActionTypes.RECEIVE_STORY,
+	            json: json
+	        });
+	    },
+
+	    receiveCreatedStory: function receiveCreatedStory(json, errors) {
+	        AppDispatcher.dispatch({
+	            type: ActionTypes.RECEIVE_CREATED_STORY,
+	            json: json,
+	            errors: errors
+	        });
+	    }
+
+	};
+
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(430), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(123))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "ServerActionCreators.js" + ": " + err.message); } }); } } })(); }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33)(module)))
+
+/***/ },
+/* 473 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(59), RootInstanceProvider = __webpack_require__(67), ReactMount = __webpack_require__(69), React = __webpack_require__(123); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
+
+	/**
+	 * Created by steve on 08/07/15.
+	 */
+	"use strict";
+
+	var React = __webpack_require__(123);
+
+	var ErrorNotice = React.createClass({
+	    displayName: "ErrorNotice",
+
+	    render: function render() {
+	        return React.createElement(
+	            "div",
+	            { className: "error-notice" },
+	            React.createElement(
+	                "ul",
+	                null,
+	                this.props.errors.map(function (error, index) {
+	                    return React.createElement(
+	                        "li",
+	                        { className: "error-notice__error", key: "error-" + index },
+	                        error
+	                    );
+	                })
+	            )
+	        );
+	    }
+	});
+
+	module.exports = ErrorNotice;
+
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(430), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(123))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "ErrorNotice.js" + ": " + err.message); } }); } } })(); }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33)(module)))
+
+/***/ },
+/* 474 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(59), RootInstanceProvider = __webpack_require__(67), ReactMount = __webpack_require__(69), React = __webpack_require__(123); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
+
+	/**
+	 * Created by steve on 08/07/15.
+	 */
+	'use strict';
+
+	var React = __webpack_require__(123);
+	var AuthActions = __webpack_require__(470);
+	var AuthStore = __webpack_require__(433);
+	var ErrorNotice = __webpack_require__(473);
+
+	var _require = __webpack_require__(270);
+
+	var TextField = _require.TextField;
+	var RaisedButton = _require.RaisedButton;
+	var Paper = _require.Paper;
+	var Styles = _require.Styles;
+	var Checkbox = _require.Checkbox;
+	var Dialog = _require.Dialog;
+
+	var FullWidthSection = __webpack_require__(429);
+	var Colors = Styles.Colors;
+	var Spacing = Styles.Spacing;
+	var Typography = Styles.Typography;
+
+	var Login = React.createClass({
+	    displayName: 'Login',
+
+	    contextTypes: {
+	        router: React.PropTypes.func
+	    },
+
+	    getInitialState: function getInitialState() {
+	        return {
+	            error: "",
+	            loginSuccessful: false
+	        };
+	    },
+
+	    componentDidMount: function componentDidMount() {
+	        AuthStore.addChangeListener(this._onChange);
+	    },
+
+	    componentWillUnmount: function componentWillUnmount() {
+	        AuthStore.removeChangeListener(this._onChange);
+	    },
+
+	    _onChange: function _onChange() {
+	        this.setState({
+	            error: AuthStore.getError(),
+	            loginSuccessful: AuthStore.isLoggedIn()
+	        });
+
+	        if (this.state.loginSuccessful) {
+	            this.refs.loginSuccessful.show();
+	        } else {
+	            this.refs.loginFailed.show();
+	        }
+
+	        console.log("Login._onChange: error set to:", AuthStore.getError());
+	        console.log("Login._onChange: ");
+	    },
+
+	    _onSubmit: function _onSubmit(e) {
+	        e.preventDefault();
+	        this.setState({ errors: [] });
+	        var userIdEmail = this.refs.userIdEmail.getValue();
+	        var password = this.refs.password.getValue();
+	        var rememberMe = this.refs.rememberMe.isChecked();
+	        AuthActions.login(userIdEmail, password, rememberMe);
+	    },
+
+	    _dismissLoginSuccess: function _dismissLoginSuccess() {
+	        this.context.router.transitionTo('/light-cms/home');
+	    },
+
+	    render: function render() {
+	        var styles = this.getStyles();
+	        var loginSuccessActions = [{ text: 'Thank you!', onTouchTap: this._onDialogAck, ref: 'submit' }];
+	        var loginFailedActions = [{ text: 'Try Again' }, { text: 'I forgot it...' } // Todo....
+	        ];
+	        return React.createElement(
+	            FullWidthSection,
+	            { style: styles.root },
+	            React.createElement(
+	                Dialog,
+	                {
+	                    title: 'Log in successful!',
+	                    actions: loginSuccessActions,
+	                    ref: 'loginSuccessful',
+	                    modal: false,
+	                    openImmediately: false,
+	                    onDismiss: this._dismissLoginSuccess },
+	                'You are now logged in!'
+	            ),
+	            React.createElement(
+	                Dialog,
+	                {
+	                    title: 'Error occured during login',
+	                    actions: loginFailedActions,
+	                    ref: 'loginFailed',
+	                    modal: false,
+	                    openImmediately: false },
+	                this.state.error
+	            ),
+	            React.createElement(
+	                'center',
+	                null,
+	                React.createElement(
+	                    'form',
+	                    { onSubmit: this._onSubmit },
+	                    React.createElement(TextField, {
+	                        hintText: 'User ID or Email',
+	                        floatingLabelText: 'User ID or Email',
+	                        type: 'text',
+	                        ref: 'userIdEmail',
+	                        name: 'userIdEmail' }),
+	                    React.createElement('br', null),
+	                    React.createElement(TextField, {
+	                        hintText: 'Password',
+	                        floatingLabelText: 'Password',
+	                        type: 'password',
+	                        ref: 'password',
+	                        name: 'password' }),
+	                    React.createElement('br', null),
+	                    React.createElement(Checkbox, {
+	                        name: 'rememberMe',
+	                        value: 'rememberMe',
+	                        ref: 'rememberMe',
+	                        label: 'Remember Me',
+	                        style: styles.rememberMe }),
+	                    React.createElement('br', null),
+	                    React.createElement(RaisedButton, { label: 'Login', primary: true, type: 'submit', style: styles.submitButton })
+	                )
+	            )
+	        );
+	    },
+
+	    getStyles: function getStyles() {
+	        return {
+	            root: {
+	                display: 'center',
+	                backgroundColor: Colors.white,
+	                padding: '0px',
+	                marginBottom: '0px'
+	            },
+	            div: {
+	                width: '70%',
+	                paddingTop: '2%',
+	                paddingBottom: '2%'
+	            },
+	            submitButton: {
+	                marginTop: '15px'
+	            },
+	            rememberMe: {
+	                marginLeft: 'auto',
+	                marginRight: 'auto',
+	                width: '170px',
+	                paddingTop: '15px'
+	            }
+	        };
+	    }
+	});
+
+	module.exports = Login;
+
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(430), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(123))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Login.js" + ": " + err.message); } }); } } })(); }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33)(module)))
+
+/***/ },
+/* 475 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(59), RootInstanceProvider = __webpack_require__(67), ReactMount = __webpack_require__(69), React = __webpack_require__(123); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
+
+	'use strict';
+
+	var React = __webpack_require__(123);
+
+	var _require = __webpack_require__(270);
+
+	var Dialog = _require.Dialog;
+
+	var AuthActions = __webpack_require__(470);
+
+	var Logout = React.createClass({
+	    displayName: 'Logout',
+
+	    contextTypes: {
+	        router: React.PropTypes.func
+	    },
+
+	    componentDidMount: function componentDidMount() {
+	        AuthActions.logout();
+	    },
+
+	    getInitialState: function getInitialState() {
+	        return {};
+	    },
+
+	    render: function render() {
+	        var standardActions = [{ text: 'Thank you!', onTouchTap: this._onDialogAck, ref: 'submit' }];
+	        return React.createElement(
+	            Dialog,
+	            {
+	                title: 'Log out successful',
+	                actions: standardActions,
+	                actionFocus: 'submit',
+	                ref: 'logoutDialog',
+	                modal: false,
+	                openImmediately: true,
+	                onDismiss: this._onDialogAck },
+	            'You are now logged out.'
+	        );
+	    },
+
+	    _onDialogAck: function _onDialogAck() {
+	        this.context.router.transitionTo('/light-cms/home');
+	    }
+	});
+
+	module.exports = Logout;
+
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(430), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(123))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "Logout.js" + ": " + err.message); } }); } } })(); }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33)(module)))
+
+/***/ },
+/* 476 */
+/***/ function(module, exports) {
+
+	// removed by extract-text-webpack-plugin
+
+/***/ },
+/* 477 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(module) {/* REACT HOT LOADER */ if (true) { (function () { var ReactHotAPI = __webpack_require__(59), RootInstanceProvider = __webpack_require__(67), ReactMount = __webpack_require__(69), React = __webpack_require__(123); module.makeHot = module.hot.data ? module.hot.data.makeHot : ReactHotAPI(function () { return RootInstanceProvider.getRootInstances(ReactMount); }, React); })(); } (function () {
+
+	'use strict';
+
+	var AppDispatcher = __webpack_require__(434);
+	var AppConstants = __webpack_require__(438);
+	var EventEmitter = __webpack_require__(439).EventEmitter;
+	var assign = __webpack_require__(83);
+
+	var Router = __webpack_require__(225);
+	var routes = __webpack_require__(268);
+
+	var router = Router.create({
+	    routes: routes,
+	    location: Router.HistoryLocation,
+	    scrollBehavior: Router.ScrollToTopBehavior
+	});
+
+	var ActionTypes = AppConstants.ActionTypes;
+
+	var RouteStore = assign({}, EventEmitter.prototype, {
+
+	    emitChange: function emitChange() {
+	        this.emit(AppConstants.ChangeEvents.ROUTE_CHANGE_EVENT);
+	    },
+
+	    addChangeListener: function addChangeListener(callback) {
+	        this.on(AppConstants.ChangeEvents.ROUTE_CHANGE_EVENT, callback);
+	    },
+
+	    removeChangeListener: function removeChangeListener() {
+	        this.removeListener(AppConstants.ChangeEvents.ROUTE_CHANGE_EVENT, callback);
+	    },
+
+	    getRouter: function getRouter() {
+	        return router;
+	    },
+
+	    redirectHome: function redirectHome() {
+	        router.transitionTo('root');
+	    }
+	});
+
+	RouteStore.dispatchToken = AppDispatcher.register(function (payload) {
+	    var action = payload.action;
+	    if (action == null) return;
+	    var type = action.actionType;
+	    var data = action.data;
+	    switch (type) {
+	        case ActionTypes.REDIRECT:
+	            router.transitionTo(action.route, { data: data });
+	            break;
+	        default:
+	            return true;
+	    }
+
+	    return true;
+	});
+
+	module.exports = RouteStore;
+
+	/* REACT HOT LOADER */ }).call(this); if (true) { (function () { module.hot.dispose(function (data) { data.makeHot = module.makeHot; }); if (module.exports && module.makeHot) { var makeExportsHot = __webpack_require__(430), foundReactClasses = false; if (makeExportsHot(module, __webpack_require__(123))) { foundReactClasses = true; } var shouldAcceptModule = true && foundReactClasses; if (shouldAcceptModule) { module.hot.accept(function (err) { if (err) { console.error("Cannot not apply hot update to " + "RouteStore.js" + ": " + err.message); } }); } } })(); }
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(33)(module)))
+
+/***/ },
+/* 478 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	var RootInstanceProvider = __webpack_require__(67);
+
+	module.exports = {
+	  RootInstanceProvider: RootInstanceProvider.injection
+	};
+
+/***/ }
+]);
