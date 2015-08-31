@@ -1,6 +1,3 @@
-/**
- * Created by steve on 08/07/15.
- */
 var React = require('react');
 var AuthActions = require('../../actions/AuthActions.js');
 var AuthStore = require('../../stores/AuthStore.js');
@@ -68,7 +65,7 @@ var Login = React.createClass({
             { text: 'I forgot it...'} // Todo....
         ];
         return (
-            <FullWidthSection style={styles.root}>
+            <div className="loginRoot">
                 <Dialog
                     title="Log in successful!"
                     actions={loginSuccessActions}
@@ -86,30 +83,41 @@ var Login = React.createClass({
                     openImmediately={false}>
                     {this.state.error}
                 </Dialog>
-                <center>
-                    <form onSubmit={this._onSubmit}>
-                        <TextField
-                            hintText="User ID or Email"
-                            floatingLabelText="User ID or Email"
-                            type="text"
-                            ref="userIdEmail"
-                            name="userIdEmail" /><br />
-                        <TextField
-                            hintText="Password"
-                            floatingLabelText="Password"
-                            type="password"
-                            ref="password"
-                            name="password" /><br />
-                        <Checkbox
-                            name="rememberMe"
-                            value="rememberMe"
-                            ref="rememberMe"
-                            label="Remember Me"
-                            style={styles.rememberMe}/><br />
-                        <RaisedButton label="Login" primary={true} type="submit" style={styles.submitButton}/>
-                    </form>
-                </center>
-            </FullWidthSection>
+                <div className="loginFormSection">
+                    <Paper className="loginForm">
+                        <form onSubmit={this._onSubmit}>
+                            <div className="userIdEmail">
+                                <TextField
+                                    hintText="User ID or Email"
+                                    floatingLabelText="User ID or Email"
+                                    type="text"
+                                    ref="userIdEmail"
+                                    name="userIdEmail" />
+                            </div>
+                            <div className="password">
+                                <TextField
+                                    hintText="Password"
+                                    floatingLabelText="Password"
+                                    type="password"
+                                    ref="password"
+                                    name="password" />
+                            </div>
+                            <div className="rememberMe">
+                                <Checkbox
+                                    name="rememberMe"
+                                    value="rememberMe"
+                                    ref="rememberMe"
+                                    label="Remember Me"
+                                    className="rememberMe"
+                                    style={styles.rememberMe}/>
+                            </div>
+                            <div className="login">
+                                <RaisedButton label="Login" primary={true} type="submit" style={styles.submitButton}/>
+                            </div>
+                        </form>
+                    </Paper>
+                </div>
+            </div>
         );
     },
 
@@ -127,14 +135,19 @@ var Login = React.createClass({
                 paddingBottom: '2%'
             },
             submitButton: {
-                marginTop: '15px'
+                marginTop: '15px',
+                marginLeft: 'auto',
+                marginRight:'auto'
             },
             rememberMe: {
-                marginLeft: 'auto',
-                marginRight: 'auto',
-                width: '170px',
-                paddingTop: '15px'
+                width: '160px'
             }
+            //,rememberMe: {
+            //    marginLeft: 'auto',
+            //    marginRight: 'auto',
+            //    width: '170px',
+            //    paddingTop: '15px'
+            //}
         };
     }
 });

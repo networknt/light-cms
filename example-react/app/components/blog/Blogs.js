@@ -29,21 +29,28 @@ var Blogs = React.createClass({
 
     render: function() {
         return (
-            <div>
+            <div className="blogs">
                 <div className="blogHeader">
                         <h2 className="mainBlogHeader">NetworkNt Blogs</h2>
                 </div>
 
                 <div className="blogsSection">
-                    <List className="blogsList" >
-                        {
-                            this.state.blogs.map(function (blog) {
-                                return (
-                                    <BlogRow blog={blog}></BlogRow>
-                                );
-                            })
-                        }
-                    </List>
+                    <div className="blogsDescription">
+                        <h1>These are the blogs</h1>
+
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Aliquam commodi dolores, esse et id minus mollitia nemo, odio omnis qui rem voluptatem voluptatibus? Commodi dolorum fugit numquam quasi, similique soluta!</p>
+                    </div>
+                    <Paper className="blogsList">
+                        <List>
+                            {
+                                this.state.blogs.map(function (blog) {
+                                    return (
+                                        <BlogRow blog={blog}></BlogRow>
+                                    );
+                                })
+                            }
+                        </List>
+                    </Paper>
                 </div>
             </div>
         );
