@@ -37,8 +37,6 @@ var LeftNavMenu = React.createClass({
      * @private
      */
     _onMenuChange: function() {
-        console.log('LeftNavMenu._onMenuChange');
-        console.log('LeftNavMenu._onMenuChange', MenuStore.getMenu());
         var menuItems = MenuStore.getMenu();
         var newMenu = MenuStore.getDefaultMenu();
         for (var i = 0; i < menuItems.length; i++) {
@@ -75,7 +73,7 @@ var LeftNavMenu = React.createClass({
                 marginBottom: '0px'
             },
             leftNav: {
-                ".SubheaderMenuItem backgroundColor": Colors.green300
+                "SubheaderMenuItem backgroundColor": Colors.green400
             }
 
         };

@@ -1,7 +1,7 @@
 var React = require('react');
 var Router = require('react-router');
 var {Link} = require('react-router');
-var {Styles, RaisedButton, AppBar, FlatButton, IconMenu, IconButton} = require('material-ui')
+var {Styles, RaisedButton, AppBar, FlatButton, IconMenu, IconButton, FontIcon} = require('material-ui')
 var MenuItem = require ('material-ui/lib/menus/menu-item');
 var ThemeManager = new Styles.ThemeManager();
 var {Colors, Typography} = Styles;
@@ -47,31 +47,44 @@ var Main = React.createClass({
 
     render: function() {
         var styles = this.getStyles();
-        var rightButton = (
-            <FlatButton style={styles.rightMenuButton}>
-                User
-            </FlatButton>
+
+        //var rightButton = (
+        //    <FlatButton style={styles.rightMenuButton}>
+        //        <FontIcon className="material-icons user-icon-menu">person</FontIcon>
+        //    </FlatButton>
+        //);
+        var userButton = (
+            <IconButton iconClassName="material-icons" iconStyle={styles.userIcon}>person</IconButton>
+        );
+        var shoppingCartButton = (
+            <IconButton iconClassName="material-icons" iconStyle={styles.userIcon}>shopping_cart</IconButton>
         );
 
-        var rightMenu;
+        var menuItems;
         if (this.state.isLoggedIn) {
-            rightMenu = (
-                <IconMenu iconButtonElement={rightButton}
-                          openDirection="bottom-left"
-                          onItemTouchTap={this._rightMenuChange}>
-                    <MenuItem value={"logout"} primaryText="Sign out" />
-                </IconMenu>
+            menuItems = (
+                <MenuItem value={"logout"} primaryText="Sign out" />
             );
         } else {
-            rightMenu = (
-                <IconMenu iconButtonElement={rightButton}
-                          openDirection="bottom-left"
-                          onItemTouchTap={this._rightMenuChange}>
+            menuItems = (
+                <div>
                     <MenuItem value={"login"} primaryText="Log in" />
                     <MenuItem value={"signup"} primaryText="Sign up" />
-                </IconMenu>
+                </div>
             );
         }
+
+        var rightMenu = (
+            <div>
+                {shoppingCartButton}
+                <IconMenu iconButtonElement={userButton}
+                          openDirection="bottom-left"
+                          onItemTouchTap={this._rightMenuChange}>
+                    {menuItems}
+                </IconMenu>
+            </div>
+        );
+
 
         return (
             <div style={styles.parent}>
@@ -104,6 +117,9 @@ var Main = React.createClass({
                 height: '120px',
                 zIndex: '-10'
             },
+            userIcon: {
+                color: 'rgba(255, 255, 255, 0.90)'
+            },
             a: {
                 color: Colors.red
             },
@@ -113,6 +129,9 @@ var Main = React.createClass({
                 color: Colors.lightWhite
             },
             rightMenuButton: {
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
                 backgroundColor: Colors.transparent,
                 color: Typography.textFullWhite,
                 margin: 0,

@@ -5,7 +5,7 @@ var Router = require('react-router');
 var injectTapEventPlugin = require('react-tap-event-plugin');
 var AppRoutes = require('./routes.js');
 
-require('./stylesheets/main.scss');
+require('./assets/stylesheets/main.scss');
 
 window.React = React;
 
