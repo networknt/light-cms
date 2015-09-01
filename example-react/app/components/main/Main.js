@@ -56,12 +56,11 @@ var Main = React.createClass({
         var rightMenu;
         if (this.state.isLoggedIn) {
             rightMenu = (
-            <IconMenu iconButtonElement={rightButton}
-                      openDirection="bottom-left"
-                      onItemTouchTap={this._rightMenuChange}>
-                <MenuItem value={"logout"} primaryText="Sign out" />
-            </IconMenu>
-
+                <IconMenu iconButtonElement={rightButton}
+                          openDirection="bottom-left"
+                          onItemTouchTap={this._rightMenuChange}>
+                    <MenuItem value={"logout"} primaryText="Sign out" />
+                </IconMenu>
             );
         } else {
             rightMenu = (

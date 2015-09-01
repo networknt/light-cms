@@ -59,7 +59,6 @@ var LeftNavMenu = React.createClass({
         this.setState({
             menu: newMenu
         })
-        // TODO. Menu items would now be set to MenuStore.getMenu(); however format is not currently conducive to this.
     },
 
     getStyles: function() {
