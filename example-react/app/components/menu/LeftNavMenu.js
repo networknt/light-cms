@@ -7,27 +7,6 @@ var { Colors, Spacing, Typography } = Styles;
 var MenuStore = require('../../stores/MenuStore');
 var MenuActions = require('../../actions/MenuActions');
 
-var menu = [
-    { type: MenuItem.Types.SUBHEADER, text: 'Component Examples' },
-    { route: 'blogs', text: 'Blogs'},
-    { route: 'forum', text: 'Forum'},
-    { route: 'news', text: 'News'},
-    { route: 'user-example', text: 'User Example' },
-    /*
-    { type: MenuItem.Types.SUBHEADER, text: 'User'},
-    { route: 'login', text: 'Login'},
-    { route: 'logout', text: 'Logout'},
-    { route: 'signup', text: 'Sign up'},
-    */
-    { type: MenuItem.Types.SUBHEADER, text: 'NetworkNT'},
-    {
-        type: MenuItem.Types.LINK,
-        payload: 'https://github.com/networknt',
-        text: 'GitHub'
-    }
-];
-
-
 var LeftNavMenu = React.createClass({
 
     componentWillMount: function() {
@@ -38,13 +17,48 @@ var LeftNavMenu = React.createClass({
         });
     },
 
+    getInitialState: function() {
+        return {
+            menu: []
+        }
+    },
+
     componentDidMount: function() {
         MenuStore.addChangeListener(this._onMenuChange);
         MenuActions.getMenu();
     },
 
+    /**
+     * Nested menu's currently broken in material-ui (will redo when fixed)
+     * https://github.com/callemall/material-ui/issues/744
+     *
+     * In the meanwhile, flatten first 2 levels.
+     *
+     * @private
+     */
     _onMenuChange: function() {
         console.log('LeftNavMenu._onMenuChange');
+        console.log('LeftNavMenu._onMenuChange', MenuStore.getMenu());
+        var menuItems = MenuStore.getMenu();
+        var newMenu = MenuStore.getDefaultMenu();
+        for (var i = 0; i < menuItems.length; i++) {
+            if (menuItems[i].out_Own != null && menuItems[i].out_Own.length > 0) {
+                for (var j = 0; j < menuItems[i].out_Own.length; j++) {
+                    newMenu.push({
+                        route: menuItems[i].out_Own[j].path,
+                        text: menuItems[i].out_Own[j].label
+                    })
+                }
+            } else {
+                newMenu.push({
+                    route : menuItems[i].path,
+                    text: menuItems[i].label
+                })
+            }
+        }
+        this.setState({
+            menu: newMenu
+        })
         // TODO. Menu items would now be set to MenuStore.getMenu(); however format is not currently conducive to this.
     },
 
@@ -52,7 +66,6 @@ var LeftNavMenu = React.createClass({
         return {
             root: {
                 cursor: 'pointer',
-                //.mui-font-style-headline
                 fontSize: '24px',
                 color: Typography.textFullWhite,
                 lineHeight: Spacing.desktopKeylineIncrement + 'px',
@@ -82,7 +95,7 @@ var LeftNavMenu = React.createClass({
                 docked={false}
                 isInitiallyOpen={false}
                 header={header}
-                menuItems={menu}
+                menuItems={this.state.menu}
                 selectedIndex={this.getSelectedIndex()}
                 onChange={this.onLeftNavChange} />
         );
@@ -94,8 +107,8 @@ var LeftNavMenu = React.createClass({
 
     getSelectedIndex: function() {
         var currentItem;
-        for (var i = menu.length - 1; i >= 0; i--) {
-            currentItem = menu[i];
+        for (var i = this.state.menu.length - 1; i >= 0; i--) {
+            currentItem = this.state.menu[i];
             if (currentItem.route && this.context.router.isActive(currentItem.route)) return i;
         }
     },

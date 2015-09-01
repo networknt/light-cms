@@ -11,7 +11,7 @@ var BlogActions = {
             url: 'http://example:8080/api/rs',
             data: JSON.stringify({
                 category : 'blog',
-                name : 'getBlog',
+                name : 'getBlogTree',
                 readOnly: true,
                 "data": {
                     host: AppConstants.host
@@ -20,7 +20,7 @@ var BlogActions = {
             contentType: 'application/json',
             dataType: 'json',
             error: function(jqXHR, status, error) {
-                console.log('Using mock data...');
+                console.log('Error received, using mock data.', error);
                 AppDispatcher.handleAction({
                     type: AppConstants.ActionTypes.BLOGS_RESPONSE,
                     json: MockBlogData.getBlogs(),
