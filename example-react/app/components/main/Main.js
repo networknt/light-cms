@@ -11,8 +11,6 @@ var AuthStore = require('../../stores/AuthStore.js');
 
 var InlineUser = require('./../user/src/InlineUser.js');
 
-require('./main.css');
-
 var LeftNavMenu = require('../menu/LeftNavMenu');
 
 var Main = React.createClass({
@@ -80,7 +78,9 @@ var Main = React.createClass({
             <div style={styles.parent}>
                 <AppBar title='NetworkNT' onLeftIconButtonTouchTap={this.showSideBar} iconElementRight={rightMenu} zDepth={0} style={styles.topMenu}/>
                 <LeftNavMenu ref="leftNav"/>
-                <RouteHandler />
+                <div className="contentRoot">
+                    <RouteHandler />
+                </div>
 
                 <FullWidthSection style={styles.footer}>
                     <p style={styles.p}>Copyright NetworkNT - 2015</p>

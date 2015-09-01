@@ -2,7 +2,7 @@ $blogPostSpacing: 15px;
 $blogPostContentText: 24px;
 
 .blogRoot {
-  background-color: #EFEFEF;
+  background-color: $colors-backgroundGrey;
   padding: 20px;
 }
 
@@ -72,10 +72,11 @@ $blogPostContentText: 24px;
   flex-grow: 1;
   height: 100%;
   padding-left: 20px;
+  padding-top: 10px;
   
   .blogInfo {
     font-family: Roboto;
-    color: #999;
+    color: $textColorOverGreyBackground;
     h1 {
       margin-bottom: 20px;
       margin-top: 5px;
