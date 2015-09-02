@@ -40,7 +40,7 @@ var Main = React.createClass({
         })
     },
 
-    _rightMenuChange: function(e, value) {
+    _userMenuTouched: function(e, value) {
         console.log("Main._rightMenuChange", value);
         this.context.router.transitionTo('/light-cms/' + value._store.props.value);
     },
@@ -48,25 +48,23 @@ var Main = React.createClass({
     render: function() {
         var styles = this.getStyles();
 
-        //var rightButton = (
-        //    <FlatButton style={styles.rightMenuButton}>
-        //        <FontIcon className="material-icons user-icon-menu">person</FontIcon>
-        //    </FlatButton>
-        //);
         var userButton = (
             <IconButton iconClassName="material-icons" iconStyle={styles.userIcon}>person</IconButton>
         );
+        // TODO: badge display shopping cart content
         var shoppingCartButton = (
-            <IconButton iconClassName="material-icons" iconStyle={styles.userIcon}>shopping_cart</IconButton>
+            <span>
+                <IconButton iconClassName="material-icons" iconStyle={styles.userIcon}>shopping_cart</IconButton>
+            </span>
         );
 
-        var menuItems;
+        var loginMenuItems;
         if (this.state.isLoggedIn) {
-            menuItems = (
+            loginMenuItems = (
                 <MenuItem value={"logout"} primaryText="Sign out" />
             );
         } else {
-            menuItems = (
+            loginMenuItems = (
                 <div>
                     <MenuItem value={"login"} primaryText="Log in" />
                     <MenuItem value={"signup"} primaryText="Sign up" />
@@ -79,8 +77,8 @@ var Main = React.createClass({
                 {shoppingCartButton}
                 <IconMenu iconButtonElement={userButton}
                           openDirection="bottom-left"
-                          onItemTouchTap={this._rightMenuChange}>
-                    {menuItems}
+                          onItemTouchTap={this._userMenuTouched}>
+                    {loginMenuItems}
                 </IconMenu>
             </div>
         );

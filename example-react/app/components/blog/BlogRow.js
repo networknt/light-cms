@@ -15,7 +15,7 @@ var BlogRow = React.createClass({
     },
 
     _onTouchTap: function () {
-        this.context.router.transitionTo("/light-cms/blog");
+        this.context.router.transitionTo("/light-cms/blog/" + this.props.blog["@rid"].substring(1));
     },
 
     _createItems: function (blogs) {

@@ -27,9 +27,8 @@ var AppRoutes = (
         <Route name="user-example" handler={UserExample}/>
         <Route name="u/:userId" handler={UserProfile}/>
         <Route name="blogs" handler={Blogs}/>
-        <Route name="blog" handler={Blog}/>
-        <Route name="blogPosts" handler={BlogPosts} />
-        <Route name="blogPost" handler={BlogPost}/>
+        <Route name="blog/:blogId" handler={Blog}/>
+        <Route name="blogPost/:postId" handler={BlogPost}/>
         <Route name="forum" handler={Forum}/>
         <Route name="news" handler={News}/>
         <Route name="signup" handler={SignUp}/>
