@@ -40,7 +40,21 @@ module.exports = {
         REFRESH: null,
         MENU_RESPONSE: null,
         BLOGS_RESPONSE: null,
-        BLOG_POSTS_RESPONSE: null
+        BLOG_POSTS_RESPONSE: null,
+
+        // Commerce
+        RECEIVE_CATALOG: null,
+        RECEIVE_PRODUCTS: null,
+        ADD_PRODUCT_TO_CART: null,
+        SET_PRODUCT_VARIANT: null, // set product variation
+        SET_QTY: null,
+        REMOVE_CART_ITEM: null,
+        SET_PRODUCT_INVENTORY: null,
+        REMOVE_ONE_FROM_INVENTORY: null,
+        TOGGLE_CART: null, // Open/close cart
+        LOAD_CATALOG: null,
+        SELECT_CATALOG: null,
+        LOAD_PRODUCTS: null
     }),
 
     APIEndpoints: {
