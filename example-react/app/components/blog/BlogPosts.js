@@ -2,15 +2,13 @@ var React =  require('react');
 var FullWidthSection = require('../common/full-width-section.js');
 var {List, ListItem, Paper, Avatar, Styles, SvgIcon} = require('material-ui');
 var { Colors, Spacing, Typography } = Styles;
-// var {ActionAssignment} = SvgIcon;
-// using leftAvatar={<Avatar icon={<ActionAssignment />}/>} in ListItem causing an error... figure out why.
+
+
 var BlogPostsView = React.createClass({
     contextTypes: {
         router: React.PropTypes.func
     },
     componentDidMount: function() {
-        //console.log("BlogPostsView.componentDidMount state", this.state);
-        //console.log("BlogPostsView.componentDidMount props", this.props);
     },
     _routeToPost: function() {
         this.context.router.transitionTo("/light-cms/blogPost");

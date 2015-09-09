@@ -32,7 +32,7 @@ var Blog = React.createClass({
                     <h2 className="mainBlogHeader">NetworkNt Blogs</h2>
                 </div>
                 <div className="blogRoot">
-                    <BlogPosts blogPosts={this.state.blogPosts}></BlogPosts>
+                    <BlogPosts blogPosts={this.state.blogPosts} rid={this.props.query.rid}></BlogPosts>
                     <Link to="/light-cms/blogs">
                         <RaisedButton label="Back"/>
                     </Link>

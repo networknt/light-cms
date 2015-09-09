@@ -21,19 +21,23 @@ var SignUp = require('./components/auth/Signup.js');
 var Login = require('./components/auth/Login.js');
 var Logout = require('./components/auth/Logout.js');
 
+var Catalog = require('./components/catalog/Catalog.js');
+
 var AppRoutes = (
     <Route name="root" path="/light-cms/" handler={Main}>
         <Route name="home" handler={Home} />
         <Route name="user-example" handler={UserExample}/>
         <Route name="u/:userId" handler={UserProfile}/>
         <Route name="blogs" handler={Blogs}/>
-        <Route name="blog/:blogId" handler={Blog}/>
-        <Route name="blogPost/:postId" handler={BlogPost}/>
+        <Route name="blog" handler={Blog} />
+        <Route name="blogPost/:postId" path="blogPost/:postId" handler={BlogPost}/>
         <Route name="forum" handler={Forum}/>
         <Route name="news" handler={News}/>
         <Route name="signup" handler={SignUp}/>
         <Route name="login" handler={Login}/>
         <Route name="logout" handler={Logout}/>
+
+        <Route name="catalog" handler={Catalog}/>
         <DefaultRoute handler={Home}/>
     </Route>
 );

@@ -15,7 +15,7 @@ var MenuStore = _.extend({}, EventEmitter.prototype, {
         return [
             { type: MenuItem.Types.SUBHEADER, text: 'Component Examples' },
             { route: 'blogs', text: 'Blogs'},
-            { route: 'shop', text: 'Shop'},
+            { route: 'catalog', text: 'Shop'},
             { route: 'forum', text: 'Forum'},
             { route: 'news', text: 'News'},
             { route: 'user-example', text: 'User Example' },
@@ -49,7 +49,9 @@ AppDispatcher.register(function(payload) {
     if (action == null) return;
     switch(action.type) {
         case AppConstants.ActionTypes.MENU_RESPONSE:
-            _menu = action.json.out_Own;
+            if (action.json != null) {
+                _menu = action.json.out_Own;
+            }
             MenuStore.emitChange();
             break;
         default:

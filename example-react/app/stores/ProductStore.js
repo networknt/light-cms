@@ -37,7 +37,7 @@ function _setInventory(productIndex, initialInventory, qty=0) {
 function _removeOneFromInventory(product) {
     console.log('_removeOneFromInventory product = ', product);
     var i = product.variantIndex;
-    --_products[product.index].variants[i].inventory;
+    _products[product.index].variants[i].inventory;
 }
 
 

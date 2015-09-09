@@ -26,6 +26,12 @@ module.exports = {
             dataType: 'json',
             error: function(jqXHR, status, error) {
                 console.log('MenuActions.getMenu error', error);
+                var errorText = jqXHR.responseText;
+                AppDispatcher.handleAction({
+                    type: ActionTypes.MENU_RESPONSE,
+                    json: null,
+                    error: errorText
+                });
                 /*
                 var errorText = jqXHR.responseText;
                 AppDispatcher.handleAction({
