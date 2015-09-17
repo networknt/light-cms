@@ -72,6 +72,39 @@ var BlogActions = {
                 });
             }
         });
+    },
+
+    getPost: function (rid) {
+        $.ajax({
+            type: 'POST',
+            url: 'http://example:8080/api/rs',
+            data: JSON.stringify({
+                category : 'blog',
+                name : 'getPost',
+                readOnly: true,
+                "data": {
+                    host: AppConstants.host,
+                    "@rid": rid
+                }
+            }),
+            contentType: 'application/json',
+            dataType: 'json',
+            error: function(jqXHR, status, error) {
+                console.log('BlogActions.getBlogPosts - Error received, using mock data.', error);
+                AppDispatcher.handleAction({
+                    type: AppConstants.ActionTypes.BLOG_POST_RESPONSE,
+                    json: MockBlogData.getPost(),
+                    error: null
+                });
+            },
+            success: function(result, status, xhr) {
+                AppDispatcher.handleAction({
+                    type: AppConstants.ActionTypes.BLOG_POST_RESPONSE,
+                    json: result,
+                    error: null
+                });
+            }
+        });
     }
 
 };

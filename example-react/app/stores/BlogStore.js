@@ -5,6 +5,7 @@ var _ = require('underscore');
 
 var _blogs = [];
 var _blogPosts = [];
+var _post = {};
 
 var BlogStore = _.extend({}, EventEmitter.prototype, {
     getBlogs: function() {
@@ -13,6 +14,10 @@ var BlogStore = _.extend({}, EventEmitter.prototype, {
 
     getBlogPosts: function() {
         return _blogPosts;
+    },
+
+    getPost: function() {
+        return _post;
     },
 
     emitChange: function() {
@@ -40,6 +45,10 @@ AppDispatcher.register(function(payload) {
     } else if (data.type === AppConstants.ActionTypes.BLOG_POSTS_RESPONSE) {
         console.log("BlogStore received BLOG_POSTS:", data.json);
         _blogPosts = data.json;
+        BlogStore.emitChange();
+    } else if (data.type === AppConstants.ActionTypes.BLOG_POST_RESPONSE) {
+        console.log("BlogStore received BLOG_POST:", data.json);
+        _post = data.json;
         BlogStore.emitChange();
     }
     return true;

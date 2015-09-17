@@ -127,6 +127,18 @@ module.exports = {
             }
         ];
     },
+    getPost: function() {
+        return {
+            "createUserId":"stevehu",
+            "postId":"GT3ZmMIxTxiE8WzGudooQA",
+            "createRid":"#14:0",
+            "rid":"#36:11",
+            "title":"TEst",
+            "content":"This is the post - Edited -5/21/2015",
+            "parentId":"asdga",
+            "createDate":"2015-05-02T14:20:13.512"
+        };
+    },
     init: function() {
         localStorage.clear();
         localStorage.setItem('blogs', JSON.stringify([

@@ -41,6 +41,7 @@ module.exports = {
         MENU_RESPONSE: null,
         BLOGS_RESPONSE: null,
         BLOG_POSTS_RESPONSE: null,
+        BLOG_POST_RESPONSE: null,
 
         // Commerce
         RECEIVE_CATALOG: null,
