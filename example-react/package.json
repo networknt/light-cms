@@ -4,7 +4,8 @@
   "description": "User component in light framework",
   "main": "app.js",
   "scripts": {
-    "start": "webpack-dev-server --progess --colors"
+    "start": "webpack-dev-server --progess --colors",
+    "lint": "eslint app"
   },
   "authors": [
     "Steve Hu",
@@ -39,7 +40,9 @@
     "extract-text-webpack-plugin": "^0.8.2",
     "node-sass": "~3.2.0",
     "sass-loader": "~2.0.1",
-    "autoprefixer-loader": "~2.0.0"
+    "autoprefixer-loader": "~2.0.0",
+    "eslint": "~1.4.3",
+    "babel-eslint": "~4.1.2"
   },
   "dependencies": {
     "express": "^4.13.1",

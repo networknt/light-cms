@@ -1,4 +1,5 @@
-'use strict';
+"use strict";
+/*jslint node: true */
 
 var React = require('react');
 var Router = require('react-router');

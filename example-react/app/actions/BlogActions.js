@@ -37,7 +37,7 @@ var BlogActions = {
         });
     },
 
-    getBlogPosts: function(rid, pageNo, pageSize) {
+    getBlogPosts: function(rid) {
         $.ajax({
             type: 'POST',
             url: 'http://example:8080/api/rs',

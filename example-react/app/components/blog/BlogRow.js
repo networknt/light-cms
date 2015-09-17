@@ -4,10 +4,11 @@ var BlogActions = require('../../actions/BlogActions');
 var { Colors, Spacing, Typography} = Styles;
 
 
+var Navigation = require('react-router').Navigation;
+
 var BlogRow = React.createClass({
-    contextTypes: {
-        router: React.PropTypes.func
-    },
+    mixins: [Navigation],
+
     render: function () {
         return (
             this._createItems(this.props.blog)
@@ -15,7 +16,7 @@ var BlogRow = React.createClass({
     },
 
     _onTouchTap: function () {
-        this.context.router.transitionTo("/light-cms/blog?rid=" + this.props.blog["@rid"].substring(1));
+        this.transitionTo('/light-cms/blogs/' + this.props.blog["@rid"].substring(1));
     },
 
     _createItems: function (blogs) {
