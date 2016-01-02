@@ -45,12 +45,12 @@ public class ForumRuleTest extends TestCase {
     String getForumTree = "{\"readOnly\":true,\"category\":\"forum\",\"name\":\"getForum\",\"data\":{\"host\":\"www.example.com\"}}";
     String delForum = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"delForum\",\"data\":{\"host\":\"www.example.com\"}}";
 
-    String addForum1 = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"addForum\",\"data\":{\"host\":\"www.example.com\",\"forumId\":\"Living\",\"description\":\"Living\"}}";
-    String addForum2 = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"addForum\",\"data\":{\"host\":\"www.example.com\",\"forumId\":\"Plant\",\"description\":\"Plant\"}}";
-    String addForum3 = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"addForum\",\"data\":{\"host\":\"www.example.com\",\"forumId\":\"Animal\",\"description\":\"Animal\"}}";
-    String addForum4 = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"addForum\",\"data\":{\"host\":\"www.example.com\",\"forumId\":\"Tree\",\"description\":\"Tree\"}}";
-    String addForum5 = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"addForum\",\"data\":{\"host\":\"www.example.com\",\"forumId\":\"Herb\",\"description\":\"Herb\"}}";
-    String addForum6 = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"addForum\",\"data\":{\"host\":\"www.example.com\",\"forumId\":\"Pine\",\"description\":\"Pine\"}}";
+    String addForum1 = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"addForum\",\"data\":{\"host\":\"www.example.com\",\"categoryId\":\"Living\",\"description\":\"Living\"}}";
+    String addForum2 = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"addForum\",\"data\":{\"host\":\"www.example.com\",\"categoryId\":\"Plant\",\"description\":\"Plant\"}}";
+    String addForum3 = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"addForum\",\"data\":{\"host\":\"www.example.com\",\"categoryId\":\"Animal\",\"description\":\"Animal\"}}";
+    String addForum4 = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"addForum\",\"data\":{\"host\":\"www.example.com\",\"categoryId\":\"Tree\",\"description\":\"Tree\"}}";
+    String addForum5 = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"addForum\",\"data\":{\"host\":\"www.example.com\",\"categoryId\":\"Herb\",\"description\":\"Herb\"}}";
+    String addForum6 = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"addForum\",\"data\":{\"host\":\"www.example.com\",\"categoryId\":\"Pine\",\"description\":\"Pine\"}}";
 
     String updForum = "{\"readOnly\":false,\"category\":\"forum\",\"name\":\"updForum\",\"data\":{\"host\":\"www.example.com\"}}";
 

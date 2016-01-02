@@ -24,11 +24,11 @@
             // Check if the id is null before setting it.
             // Otherwise it will be overwritten with null.
             console.log('modelData', modelDataService.getModelData());
-            if ($scope.getForumPost.data.forumId == null && modelData != null) {
-                if (modelData != null && modelData.forumId == null) {
-                    $scope.getForumPost.data.forumId = modelData;
+            if ($scope.getForumPost.data.categoryId == null && modelData != null) {
+                if (modelData != null && modelData.categoryId == null) {
+                    $scope.getForumPost.data.categoryId = modelData;
                 } else {
-                    $scope.getForumPost.data.forumId = modelDataService.getModelData().forumId;
+                    $scope.getForumPost.data.categoryId = modelDataService.getModelData().categoryId;
                 }
             }
             console.log('posting with:', $scope.getForumPost);
@@ -54,12 +54,12 @@
         $scope.post = function() {
             var modelData = modelDataService.getModelData();
             modelDataService.setModelData(null); // reset the modelDataService variable.
-            $location.path("/form/com.networknt.light.forum.post.add/" + $scope.getForumPost.data.forumId);
+            $location.path("/form/com.networknt.light.forum.post.add/" + $scope.getForumPost.data.categoryId);
         };
 
         $scope.view = function(post, editing) {
             modelDataService.setModelData({
-                forumId: $scope.getForumPost.data.forumId,
+                categoryId: $scope.getForumPost.data.categoryId,
                 post: post,
                 editing: editing
             });

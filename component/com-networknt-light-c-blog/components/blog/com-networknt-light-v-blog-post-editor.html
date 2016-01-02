@@ -21,7 +21,7 @@ angular.module('lightApp').controller('BlogPostEditorCtrl', ['$scope', '$filter'
 
     $scope.submitPost = function () {
         if ($scope.post == null && $scope.blog != null) {
-            bfnBackend.addPost("blog", "example", $scope.blog.blogId, $scope.postTitle, $scope.postContent, $scope.postTags, $scope.postSource, $scope.postSummary).then(function (result) {
+            bfnBackend.addPost("blog", "example", $scope.blog.categoryId, $scope.postTitle, $scope.postContent, $scope.postTags, $scope.postSource, $scope.postSummary).then(function (result) {
                 blogRouting.blogHome();
             });
         } else if ($scope.post != null && $scope.blog != null) {

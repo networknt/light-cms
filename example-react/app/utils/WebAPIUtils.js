@@ -128,7 +128,7 @@ module.exports = {
         });
     },
 
-    loadBlog: function(blogId) {
+    loadBlog: function(categoryId) {
         request.get(APIEndpoints.STORIES + '/' + storyId)
             .set('Accept', 'application/json')
             .end(function(error, res){

@@ -21,35 +21,35 @@ DROP CLASS Tag
 /* Create items */
 CREATE CLASS Blog extends V;
 CREATE PROPERTY Blog.host STRING;
-CREATE PROPERTY Blog.blogId STRING;
+CREATE PROPERTY Blog.categoryId STRING;
 CREATE PROPERTY Blog.description STRING;
 CREATE PROPERTY Blog.attributes EMBEDDEDMAP;
 CREATE PROPERTY Blog.rank INTEGER;
 CREATE PROPERTY Blog.createDate DATETIME;
 CREATE PROPERTY Blog.updateDate DATETIME;
-CREATE INDEX blogHostIdIdx ON Blog(host, blogId) UNIQUE;
+CREATE INDEX blogHostIdIdx ON Blog(host, categoryId) UNIQUE;
 CREATE INDEX Blog.updateDate ON Blog(updateDate) NOTUNIQUE;
 
 CREATE CLASS Forum extends V;
 CREATE PROPERTY Forum.host STRING;
-CREATE PROPERTY Forum.forumId STRING;
+CREATE PROPERTY Forum.categoryId STRING;
 CREATE PROPERTY Forum.description STRING;
 CREATE PROPERTY Forum.attributes EMBEDDEDMAP;
 CREATE PROPERTY Forum.rank INTEGER;
 CREATE PROPERTY Forum.createDate DATETIME;
 CREATE PROPERTY Forum.updateDate DATETIME;
-CREATE INDEX forumHostIdIdx ON Forum(host, forumId) UNIQUE;
+CREATE INDEX forumHostIdIdx ON Forum(host, categoryId) UNIQUE;
 CREATE INDEX Forum.updateDate ON Forum(updateDate) NOTUNIQUE;
 
 CREATE CLASS News extends V;
 CREATE PROPERTY News.host STRING;
-CREATE PROPERTY News.newsId STRING;
+CREATE PROPERTY News.categoryId STRING;
 CREATE PROPERTY News.description STRING;
 CREATE PROPERTY News.attributes EMBEDDEDMAP;
 CREATE PROPERTY News.rank INTEGER;
 CREATE PROPERTY News.createDate DATETIME;
 CREATE PROPERTY News.updateDate DATETIME;
-CREATE INDEX newsHostIdIdx ON News(host, newsId) UNIQUE;
+CREATE INDEX newsHostIdIdx ON News(host, categoryId) UNIQUE;
 CREATE INDEX News.updateDate ON News(updateDate) NOTUNIQUE;
 
 

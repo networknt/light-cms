@@ -44,7 +44,7 @@
 
     $scope.goToForum = function(id) {
         modelDataService.setModelData({
-            forumId: id
+            categoryId: id
         });
         $location.path("/page/com-networknt-light-v-forum-post");
     };
@@ -70,7 +70,7 @@
                         <span class="glyphicon" ng-class="{'glyphicon glyphicon-plus': collapsed, 'glyphicon glyphicon-minus': !collapsed}" />
                     </a>
                     <!--{{node.id | highlight:pattern | trust}}-->
-                    <a href ng-click="goToForum(node.forumId)" ng-bind-html="node.forumId | highlight:pattern | trust"></a>
+                    <a href ng-click="goToForum(node.categoryId)" ng-bind-html="node.categoryId | highlight:pattern | trust"></a>
                     <small ng-bind-html="node.desc | highlight:pattern | trust"></small>
                 </div>
                 <ol ui-tree-nodes="" ng-model="node.children" ng-class="{hidden: collapsed}">

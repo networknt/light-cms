@@ -52,16 +52,16 @@ public class BlogRuleTest extends TestCase {
     String delDemoBlog = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"delBlog\",\"data\":{\"host\":\"demo.networknt.com\"}}";
 
 
-    String addExamBlog1 = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"addBlog\",\"data\":{\"host\":\"www.example.com\",\"blogId\":\"blog1\",\"description\":\"blog1\"}}";
-    String addExamBlog11 = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"addBlog\",\"data\":{\"host\":\"www.example.com\",\"blogId\":\"blog11\",\"description\":\"blog11\"}}";
-    String addExamBlog12 = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"addBlog\",\"data\":{\"host\":\"www.example.com\",\"blogId\":\"blog12\",\"description\":\"blog12\"}}";
-    String addExamBlog111 = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"addBlog\",\"data\":{\"host\":\"www.example.com\",\"blogId\":\"blog111\",\"description\":\"blog111\"}}";
-    String addExamBlog121 = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"addBlog\",\"data\":{\"host\":\"www.example.com\",\"blogId\":\"blog121\",\"description\":\"blog121\"}}";
-    String addExamBlog112 = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"addBlog\",\"data\":{\"host\":\"www.example.com\",\"blogId\":\"blog112\",\"description\":\"blog112\"}}";
-    String addExamBlog2 = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"addBlog\",\"data\":{\"host\":\"www.example.com\",\"blogId\":\"blog2\",\"description\":\"blog2\"}}";
+    String addExamBlog1 = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"addBlog\",\"data\":{\"host\":\"www.example.com\",\"categoryId\":\"blog1\",\"description\":\"blog1\"}}";
+    String addExamBlog11 = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"addBlog\",\"data\":{\"host\":\"www.example.com\",\"categoryId\":\"blog11\",\"description\":\"blog11\"}}";
+    String addExamBlog12 = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"addBlog\",\"data\":{\"host\":\"www.example.com\",\"categoryId\":\"blog12\",\"description\":\"blog12\"}}";
+    String addExamBlog111 = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"addBlog\",\"data\":{\"host\":\"www.example.com\",\"categoryId\":\"blog111\",\"description\":\"blog111\"}}";
+    String addExamBlog121 = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"addBlog\",\"data\":{\"host\":\"www.example.com\",\"categoryId\":\"blog121\",\"description\":\"blog121\"}}";
+    String addExamBlog112 = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"addBlog\",\"data\":{\"host\":\"www.example.com\",\"categoryId\":\"blog112\",\"description\":\"blog112\"}}";
+    String addExamBlog2 = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"addBlog\",\"data\":{\"host\":\"www.example.com\",\"categoryId\":\"blog2\",\"description\":\"blog2\"}}";
 
-    String addDemoBlog1 = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"addBlog\",\"data\":{\"host\":\"demo.networknt.com\",\"blogId\":\"blog1\",\"description\":\"blog1\"}}";
-    String addDemoBlog2 = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"addBlog\",\"data\":{\"host\":\"demo.networknt.com\",\"blogId\":\"blog2\",\"description\":\"blog2\"}}";
+    String addDemoBlog1 = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"addBlog\",\"data\":{\"host\":\"demo.networknt.com\",\"categoryId\":\"blog1\",\"description\":\"blog1\"}}";
+    String addDemoBlog2 = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"addBlog\",\"data\":{\"host\":\"demo.networknt.com\",\"categoryId\":\"blog2\",\"description\":\"blog2\"}}";
 
 
     String updExamBlog = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"updBlog\",\"data\":{\"host\":\"www.example.com\"}}";

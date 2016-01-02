@@ -2,7 +2,7 @@
     angular.module('lightApp').controller('com.networknt.light.ForumPostViewCtrl', ['$scope', '$http', '$location', 'authService', '$filter', 'toaster', 'modelDataService', function ($scope, $http, $location, authService, $filter, toaster, modelDataService) {
 
         $scope.post = modelDataService.getModelData().post;
-        $scope.forumId = modelDataService.getModelData().forumId;
+        $scope.categoryId = modelDataService.getModelData().categoryId;
         $scope.editing = modelDataService.getModelData().editing;
         $scope.postTitle = $scope.post.title;
         $scope.postContent = $scope.post.content;
@@ -88,7 +88,7 @@
                     .success(function (result, status, headers, config) {
                         console.log("success post:", $scope.post);
                         modelDataService.setModelData({
-                            forumId: $scope.forumId,
+                            categoryId: $scope.categoryId,
                             post: $scope.post,
                             editing: $scope.editing
                         });

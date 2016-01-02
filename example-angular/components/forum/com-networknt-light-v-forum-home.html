@@ -61,7 +61,7 @@ angular.module('lightApp').controller('com.networknt.light.c.ForumCtrl', ['$scop
 
     $scope.goToForum = function(id) {
         modelDataService.setModelData({
-            forumId: id
+            categoryId: id
         });
         $location.path("/page/com-networknt-light-v-forum-post");
     };
@@ -90,7 +90,7 @@ angular.module('lightApp').controller('com.networknt.light.c.ForumCtrl', ['$scop
                     <ul class="forum-ul">
                         <li ng-repeat="forum in paged.forums | filter:pattern" >
                             <div class="forum-row">
-                                <a href ng-click="goToForum(forum.forumId)"  ng-bind-html="forum.forumId | highlight:pattern | trust"></a><br />
+                                <a href ng-click="goToForum(forum.categoryId)"  ng-bind-html="forum.categoryId | highlight:pattern | trust"></a><br />
                                 <small ng-bind-html="forum.desc | highlight:pattern | trust"></small>
                                 <!-- TODO: Redo this to only one span with angular. -->
                                 <span style="float:right;width:5%;height:100%" ng-if="!forum.out_HasPost">
