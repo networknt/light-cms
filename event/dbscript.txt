@@ -96,33 +96,22 @@ create vertex Role set roleId = 'blogAdmin', description = 'Blog Admin'
 create vertex Role set roleId = 'forumAdmin', description = 'Forum Admin'
 create vertex Role set roleId = 'newsAdmin', description = 'News Admin'
 
-let blogAdmin = create vertex MenuItem set menuItemId = 'blogAdmin', label = 'Blog Admin', path = '/page/com-networknt-light-v-blog-admin-home'
-let forumAdmin = create vertex MenuItem set menuItemId = 'forumAdmin', label = 'Forum Admin', path = '/page/com-networknt-light-v-forum-admin-home'
-let newsAdmin = create vertex MenuItem set menuItemId = 'newsAdmin', label = 'News Admin', path = '/page/com-networknt-light-v-news-admin-home'
-let blog = create vertex MenuItem set menuItemId = 'blog', label = 'Blog', path = '/page/com-networknt-light-v-blog-home', left = true, roles = 'user'
-let forum = create vertex MenuItem set menuItemId = 'forum', label = 'Forum', path = '/page/com-networknt-light-v-forum-home', left = true, roles = 'user'
-let news = create vertex MenuItem set menuItemId = 'news', label = 'News', path = '/page/com-networknt-light-v-news-home', left = true, roles = 'user'
+let blogAdmin = create vertex MenuItem set menuItemId = 'blogAdmin', text = 'Blog Admin', route = '/admin/blogAdmin'
+let forumAdmin = create vertex MenuItem set menuItemId = 'forumAdmin', text = 'Forum Admin', route = '/admin/forumAdmin'
+let newsAdmin = create vertex MenuItem set menuItemId = 'newsAdmin', text = 'News Admin', route = '/admin/newsAdmin'
+let blog = create vertex MenuItem set menuItemId = 'blog', text = 'Blog', route = '/blog'
+let forum = create vertex MenuItem set menuItemId = 'forum', text = 'Forum', route = '/forum'
+let news = create vertex MenuItem set menuItemId = 'news', text = 'News', route = '/news'
+
 let admin = select from MenuItem where menuItemId = 'admin'
 
 create edge Own from $admin to $blogAdmin
 create edge Own from $admin to $forumAdmin
 create edge Own from $admin to $newsAdmin
 
-/* Configure menu for host: www.networknt.com */
-let networknt = select from Menu where host = 'www.networknt.com'
-create edge Own from $networknt to $blog
-create edge Own from $networknt to $forum
-create edge Own from $networknt to $news
+let main = select from MenuItem where menuItemId = 'main'
 
-/* Configure menu for host: www.edibleforestgarden.ca */
-let edibleforestgarden = select from Menu where host = 'www.edibleforestgarden.ca'
-create edge Own from $edibleforestgarden to $blog
-create edge Own from $edibleforestgarden to $forum
-create edge Own from $edibleforestgarden to $news
-
-/* Configure menu for host: example */
-let example = select from Menu where host = 'example'
-create edge Own from $example to $blog
-create edge Own from $example to $forum
-create edge Own from $example to $news
+create edge Own from $main to $blog
+create edge Own from $main to $forum
+create edge Own from $main to $news
 
