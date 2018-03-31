@@ -38,7 +38,7 @@ public class PostRuleTest extends TestCase {
 
     String getExamBlog = "{\"readOnly\":true,\"category\":\"blog\",\"name\":\"getBlog\",\"data\":{\"host\":\"www.example.com\"}}";
     String delExamBlog = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"delBlog\",\"data\":{\"host\":\"www.example.com\"}}";
-    String addExamBlog1 = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"addBlog\",\"data\":{\"host\":\"www.example.com\",\"blogId\":\"blog1\",\"description\":\"blog1\"}}";
+    String addExamBlog1 = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"addBlog\",\"data\":{\"host\":\"www.example.com\",\"categoryId\":\"blog1\",\"description\":\"blog1\"}}";
 
 
     String addPost1 = "{\"readOnly\":false,\"category\":\"blog\",\"name\":\"addPost\",\"data\":{\"host\":\"www.example.com\",\"title\":\"Test blog1\",\"source\":\"http://www.networknt.com/blog/1\",\"content\":\"This is just a test1\",\"parentId\":\"blog1\"}}";
