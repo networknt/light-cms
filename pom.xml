@@ -53,7 +53,7 @@
         <jboss.logmanager.version>1.5.2.Final</jboss.logmanager.version>
         <logback.version>1.1.2</logback.version>
         <xnio.version>3.3.0.Beta1</xnio.version>
-        <undertow.version>1.1.0.Beta6</undertow.version>
+        <undertow.version>2.0.23.Final</undertow.version>
         <hazelcast.version>3.3</hazelcast.version>
         <orientdb.version>2.0-M2</orientdb.version>
         <concurrentlinkedhashmap.version>1.4</concurrentlinkedhashmap.version>
